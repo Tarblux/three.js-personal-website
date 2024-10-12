@@ -1,0 +1,28 @@
+# dependencies
+/node_modules
+package-lock.json
+
+# production
+/build
+/dist
+
+# local env files
+.env*
+.env.local
+!.env.sample
+
+# misc
+.DS_Store
+*.pem
+/.cert/
+
+# vercel
+.vercel
+
+report.*.json
+
+# .vscode Debugging
+.vscode/*-debug-profile
+
+# Windows Icon
+desktop.ini
