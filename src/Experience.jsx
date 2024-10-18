@@ -1,27 +1,26 @@
 import { Canvas, useFrame } from "@react-three/fiber"
 import { Gltf, ScrollControls, useScroll } from "@react-three/drei"
 import { getProject, val } from "@theatre/core"
+import {Leva , useControls} from "leva"
+import {Perf} from "r3f-perf"
 
-import {
-    SheetProvider,
-    PerspectiveCamera,
-    useCurrentSheet,
-} from "@theatre/r3f"
+import {SheetProvider,PerspectiveCamera,useCurrentSheet,} from "@theatre/r3f"
+import CameraPath from "./cameraPath.json"
 
 export default function Experience() {
-    const sheet = getProject("Main Frame").sheet("Scene")
+  const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
 
-    return (
-        <Canvas gl={{ preserveDrawingBuffer: true }}>
+  return (
+      <>
           <ScrollControls pages={5}>
-            <SheetProvider sheet={sheet}>
-              <Scene />
-            </SheetProvider>
+              <SheetProvider sheet={sheet}>
+                  <Scene />
+              </SheetProvider>
           </ScrollControls>
-        </Canvas>
-      );
+          <Perf position="top-left" />
+      </>
+  );
 }
-
 function Scene() {
     const sheet = useCurrentSheet();
     const scroll = useScroll();
