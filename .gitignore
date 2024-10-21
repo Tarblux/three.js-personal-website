@@ -26,3 +26,7 @@ report.*.json
 
 # Windows Icon
 desktop.ini
+.idea/modules.xml
+
+#IntelliJ
+.idea
