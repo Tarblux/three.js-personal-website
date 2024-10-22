@@ -7,6 +7,8 @@ import { Perf } from "r3f-perf"
 import { SheetProvider, PerspectiveCamera, useCurrentSheet, } from "@theatre/r3f"
 import CameraPath from "./cameraPath.json"
 
+import { Globe } from './components/Globe.jsx';
+
 export default function Experience() {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
 
@@ -29,10 +31,10 @@ function Scene() {
   // Debug controls
   const { sunPosition } = useControls({
     sunPosition: {
-      value: [100, 10, 100],
+      value: [10, 20, 25],
       step: 1,
-      min: -200,
-      max: 200
+      min: 0,
+      max: 100
     }
   });
 
@@ -46,9 +48,9 @@ function Scene() {
   return (
     <>
       <Sky sunPosition={sunPosition} />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[-5, 5, -5]} intensity={1.5} />
-      <Gltf src="/models/globe.glb" castShadow receiveShadow />
+      <ambientLight intensity={1} />
+      <directionalLight position={[-5, 5, -5]} intensity={2.5} />
+      <Globe castShadow receiveShadow scale = {[1,1,1]} />
       <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={90} near={0.1} far={70}/>
     </>
   );
