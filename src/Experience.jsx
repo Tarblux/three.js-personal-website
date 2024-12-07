@@ -19,7 +19,7 @@ export default function Experience() {
           <Scene />
         </SheetProvider>
       </ScrollControls>
-      <Perf position="bottom-right" />
+      {/* <Perf position="bottom-right" /> */}
     </>
   );
 }
