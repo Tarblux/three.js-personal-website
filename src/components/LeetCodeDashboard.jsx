@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
-} from 'recharts';
+
+import LeetCodeLineChart from './charts/LeetCodeLineChart.jsx';
+import LeetCodePieChart from './charts/LeetCodePieChart.jsx';
+
 
 export default function LeetCodeDashboard() {
+  
   const [data, setData] = useState([]);
+  const [pieData, setPieData] = useState([]);
 
   useEffect(() => {
     // Fetch data from the JSON file
@@ -19,6 +22,17 @@ export default function LeetCodeDashboard() {
           hardSolved: item.hardSolved,
         }));
         setData(chartData);
+
+        // Get Most Recent entry (for the pie chart)
+        const mostRecent = jsonData[jsonData.length - 1];
+
+        //Prepare data for the pie chart
+        const pieData = [
+          { name: 'Easy', value: mostRecent.easySolved },
+          { name: 'Medium', value: mostRecent.mediumSolved },
+          { name: 'Hard', value: mostRecent.hardSolved },
+        ];
+        setPieData(pieData);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -39,32 +53,19 @@ export default function LeetCodeDashboard() {
       <div className="flex-1 grid grid-rows-2 grid-cols-3 gap-4">
         {/* Question progression Line Chart */}
         <div className="bg-white bg-opacity-50 rounded-lg col-span-2 p-4 flex flex-col h-full">
-          <h2 className="text-black text-xl mb-2 font-geist">Questions Solved Over Time</h2>
+          <h2 className="text-black text-xl mb-2">Questions Solved Over Time</h2>
           <div className="flex-1">
-            <ResponsiveContainer width="100%" height="100%">
-
-              <LineChart data={data}>
-
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={(tick) => formatMonth(tick)}
-                  tick={{ fill: '#000' }}
-                />
-                <YAxis tick={{ fill: '#000' }} />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="easySolved" name="Easy" stroke="#82ca9d" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="mediumSolved" name="Medium" stroke="#ffc658" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="hardSolved" name="Hard" stroke="#ff7300" strokeWidth={3} dot={false} />
-
-              </LineChart>
-            </ResponsiveContainer>
+            <LeetCodeLineChart data={data} formatMonth={formatMonth} />
           </div>
         </div>
 
         {/* Question Difficulty Pie */}
-        <div className="bg-white bg-opacity-50 rounded-lg"></div>
+        <div className="bg-white bg-opacity-50 rounded-lg p-4 flex flex-col h-full">
+          <h2 className="text-black text-xl mb-2">Difficulty Distribution</h2>
+          <div className="flex-1">
+            <LeetCodePieChart pieData={pieData} />
+          </div>
+        </div>
 
         {/* Chart 3 */}
         <div className="bg-white bg-opacity-50 rounded-lg"></div>
