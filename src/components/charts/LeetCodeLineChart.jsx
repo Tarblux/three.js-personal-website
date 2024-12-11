@@ -14,9 +14,9 @@ export default function LeetCodeLineChart({ data, formatMonth }) {
             <YAxis tick={{ fill: '#000' }} />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="easySolved" name="Easy" stroke="#82ca9d" strokeWidth={3} dot={false} />
-            <Line type="monotone" dataKey="mediumSolved" name="Medium" stroke="#ffc658" strokeWidth={3} dot={false} />
-            <Line type="monotone" dataKey="hardSolved" name="Hard" stroke="#ff7300" strokeWidth={3} dot={false} />
+            <Line type="monotone" dataKey="easySolved" name="Easy" stroke="#1BBBBA" strokeWidth={3} dot={false} />
+            <Line type="monotone" dataKey="mediumSolved" name="Medium" stroke="#FFB700" strokeWidth={3} dot={false} />
+            <Line type="monotone" dataKey="hardSolved" name="Hard" stroke="#F53836" strokeWidth={3} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       );

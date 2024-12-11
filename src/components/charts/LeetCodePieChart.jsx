@@ -1,7 +1,7 @@
 import React from 'react';
 import { PieChart, Pie, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
-const COLORS = ['#82ca9d', '#ffc658', '#ff7300'];
+const COLORS = ['#1BBBBA', '#FFB700', '#F53836'];
 
 export default function LeetCodePieChart({ pieData }) {
   return (
@@ -13,6 +13,7 @@ export default function LeetCodePieChart({ pieData }) {
           cy="50%"
           labelLine={false}
           outerRadius={80}
+          innerRadius={60}
           fill="#8884d8"
           dataKey="value"
         >
