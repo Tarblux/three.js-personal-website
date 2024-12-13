@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import LeetCodeLineChart from './charts/LeetCodeLineChart.jsx';
 import LeetCodePieChart from './charts/LeetCodePieChart.jsx';
 import LeetCodeBarChart from './charts/LeetCodeBarChart.jsx';
+import LeetCodeSubmissionChart from './charts/LeetCodeSubmissionChart.jsx'; // Added import
 
 export default function LeetCodeDashboard() {
   const [data, setData] = useState([]);
   const [pieData, setPieData] = useState([]);
   const [barChartData, setBarChartData] = useState([]);
+  const [submissionData, setSubmissionData] = useState([]); // Added state for submission data
 
   useEffect(() => {
     fetch('/data/leetcode_stats.json')
@@ -71,6 +73,15 @@ export default function LeetCodeDashboard() {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
+
+    fetch('/data/submissionCalData.json') // Fetch submission data
+      .then((response) => response.json())
+      .then((jsonData) => {
+        setSubmissionData(jsonData);
+      })
+      .catch((error) => {
+        console.error('Error fetching submission data:', error);
+      });
   }, []);
 
   const formatMonth = (dateString) => {
@@ -103,9 +114,15 @@ export default function LeetCodeDashboard() {
             <LeetCodeBarChart data={barChartData} />
           </div>
         </div>
+        {/* Submission Chart */}
+        <div className="bg-white bg-opacity-50 rounded-lg p-4 flex flex-col h-full">
+          <h2 className="text-black text-xl mb-2">Submissions Calendar</h2>
+          <div className="flex-1">
+            <LeetCodeSubmissionChart data={submissionData} />
+          </div>
+        </div>
         {/* Additional Charts */}
-        <div className="bg-white bg-opacity-50 rounded-lg"></div>
-        <div className="bg-white bg-opacity-50 rounded-lg"></div>
+        {/* <div className="bg-white bg-opacity-50 rounded-lg"></div> */}
       </div>
     </div>
   );

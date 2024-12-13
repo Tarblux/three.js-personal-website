@@ -21,6 +21,7 @@
     "@theatre/core": "^0.7.2",
     "@theatre/r3f": "^0.7.2",
     "@theatre/studio": "^0.7.2",
+    "cal-heatmap": "^4.2.4",
     "leva": "^0.9.35",
     "r3f-perf": "^7.2.2",
     "react": "18.3",
