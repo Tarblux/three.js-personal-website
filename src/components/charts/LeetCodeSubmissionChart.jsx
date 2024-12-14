@@ -1,41 +1,40 @@
 import React, { useEffect, useRef } from 'react';
-
+import CalHeatmap from 'cal-heatmap';
 import Tooltip from 'cal-heatmap/plugins/Tooltip';
 import Legend from 'cal-heatmap/plugins/Legend';
-import CalHeatmap from 'cal-heatmap';
 import 'cal-heatmap/cal-heatmap.css';
 
 const LeetCodeSubmissionChart = ({ data }) => {
   const chartRef = useRef(null);
   const legendRef = useRef(null);
-  const cal = useRef(null);
+  const cal = useRef(null); // To store the CalHeatmap instance
 
   useEffect(() => {
-    if (!chartRef.current || !legendRef.current || !data) return;
+    if (!chartRef.current) return;
 
-    // Initialize CalHeatmap
-    cal.current = new CalHeatmap();
+    if (!cal.current) {
+      cal.current = new CalHeatmap();
+    }
+
     cal.current.paint(
       {
         data: {
-          source: data, // Use parsed JSON data directly
-          type: 'json', // Format type
-          x: 'date', // The date field in your JSON data
-          y: 'value', // The value field in your JSON data
+          source: data,
+          type: 'json',
+          x: 'date',
+          y: 'value',
         },
-        date: { start: new Date('2024-01-01') }, // Adjusts the start date as needed
-        range: 12, // Number of months to display
+        date: { start: new Date('2024-01-01') }, 
+        range: 12, 
         scale: {
           color: {
             type: 'quantize',
-            scheme: 'Greens', // Color scheme
-            domain: [0, 1, 2, 3, 4, 5], // Adjusts according to submission data
+            scheme: 'Greens',
+            domain: [0, 5], // Adjust domain as needed
           },
         },
-        domain: {
-          type: 'month', // Group data by month
-        },
-        subDomain: { type: 'day', radius: 2 }, // Represents each day
+        domain: { type: 'month' },
+        subDomain: { type: 'day', radius: 2 },
         itemSelector: chartRef.current,
       },
       [
@@ -51,43 +50,28 @@ const LeetCodeSubmissionChart = ({ data }) => {
         [
           Legend,
           {
-            tickSize: 0,
+            tickSize: 1,
             width: 100,
-            itemSelector: legendRef.current,
+            itemSelector: legendRef.current, // Ensured itemSelector is set to legendRef.current
             label: 'Submissions per day',
           },
         ],
       ]
     );
-  }, [data]);
+  }, [data]); // Reinitialize only if `data` changes
 
   return (
-    <div style={{ display: 'inline-block' }}>
+    <div style={{ position: 'relative' }}>
       <div id="leetcode-submission-chart" ref={chartRef}></div>
-      <a
-        className="button button--sm button--secondary margin-top--sm"
-        href="#"
-        onClick={e => {
-          e.preventDefault();
-          cal.current.previous();
-        }}
-      >
-        ← Previous
-      </a>
-      <a
-        className="button button--sm button--secondary margin-left--xs margin-top--sm"
-        href="#"
-        onClick={e => {
-          e.preventDefault();
-          cal.current.next();
-        }}
-      >
-        Next →
-      </a>
-      <div id="leetcode-submission-legend" ref={legendRef} style={{ float: 'right' }}></div>
+      <div
+        id="leetcode-submission-legend"
+        ref={legendRef}
+        style={{ float: 'right', paddingRight: '200px' }}
+      ></div>
     </div>
   );
 };
 
 export default LeetCodeSubmissionChart;
+
 

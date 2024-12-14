@@ -90,7 +90,7 @@ export default function LeetCodeDashboard() {
   };
 
   return (
-    <div className="w-3/4 h-3/4 bg-white bg-opacity-10 backdrop-blur-md rounded-xl border border-white border-opacity-30 p-6 flex flex-col gap-6">
+    <div className="w-5/6 h-5/6 bg-white bg-opacity-10 backdrop-blur-md rounded-xl border border-white border-opacity-30 p-6 flex flex-col gap-6">
       <h1 className="text-white text-2xl">Leetcode Dashboard</h1>
       <div className="flex-1 grid grid-rows-2 grid-cols-3 gap-4">
         {/* Line Chart */}
@@ -115,9 +115,9 @@ export default function LeetCodeDashboard() {
           </div>
         </div>
         {/* Submission Chart */}
-        <div className="bg-white bg-opacity-50 rounded-lg p-4 flex flex-col h-full">
+        <div className="bg-white bg-opacity-80 rounded-lg p-4 col-span-2 flex flex-col h-full">
           <h2 className="text-black text-xl mb-2">Submissions Calendar</h2>
-          <div className="flex-1">
+          <div className="flex-1" >
             <LeetCodeSubmissionChart data={submissionData} />
           </div>
         </div>
