@@ -8,6 +8,7 @@ import { SheetProvider, PerspectiveCamera, useCurrentSheet, } from "@theatre/r3f
 import CameraPath from "./cameraPath.json"
 
 import { Globe } from './components/Globe.jsx';
+import { Landscape } from './components/Landscape.jsx'
 
 export default function Experience() {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
@@ -50,7 +51,7 @@ function Scene() {
       <Sky sunPosition={sunPosition} />
       <ambientLight intensity={1} />
       <directionalLight position={[-5, 5, -5]} intensity={2.5} />
-      <Globe castShadow receiveShadow scale = {[1,1,1]} />
+      <Landscape castShadow receiveShadow scale = {[100,100,100]} />
       <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={90} near={0.1} far={70}/>
     </>
   );
