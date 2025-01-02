@@ -19,7 +19,7 @@ export default function LeetCodeBarChart({ data }) {
         <YAxis tick={{ fill: '#000' }} />
         <Tooltip />
         <Legend />
-        <Bar dataKey="easySolved" stackId="a" fill="#1BBBBA" name="Easy" />
+        <Bar dataKey="easySolved" stackId="a" fill="#1BBBBA" name="Easy" radius={[3,3,0,0]} />
         <Bar dataKey="mediumSolved" stackId="a" fill="#FFB700" name="Medium" />
         <Bar dataKey="hardSolved" stackId="a" fill="#F53836" name="Hard" />
       </BarChart>
