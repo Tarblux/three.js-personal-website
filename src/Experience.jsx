@@ -7,7 +7,6 @@ import { Perf } from "r3f-perf"
 import { SheetProvider, PerspectiveCamera, useCurrentSheet, } from "@theatre/r3f"
 import CameraPath from "./cameraPath.json"
 
-import { Globe } from './components/Globe.jsx';
 import { Landscape } from './components/Landscape.jsx'
 
 export default function Experience() {

@@ -7,7 +7,7 @@ import 'cal-heatmap/cal-heatmap.css';
 const LeetCodeSubmissionChart = ({ data }) => {
   const chartRef = useRef(null);
   const legendRef = useRef(null);
-  const cal = useRef(null); // To store the CalHeatmap instance
+  const cal = useRef(null); 
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -30,7 +30,7 @@ const LeetCodeSubmissionChart = ({ data }) => {
           color: {
             type: 'quantize',
             scheme: 'Greens',
-            domain: [0, 5], // Adjust domain as needed
+            domain: [0, 5],
           },
         },
         domain: { type: 'month' },
@@ -52,7 +52,7 @@ const LeetCodeSubmissionChart = ({ data }) => {
           {
             tickSize: 1,
             width: 100,
-            itemSelector: legendRef.current, // Ensured itemSelector is set to legendRef.current
+            itemSelector: legendRef.current, 
             label: 'Submissions per day',
           },
         ],
@@ -62,11 +62,16 @@ const LeetCodeSubmissionChart = ({ data }) => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <div id="leetcode-submission-chart" ref={chartRef}></div>
+      <div 
+      id="leetcode-submission-chart" 
+      ref={chartRef} 
+      style={{ width: '100%', height: '100%', overflow: 'hidden' }}
+      ></div>
+
       <div
         id="leetcode-submission-legend"
         ref={legendRef}
-        style={{ float: 'right', paddingRight: '200px' }}
+        style={{ float: 'right' }}
       ></div>
     </div>
   );

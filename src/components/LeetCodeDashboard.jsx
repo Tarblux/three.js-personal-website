@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 import LeetCodeLineChart from './charts/LeetCodeLineChart.jsx';
 import LeetCodePieChart from './charts/LeetCodePieChart.jsx';
 import LeetCodeBarChart from './charts/LeetCodeBarChart.jsx';
-import LeetCodeSubmissionChart from './charts/LeetCodeSubmissionChart.jsx'; // Added import
+import LeetCodeSubmissionChart from './charts/LeetCodeSubmissionChart.jsx'; 
 
 export default function LeetCodeDashboard() {
   const [data, setData] = useState([]);
   const [pieData, setPieData] = useState([]);
   const [barChartData, setBarChartData] = useState([]);
-  const [submissionData, setSubmissionData] = useState([]); // Added state for submission data
+  const [submissionData, setSubmissionData] = useState([]); 
 
   useEffect(() => {
     fetch('/data/leetcode_stats.json')
@@ -90,7 +90,7 @@ export default function LeetCodeDashboard() {
   };
 
   return (
-    <div className="w-5/6 h-5/6 bg-white bg-opacity-10 backdrop-blur-md rounded-xl border border-white border-opacity-30 p-6 flex flex-col gap-6">
+    <div className="w-9/10 h-5/6 bg-white bg-opacity-10 backdrop-blur-md rounded-xl border border-white border-opacity-30 p-6 flex flex-col gap-6">
       <h1 className="text-white text-2xl">Leetcode Dashboard</h1>
       <div className="flex-1 grid grid-rows-2 grid-cols-3 gap-4">
         {/* Line Chart */}
