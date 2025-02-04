@@ -49,8 +49,6 @@ function Scene() {
   return (
     <>
       <Sky sunPosition={sunPosition} />
-      <ambientLight intensity={1} />
-      <directionalLight position={[-5, 5, -5]} intensity={2.5} />
       <Landscape castShadow receiveShadow />
       <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={90} near={0.1} far={70}/>
       <OrbitControls />
