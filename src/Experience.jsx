@@ -1,11 +1,12 @@
 import { Canvas, useFrame } from "@react-three/fiber"
-import { Gltf, ScrollControls, useScroll, Sky } from "@react-three/drei"
+import { Gltf, ScrollControls, useScroll, Sky, OrbitControls } from "@react-three/drei"
 import { getProject, val } from "@theatre/core"
 import { Leva, useControls } from "leva"
 import { Perf } from "r3f-perf"
 
 import { SheetProvider, PerspectiveCamera, useCurrentSheet, } from "@theatre/r3f"
 import CameraPath from "./cameraPath.json"
+
 
 import { Landscape } from './components/Landscape.jsx'
 
@@ -19,7 +20,7 @@ export default function Experience() {
           <Scene />
         </SheetProvider>
       </ScrollControls>
-      {/* <Perf position="bottom-right" /> */}
+      <Perf position="bottom-right" />
     </>
   );
 }
@@ -47,11 +48,12 @@ function Scene() {
 
   return (
     <>
-      <Sky sunPosition={sunPosition} />
+      {/* <Sky sunPosition={sunPosition} /> */}
       <ambientLight intensity={1} />
       <directionalLight position={[-5, 5, -5]} intensity={2.5} />
-      <Landscape castShadow receiveShadow scale = {[100,100,100]} />
+      <Landscape castShadow receiveShadow />
       <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={90} near={0.1} far={70}/>
+      <OrbitControls />
     </>
   );
 }

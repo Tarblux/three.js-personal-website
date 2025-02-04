@@ -16,13 +16,9 @@ const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 root.render(
   <React.StrictMode>
-    <div className="relative w-full h-full">
-      <Canvas gl={{ preserveDrawingBuffer: true }}>   
+      <Canvas gl={{ preserveDrawingBuffer: true }} flat>   
         <Experience />
       </Canvas>
-      <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-        <LeetCodeDashboard />
-      </div>
-    </div>
   </React.StrictMode>
 )
+
