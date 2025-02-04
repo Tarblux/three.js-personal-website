@@ -48,7 +48,7 @@ function Scene() {
 
   return (
     <>
-      {/* <Sky sunPosition={sunPosition} /> */}
+      <Sky sunPosition={sunPosition} />
       <ambientLight intensity={1} />
       <directionalLight position={[-5, 5, -5]} intensity={2.5} />
       <Landscape castShadow receiveShadow />
