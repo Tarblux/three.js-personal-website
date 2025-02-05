@@ -4,9 +4,9 @@ import * as THREE from 'three'
 
 export function Landscape(props) {
 
-  const { nodes, materials } = useGLTF('/models/landscape.glb')
+  const { nodes, materials } = useGLTF('/models/new-era.glb')
 
-  const bakedTexture = useTexture('/images/bakersteez.jpg')
+  const bakedTexture = useTexture('/textures/stezz.jpg')
   bakedTexture.flipY = false
 
 
