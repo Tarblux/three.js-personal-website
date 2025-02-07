@@ -3,12 +3,12 @@ import { useGLTF, useTexture, Center } from '@react-three/drei'
 import * as THREE from 'three'
 import { useThree } from '@react-three/fiber'
 
-export function Landscape(props) {
+export function Campus(props) {
 
-  const { nodes, materials } = useGLTF('/models/Landscape.glb')
+  const { nodes, materials } = useGLTF('/models/campus.glb')
   const { gl } = useThree()
 
-  const bakedTexture = useTexture('/textures/bakerstee.jpg')
+  const bakedTexture = useTexture('/textures/campus.jpg')
   bakedTexture.flipY = false
 
   return (
@@ -16,8 +16,7 @@ export function Landscape(props) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Landscape_Baked.geometry}
-          position={[-2.57896638, 0.0462811, 2.57479477]}
+          geometry={nodes.campus.geometry}
         >
           <meshBasicMaterial map={bakedTexture} />
         </mesh>

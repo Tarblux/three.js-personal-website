@@ -3,12 +3,12 @@ import { useGLTF, useTexture, Center } from '@react-three/drei'
 import * as THREE from 'three'
 import { useThree } from '@react-three/fiber'
 
-export function Landscape(props) {
+export function LanguageInstitute(props) {
 
-  const { nodes, materials } = useGLTF('/models/Landscape.glb')
+  const { nodes, materials } = useGLTF('/models/language-institute.glb')
   const { gl } = useThree()
 
-  const bakedTexture = useTexture('/textures/bakerstee.jpg')
+  const bakedTexture = useTexture('/textures/language-institute.jpg')
   bakedTexture.flipY = false
 
   return (
@@ -16,13 +16,15 @@ export function Landscape(props) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Landscape_Baked.geometry}
-          position={[-2.57896638, 0.0462811, 2.57479477]}
+          geometry={nodes['language-institute'].geometry}
+          position={[-4.482, 0.258, 2.023]}
+          rotation={[Math.PI / 2, 0, -Math.PI / 2]}
         >
           <meshBasicMaterial map={bakedTexture} />
         </mesh>
       </group>
+
   )
 }
 
-useGLTF.preload('/models/Landscape.glb')
+useGLTF.preload('/language-institute.glb')

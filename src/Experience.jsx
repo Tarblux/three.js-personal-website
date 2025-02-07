@@ -10,6 +10,12 @@ import CameraPath from "./cameraPath.json"
 
 import { Landscape } from './components/Landscape.jsx'
 import { Projexts } from './components/Projexts.jsx'
+import { LandscapeProps} from './components/LandscapeProps.jsx'
+import { Campus } from './components/Campus.jsx'
+import { LanguageInstitute } from "./components/LanguageInstitute.jsx"
+import { Downtown } from "./components/Downtown.jsx"
+import { Recreation } from "./components/Recreation.jsx"
+import { Contact} from "./components/Contact.jsx"
 
 export default function Experience() {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
@@ -52,6 +58,12 @@ function Scene() {
       <Sky sunPosition={sunPosition} />
       <Landscape castShadow receiveShadow />
       <Projexts castShadow receiveShadow />
+      <LandscapeProps castShadow receiveShadow />
+      <Campus castShadow receiveShadow />
+      <LanguageInstitute castShadow receiveShadow />
+      <Downtown castShadow receiveShadow />
+      <Recreation castShadow receiveShadow />
+      <Contact castShadow receiveShadow />
       <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={90} near={0.1} far={70}/>
       <OrbitControls />
     </>

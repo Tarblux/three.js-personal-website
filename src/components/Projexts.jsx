@@ -8,13 +8,8 @@ export function Projexts(props) {
   const { nodes, materials } = useGLTF('/models/projexts.glb')
   const { gl } = useThree()
 
-  const bakedTexture = useTexture('/textures/projexts.jpg')
+  const bakedTexture = useTexture('/textures/projexts-2k.jpg')
   bakedTexture.flipY = false
-
-  useEffect(() => {
-    bakedTexture.anisotropy = gl.capabilities.getMaxAnisotropy()
-    bakedTexture.minFilter = THREE.LinearMipMapLinearFilter
-  }, [bakedTexture, gl])
 
   return (
       <group {...props} dispose={null}>
