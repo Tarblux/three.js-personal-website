@@ -6,19 +6,19 @@ import studio from '@theatre/studio'
 import extension from '@theatre/r3f/dist/extension'
 
 import Experience from './Experience.jsx'
-import LeetCodeDashboard from './components/LeetCodeDashboard.jsx'
-
 
 studio.extend(extension)
-// studio.initialize()
+studio.initialize()
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 root.render(
   <React.StrictMode>
-      <Canvas gl={{ preserveDrawingBuffer: true }} flat>   
+    <Canvas gl={{ preserveDrawingBuffer: true }} flat>   
+      <Suspense fallback={null}>
         <Experience />
-      </Canvas>
+      </Suspense>
+    </Canvas>
   </React.StrictMode>
 )
 

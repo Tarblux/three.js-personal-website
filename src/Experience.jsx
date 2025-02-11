@@ -1,23 +1,23 @@
-import { Canvas, useFrame } from "@react-three/fiber"
-import { Gltf, ScrollControls, useScroll, Sky, OrbitControls } from "@react-three/drei"
+import { useFrame } from "@react-three/fiber"
+import { ScrollControls, useScroll, Sky, OrbitControls } from "@react-three/drei"
 import { getProject, val } from "@theatre/core"
 import { Leva, useControls } from "leva"
 import { Perf } from "r3f-perf"
-
 import { SheetProvider, PerspectiveCamera, useCurrentSheet, } from "@theatre/r3f"
 import CameraPath from "./cameraPath.json"
 
 
-import { Landscape } from './components/Landscape.jsx'
-import { Projexts } from './components/Projexts.jsx'
-import { LandscapeProps} from './components/LandscapeProps.jsx'
-import { Campus } from './components/Campus.jsx'
-import { LanguageInstitute } from "./components/LanguageInstitute.jsx"
-import { Downtown } from "./components/Downtown.jsx"
-import { Recreation } from "./components/Recreation.jsx"
-import { Contact} from "./components/Contact.jsx"
+import { Landscape } from './components-3d/Landscape.jsx'
+import { Projects } from './components-3d/Projects.jsx'
+import { LandscapeProps} from './components-3d/LandscapeProps.jsx'
+import { Campus } from './components-3d/Campus.jsx'
+import { LanguageInstitute } from "./components-3d/LanguageInstitute.jsx"
+import { Downtown } from "./components-3d/Downtown.jsx"
+import { Recreation } from "./components-3d/Recreation.jsx"
+import { Contact} from "./components-3d/Contact.jsx"
 
 export default function Experience() {
+  
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
 
   return (
@@ -57,15 +57,16 @@ function Scene() {
     <>
       <Sky sunPosition={sunPosition} />
       <Landscape castShadow receiveShadow />
-      <Projexts castShadow receiveShadow />
+      <Projects castShadow receiveShadow />
       <LandscapeProps castShadow receiveShadow />
       <Campus castShadow receiveShadow />
       <LanguageInstitute castShadow receiveShadow />
       <Downtown castShadow receiveShadow />
       <Recreation castShadow receiveShadow />
       <Contact castShadow receiveShadow />
+
       <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={90} near={0.1} far={70}/>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
     </>
   );
 }

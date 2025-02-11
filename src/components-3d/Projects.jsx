@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
-import { useGLTF, useTexture, Center } from '@react-three/drei'
+import { useGLTF, useTexture} from '@react-three/drei'
 import * as THREE from 'three'
 import { useThree } from '@react-three/fiber'
 
-export function Projexts(props) {
+export function Projects(props) {
 
-  const { nodes, materials } = useGLTF('/models/projexts.glb')
+  const { nodes, materials } = useGLTF('/models/projects.glb')
   const { gl } = useThree()
 
-  const bakedTexture = useTexture('/textures/projexts-2k.jpg')
+  const bakedTexture = useTexture('/textures/projects.jpg')
   bakedTexture.flipY = false
 
   return (
-      <group {...props} dispose={null}>
+      <group {...props} dispose={null} scale = {100}>
         <mesh
           castShadow
           receiveShadow
@@ -27,4 +27,4 @@ export function Projexts(props) {
   )
 }
 
-useGLTF.preload('/models/projexts.glb')
+useGLTF.preload('/models/projects.glb')

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useGLTF, useTexture, Center } from '@react-three/drei'
+import { useGLTF, useTexture} from '@react-three/drei'
 import * as THREE from 'three'
 import { useThree } from '@react-three/fiber'
 
@@ -8,11 +8,11 @@ export function Landscape(props) {
   const { nodes, materials } = useGLTF('/models/Landscape.glb')
   const { gl } = useThree()
 
-  const bakedTexture = useTexture('/textures/bakerstee.jpg')
+  const bakedTexture = useTexture('/textures/landscape.jpg')
   bakedTexture.flipY = false
 
   return (
-      <group {...props} dispose={null}>
+      <group {...props} dispose={null} scale = {100}>
         <mesh
           castShadow
           receiveShadow
