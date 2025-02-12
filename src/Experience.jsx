@@ -4,9 +4,8 @@ import { getProject, val } from "@theatre/core"
 import { Leva, useControls } from "leva"
 import { Perf } from "r3f-perf"
 import { SheetProvider, PerspectiveCamera, useCurrentSheet, } from "@theatre/r3f"
-import CameraPath from "./cameraPath.json"
 
-
+import CameraPath from "./Main Frame.theatre-project-state.json"
 import { Landscape } from './components-3d/Landscape.jsx'
 import { Projects } from './components-3d/Projects.jsx'
 import { LandscapeProps} from './components-3d/LandscapeProps.jsx'
@@ -65,7 +64,7 @@ function Scene() {
       <Recreation castShadow receiveShadow />
       <Contact castShadow receiveShadow />
 
-      <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={90} near={0.1} far={70}/>
+      <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={2000}/>
       {/* <OrbitControls /> */}
     </>
   );

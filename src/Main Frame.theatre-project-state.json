@@ -1,0 +1,35 @@
+{
+  "sheetsById": {
+    "Scene": {
+      "staticOverrides": {
+        "byObject": {
+          "Camera": {
+            "position": {
+              "x": -245.8414590885222,
+              "y": 37.3980808041117,
+              "z": 135.1060050738506
+            },
+            "fov": 45.00000000000009,
+            "far": 2000,
+            "zoom": 1.0000000000000064,
+            "near": 9.999999999999835,
+            "scale": {
+              "x": 0.1,
+              "y": 0.1,
+              "z": 0.1
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitionVersion": "0.4.0",
+  "revisionHistory": [
+    "wI3Tok7-7fE13Ghg"
+  ]
+}
