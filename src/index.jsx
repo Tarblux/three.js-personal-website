@@ -6,6 +6,7 @@ import studio from '@theatre/studio'
 import extension from '@theatre/r3f/dist/extension'
 
 import Experience from './Experience.jsx'
+import Loader from './Loader.jsx' 
 
 studio.extend(extension)
 studio.initialize()
@@ -15,7 +16,7 @@ const root = ReactDOM.createRoot(document.querySelector('#root'))
 root.render(
   <React.StrictMode>
     <Canvas gl={{ preserveDrawingBuffer: true }} flat>   
-      <Suspense fallback={null}>
+      <Suspense fallback={<Loader />}>
         <Experience />
       </Suspense>
     </Canvas>
