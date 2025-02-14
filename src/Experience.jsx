@@ -14,7 +14,7 @@ import { LanguageInstitute } from "./components-3d/LanguageInstitute.jsx"
 import { Downtown } from "./components-3d/Downtown.jsx"
 import { Recreation } from "./components-3d/Recreation.jsx"
 import { Contact} from "./components-3d/Contact.jsx"
-import Loader from './Loader.jsx'
+
 
 export default function Experience() {
   
@@ -27,8 +27,8 @@ export default function Experience() {
           <Scene />
         </SheetProvider>
       </ScrollControls>
-      <Perf position="bottom-right" />
-      <Loader />
+      {/* <Perf position="bottom-right" /> */}
+
     </>
   );
 }
