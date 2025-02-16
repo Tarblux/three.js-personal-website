@@ -7,6 +7,7 @@ import studio from '@theatre/studio'
 import extension from '@theatre/r3f/dist/extension'
 
 import Experience from './Experience.jsx'
+import LoadedButton from './components/LoadedButton.jsx'
 
 studio.extend(extension)
 studio.initialize()
@@ -40,16 +41,12 @@ function Loader() {
   return (
     <div id="loader">
       <div className="loading-message">Building city...</div>
-      <video src="/images/city-loading.mp4" autoPlay muted className="loading-gif" />
+      <video src="/images/city-loading.mp4" autoPlay muted className="loading-video" />
       <div className="loading-bar-container">
         <div className="loading-bar" style={{ width: `${progress}%` }}></div>
       </div>
       <div className="loading-percentage">{Math.round(progress)}%</div>
-      {isLoaded && (
-        <button className="loading-button" onClick={handleFadeOut}>
-          Enter the City
-        </button>
-      )}
+      {isLoaded && <LoadedButton onFadeOut={handleFadeOut} />}
     </div>
   )
 }
@@ -72,3 +69,4 @@ root.render(
     <App />
   </React.StrictMode>
 )
+

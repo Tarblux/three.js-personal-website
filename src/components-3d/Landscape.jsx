@@ -5,7 +5,7 @@ import { useThree } from '@react-three/fiber'
 
 export function Landscape(props) {
 
-  const { nodes, materials } = useGLTF('/models/Landscape.glb')
+  const { nodes, materials } = useGLTF('/models/landscape.glb')
   const { gl } = useThree()
 
   const bakedTexture = useTexture('/textures/landscape.jpg')
@@ -25,4 +25,4 @@ export function Landscape(props) {
   )
 }
 
-useGLTF.preload('/models/Landscape.glb')
+useGLTF.preload('/models/landscape.glb')
