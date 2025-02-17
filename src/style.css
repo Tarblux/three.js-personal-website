@@ -52,7 +52,7 @@ body,
 
 .loading-bar {
     height: 100%;
-    background-color: #76c7c0;
+    background-color: #242a35;
 }
 
 .loading-percentage {
@@ -94,5 +94,58 @@ body,
     rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px,
     rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+
+
+.boarding-pass-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 620px;
+  overflow: hidden;
+  z-index: 10;
+  pointer-events: none;
+}
+
+
+.boarding-pass {
+  width: 100%;
+  transform: translateY(90%);
+  transition: transform 3s linear;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+@keyframes jitterUp {
+  0% { transform: translateY(90%); }
+  20% { transform: translateY(80%); }
+  40% { transform: translateY(85%); }
+  60% { transform: translateY(75%); }
+  80% { transform: translateY(70%); }
+  100% { transform: translateY(0%); } 
+}
+
+.printing {
+  animation: 
+    jitterUp 2.5s ease-in-out forwards,
+    glowAndBob 2s ease-in-out 2.5s infinite alternate;
+}
+
+@keyframes glowAndBob {
+  0% {
+    transform: translateY(0%);
+    filter: drop-shadow(0 0 0px #fff);
+  }
+  50% {
+    transform: translateY(-2%);
+    filter: drop-shadow(0 0 10px #fff);
+  }
+  100% {
+    transform: translateY(0%);
+    filter: drop-shadow(0 0 0px #fff);
+  }
 }
 

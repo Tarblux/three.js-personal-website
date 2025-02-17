@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
 const LoadedButton = ({ onFadeOut }) => {
+  
+  const [isPrinting, setIsPrinting] = useState(false);
+
+  const handlePrintClick = () => {
+    const printAudio = new Audio("sounds/ticket-printer.mp3");
+    printAudio.play();
+    setIsPrinting(true);
+  };
+
+  const handleBoardingPassClick = () => {
+    if (onFadeOut) {
+      onFadeOut();
+    }
+
+    const trainAudio = new Audio("sounds/train-sounds.mp3");
+    trainAudio.play();
+  };
+
   return (
-    <div className="group relative">
-      {/* Main button */}
+    <div className="relative">
+      {/* Print Button */}
       <button
-        onClick={onFadeOut}
-        className="relative border-0 text-white font-semibold text-[15px] cursor-pointer rounded-md z-10 group hover:shadow-2xl"
+        onClick={handlePrintClick}
+        disabled={isPrinting}
+        className="relative border-0 text-white font-semibold text-[15px] cursor-pointer rounded-md z-10 hover:shadow-2xl"
       >
         <div className="flex items-center justify-between gap-2 min-h-[40px] px-3 rounded-md z-10 bg-[#242a35] border border-[#e8e8e82d] transition-all duration-500 ease-[cubic-bezier(0.77,0,0.175,1)]">
           <svg
@@ -30,11 +49,12 @@ const LoadedButton = ({ onFadeOut }) => {
       </button>
 
       {/* Boarding Pass */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 flex justify-center items-center w-[300px] translate-y-0 transition-all duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-y-full">
+      <div className="boarding-pass-container">
         <img
           src="/images/portfolio-boardingpass.svg"
           alt="Boarding Pass"
-          className="w-full h-auto"
+          onClick={handleBoardingPassClick}
+          className={`boarding-pass ${isPrinting ? "printing" : ""}`}
         />
       </div>
     </div>
@@ -42,3 +62,4 @@ const LoadedButton = ({ onFadeOut }) => {
 };
 
 export default LoadedButton;
+
