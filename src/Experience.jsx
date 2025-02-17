@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber"
 import { ScrollControls, useScroll, Sky, OrbitControls } from "@react-three/drei"
 import { getProject, val } from "@theatre/core"
@@ -34,8 +35,10 @@ export default function Experience() {
 }
 
 function Scene() {
+
   const sheet = useCurrentSheet();
   const scroll = useScroll();
+  const cameraRig = useRef();
 
   // Debug controls
   const { sunPosition } = useControls({
@@ -47,11 +50,30 @@ function Scene() {
     }
   });
 
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      setMouse({
+        x: (event.clientX / window.innerWidth - 0.5) * 2,
+        y: (event.clientY / window.innerHeight - 0.5) * -2,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   useFrame(() => {
     // the length of our sequence
     const sequenceLength = val(sheet.sequence.pointer.length);
     // update the "position" of the playhead in the sequence, as a fraction of its whole length
     sheet.sequence.position = scroll.offset * sequenceLength;
+
+    if (cameraRig.current) {
+      cameraRig.current.position.x += (mouse.x * 5 - cameraRig.current.position.x) * 0.05;
+      cameraRig.current.position.y += (mouse.y * 2.5 - cameraRig.current.position.y) * 0.05;
+    }
   });
 
   return (
@@ -66,7 +88,10 @@ function Scene() {
       <Recreation castShadow receiveShadow />
       <Contact castShadow receiveShadow />
 
-      <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={2000}/>
+      <group ref={cameraRig}>
+        <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={2000} />
+      </group>
+
       {/* <OrbitControls /> */}
     </>
   );
