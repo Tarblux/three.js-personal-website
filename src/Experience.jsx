@@ -111,7 +111,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
       <Contact castShadow receiveShadow />
 
       <group ref={cameraRig}>
-        <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={2000} />
+        <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={5000} />
       </group>
 
       {/* <OrbitControls /> */}
