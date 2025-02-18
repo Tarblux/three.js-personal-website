@@ -9,11 +9,11 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "4.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "vite": "^5.3.3",
-    "vite-plugin-restart": "^0.4.1",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.49"
+    "vite-plugin-restart": "^0.4.1"
   },
   "dependencies": {
     "@react-three/drei": "^9.108.1",
@@ -23,7 +23,7 @@
     "@theatre/studio": "^0.7.2",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "leva": "^0.9.35",
+    "leva": "^0.9.34",
     "r3f-perf": "^7.2.2",
     "react": "18.3",
     "react-dom": "18.3",

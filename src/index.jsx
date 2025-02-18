@@ -7,6 +7,7 @@ import studio from '@theatre/studio'
 import extension from '@theatre/r3f/dist/extension'
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
+import { Leva } from 'leva'
 
 import Experience from './Experience.jsx'
 import LoadedButton from './components/LoadedButton.jsx'
@@ -35,7 +36,7 @@ function Loader({ onBoardingPassClick }) {
   return (
     <div id="loader">
       <div className="loading-message">Building city...</div>
-      <video src="/images/city-loading.mp4" autoPlay muted className="loading-video" />
+      <video src="/images/city-loading.mp4" autoPlay muted playsInline disablePictureInPicture className="loading-video" />
       <div className="loading-bar-container">
         <div className="loading-bar" style={{ width: `${progress}%` }}></div>
       </div>
@@ -75,6 +76,7 @@ function App() {
           />
         </Suspense>
       </Canvas>
+      <Leva collapsed />
       <SpeedInsights />
       <Analytics />
     </>

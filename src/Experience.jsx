@@ -2,10 +2,11 @@ import { useRef, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber"
 import { ScrollControls, useScroll, Sky, OrbitControls } from "@react-three/drei"
 import { getProject, val } from "@theatre/core"
-import { Leva, useControls } from "leva"
+import { useControls } from "leva"
 import { Perf } from "r3f-perf"
 import { SheetProvider, PerspectiveCamera, useCurrentSheet, } from "@theatre/r3f"
 
+import { useSkyControls } from "./hooks/useSkyControls.js";
 import CameraPath from "./Main Frame.theatre-project-state.json"
 import { Landscape } from './components-3d/Landscape.jsx'
 import { Projects } from './components-3d/Projects.jsx'
@@ -39,25 +40,25 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
 }
 
 function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
+  // -------------------------------Debug controls --------------------------------
+
+  // Sky
+
+  const {
+    turbidity,
+    rayleigh,
+    mieC,
+    mieD,
+    sunPosition,
+    distance,
+  } = useSkyControls(); 
+
+  // ------------------------------- ↑ Debug controls  ↑ --------------------------------
+
   const sheet = useCurrentSheet();
   const scroll = useScroll();
   const cameraRig = useRef();
-
-  const { sunPosition } = useControls({
-    sunPosition: {
-      value: [10, 20, 25],
-      step: 1,
-      min: 0,
-      max: 100,
-    },
-  });
-
-  const [mouse, setMouse] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    // Initialize the sequence position at 0 on first load.
-    sheet.sequence.position = 0;
-  }, [sheet]);
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -68,15 +69,19 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
+
+  useEffect(() => {
+    sheet.sequence.position = 0;
+  }, [sheet]);
 
   useFrame((state, delta) => {
     const sequenceLength = val(sheet.sequence.pointer.length);
 
     if (autoPlay) {
       // Auto-play branch: increment sequence position over 30 seconds.
-      sheet.sequence.position += delta
+      sheet.sequence.position += delta;
       if (sheet.sequence.position >= 30) {
         sheet.sequence.position = 30;
         // Auto-play is complete—enable scrolling.
@@ -87,20 +92,22 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
       // Scroll branch: ensure the user cannot scroll back below 30.
       const minPosition = 30;
       const maxPosition = sequenceLength;
-      const newPos = minPosition + scroll.offset * (maxPosition - minPosition)
-      sheet.sequence.position = Math.max(newPos, minPosition)
+      const newPos = minPosition + scroll.offset * (maxPosition - minPosition);
+      sheet.sequence.position = Math.max(newPos, minPosition);
     }
     // If neither autoPlay nor scrolling is active (waiting state), keep the position as-is.
 
     if (cameraRig.current) {
-      cameraRig.current.position.x += (mouse.x * 5 - cameraRig.current.position.x) * 0.05
-      cameraRig.current.position.y += (mouse.y * 2.5 - cameraRig.current.position.y) * 0.05
+      cameraRig.current.position.x +=
+        (mouse.x * 5 - cameraRig.current.position.x) * 0.05;
+      cameraRig.current.position.y +=
+        (mouse.y * 2.5 - cameraRig.current.position.y) * 0.05;
     }
   });
 
   return (
     <>
-      <Sky sunPosition={sunPosition} />
+      <Sky turbidity={turbidity} rayleigh={rayleigh} mieCoefficient={mieC} mieDirectionalG={mieD} sunPosition={sunPosition} distance={distance}/>
       <Landscape castShadow receiveShadow />
       <Projects castShadow receiveShadow />
       <LandscapeProps castShadow receiveShadow />
@@ -111,7 +118,14 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
       <Contact castShadow receiveShadow />
 
       <group ref={cameraRig}>
-        <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={5000} />
+        <PerspectiveCamera
+          theatreKey="Camera"
+          makeDefault
+          position={[0, 0, 0]}
+          fov={45}
+          near={10}
+          far={5000}
+        />
       </group>
 
       {/* <OrbitControls /> */}
