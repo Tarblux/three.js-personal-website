@@ -11,7 +11,9 @@
     "@vitejs/plugin-react": "4.3",
     "tailwindcss": "^3.4.17",
     "vite": "^5.3.3",
-    "vite-plugin-restart": "^0.4.1"
+    "vite-plugin-restart": "^0.4.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49"
   },
   "dependencies": {
     "@react-three/drei": "^9.108.1",
