@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-const LoadedButton = ({ onFadeOut }) => {
-  
-  const [isPrinting, setIsPrinting] = useState(false);
+const LoadedButton = ({ onBoardingPassClick }) => {
+  const [isPrinting, setIsPrinting] = useState(false)
 
   const handlePrintClick = () => {
-    const printAudio = new Audio("sounds/ticket-printer.mp3");
-    printAudio.play();
-    setIsPrinting(true);
+    const printAudio = new Audio("sounds/ticket-printer.mp3")
+    printAudio.play()
+    setIsPrinting(true)
   };
 
   const handleBoardingPassClick = () => {
-    if (onFadeOut) {
-      onFadeOut();
+    if (onBoardingPassClick) {
+      onBoardingPassClick()
     }
-
-    const trainAudio = new Audio("sounds/train-sounds.mp3");
-    trainAudio.play();
+    const trainAudio = new Audio("sounds/train-sounds.mp3")
+    trainAudio.play()
   };
 
   return (

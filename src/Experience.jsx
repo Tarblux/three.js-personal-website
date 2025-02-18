@@ -17,15 +17,19 @@ import { Recreation } from "./components-3d/Recreation.jsx"
 import { Contact} from "./components-3d/Contact.jsx"
 
 
-export default function Experience() {
-  
+export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
 
   return (
     <>
-      <ScrollControls pages={5}>
+      <ScrollControls pages={5} enabled={!disableScroll}>
         <SheetProvider sheet={sheet}>
-          <Scene />
+          <Scene
+            disableScroll={disableScroll}
+            setDisableScroll={setDisableScroll}
+            autoPlay={autoPlay}
+            setAutoPlay={setAutoPlay}
+          />
         </SheetProvider>
       </ScrollControls>
       {/* <Perf position="bottom-right" /> */}
@@ -34,23 +38,26 @@ export default function Experience() {
   );
 }
 
-function Scene() {
-
+function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
   const sheet = useCurrentSheet();
   const scroll = useScroll();
   const cameraRig = useRef();
 
-  // Debug controls
   const { sunPosition } = useControls({
     sunPosition: {
       value: [10, 20, 25],
       step: 1,
       min: 0,
-      max: 100
-    }
+      max: 100,
+    },
   });
 
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [mouse, setMouse] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    // Initialize the sequence position at 0 on first load.
+    sheet.sequence.position = 0;
+  }, [sheet]);
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -61,18 +68,33 @@ function Scene() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove)
   }, []);
 
-  useFrame(() => {
-    // the length of our sequence
+  useFrame((state, delta) => {
     const sequenceLength = val(sheet.sequence.pointer.length);
-    // update the "position" of the playhead in the sequence, as a fraction of its whole length
-    sheet.sequence.position = scroll.offset * sequenceLength;
+
+    if (autoPlay) {
+      // Auto-play branch: increment sequence position over 30 seconds.
+      sheet.sequence.position += delta
+      if (sheet.sequence.position >= 30) {
+        sheet.sequence.position = 30;
+        // Auto-play is complete—enable scrolling.
+        setAutoPlay(false);
+        setDisableScroll(false);
+      }
+    } else if (!autoPlay && !disableScroll) {
+      // Scroll branch: ensure the user cannot scroll back below 30.
+      const minPosition = 30;
+      const maxPosition = sequenceLength;
+      const newPos = minPosition + scroll.offset * (maxPosition - minPosition)
+      sheet.sequence.position = Math.max(newPos, minPosition)
+    }
+    // If neither autoPlay nor scrolling is active (waiting state), keep the position as-is.
 
     if (cameraRig.current) {
-      cameraRig.current.position.x += (mouse.x * 5 - cameraRig.current.position.x) * 0.05;
-      cameraRig.current.position.y += (mouse.y * 2.5 - cameraRig.current.position.y) * 0.05;
+      cameraRig.current.position.x += (mouse.x * 5 - cameraRig.current.position.x) * 0.05
+      cameraRig.current.position.y += (mouse.y * 2.5 - cameraRig.current.position.y) * 0.05
     }
   });
 

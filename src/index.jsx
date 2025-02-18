@@ -14,7 +14,7 @@ studio.initialize()
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
-function Loader() {
+function Loader({ onBoardingPassClick }) {
   const { progress } = useProgress()
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -28,16 +28,6 @@ function Loader() {
     }
   }, [progress])
 
-  const handleFadeOut = () => {
-    const loader = document.getElementById('loader')
-    if (loader) {
-      loader.classList.add('fade-out')
-      setTimeout(() => {
-        loader.style.display = 'none'
-      }, 1000) // Match the transition duration
-    }
-  }
-
   return (
     <div id="loader">
       <div className="loading-message">Building city...</div>
@@ -46,18 +36,39 @@ function Loader() {
         <div className="loading-bar" style={{ width: `${progress}%` }}></div>
       </div>
       <div className="loading-percentage">{Math.round(progress)}%</div>
-      {isLoaded && <LoadedButton onFadeOut={handleFadeOut} />}
+      {isLoaded && <LoadedButton onBoardingPassClick={onBoardingPassClick} />}
     </div>
   )
 }
 
 function App() {
+
+  const [disableScroll, setDisableScroll] = useState(true)
+  const [autoPlay, setAutoPlay] = useState(false)
+
+  const handleBoardingPassClick = () => {
+    const loader = document.getElementById("loader")
+    if (loader) {
+      loader.classList.add("fade-out")
+      setTimeout(() => {
+        loader.style.display = "none"
+      }, 1000);
+    }
+
+    setAutoPlay(true)
+  };
+
   return (
     <>
-      <Loader />
+      <Loader onBoardingPassClick={handleBoardingPassClick} />
       <Canvas gl={{ preserveDrawingBuffer: true }} flat>
         <Suspense fallback={null}>
-          <Experience />
+          <Experience
+            disableScroll={disableScroll}
+            setDisableScroll={setDisableScroll}
+            autoPlay={autoPlay}
+            setAutoPlay={setAutoPlay}
+          />
         </Suspense>
       </Canvas>
     </>
@@ -69,4 +80,3 @@ root.render(
     <App />
   </React.StrictMode>
 )
-
