@@ -5,12 +5,16 @@ import { Canvas } from '@react-three/fiber'
 import { useProgress } from '@react-three/drei'
 import studio from '@theatre/studio'
 import extension from '@theatre/r3f/dist/extension'
+import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 
 import Experience from './Experience.jsx'
 import LoadedButton from './components/LoadedButton.jsx'
 
-studio.extend(extension)
-studio.initialize()
+if (import.meta.env.DEV) {
+  studio.extend(extension)
+  studio.initialize()
+}
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
@@ -71,6 +75,8 @@ function App() {
           />
         </Suspense>
       </Canvas>
+      <SpeedInsights />
+      <Analytics />
     </>
   )
 }
