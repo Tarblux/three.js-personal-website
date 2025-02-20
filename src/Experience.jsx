@@ -18,11 +18,10 @@ import { Recreation } from "./components-3d/Recreation.jsx"
 import { Contact} from "./components-3d/Contact.jsx"
 
 import Section from "./helpers/Section.jsx"
-import MiniMap from "./components/MiniMap.jsx"
 import ProjectsCard from "./components/ProjectsCard.jsx"
 import WelcomeCard from "./components/WelcomeCard.jsx"
 
-export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
+export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress }) {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
 
   return (
@@ -34,11 +33,12 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             setDisableScroll={setDisableScroll}
             autoPlay={autoPlay}
             setAutoPlay={setAutoPlay}
+            onScrollProgress = {onScrollProgress}
           />
         </SheetProvider>
         <Scroll html style={{ width: "100vw", height: "100vh" }}>
           
-          {/* <MiniMap /> */}
+          
           <Section top="-100vh">
             <WelcomeCard />
           </Section>
@@ -55,19 +55,13 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
   );
 }
 
-function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
+function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrollProgress }) {
   // -------------------------------Debug controls --------------------------------
 
   // Sky
 
-  const {
-    turbidity,
-    rayleigh,
-    mieC,
-    mieD,
-    sunPosition,
-    distance,
-  } = useSkyControls(); 
+  const { turbidity, rayleigh, mieC, mieD, sunPosition, distance } = useSkyControls()
+
 
   // ------------------------------- ↑ Debug controls  ↑ --------------------------------
 
@@ -113,6 +107,10 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
     }
     // If neither autoPlay nor scrolling is active (waiting state), keep the position as-is.
 
+    if (onScrollProgress) {
+      onScrollProgress(scroll.offset)
+    }
+
     if (cameraRig.current) {
       cameraRig.current.position.x +=
         (mouse.x * 5 - cameraRig.current.position.x) * 0.05;
@@ -134,14 +132,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
       <Contact castShadow receiveShadow />
 
       <group ref={cameraRig}>
-        <PerspectiveCamera
-          theatreKey="Camera"
-          makeDefault
-          position={[0, 0, 0]}
-          fov={45}
-          near={10}
-          far={5000}
-        />
+        <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={5000} />
       </group>
 
       {/* <OrbitControls /> */}

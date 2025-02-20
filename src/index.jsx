@@ -11,6 +11,7 @@ import { Leva } from 'leva'
 
 import Experience from './Experience.jsx'
 import LoadedButton from './components/LoadedButton.jsx'
+import MiniMap from "./components/MiniMap.jsx"
 
 if (import.meta.env.DEV) {
   studio.extend(extension)
@@ -20,9 +21,10 @@ if (import.meta.env.DEV) {
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 function Loader({ onBoardingPassClick }) {
+
   const { progress } = useProgress()
   const [isLoaded, setIsLoaded] = useState(false)
-
+  
   useEffect(() => {
     if (progress === 100) {
       setIsLoaded(true)
@@ -50,6 +52,7 @@ function App() {
 
   const [disableScroll, setDisableScroll] = useState(true)
   const [autoPlay, setAutoPlay] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   const handleBoardingPassClick = () => {
     const loader = document.getElementById("loader")
@@ -73,9 +76,11 @@ function App() {
             setDisableScroll={setDisableScroll}
             autoPlay={autoPlay}
             setAutoPlay={setAutoPlay}
+            onScrollProgress= {setScrollProgress}
           />
         </Suspense>
       </Canvas>
+      <MiniMap progress= {scrollProgress} />
       <Leva collapsed />
       <SpeedInsights />
       <Analytics />
