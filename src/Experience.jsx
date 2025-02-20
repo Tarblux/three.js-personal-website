@@ -15,18 +15,23 @@ import { Campus } from './components-3d/Campus.jsx'
 import { LanguageInstitute } from "./components-3d/LanguageInstitute.jsx"
 import { Downtown } from "./components-3d/Downtown.jsx"
 import { Recreation } from "./components-3d/Recreation.jsx"
-import { Contact} from "./components-3d/Contact.jsx"
+import { ContactTower} from "./components-3d/ContactTower.jsx"
 
 import Section from "./helpers/Section.jsx"
 import ProjectsCard from "./components/ProjectsCard.jsx"
 import WelcomeCard from "./components/WelcomeCard.jsx"
+import Career from "./components/Career.jsx"
+import Education from "./components/Education.jsx"
+import Languages from "./components/Languages.jsx"
+import Hobbies from "./components/Hobbies.jsx"
+import Contact from "./components/Contact.jsx"
 
 export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress }) {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
 
   return (
     <>
-      <ScrollControls pages={5} enabled={!disableScroll}>
+      <ScrollControls pages={10} enabled={!disableScroll}>
         <SheetProvider sheet={sheet}>
           <Scene
             disableScroll={disableScroll}
@@ -44,7 +49,27 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section top="100vh">
+            <Career />
+          </Section>
+
+          <Section top="300vh">
             <ProjectsCard />
+          </Section>
+
+          <Section top="500vh">
+            <Education />
+          </Section>
+
+          <Section top="700vh">
+            <Languages />
+          </Section>
+
+          <Section top="900vh">
+            <Hobbies />
+          </Section>
+
+          <Section top="950vh">
+            <Contact />
           </Section>
 
 
@@ -113,9 +138,9 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
 
     if (cameraRig.current) {
       cameraRig.current.position.x +=
-        (mouse.x * 5 - cameraRig.current.position.x) * 0.05;
+        (mouse.x * 2.5 - cameraRig.current.position.x) * 0.05;
       cameraRig.current.position.y +=
-        (mouse.y * 2.5 - cameraRig.current.position.y) * 0.05;
+        (mouse.y * 1.25 - cameraRig.current.position.y) * 0.05;
     }
   });
 
@@ -129,7 +154,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       <LanguageInstitute castShadow receiveShadow />
       <Downtown castShadow receiveShadow />
       <Recreation castShadow receiveShadow />
-      <Contact castShadow receiveShadow />
+      <ContactTower castShadow receiveShadow />
 
       <group ref={cameraRig}>
         <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={5000} />
