@@ -1,12 +1,12 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react"
 import { useFrame } from "@react-three/fiber"
-import { ScrollControls, useScroll, Sky, OrbitControls } from "@react-three/drei"
+import { ScrollControls, useScroll, Scroll, Sky, OrbitControls} from "@react-three/drei"
 import { getProject, val } from "@theatre/core"
 import { useControls } from "leva"
 import { Perf } from "r3f-perf"
-import { SheetProvider, PerspectiveCamera, useCurrentSheet, } from "@theatre/r3f"
+import { SheetProvider, PerspectiveCamera, useCurrentSheet} from "@theatre/r3f"
 
-import { useSkyControls } from "./hooks/useSkyControls.js";
+import { useSkyControls } from "./hooks/useSkyControls.js"
 import CameraPath from "./Main Frame.theatre-project-state.json"
 import { Landscape } from './components-3d/Landscape.jsx'
 import { Projects } from './components-3d/Projects.jsx'
@@ -17,6 +17,10 @@ import { Downtown } from "./components-3d/Downtown.jsx"
 import { Recreation } from "./components-3d/Recreation.jsx"
 import { Contact} from "./components-3d/Contact.jsx"
 
+import Section from "./helpers/Section.jsx"
+import MiniMap from "./components/MiniMap.jsx"
+import ProjectsCard from "./components/ProjectsCard.jsx"
+import WelcomeCard from "./components/WelcomeCard.jsx"
 
 export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay }) {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
@@ -32,9 +36,21 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             setAutoPlay={setAutoPlay}
           />
         </SheetProvider>
+        <Scroll html style={{ width: "100vw", height: "100vh" }}>
+          
+          {/* <MiniMap /> */}
+          <Section top="-100vh">
+            <WelcomeCard />
+          </Section>
+
+          <Section top="100vh">
+            <ProjectsCard />
+          </Section>
+
+
+        </Scroll>
       </ScrollControls>
       {/* <Perf position="bottom-right" /> */}
-
     </>
   );
 }

@@ -56,8 +56,6 @@ export function useSkyControls() {
   });
 
   // Calculate sunPosition from inclination & azimuth
-  // (this is a simple placeholder function;
-  //  you can tweak it or use your own approach)
   function calcSunPosition(inclination, azimuth, distance) {
     // Convert inclination (0–1) to polar angle (-0.5π to 0.5π)
     const theta = Math.PI * (inclination - 0.5);

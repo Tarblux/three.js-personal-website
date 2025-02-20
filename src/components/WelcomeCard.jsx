@@ -1,17 +1,16 @@
 import React from 'react';
 
-const ProjectsCard = () => {
+const WelcomeCard = () => {
     return (
         <div className="absolute top-[100vh] left-0 right-0 flex justify-center">
             <div className="bg-white/90 p-6 rounded-lg shadow-lg max-w-sm text-center">
-                <h2 className="text-2xl font-bold">Project Card</h2>
+                <h2 className="text-2xl font-bold">Welcome Card</h2>
                 <p className="mt-3 text-gray-600">
-                    Place holder project card , will be replaced with actual projects but for 
-                    will just look bummy liek this.
+                    Whipper snapper, you're here! Welcome to the city.
                 </p>
             </div>
         </div>
     );
 };
 
-export default ProjectsCard;
+export default WelcomeCard;
