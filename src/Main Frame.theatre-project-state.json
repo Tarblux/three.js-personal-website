@@ -75,6 +75,97 @@
                     ],
                     "type": "bezier",
                     "value": -350.70002509833563
+                  },
+                  {
+                    "id": "q8heBERH7N",
+                    "position": 93.8,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": -350.69842164986585
+                  },
+                  {
+                    "id": "pVvPQY2csC",
+                    "position": 239.667,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": -347.1968859019721
+                  },
+                  {
+                    "id": "ZSerITDqXL",
+                    "position": 276.133,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": -321.86215668754363
+                  },
+                  {
+                    "id": "dSR2Hc7HHI",
+                    "position": 294.367,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": -320.71945826182343
+                  },
+                  {
+                    "id": "JBmE-YYv6K",
+                    "position": 358.2,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": -320.71945826182343
+                  },
+                  {
+                    "id": "YRRklltk9c",
+                    "position": 440.233,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": -263.2116289869027
+                  },
+                  {
+                    "id": "m9YorXoYBD",
+                    "position": 494.933,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": -260.53142223747517
                   }
                 ]
               },
@@ -120,6 +211,97 @@
                     ],
                     "type": "bezier",
                     "value": 43.15788552526183
+                  },
+                  {
+                    "id": "Qp0tqtIAyg",
+                    "position": 93.8,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 43.15788552526183
+                  },
+                  {
+                    "id": "NEHWvysvL_",
+                    "position": 239.667,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 43.15788552526183
+                  },
+                  {
+                    "id": "p8SvsHLuPJ",
+                    "position": 276.133,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 43.15788552526183
+                  },
+                  {
+                    "id": "HV9StazStR",
+                    "position": 294.367,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 31.753621421271525
+                  },
+                  {
+                    "id": "fnSAZdixRf",
+                    "position": 358.2,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 31.753621421271525
+                  },
+                  {
+                    "id": "uhDLGpoEEN",
+                    "position": 440.233,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 31.753621421271525
+                  },
+                  {
+                    "id": "5sZ47RhMjD",
+                    "position": 494.933,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 31.753621421271525
                   }
                 ]
               },
@@ -165,6 +347,97 @@
                     ],
                     "type": "bezier",
                     "value": 249.0797290059397
+                  },
+                  {
+                    "id": "jHZ-XmDUt8",
+                    "position": 93.8,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 249.05055359511343
+                  },
+                  {
+                    "id": "bxEhFOp1HK",
+                    "position": 239.667,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 185.3386564605484
+                  },
+                  {
+                    "id": "xkYoUB7l1O",
+                    "position": 276.133,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 186.7310252958409
+                  },
+                  {
+                    "id": "NG6LpYaXwV",
+                    "position": 294.367,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 165.93915287268877
+                  },
+                  {
+                    "id": "0lcPFDypix",
+                    "position": 358.2,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 165.93915287268877
+                  },
+                  {
+                    "id": "dNACDY8bm0",
+                    "position": 440.233,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 169.09971987895142
+                  },
+                  {
+                    "id": "S54JL4akvy",
+                    "position": 494.933,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 120.3322449726586
                   }
                 ]
               },
@@ -280,6 +553,7 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "FCRnmGU6kioayPJ8",
     "IfL_6aL0pXocMkzK",
     "wI3Tok7-7fE13Ghg"
   ]
