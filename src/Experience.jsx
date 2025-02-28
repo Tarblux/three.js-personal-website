@@ -44,7 +44,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
         <Scroll html style={{ width: "100vw", height: "100vh" }}>
           
           
-          <Section top="-100vh">
+          <Section top="-80vh">
             <WelcomeCard />
           </Section>
 
