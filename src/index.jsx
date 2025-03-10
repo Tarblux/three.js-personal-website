@@ -5,12 +5,18 @@ import { Canvas } from '@react-three/fiber'
 import { useProgress } from '@react-three/drei'
 import studio from '@theatre/studio'
 import extension from '@theatre/r3f/dist/extension'
+import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
+import { Leva } from 'leva'
 
 import Experience from './Experience.jsx'
 import LoadedButton from './components/LoadedButton.jsx'
+import MiniMap from "./components/MiniMap.jsx"
 
-studio.extend(extension)
-studio.initialize()
+if (import.meta.env.DEV) {
+  studio.extend(extension)
+  studio.initialize()
+}
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
@@ -31,7 +37,7 @@ function Loader({ onBoardingPassClick }) {
   return (
     <div id="loader">
       <div className="loading-message">Building city...</div>
-      <video src="/images/city-loading.mp4" autoPlay muted className="loading-video" />
+      <video src="/images/city-loading.mp4" autoPlay muted playsInline disablePictureInPicture className="loading-video" />
       <div className="loading-bar-container">
         <div className="loading-bar" style={{ width: `${progress}%` }}></div>
       </div>
@@ -45,6 +51,7 @@ function App() {
 
   const [disableScroll, setDisableScroll] = useState(true)
   const [autoPlay, setAutoPlay] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   const handleBoardingPassClick = () => {
     const loader = document.getElementById("loader")
@@ -68,9 +75,14 @@ function App() {
             setDisableScroll={setDisableScroll}
             autoPlay={autoPlay}
             setAutoPlay={setAutoPlay}
+            onScrollProgress= {setScrollProgress}
           />
         </Suspense>
       </Canvas>
+      <MiniMap progress= {scrollProgress} />
+      <Leva collapsed />
+      <SpeedInsights />
+      <Analytics />
     </>
   )
 }

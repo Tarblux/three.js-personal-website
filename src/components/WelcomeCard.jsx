@@ -24,7 +24,7 @@ const WelcomeCard = () => {
         </div>
       </div>
 
-      {/* Modal Overlay */}
+      {/* Resume Modal Overlay */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
@@ -32,7 +32,7 @@ const WelcomeCard = () => {
         >
           <div className="relative" onClick={(e) => e.stopPropagation()}>
             <img
-              src="/images/resume-thumbnail.jpg" // Replace with a full-resolution image if available
+              src="/images/resume-thumbnail.jpg"
               alt="Resume Full"
               className="max-w-full max-h-full rounded shadow-lg"
             />
