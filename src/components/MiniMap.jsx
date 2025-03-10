@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useEffect } from "react";
 
 export default function MiniMap({ progress = 0 }) {
   const segments = [
@@ -11,35 +11,38 @@ export default function MiniMap({ progress = 0 }) {
     "Contact",
   ];
 
-
-  const [smoothedProgress, setSmoothedProgress] = useState(progress);
   const progressRef = useRef(null);
+  const currentProgressRef = useRef(progress);
+  const rafRef = useRef(null);
 
-  // Update smoothedProgress gradually to the new progress value.
   useEffect(() => {
-    let animationFrame;
-    const damping = 0.1; // more or less smoothing
+    const damping = 0.1;
 
-    const update = () => {
-      setSmoothedProgress((prev) => {
-        const diff = progress - prev;
-        // If the difference is minimal, snap to the target value.
-        if (Math.abs(diff) < 0.001) return progress;
-        return prev + diff * damping;
-      });
-      animationFrame = requestAnimationFrame(update);
+    const updateProgress = () => {
+      if (!progressRef.current) return;
+
+      const diff = progress - currentProgressRef.current;
+      
+      // If difference is minimal, snap to target
+      if (Math.abs(diff) < 0.001) {
+        currentProgressRef.current = progress;
+      } else {
+        currentProgressRef.current += diff * damping;
+      }
+
+      progressRef.current.style.width = `${currentProgressRef.current * 100}%`;
+      
+      rafRef.current = requestAnimationFrame(updateProgress);
     };
 
-    update();
+    rafRef.current = requestAnimationFrame(updateProgress);
 
-    return () => cancelAnimationFrame(animationFrame);
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
   }, [progress]);
-
-  useEffect(() => {
-    if (progressRef.current) {
-      progressRef.current.style.width = `${smoothedProgress * 100}%`;
-    }
-  }, [smoothedProgress]);
 
   return (
     <div className="fixed bottom-0 left-0 w-full h-8 bg-white z-50 overflow-hidden">
