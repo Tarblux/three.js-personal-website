@@ -3,7 +3,7 @@ import { useGLTF, useTexture} from '@react-three/drei'
 import * as THREE from 'three'
 import { useThree } from '@react-three/fiber'
 
-export function Projects(props) {
+export function ProjectLabs(props) {
 
   const { nodes, materials } = useGLTF('/models/projects.glb')
   const { gl } = useThree()

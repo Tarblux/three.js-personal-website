@@ -5,7 +5,7 @@ import IntroCard from "./IntroCard";
 import EducationCard from "./EducationCard";
 import ResumeCard from "./ResumeCard";
 
-const WelcomeCard = () => {
+const Introduction = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleImageClick = () => setIsModalOpen(true);
@@ -56,4 +56,4 @@ const WelcomeCard = () => {
   );
 };
 
-export default WelcomeCard;
+export default Introduction;

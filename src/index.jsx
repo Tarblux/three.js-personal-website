@@ -10,9 +10,9 @@ import { Analytics } from '@vercel/analytics/react';
 import { Leva } from 'leva'
 
 import Experience from './Experience.jsx'
-import LoadedButton from './components/LoadedButton.jsx'
-import MiniMap from "./components/MiniMap.jsx"
-import SkipIntroButton from './components/SkipIntroButton.jsx'
+import LoadedButton from './components/UI/LoadedButton.jsx'
+import MiniMap from "./components/UI/MiniMap.jsx"
+import SkipIntroButton from './components/UI/SkipIntroButton.jsx'
 
 if (import.meta.env.DEV) {
   studio.extend(extension)

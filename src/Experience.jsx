@@ -9,7 +9,7 @@ import { SheetProvider, PerspectiveCamera, useCurrentSheet} from "@theatre/r3f"
 import { useSkyControls } from "./hooks/useSkyControls.js"
 import CameraPath from "./Main Frame.theatre-project-state.json"
 import { Landscape } from './components-3d/Landscape.jsx'
-import { Projects } from './components-3d/Projects.jsx'
+import { ProjectLabs } from './components-3d/ProjectLabs.jsx'
 import { LandscapeProps} from './components-3d/LandscapeProps.jsx'
 import { Campus } from './components-3d/Campus.jsx'
 import { LanguageInstitute } from "./components-3d/LanguageInstitute.jsx"
@@ -18,13 +18,13 @@ import { Recreation } from "./components-3d/Recreation.jsx"
 import { ContactTower} from "./components-3d/ContactTower.jsx"
 
 import Section from "./helpers/Section.jsx"
-import ProjectsCard from "./components/ProjectsCard.jsx"
-import WelcomeCard from "./components/WelcomeCard.jsx"
-import Career from "./components/Career.jsx"
-import Education from "./components/Education.jsx"
-import Languages from "./components/Languages.jsx"
-import Hobbies from "./components/Hobbies.jsx"
-import Contact from "./components/Contact.jsx"
+import Introduction from "./components/Introduction/Introduction.jsx"
+import Career from "./components/Career/Career.jsx"
+import Projects from "./components/Projects/Projects.jsx"
+import Education from "./components/Education/Education.jsx"
+import Languages from "./components/Education/Languages.jsx"
+import Hobbies from "./components/Hobbies/Hobbies.jsx"
+import Contact from "./components/Contact/Contact.jsx"
 
 export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress }) {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
@@ -49,7 +49,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           
           
           <Section top="-80vh">
-            <WelcomeCard />
+            <Introduction />
           </Section>
 
           <Section top="100vh">
@@ -57,7 +57,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section top="300vh">
-            {/* <ProjectsCard /> */}
+            {/* <Projects /> */}
           </Section>
 
           <Section top="500vh">
@@ -157,7 +157,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
     <>
       <Sky turbidity={turbidity} rayleigh={rayleigh} mieCoefficient={mieC} mieDirectionalG={mieD} sunPosition={sunPosition} distance={distance}/>
       <Landscape castShadow receiveShadow />
-      <Projects castShadow receiveShadow />
+      <ProjectLabs castShadow receiveShadow />
       <LandscapeProps castShadow receiveShadow />
       <Campus castShadow receiveShadow />
       <LanguageInstitute castShadow receiveShadow />

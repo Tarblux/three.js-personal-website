@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProjectsCard = () => {
+const Projects = () => {
     return (
         <div className="absolute top-[100vh] left-0 right-0 flex justify-center">
             <div className="bg-white/90 p-6 rounded-lg shadow-lg max-w-sm text-center">
@@ -14,4 +14,4 @@ const ProjectsCard = () => {
     );
 };
 
-export default ProjectsCard;
+export default Projects;
