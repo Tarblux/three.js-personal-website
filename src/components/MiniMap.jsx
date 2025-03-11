@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react";
 
 export default function MiniMap({ progress = 0 }) {
   const segments = [
-    "Introduction",
     "Career",
     "Projects",
     "Education",

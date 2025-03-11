@@ -31,7 +31,11 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
 
   return (
     <>
-      <ScrollControls pages={10} enabled={!disableScroll}>
+      <ScrollControls 
+        pages={15} 
+        distance={1}
+        enabled={!disableScroll}
+      >
         <SheetProvider sheet={sheet}>
           <Scene
             disableScroll={disableScroll}
@@ -49,27 +53,27 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section top="100vh">
-            <Career />
+            {/* <Career /> */}
           </Section>
 
           <Section top="300vh">
-            <ProjectsCard />
+            {/* <ProjectsCard /> */}
           </Section>
 
           <Section top="500vh">
-            <Education />
+            {/* <Education /> */}
           </Section>
 
           <Section top="700vh">
-            <Languages />
+            {/* <Languages /> */}
           </Section>
 
           <Section top="900vh">
-            <Hobbies />
+            {/* <Hobbies /> */}
           </Section>
 
           <Section top="950vh">
-            <Contact />
+            {/* <Contact /> */}
           </Section>
 
 
