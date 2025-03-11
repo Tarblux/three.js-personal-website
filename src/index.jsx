@@ -1,6 +1,6 @@
 import './style.css'
 import ReactDOM from 'react-dom/client'
-import React, { Suspense, useState, useEffect } from 'react'
+import React, { Suspense, useState, useEffect, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useProgress } from '@react-three/drei'
 import studio from '@theatre/studio'
@@ -12,6 +12,7 @@ import { Leva } from 'leva'
 import Experience from './Experience.jsx'
 import LoadedButton from './components/LoadedButton.jsx'
 import MiniMap from "./components/MiniMap.jsx"
+import SkipIntroButton from './components/SkipIntroButton.jsx'
 
 if (import.meta.env.DEV) {
   studio.extend(extension)
@@ -48,10 +49,11 @@ function Loader({ onBoardingPassClick }) {
 }
 
 function App() {
-
   const [disableScroll, setDisableScroll] = useState(true)
   const [autoPlay, setAutoPlay] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [showSkipButton, setShowSkipButton] = useState(false)
+  const audioRef = useRef(null)
 
   const handleBoardingPassClick = () => {
     const loader = document.getElementById("loader")
@@ -63,11 +65,32 @@ function App() {
     }
 
     setAutoPlay(true)
+    setShowSkipButton(true)
+    audioRef.current = new Audio("sounds/train-sounds.mp3")
+    audioRef.current.play()
+
+    setTimeout(() => {
+      setShowSkipButton(false)
+    }, 15000)
   };
+
+  const handleSkipIntro = () => {
+    // Stop the audio if it's playing
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current.currentTime = 0
+    }
+
+    // Skip to the end of the intro sequence
+    setAutoPlay(false)
+    setDisableScroll(false)
+    setShowSkipButton(false)
+  }
 
   return (
     <>
       <Loader onBoardingPassClick={handleBoardingPassClick} />
+      {showSkipButton && <SkipIntroButton onSkip={handleSkipIntro} />}
       <Canvas gl={{ preserveDrawingBuffer: true }} flat>
         <Suspense fallback={null}>
           <Experience
@@ -75,11 +98,11 @@ function App() {
             setDisableScroll={setDisableScroll}
             autoPlay={autoPlay}
             setAutoPlay={setAutoPlay}
-            onScrollProgress= {setScrollProgress}
+            onScrollProgress={setScrollProgress}
           />
         </Suspense>
       </Canvas>
-      <MiniMap progress= {scrollProgress} />
+      <MiniMap progress={scrollProgress} />
       <Leva collapsed />
       <SpeedInsights />
       <Analytics />

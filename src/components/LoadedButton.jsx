@@ -13,8 +13,6 @@ const LoadedButton = ({ onBoardingPassClick }) => {
     if (onBoardingPassClick) {
       onBoardingPassClick()
     }
-    const trainAudio = new Audio("sounds/train-sounds.mp3")
-    trainAudio.play()
   };
 
   return (

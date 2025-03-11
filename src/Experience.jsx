@@ -124,13 +124,18 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
         setDisableScroll(false);
       }
     } else if (!autoPlay && !disableScroll) {
+      // When autoPlay becomes false (either from completion or skip),
+      // ensure we're at position 30
+      if (sheet.sequence.position < 30) {
+        sheet.sequence.position = 30;
+      }
+      
       // Scroll branch: ensure the user cannot scroll back below 30.
       const minPosition = 30;
       const maxPosition = sequenceLength;
       const newPos = minPosition + scroll.offset * (maxPosition - minPosition);
       sheet.sequence.position = Math.max(newPos, minPosition);
     }
-    // If neither autoPlay nor scrolling is active (waiting state), keep the position as-is.
 
     if (onScrollProgress) {
       onScrollProgress(scroll.offset)
