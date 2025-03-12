@@ -147,9 +147,9 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
 
     if (cameraRig.current) {
       cameraRig.current.position.x +=
-        (mouse.x * 2.5 - cameraRig.current.position.x) * 0.05;
+        (mouse.x * 1.25 - cameraRig.current.position.x) * 0.05;
       cameraRig.current.position.y +=
-        (mouse.y * 1.25 - cameraRig.current.position.y) * 0.05;
+        (mouse.y * 0.625 - cameraRig.current.position.y) * 0.05;
     }
   });
 
