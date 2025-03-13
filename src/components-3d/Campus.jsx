@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useGLTF, useTexture} from '@react-three/drei'
-import * as THREE from 'three'
-import { useThree } from '@react-three/fiber'
 
 export function Campus(props) {
-
-  const { nodes, materials } = useGLTF('/models/campus.glb')
-  const { gl } = useThree()
-
+  const { nodes } = useGLTF('/models/campus.glb')
   const bakedTexture = useTexture('/textures/campus.jpg')
   bakedTexture.flipY = false
 
@@ -24,4 +19,4 @@ export function Campus(props) {
   )
 }
 
-useGLTF.preload('/models/Landscape.glb')
+useGLTF.preload('/models/campus.glb')

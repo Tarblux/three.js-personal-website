@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useGLTF, useTexture} from '@react-three/drei'
-import * as THREE from 'three'
-import { useThree } from '@react-three/fiber'
 
 export function ContactTower(props) {
-
-  const { nodes, materials } = useGLTF('/models/contact.glb')
-  const { gl } = useThree()
-
+  const { nodes } = useGLTF('/models/contact.glb')
   const bakedTexture = useTexture('/textures/contact.jpg')
   bakedTexture.flipY = false
 
@@ -23,7 +18,6 @@ export function ContactTower(props) {
           <meshBasicMaterial map={bakedTexture} />
         </mesh>
       </group>
-
   )
 }
 

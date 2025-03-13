@@ -68,6 +68,10 @@ function App() {
     setShowSkipButton(true)
     audioRef.current = new Audio("sounds/train-sounds.mp3")
     audioRef.current.play()
+
+    setTimeout(() => {
+      setShowSkipButton(false)
+    }, 15000)
   };
 
   const handleSkipIntro = () => {

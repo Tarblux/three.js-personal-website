@@ -1,24 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useGLTF, useTexture} from '@react-three/drei'
-import * as THREE from 'three'
-import { useThree } from '@react-three/fiber'
 
 export function LandscapeProps(props) {
-
-  const { nodes, materials } = useGLTF('/models/landscape-props.glb')
-  const { gl } = useThree()
-
+  const { nodes } = useGLTF('/models/landscape-props.glb')
   const bakedTexture = useTexture('/textures/landscape-props.jpg')
   bakedTexture.flipY = false
 
   return (
       <group {...props} dispose={null} scale = {100}>
         <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['landscape-props_Baked'].geometry}
-        position={[-1.639, 0.2335, 1.506]}
-        rotation={[0, -0.016, Math.PI / 2]}
+          castShadow
+          receiveShadow
+          geometry={nodes['landscape-props_Baked'].geometry}
+          position={[-1.639, 0.2335, 1.506]}
+          rotation={[0, -0.016, Math.PI / 2]}
         >
           <meshBasicMaterial map={bakedTexture} />
         </mesh>
@@ -26,5 +21,4 @@ export function LandscapeProps(props) {
   )
 }
 
-
-useGLTF.preload('/landscape-props.glb')
+useGLTF.preload('/models/landscape-props.glb')

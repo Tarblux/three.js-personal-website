@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useGLTF, useTexture} from '@react-three/drei'
-import * as THREE from 'three'
-import { useThree } from '@react-three/fiber'
 
 export function Downtown(props) {
-
-  const { nodes, materials } = useGLTF('/models/downtown.glb')
-  const { gl } = useThree()
-
+  const { nodes } = useGLTF('/models/downtown.glb')
   const bakedTexture = useTexture('/textures/downtown.jpg')
   bakedTexture.flipY = false
 
@@ -23,7 +18,6 @@ export function Downtown(props) {
           <meshBasicMaterial map={bakedTexture} />
         </mesh>
       </group>
-
   )
 }
 

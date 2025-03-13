@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useGLTF, useTexture} from '@react-three/drei'
-import * as THREE from 'three'
 import { useThree } from '@react-three/fiber'
 
 export function Landscape(props) {
-
-  const { nodes, materials } = useGLTF('/models/landscape.glb')
-  const { gl } = useThree()
-
+  const { nodes } = useGLTF('/models/landscape.glb')
   const bakedTexture = useTexture('/textures/landscape.jpg')
   bakedTexture.flipY = false
 
