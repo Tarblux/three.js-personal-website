@@ -25,15 +25,25 @@ import Education from "./components/Education/Education.jsx"
 import Languages from "./components/Education/Languages.jsx"
 import Hobbies from "./components/Hobbies/Hobbies.jsx"
 import Contact from "./components/Contact/Contact.jsx"
+import WelcomeMessage from "./components/UI/WelcomeMessage.jsx"
 
 export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress }) {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
+  const [showWelcome, setShowWelcome] = useState(false)
+
+  // Show welcome message when autoplay is complete or skipped
+  useEffect(() => {
+    if (!autoPlay && !disableScroll) {
+      setShowWelcome(true)
+    }
+  }, [autoPlay, disableScroll])
 
   return (
     <>
       <ScrollControls 
         pages={15} 
-        distance={1}
+        distance={2}
+        damping={0.2}
         enabled={!disableScroll}
       >
         <SheetProvider sheet={sheet}>
@@ -46,36 +56,36 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           />
         </SheetProvider>
         <Scroll html style={{ width: "100vw", height: "100vh" }}>
+
+          <WelcomeMessage showMessage={showWelcome} />
           
-          
-          <Section top="-80vh">
+          <Section top="100vh">
             <Introduction />
           </Section>
 
-          <Section top="100vh">
-            {/* <Career /> */}
+          <Section top="300vh">
+            <Career />
           </Section>
 
-          <Section top="300vh">
-            {/* <Projects /> */}
+          <Section top="400vh">
+            <Projects />
           </Section>
 
           <Section top="500vh">
-            {/* <Education /> */}
+            <Education />
           </Section>
 
           <Section top="700vh">
-            {/* <Languages /> */}
+            <Languages />
           </Section>
 
           <Section top="900vh">
-            {/* <Hobbies /> */}
+            <Hobbies />
           </Section>
 
           <Section top="950vh">
-            {/* <Contact /> */}
+            <Contact />
           </Section>
-
 
         </Scroll>
       </ScrollControls>

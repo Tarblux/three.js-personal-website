@@ -1,16 +1,20 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 const LoadedButton = ({ onBoardingPassClick }) => {
   const [isPrinting, setIsPrinting] = useState(false)
+  const [printingComplete, setPrintingComplete] = useState(false)
 
   const handlePrintClick = () => {
     const printAudio = new Audio("sounds/ticket-printer.mp3")
     printAudio.play()
     setIsPrinting(true)
+    setTimeout(() => {
+      setPrintingComplete(true)
+    }, 10) // Match the jitterUp animation duration
   };
 
   const handleBoardingPassClick = () => {
-    if (onBoardingPassClick) {
+    if (onBoardingPassClick && printingComplete) {
       onBoardingPassClick()
     }
   };
@@ -50,8 +54,14 @@ const LoadedButton = ({ onBoardingPassClick }) => {
           src="/images/portfolio-boardingpass.svg"
           alt="Boarding Pass"
           onClick={handleBoardingPassClick}
-          className={`boarding-pass ${isPrinting ? "printing" : ""}`}
+          className={`boarding-pass ${isPrinting ? "printing" : ""} ${!printingComplete ? "pointer-events-none" : "cursor-pointer"}`}
         />
+        {printingComplete && (
+          <div className={`text-white text-sm opacity-80 text-center message ${printingComplete ? "printing" : ""}`}>
+            Headphones recommended 🎧<br />
+            A baby came onboard a few stops back ......
+          </div>
+        )}
       </div>
     </div>
   );

@@ -149,3 +149,25 @@ body,
   }
 }
 
+.message {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.message.printing {
+  animation: messageAppear 1s ease forwards,
+             glowAndBob 2s ease-in-out 2.5s infinite alternate;
+  animation-delay: 3s, 4s;
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+}
+

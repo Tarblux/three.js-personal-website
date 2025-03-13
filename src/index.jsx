@@ -68,20 +68,14 @@ function App() {
     setShowSkipButton(true)
     audioRef.current = new Audio("sounds/train-sounds.mp3")
     audioRef.current.play()
-
-    setTimeout(() => {
-      setShowSkipButton(false)
-    }, 15000)
   };
 
   const handleSkipIntro = () => {
-    // Stop the audio if it's playing
     if (audioRef.current) {
       audioRef.current.pause()
       audioRef.current.currentTime = 0
     }
 
-    // Skip to the end of the intro sequence
     setAutoPlay(false)
     setDisableScroll(false)
     setShowSkipButton(false)
