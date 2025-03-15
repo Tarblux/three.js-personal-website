@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useScroll } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 
 const WelcomeMessage = ({ showMessage }) => {
     const [isVisible, setIsVisible] = useState(false);
+    const [hasScrolled, setHasScrolled] = useState(false);
+    const [opacity, setOpacity] = useState(1);
+    const scroll = useScroll();
 
     useEffect(() => {
         if (showMessage) {
@@ -9,14 +14,26 @@ const WelcomeMessage = ({ showMessage }) => {
         }
     }, [showMessage]);
 
-    if (!showMessage) return null;
+    useFrame(() => {
+        if (scroll.offset > 0 && !hasScrolled) {
+            setHasScrolled(true);
+        }
+        
+        if (hasScrolled) {
+            setOpacity(prev => Math.max(prev - 0.03, 0)); // Adjust the 0.03 value to control fade speed
+        }
+    });
+
+    if (!showMessage || (hasScrolled && opacity <= 0)) return null;
 
     return (
         <div className={`
             fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
             transition-all duration-1000 ease-out
-            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
-        `}>
+            ${isVisible ? 'translate-y-0' : 'translate-y-10'}
+        `}
+        style={{ opacity: isVisible ? opacity : 0 }}
+        >
             <div className="bg-white/95 p-8 rounded-lg shadow-xl max-w-md text-center
                           border-2 border-gray-200">
                 <div className="mb-4">

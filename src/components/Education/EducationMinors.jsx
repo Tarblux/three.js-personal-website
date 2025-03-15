@@ -1,16 +1,16 @@
 import React from 'react'
 
-const Hobbies = () => {
+const EducationMinors = () => {
     return (
         <div className="absolute top-[100vh] left-0 right-0 flex justify-center">
             <div className="bg-white/90 p-6 rounded-lg shadow-lg max-w-sm text-center">
-                <h2 className="text-2xl font-bold">Hobbies Section</h2>
+                <h2 className="text-2xl font-bold">Education Minors</h2>
                 <p className="mt-3 text-gray-600">
-                    Place for Hobbie UI 
+                    Place for ED (not erectile dysfunction)
                 </p>
             </div>
         </div>
     );
 };
 
-export default Hobbies
+export default EducationMinors
