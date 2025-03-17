@@ -13,6 +13,7 @@ import Experience from './Experience.jsx'
 import LoadedButton from './components/UI/LoadedButton.jsx'
 import MiniMap from "./components/UI/MiniMap.jsx"
 import SkipIntroButton from './components/UI/SkipIntroButton.jsx'
+import ScrollDebug from './components/UI/ScrollDebug.jsx'
 
 if (import.meta.env.DEV) {
   studio.extend(extension)
@@ -101,6 +102,7 @@ function App() {
         </Suspense>
       </Canvas>
       <MiniMap progress={scrollProgress} />
+      <ScrollDebug scrollProgress={scrollProgress} />
       <Leva collapsed />
       <SpeedInsights />
       <Analytics />

@@ -72,9 +72,9 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           
           <Section 
             top="-20vh"
-            fadeInStart={0}
-            fadeInEnd={30}
-            fadeOutStart={60}
+            fadeInStart={35}
+            fadeInEnd={45}
+            fadeOutStart={65}
             fadeOutEnd={75}
           >
             <Introduction />
@@ -82,78 +82,78 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
 
           <Section 
             top="60vh"
-            fadeInStart={100}
-            fadeInEnd={120}
-            fadeOutStart={150}
-            fadeOutEnd={180}
+            fadeInStart={135}
+            fadeInEnd={145}
+            fadeOutStart={155}
+            fadeOutEnd={165}
           >
             <Career />
           </Section>
 
           <Section 
             top="230vh"
-            fadeInStart={280}
-            fadeInEnd={300}
-            fadeOutStart={330}
-            fadeOutEnd={345}
+            fadeInStart={300}
+            fadeInEnd={310}
+            fadeOutStart={320}
+            fadeOutEnd={335}
           >
             <ProjectsOverview />
           </Section>
 
           <Section 
             top="300vh"
-            fadeInStart={350}
-            fadeInEnd={380}
+            fadeInStart={380}
+            fadeInEnd={390}
             fadeOutStart={400}
-            fadeOutEnd={415}
+            fadeOutEnd={410}
           >
             <ProjectsWarehouse />
           </Section>
 
           <Section 
             top="360vh"
-            fadeInStart={440}
-            fadeInEnd={450}
-            fadeOutStart={470}
-            fadeOutEnd={475}
+            fadeInStart={445}
+            fadeInEnd={465}
+            fadeOutStart={480}
+            fadeOutEnd={485}
           >
             <ProjectsConstruction />
           </Section>
 
           <Section 
             top="440vh"
-            fadeInStart={480}
-            fadeInEnd={500}
-            fadeOutStart={520}
-            fadeOutEnd={545}
+            fadeInStart={520}
+            fadeInEnd={530}
+            fadeOutStart={545}
+            fadeOutEnd={550}
           >
             <ProjectsPower />
           </Section>
 
           <Section 
             top="480vh"
-            fadeInStart={550}
-            fadeInEnd={570}
+            fadeInStart={565}
+            fadeInEnd={585}
             fadeOutStart={590}
-            fadeOutEnd={610}
+            fadeOutEnd={600}
           >
             <Education />
           </Section>
 
           <Section 
             top="520vh"
-            fadeInStart={600}
-            fadeInEnd={620}
-            fadeOutStart={630}
-            fadeOutEnd={640}
+            fadeInStart={605}
+            fadeInEnd={615}
+            fadeOutStart={625}
+            fadeOutEnd={635}
           >
             <EducationMajors />
           </Section>
 
           <Section 
             top="540vh"
-            fadeInStart={645}
-            fadeInEnd={640}
+            fadeInStart={640}
+            fadeInEnd={650}
             fadeOutStart={660}
             fadeOutEnd={670}
           >
@@ -163,8 +163,8 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           <Section 
             top="600vh"
             fadeInStart={700}
-            fadeInEnd={720}
-            fadeOutStart={725}
+            fadeInEnd={710}
+            fadeOutStart={720}
             fadeOutEnd={730}
           >
             <EducationYonsei />
@@ -172,40 +172,40 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
 
           <Section 
             top="660vh"
-            fadeInStart={750}
-            fadeInEnd={760}
-            fadeOutStart={770}
-            fadeOutEnd={780}
+            fadeInStart={760}
+            fadeInEnd={770}
+            fadeOutStart={780}
+            fadeOutEnd={790}
           >
             <Languages />
           </Section>
 
           <Section 
             top="720vh"
-            fadeInStart={800}
-            fadeInEnd={810}
-            fadeOutStart={830}
-            fadeOutEnd={840}
+            fadeInStart={815}
+            fadeInEnd={825}
+            fadeOutStart={845}
+            fadeOutEnd={855}
           >
             <LanguagesMain />
           </Section>
 
           <Section 
             top="760vh"
-            fadeInStart={860}
-            fadeInEnd={865}
-            fadeOutStart={880}
-            fadeOutEnd={890}
+            fadeInStart={870}
+            fadeInEnd={880}
+            fadeOutStart={890}
+            fadeOutEnd={900}
           >
             <LanguagesBasic />
           </Section>
 
           <Section 
             top="820vh"
-            fadeInStart={910}
-            fadeInEnd={930}
-            fadeOutStart={950}
-            fadeOutEnd={960}
+            fadeInStart={925}
+            fadeInEnd={945}
+            fadeOutStart={965}
+            fadeOutEnd={975}
           >
             <FootballWatch />
           </Section>
@@ -213,39 +213,39 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           <Section 
             top="940vh"
             fadeInStart={1050}
-            fadeInEnd={1060}
-            fadeOutStart={1070}
-            fadeOutEnd={1080}
+            fadeInEnd={1065}
+            fadeOutStart={1080}
+            fadeOutEnd={1085}
           >
             <FootballPlay />
           </Section>
 
           <Section 
             top="1000vh"
-            fadeInStart={1100}
-            fadeInEnd={1120}
-            fadeOutStart={1140}
-            fadeOutEnd={1150}
+            fadeInStart={1115}
+            fadeInEnd={1135}
+            fadeOutStart={1155}
+            fadeOutEnd={1165}
           >
             <Chess />
           </Section>
 
           <Section 
             top="1060vh"
-            fadeInStart={1198}
-            fadeInEnd={1210}
-            fadeOutStart={1220}
-            fadeOutEnd={1225}
+            fadeInStart={1210}
+            fadeInEnd={1220}
+            fadeOutStart={1230}
+            fadeOutEnd={1240}
           >
             <Kombucha />
           </Section>
 
           <Section 
             top="1200vh"
-            fadeInStart={1330}
-            fadeInEnd={1335}
-            fadeOutStart={1347}
-            fadeOutEnd={1355}
+            fadeInStart={1345}
+            fadeInEnd={1350}
+            fadeOutStart={1362}
+            fadeOutEnd={1370}
           >
             <Contact />
           </Section>

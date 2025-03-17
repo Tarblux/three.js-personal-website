@@ -8,9 +8,7 @@ const LoadedButton = ({ onBoardingPassClick }) => {
     const printAudio = new Audio("sounds/ticket-printer.mp3")
     printAudio.play()
     setIsPrinting(true)
-    setTimeout(() => {
-      setPrintingComplete(true)
-    }, 10) // Match the jitterUp animation duration
+    setPrintingComplete(true)
   };
 
   const handleBoardingPassClick = () => {
