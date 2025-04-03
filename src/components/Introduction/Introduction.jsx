@@ -12,7 +12,7 @@ const Introduction = () => {
   const handleCloseModal = () => setIsModalOpen(false);
 
   return (
-    <div className="absolute top-[100vh] left-0 right-0 flex items-center justify-center">
+    <div className="absolute  left-0 right-0 flex items-center justify-center">
       {/* Glassmorphic Container */}
       <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 w-full max-w-5xl">
         <div className="grid grid-cols-6 grid-rows-4 gap-4">
