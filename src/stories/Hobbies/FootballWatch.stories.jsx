@@ -5,6 +5,23 @@ export default {
   component: FootballWatch,
   parameters: {
     layout: 'fullscreen',
+    backgrounds: {
+      default: 'football-watch',
+      values: [
+        {
+          name: 'football-watch',
+          value: 'url("/src/stories/backgrounds/FootballWatch.jpg")',
+        },
+        {
+          name: 'light',
+          value: '#ffffff',
+        },
+        {
+          name: 'dark',
+          value: '#333333',
+        },
+      ],
+    },
   },
 };
 

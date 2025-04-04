@@ -5,6 +5,23 @@ export default {
   component: Kombucha,
   parameters: {
     layout: 'fullscreen',
+    backgrounds: {
+      default: 'kombucha',
+      values: [
+        {
+          name: 'kombucha',
+          value: 'url("/src/stories/backgrounds/Kombucha.jpg")',
+        },
+        {
+          name: 'light',
+          value: '#ffffff',
+        },
+        {
+          name: 'dark',
+          value: '#333333',
+        },
+      ],
+    },
   },
 };
 
