@@ -4,9 +4,23 @@
 
 @font-face {
     font-family: 'Geist Sans';
+    src: url('../public/fonts/geist/Geist-Light.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Geist Sans';
     src: url('../public/fonts/geist/Geist-Regular.woff2') format('woff2');
     font-style: normal;
-    font-weight: 100 900;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Geist Sans';
+    src: url('../public/fonts/geist/Geist-Bold.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 700;
 }
 
 html,
@@ -17,6 +31,7 @@ body,
     width: 100%;
     height: 100%;
     background: ivory;
+    font-family: 'Geist Sans', sans-serif;
 }
 
 /* Loader styles */
