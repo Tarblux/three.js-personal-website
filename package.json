@@ -45,6 +45,7 @@
     "r3f-perf": "^7.2.2",
     "react": "18.3",
     "react-dom": "18.3",
+    "react-icons": "^5.5.0",
     "three": "^0.166.1"
   }
 }
