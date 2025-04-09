@@ -104,7 +104,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
               />
               {hoveredBook === book.id && showMessage && (
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center animate-fadeIn">
-                  <p className="text-white text-sm font-medium">Click for more</p>
+                  <p className="text-white text-sm font-medium">Click me</p>
                 </div>
               )}
             </div>

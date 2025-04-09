@@ -4,10 +4,25 @@ import { FaCheck } from 'react-icons/fa';
 const Career = () => {
     const [isExpanded, setIsExpanded] = useState(false);
 
+    const calculateDuration = () => {
+        const startDate = new Date('2023-07-01');
+        const currentDate = new Date();
+        
+        let years = currentDate.getFullYear() - startDate.getFullYear();
+        let months = currentDate.getMonth() - startDate.getMonth();
+        
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+        
+        return `${years}yr ${months}mos`;
+    };
+
     return (
         <div className="fixed top-8 right-8 z-0">
             <div className="bg-white/20 backdrop-blur-md rounded-lg p-3 w-[308px] min-h-[420px]">
-                <h2 className="text-gray-600 text-md font-medium mb-2 ml-1">Professional Experience</h2>
+                <h2 className="text-white text-md font-medium mb-2 ml-1">Professional Experience</h2>
                 
                 <div className="space-y-4">
                     {/* Flextrade Experience */}
@@ -24,9 +39,14 @@ const Career = () => {
                                     <p className="text-gray-600 text-xs">Flextrade</p>
                                 </div>
                             </div>
-                            <span className="bg-gray-200 px-2 py-0.5 rounded text-xs text-gray-600 whitespace-nowrap">
-                                2023 - Present
-                            </span>
+                            <div className="flex flex-col items-center">
+                                <span className="bg-gray-200 px-2 py-0.5 rounded text-xs text-gray-600 whitespace-nowrap">
+                                    2023 - Present
+                                </span>
+                                <span className="text-[10px] text-black mt-0.5 text-center">
+                                    {calculateDuration()}
+                                </span>
+                            </div>
                         </div>
 
                         <div className={`transition-all duration-500 overflow-hidden ${!isExpanded ? 'max-h-[500px]' : 'max-h-0'}`}>
@@ -99,9 +119,14 @@ const Career = () => {
                                     <p className="text-gray-600 text-sm">Eagle Medical Lab</p>
                                 </div>
                             </div>
-                            <span className="bg-gray-200 px-2 py-0.5 rounded text-xs text-gray-600">
-                                2022
-                            </span>
+                            <div className="flex flex-col items-center">
+                                <span className="bg-gray-200 px-2 py-0.5 rounded text-xs text-gray-600">
+                                    2022
+                                </span>
+                                <span className="text-[10px] text-black mt-0.5 text-center">
+                                    3 mos
+                                </span>
+                            </div>
                         </div>
 
                         <div className={`transition-all duration-500 overflow-hidden ${isExpanded ? 'max-h-[500px]' : 'max-h-0'}`}>
@@ -140,20 +165,12 @@ const Career = () => {
                                 <p className="text-xs font-bold mb-3">Tools:</p>
                                 <div className="flex gap-4">
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/docker.svg" alt="Docker" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">Docker</span>
+                                        <img src="/icons/Github_light.svg" alt="Github" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">Github</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/jira-1.svg" alt="Jira" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">Jira</span>
-                                    </div>
-                                    <div className="flex flex-col items-center">
-                                        <img src="/icons/Jenkins_logo.svg" alt="Jenkins" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">Jenkins</span>
-                                    </div>
-                                    <div className="flex flex-col items-center">
-                                        <img src="/icons/intellijidea.svg" alt="IntelliJ" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">IntelliJ</span>
+                                        <img src="/icons/mysql.svg" alt="MySQL" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">MySQL</span>
                                     </div>
                                 </div>
                             </div>
