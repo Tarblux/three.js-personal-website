@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ProjectsPower = () => {
+const ProjectsGit = () => {
     return (
         <div className="absolute left-0 right-0 flex justify-center">
             <div className="bg-white/90 p-6 rounded-lg shadow-lg max-w-sm text-center">
-                <h2 className="text-2xl font-bold">Projects Power</h2>
+                <h2 className="text-2xl font-bold">Projects Git</h2>
                 <p className="mt-3 text-gray-600">
                     This is where the projects will be powered from.
                 </p>
@@ -13,4 +13,4 @@ const ProjectsPower = () => {
     );
 };
 
-export default ProjectsPower;
+export default ProjectsGit;

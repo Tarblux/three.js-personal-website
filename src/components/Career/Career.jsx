@@ -22,7 +22,7 @@ const Career = () => {
     return (
         <div className="fixed top-8 right-8 z-0">
             <div className="bg-white/20 backdrop-blur-md rounded-lg p-3 w-[308px] min-h-[420px]">
-                <h2 className="text-white text-md font-medium mb-2 ml-1">Professional Experience</h2>
+                <h2 className="text-white text-sm font-medium mb-2 text-center">Professional Experience</h2>
                 
                 <div className="space-y-4">
                     {/* Flextrade Experience */}
@@ -43,7 +43,7 @@ const Career = () => {
                                 <span className="bg-gray-200 px-2 py-0.5 rounded text-xs text-gray-600 whitespace-nowrap">
                                     2023 - Present
                                 </span>
-                                <span className="text-[10px] text-black mt-0.5 text-center">
+                                <span className="text-[10px] text-gray-400 mt-0.5 text-center">
                                     {calculateDuration()}
                                 </span>
                             </div>
@@ -123,7 +123,7 @@ const Career = () => {
                                 <span className="bg-gray-200 px-2 py-0.5 rounded text-xs text-gray-600">
                                     2022
                                 </span>
-                                <span className="text-[10px] text-black mt-0.5 text-center">
+                                <span className="text-[10px] text-gray-400 mt-0.5 text-center">
                                     3 mos
                                 </span>
                             </div>
