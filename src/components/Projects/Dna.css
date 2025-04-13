@@ -23,7 +23,6 @@
     height: 100%;
     width: calc(100% / 6);
     border-radius: 50%;
-    background-color: var(--uib-color);
     animation: orbit var(--uib-speed) linear infinite;
     transition: background-color 0.3s ease;
   }
@@ -208,11 +207,58 @@
       opacity: 0.65;
     }
   }
+
+  /* Secondary Strand */
   
-  /* Set one strand to green and keep gradient for the other */
-  .slice::before {
-    background-color: #00cc66 !important; /* Bright green for all ::before elements */
+  .slice:nth-child(1)::before {
+    background-color: #a2fa27;
   }
+  
+  .slice:nth-child(2)::before {
+    background-color: #a2fa27;
+  }
+  
+  .slice:nth-child(3)::before {
+    background-color: #a2fa27;
+  }
+  
+  .slice:nth-child(4)::before {
+    background-color: #37fff5;
+  }
+  
+  .slice:nth-child(5)::before {
+    background-color: #37fff5;
+  }
+  
+  .slice:nth-child(6)::before {
+    background-color: #37fff5;
+  }
+  
+  .slice:nth-child(7)::before {
+    background-color: #0ce7ff;
+  }
+  
+  .slice:nth-child(8)::before {
+    background-color: #0ce7ff;
+  }
+  
+  .slice:nth-child(9)::before {
+    background-color: #0ce7ff;
+  }
+  
+  .slice:nth-child(10)::before {
+    background-color: #0ce7ff;
+  }
+  
+  .slice:nth-child(11)::before {
+    background-color: #0ce7ff;
+  }
+  
+  .slice:nth-child(12)::before {
+    background-color: #0ce7ff;
+  }
+
+  /* Main Strand */
   
   .slice:nth-child(1)::after {
     background-color: #334dff;
@@ -260,5 +306,72 @@
   
   .slice:nth-child(12)::after {
     background-color: #ff3380;
+  }
+  
+  /* Language tags with wave decorations */
+  .language-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .wave-python,
+  .wave-typescript,
+  .wave-scala,
+  .wave-java,
+  .wave-rust,
+  .wave-cpp {
+    width: 32px;
+    height: 9px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .wave-python::before,
+  .wave-typescript::before,
+  .wave-scala::before,
+  .wave-java::before,
+  .wave-rust::before,
+  .wave-cpp::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 45%, currentColor 45%, currentColor 55%, transparent 55%);
+    background-size: 10px 10px;
+    animation: wave 1s linear infinite;
+  }
+  
+  .wave-python::before {
+    color: #334dff;
+  }
+
+  .wave-typescript::before {
+    color: #ff3380;
+  }
+  
+  .wave-scala::before {
+    color: #a2fa27;
+  }
+  
+  .wave-java::before {
+    color: #37fff5;
+  }
+  
+  .wave-rust::before {
+    color: #d9d906;
+  }
+  
+  .wave-cpp::before {
+    color: #ec4899;
+  }
+  
+  @keyframes wave {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 10px 0;
+    }
   }
   

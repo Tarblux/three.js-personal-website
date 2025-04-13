@@ -2,13 +2,11 @@ import React from 'react';
 
 const ProjectsGit = () => {
     return (
-        <div className="absolute left-0 right-0 flex justify-center">
-            <div className="bg-white/90 p-6 rounded-lg shadow-lg max-w-sm text-center">
-                <h2 className="text-2xl font-bold">Projects Git</h2>
-                <p className="mt-3 text-gray-600">
-                    This is where the projects will be powered from.
-                </p>
-            </div>
+        <div className="flex flex-col bg-white rounded-xl p-3">
+            <h3 className="text-lg font-semibold mb-2 text-center">Projects Git</h3>
+            <p className="text-gray-600 text-xs text-center">
+                This is where the projects will be powered from.
+            </p>
         </div>
     );
 };
