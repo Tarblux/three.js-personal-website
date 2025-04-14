@@ -3,7 +3,7 @@ import './Dna.css';
 
 const ProjectsDna = () => {
     return (
-        <div className="flex flex-col bg-white rounded-xl p-4">
+        <div className="flex flex-col bg-white rounded-xl p-4 transform transition-transform duration-300 hover:scale-105">
             <div className="flex flex-row gap-8">
                 {/* DNA Animation*/}
                 <div className="w-1/3 flex flex-col items-center mt-7">

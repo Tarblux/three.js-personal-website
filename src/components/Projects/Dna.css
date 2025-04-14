@@ -251,11 +251,11 @@
   }
   
   .slice:nth-child(11)::before {
-    background-color: #0ce7ff;
+    background-color: #ffa77b;
   }
   
   .slice:nth-child(12)::before {
-    background-color: #0ce7ff;
+    background-color: #ffa77b;
   }
 
   /* Main Strand */
