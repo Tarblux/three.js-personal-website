@@ -46,8 +46,8 @@ const ProjectsDna = () => {
         <div className="flex flex-col rounded-xl">
             <div className="flex flex-row gap-8">
                 {/* DNA Animation */}
-                <div className="w-1/3 flex flex-col items-center mt-12">
-                    <h3 className="text-gray-400 text-sm font-medium mb-8">Projects DNA</h3>
+                <div className="w-1/3 flex flex-col justify-center">
+                    <h3 className="text-gray-400 text-sm font-medium text-center mb-4">Projects DNA</h3>
                     <div
                         className="flex items-center justify-center"
                         style={{ '--uib-size': '250px', '--uib-speed': '6s' }}
@@ -124,7 +124,7 @@ const ProjectsDna = () => {
                     >
                         <h4 className="text-lg font-semibold mb-1">Secondary Strand</h4>
                         <p className="text-gray-600 text-xs mb-4">
-                            A chaotic mix of things I sorta understand, stuff I'm still learning, and moments where I just nod, smile, and pray no one asks follow-up questions.
+                            A chaotic mix of things I understand, stuff I'm still learning, and moments where I just nod, smile, and pray no one asks follow-up questions.
                         </p>
                         <div className="flex">
                             <div 
@@ -158,11 +158,11 @@ const ProjectsDna = () => {
                                 </div>
                             </div>
                             
-                            {/* Vertical divider between Rust and C++ with Learning text in the middle */}
+                            {/* Learning Divider */}
                             <div className="flex flex-col items-center justify-center mx-2">
-                                <div className="h-10 border-r border-gray-300 border-dashed"></div>
+                                <div className="h-5 border-r border-gray-300 border-dashed"></div>
                                 <div className="text-[10px] text-gray-500 whitespace-nowrap my-2" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>Learning</div>
-                                <div className="h-10 border-r border-gray-300 border-dashed"></div>
+                                <div className="h-5 border-r border-gray-300 border-dashed"></div>
                             </div>
                             
                             <div 
