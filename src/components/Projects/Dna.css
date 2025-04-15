@@ -223,89 +223,89 @@
   }
   
   .slice:nth-child(4)::before {
-    background-color: #37fff5;
+    background-color: #a2fa27;
   }
   
   .slice:nth-child(5)::before {
-    background-color: #37fff5;
+    background-color: #a2fa27;
   }
   
   .slice:nth-child(6)::before {
-    background-color: #37fff5;
+    background-color: #ff9f63;
   }
   
   .slice:nth-child(7)::before {
-    background-color: #0ce7ff;
+    background-color: #ff9f63;
   }
   
   .slice:nth-child(8)::before {
-    background-color: #0ce7ff;
+    background-color: #ff9f63;
   }
   
   .slice:nth-child(9)::before {
-    background-color: #0ce7ff;
+    background-color: #ff9f63;
   }
   
   .slice:nth-child(10)::before {
-    background-color: #0ce7ff;
+    background-color: #ff9f63;
   }
   
   .slice:nth-child(11)::before {
-    background-color: #ffa77b;
+    background-color: #ff66c4;
   }
   
   .slice:nth-child(12)::before {
-    background-color: #ffa77b;
+    background-color: #ff66c4;
   }
 
   /* Main Strand */
   
   .slice:nth-child(1)::after {
-    background-color: #334dff;
+    background-color: #5e17eb;
   }
   
   .slice:nth-child(2)::after {
-    background-color: #333eff;
+    background-color: #5e17eb;
   }
   
   .slice:nth-child(3)::after {
-    background-color: #3334ff;
+    background-color: #5e17eb;
   }
   
   .slice:nth-child(4)::after {
-    background-color: #4433ff;
+    background-color: #5e17eb;
   }
   
   .slice:nth-child(5)::after {
-    background-color: #6633ff;
+    background-color: #5e17eb;
   }
   
   .slice:nth-child(6)::after {
-    background-color: #9933ff;
+    background-color: #5e17eb;
   }
   
   .slice:nth-child(7)::after {
-    background-color: #b833ff;
+    background-color: #004aad;
   }
   
   .slice:nth-child(8)::after {
-    background-color: #d133ff;
+    background-color: #004aad;
   }
   
   .slice:nth-child(9)::after {
-    background-color: #ff33f5;
+    background-color: #004aad;
   }
   
   .slice:nth-child(10)::after {
-    background-color: #ff33d1;
+    background-color: #004aad;
   }
   
   .slice:nth-child(11)::after {
-    background-color: #ff33a8;
+    background-color: #004aad;
   }
   
   .slice:nth-child(12)::after {
-    background-color: #ff3380;
+    background-color: #004aad;
   }
   
   /* Language tags with wave decorations */
@@ -373,5 +373,228 @@
     100% {
       background-position: 10px 0;
     }
+  }
+  
+  /* Hatched patterns for language labels */
+  .language-pattern {
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+    margin-left: 6px;
+    background-size: 7px 7px;
+    background-image: repeating-linear-gradient(
+      45deg,
+      currentColor 0,
+      currentColor 2px,
+      transparent 2px,
+      transparent 50%
+    );
+  }
+
+  .pattern-python {
+    color: #5e17eb;
+  }
+
+  .pattern-typescript {
+    color: #004aad;
+  }
+
+  .pattern-scala {
+    color: #a2fa27;
+  }
+
+  .pattern-rust {
+    color: #ff9f63;
+  }
+
+  .pattern-cpp {
+    color: #ff66c4;
+  }
+  
+  /* Dimmed Main Strand */
+  .dim-main .slice:nth-child(1)::after,
+  .dim-main .slice:nth-child(2)::after,
+  .dim-main .slice:nth-child(3)::after,
+  .dim-main .slice:nth-child(4)::after,
+  .dim-main .slice:nth-child(5)::after,
+  .dim-main .slice:nth-child(6)::after {
+    background-color: #e8e2f5;
+  }
+
+  .dim-main .slice:nth-child(7)::after,
+  .dim-main .slice:nth-child(8)::after,
+  .dim-main .slice:nth-child(9)::after,
+  .dim-main .slice:nth-child(10)::after,
+  .dim-main .slice:nth-child(11)::after,
+  .dim-main .slice:nth-child(12)::after {
+    background-color: #e6f0f9;
+  }
+
+  /* Dimmed Secondary Strand */
+  .dim-secondary .slice:nth-child(1)::before,
+  .dim-secondary .slice:nth-child(2)::before,
+  .dim-secondary .slice:nth-child(3)::before,
+  .dim-secondary .slice:nth-child(4)::before,
+  .dim-secondary .slice:nth-child(5)::before {
+    background-color: #f2f9e6;
+  }
+
+  .dim-secondary .slice:nth-child(6)::before,
+  .dim-secondary .slice:nth-child(7)::before,
+  .dim-secondary .slice:nth-child(8)::before,
+  .dim-secondary .slice:nth-child(9)::before,
+  .dim-secondary .slice:nth-child(10)::before {
+    background-color: #fff2e6;
+  }
+
+  .dim-secondary .slice:nth-child(11)::before,
+  .dim-secondary .slice:nth-child(12)::before {
+    background-color: #ffe6f2;
+  }
+  
+  /* Language-specific highlighting */
+  .highlight-python .slice:nth-child(1)::after,
+  .highlight-python .slice:nth-child(2)::after,
+  .highlight-python .slice:nth-child(3)::after,
+  .highlight-python .slice:nth-child(4)::after,
+  .highlight-python .slice:nth-child(5)::after,
+  .highlight-python .slice:nth-child(6)::after {
+    background-color: #5e17eb;
+  }
+
+  .highlight-python .slice:nth-child(7)::after,
+  .highlight-python .slice:nth-child(8)::after,
+  .highlight-python .slice:nth-child(9)::after,
+  .highlight-python .slice:nth-child(10)::after,
+  .highlight-python .slice:nth-child(11)::after,
+  .highlight-python .slice:nth-child(12)::after {
+    background-color: #e6f0f9;
+  }
+
+  .highlight-typescript .slice:nth-child(1)::after,
+  .highlight-typescript .slice:nth-child(2)::after,
+  .highlight-typescript .slice:nth-child(3)::after,
+  .highlight-typescript .slice:nth-child(4)::after,
+  .highlight-typescript .slice:nth-child(5)::after,
+  .highlight-typescript .slice:nth-child(6)::after {
+    background-color: #e8e2f5;
+  }
+
+  .highlight-typescript .slice:nth-child(7)::after,
+  .highlight-typescript .slice:nth-child(8)::after,
+  .highlight-typescript .slice:nth-child(9)::after,
+  .highlight-typescript .slice:nth-child(10)::after,
+  .highlight-typescript .slice:nth-child(11)::after,
+  .highlight-typescript .slice:nth-child(12)::after {
+    background-color: #004aad;
+  }
+
+  /* When a language is highlighted, dim all other colors */
+  .highlight-python:not(.dim-main) .slice::after,
+  .highlight-typescript:not(.dim-main) .slice::after {
+    background-color: #e8e2f5;
+  }
+
+  .highlight-python:not(.dim-main) .slice:nth-child(1)::after,
+  .highlight-python:not(.dim-main) .slice:nth-child(2)::after,
+  .highlight-python:not(.dim-main) .slice:nth-child(3)::after,
+  .highlight-python:not(.dim-main) .slice:nth-child(4)::after,
+  .highlight-python:not(.dim-main) .slice:nth-child(5)::after,
+  .highlight-python:not(.dim-main) .slice:nth-child(6)::after {
+    background-color: #5e17eb;
+  }
+
+  .highlight-typescript:not(.dim-main) .slice:nth-child(7)::after,
+  .highlight-typescript:not(.dim-main) .slice:nth-child(8)::after,
+  .highlight-typescript:not(.dim-main) .slice:nth-child(9)::after,
+  .highlight-typescript:not(.dim-main) .slice:nth-child(10)::after,
+  .highlight-typescript:not(.dim-main) .slice:nth-child(11)::after,
+  .highlight-typescript:not(.dim-main) .slice:nth-child(12)::after {
+    background-color: #004aad;
+  }
+
+  /* Language-specific highlighting for secondary strand */
+  .highlight-scala .slice:nth-child(1)::before,
+  .highlight-scala .slice:nth-child(2)::before,
+  .highlight-scala .slice:nth-child(3)::before,
+  .highlight-scala .slice:nth-child(4)::before,
+  .highlight-scala .slice:nth-child(5)::before {
+    background-color: #a2fa27;
+  }
+
+  .highlight-scala .slice:nth-child(6)::before,
+  .highlight-scala .slice:nth-child(7)::before,
+  .highlight-scala .slice:nth-child(8)::before,
+  .highlight-scala .slice:nth-child(9)::before,
+  .highlight-scala .slice:nth-child(10)::before,
+  .highlight-scala .slice:nth-child(11)::before,
+  .highlight-scala .slice:nth-child(12)::before {
+    background-color: #f2f9e6;
+  }
+
+  .highlight-rust .slice:nth-child(1)::before,
+  .highlight-rust .slice:nth-child(2)::before,
+  .highlight-rust .slice:nth-child(3)::before,
+  .highlight-rust .slice:nth-child(4)::before,
+  .highlight-rust .slice:nth-child(5)::before,
+  .highlight-rust .slice:nth-child(6)::before {
+    background-color: #f2f9e6;
+  }
+
+  .highlight-rust .slice:nth-child(7)::before,
+  .highlight-rust .slice:nth-child(8)::before,
+  .highlight-rust .slice:nth-child(9)::before,
+  .highlight-rust .slice:nth-child(10)::before {
+    background-color: #ff9f63;
+  }
+
+  .highlight-rust .slice:nth-child(11)::before,
+  .highlight-rust .slice:nth-child(12)::before {
+    background-color: #f2f9e6;
+  }
+
+  .highlight-cpp .slice:nth-child(1)::before,
+  .highlight-cpp .slice:nth-child(2)::before,
+  .highlight-cpp .slice:nth-child(3)::before,
+  .highlight-cpp .slice:nth-child(4)::before,
+  .highlight-cpp .slice:nth-child(5)::before,
+  .highlight-cpp .slice:nth-child(6)::before,
+  .highlight-cpp .slice:nth-child(7)::before,
+  .highlight-cpp .slice:nth-child(8)::before,
+  .highlight-cpp .slice:nth-child(9)::before,
+  .highlight-cpp .slice:nth-child(10)::before {
+    background-color: #f2f9e6;
+  }
+
+  .highlight-cpp .slice:nth-child(11)::before,
+  .highlight-cpp .slice:nth-child(12)::before {
+    background-color: #ff66c4;
+  }
+
+  /* When a secondary strand language is highlighted, dim all other colors */
+  .highlight-scala:not(.dim-secondary) .slice::before,
+  .highlight-rust:not(.dim-secondary) .slice::before,
+  .highlight-cpp:not(.dim-secondary) .slice::before {
+    background-color: #f2f9e6;
+  }
+
+  .highlight-scala:not(.dim-secondary) .slice:nth-child(1)::before,
+  .highlight-scala:not(.dim-secondary) .slice:nth-child(2)::before,
+  .highlight-scala:not(.dim-secondary) .slice:nth-child(3)::before,
+  .highlight-scala:not(.dim-secondary) .slice:nth-child(4)::before,
+  .highlight-scala:not(.dim-secondary) .slice:nth-child(5)::before {
+    background-color: #a2fa27;
+  }
+
+  .highlight-rust:not(.dim-secondary) .slice:nth-child(7)::before,
+  .highlight-rust:not(.dim-secondary) .slice:nth-child(8)::before,
+  .highlight-rust:not(.dim-secondary) .slice:nth-child(9)::before,
+  .highlight-rust:not(.dim-secondary) .slice:nth-child(10)::before {
+    background-color: #ff9f63;
+  }
+
+  .highlight-cpp:not(.dim-secondary) .slice:nth-child(11)::before,
+  .highlight-cpp:not(.dim-secondary) .slice:nth-child(12)::before {
+    background-color: #ff66c4;
   }
   
