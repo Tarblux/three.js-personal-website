@@ -14,7 +14,7 @@ const ProjectsOverview = () => {
                     </div>
 
                     {/* GitHub Contributions Section */}
-                    <div className="bg-white/90 backdrop-blur-sm rounded-lg">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg transform transition-all duration-300 hover:scale-[1.04]">
                         <ProjectsGit />
                     </div>
                 </div>

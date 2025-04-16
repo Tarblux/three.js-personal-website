@@ -1,45 +1,82 @@
 import React, { useEffect, useRef, useState } from 'react';
 import CalHeatmap from 'cal-heatmap';
 import Tooltip from 'cal-heatmap/plugins/Tooltip';
-import CalendarLabel from 'cal-heatmap/plugins/CalendarLabel';
 import LegendLite from 'cal-heatmap/plugins/LegendLite';
 import 'cal-heatmap/cal-heatmap.css';
-import dayjs from 'dayjs';
 
 const ProjectsGit = () => {
     const chartRef = useRef(null);
     const legendRef = useRef(null);
     const cal = useRef(null);
-    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+    const [data, setData] = useState([]);
+    const [selectedYear, setSelectedYear] = useState(2025);
+    const [totalContributions, setTotalContributions] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
     const years = [2025, 2024, 2023];
 
-    const initializeCalendar = (year) => {
-        if (!chartRef.current) return;
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                let response;
+                let jsonData;
+
+                if (selectedYear === 2025) {
+                    try {
+                        response = await fetch('https://google.com');
+                        jsonData = await response.json();
+                        console.log(jsonData);
+                    } catch (error) {
+                        console.log('2025 data not available, falling back to 2024...');
+                        setSelectedYear(2024);
+                        return;
+                    }
+                } else {
+                    response = await fetch(`/data/git-contributions-${selectedYear}.json`);
+                    jsonData = await response.json();
+                }
+
+                const contributions = jsonData[0].contributions;
+                setTotalContributions(jsonData[0].totalContributions);
+                
+                // Transform the data into the required format
+                const formattedData = Object.entries(contributions).map(([date, value]) => ({
+                    date,
+                    value
+                }));
+                
+                setData(formattedData);
+            } catch (error) {
+                console.error('Error fetching contribution data:', error);
+                if (selectedYear === 2025) {
+                    console.log('Falling back to 2024 data...');
+                    setSelectedYear(2024);
+                }
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [selectedYear]);
+
+    useEffect(() => {
+        if (!chartRef.current || data.length === 0) return;
 
         if (!cal.current) {
             cal.current = new CalHeatmap();
-        }
-        
-        // Mock data - replace this with actual GitHub API data
-        const mockData = {};
-        const startDate = new Date(year, 0, 1);
-        const endDate = new Date(year, 11, 31);
-        
-        for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
-            mockData[d.toISOString().split('T')[0]] = Math.floor(Math.random() * 5);
         }
 
         cal.current.paint(
             {
                 data: {
-                    source: mockData,
+                    source: data,
                     type: 'json',
                     x: 'date',
                     y: 'value',
                 },
                 date: { 
-                    start: new Date(year, 0, 1),
+                    start: new Date(`${selectedYear}-01-01`),
                     highlight: new Date()
                 },
                 range: 12,
@@ -52,15 +89,16 @@ const ProjectsGit = () => {
                 },
                 domain: {
                     type: 'month',
-                    gutter: 2,
+                    gutter: 4,
                     label: { text: 'MMM', textAlign: 'start', position: 'top' },
                 },
                 subDomain: { 
-                    type: 'ghDay',
-                    radius: 1,
-                    width: 7.3,
-                    height: 7,
-                    gutter: 2
+                    type: 'ghDay', 
+                    radius: 1, 
+                    width: 7.3, 
+                    height: 7, 
+                    gutter: 2,
+                    highlight: 'now'
                 },
                 itemSelector: chartRef.current,
             },
@@ -87,71 +125,47 @@ const ProjectsGit = () => {
                         height: 7,
                         gutter: 2,
                     },
-                ],
-                [
-                    CalendarLabel,
-                    {
-                        width: 15,
-                        textAlign: 'start',
-                        text: () => dayjs.weekdaysShort().map((d, i) => (i % 2 === 0 ? '' : d)),
-                        padding: [15, 0, 0, 0],
-                    },
-                ],
+                ]
             ]
         );
-    };
 
-    useEffect(() => {
-        initializeCalendar(selectedYear);
-        
         return () => {
             if (cal.current) {
                 cal.current.destroy();
                 cal.current = null;
             }
         };
-    }, [selectedYear]);
+    }, [data, selectedYear]);
 
     const handleYearChange = (e) => {
-        const year = parseInt(e.target.value);
-        setSelectedYear(year);
-        if (cal.current) {
-            cal.current.destroy();
-            cal.current = null;
-        }
+        setSelectedYear(parseInt(e.target.value));
     };
 
     return (
         <div className="p-4">
             <div className="flex justify-between items-center mb-1">
-                <h3 className="text-lg font-semibold">Git Contributions</h3>
+                <h3 className="text-lg font-semibold text-black">
+                    <span className="text-[#40c463]">{totalContributions}</span> contributions in {selectedYear === new Date().getFullYear() ? 'the last year' : selectedYear}
+                </h3>
                 <select
                     value={selectedYear}
                     onChange={handleYearChange}
-                    className="text-sm bg-gray-100 text-gray-600 rounded px-2 py-1 hover:bg-gray-200 transition-colors cursor-pointer"
+                    className="px-2 py-1 text-sm bg-[#000000] text-white rounded-md border border-gray-300 hover:bg-[#2f3640] cursor-pointer"
                 >
                     {years.map(year => (
                         <option key={year} value={year}>{year}</option>
                     ))}
                 </select>
             </div>
-            <div className="relative flex flex-col">
-                <div 
-                    ref={chartRef}
-                    className="flex-1 origin-top-left -mb-10"
-                    style={{ width: '100%', height: '100%', overflow: 'hidden', paddingRight: '20px' }}
+            <div id="git-contribution-chart" ref={chartRef} className="mb-4"></div>
+            <div className="float-right text-xs mb-4">
+                <span className="text-gray-500">Less</span>
+                <div
+                    id="git-contribution-legend"
+                    ref={legendRef}
+                    className="inline-block mx-1"
                 ></div>
-                
-                <div className="flex items-center justify-end -mt-4">
-                    <div className="flex items-center text-xs mr-1">
-                        <span className="text-gray-500">Less</span>
-                        <div
-                            ref={legendRef}
-                            className="inline-block mx-2"
-                        ></div>
-                        <span className="text-gray-500">More</span>
-                    </div>
-                </div>
+                <span className="text-gray-500">More</span>
             </div>
         </div>
     );
