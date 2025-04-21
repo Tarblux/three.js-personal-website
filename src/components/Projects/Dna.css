@@ -211,23 +211,23 @@
   /* Secondary Strand */
   
   .slice:nth-child(1)::before {
-    background-color: #a2fa27;
+    background-color: #e1160b;
   }
   
   .slice:nth-child(2)::before {
-    background-color: #a2fa27;
+    background-color: #e1160b;
   }
   
   .slice:nth-child(3)::before {
-    background-color: #a2fa27;
+    background-color: #e1160b;
   }
   
   .slice:nth-child(4)::before {
-    background-color: #a2fa27;
+    background-color: #e1160b;
   }
   
   .slice:nth-child(5)::before {
-    background-color: #a2fa27;
+    background-color: #e1160b;
   }
   
   .slice:nth-child(6)::before {
@@ -251,7 +251,7 @@
   }
   
   .slice:nth-child(11)::before {
-    background-color: #ff66c4;
+    background-color: #ff86d1;
   }
   
   .slice:nth-child(12)::before {
@@ -400,7 +400,7 @@
   }
 
   .pattern-scala {
-    color: #a2fa27;
+    color: #e1160b;
   }
 
   .pattern-rust {
@@ -519,7 +519,7 @@
   .highlight-scala .slice:nth-child(3)::before,
   .highlight-scala .slice:nth-child(4)::before,
   .highlight-scala .slice:nth-child(5)::before {
-    background-color: #a2fa27;
+    background-color: #e1160b;
   }
 
   .highlight-scala .slice:nth-child(6)::before,
@@ -583,7 +583,7 @@
   .highlight-scala:not(.dim-secondary) .slice:nth-child(3)::before,
   .highlight-scala:not(.dim-secondary) .slice:nth-child(4)::before,
   .highlight-scala:not(.dim-secondary) .slice:nth-child(5)::before {
-    background-color: #a2fa27;
+    background-color: #e1160b;
   }
 
   .highlight-rust:not(.dim-secondary) .slice:nth-child(7)::before,

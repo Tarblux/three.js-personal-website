@@ -39,7 +39,6 @@ const ProjectsGit = () => {
                 const contributions = jsonData[0].contributions;
                 setTotalContributions(jsonData[0].totalContributions);
                 
-                // Transform the data into the required format
                 const formattedData = Object.entries(contributions).map(([date, value]) => ({
                     date,
                     value
@@ -142,7 +141,7 @@ const ProjectsGit = () => {
     };
 
     return (
-        <div className="p-4">
+        <div className="p-6">
             <div className="flex justify-between items-center mb-1">
                 <h3 className="text-lg font-semibold text-black">
                     <span className="text-[#40c463]">{totalContributions}</span> contributions in {selectedYear === new Date().getFullYear() ? 'the last year' : selectedYear}
