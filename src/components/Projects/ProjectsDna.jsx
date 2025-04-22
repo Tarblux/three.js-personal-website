@@ -2,24 +2,20 @@ import React, { useState } from 'react';
 import './Dna.css';
 
 const ProjectsDna = () => {
-    // Track which strand is hovered; null means none.
+
     const [hoveredStrand, setHoveredStrand] = useState(null);
-    // Track which language is hovered
     const [hoveredLanguage, setHoveredLanguage] = useState(null);
 
-    // If the secondary strand is hovered, dim the main strand.
+
     const mainStrandStyle = hoveredStrand === "secondary" ? { opacity: 0.5 } : {};
-    // If the main strand is hovered, dim the secondary strand.
     const secondaryStrandStyle = hoveredStrand === "main" ? { opacity: 0.5 } : {};
 
-    // Get helix container class based on hover state
     const helixContainerClass = `helix-container 
         ${hoveredStrand === "main" ? "dim-secondary" : ""} 
         ${hoveredStrand === "secondary" ? "dim-main" : ""}
         ${hoveredLanguage ? `highlight-${hoveredLanguage}` : ""}`;
 
-    // Get vial opacity class based on hover state
-    const getVialOpacityClass = (language) => {
+    const getLanguageOpacityClass = (language) => {
         if (!hoveredLanguage) return '';
         if (language === hoveredLanguage) return '';
         if ((language === 'python' && hoveredLanguage === 'typescript') || 
@@ -37,8 +33,7 @@ const ProjectsDna = () => {
         return '';
     };
 
-    // Get vial scale class based on hover state
-    const getVialScaleClass = (language) => {
+    const getLanguageScaleClass = (language) => {
         return language === hoveredLanguage ? 'scale-110' : '';
     };
 
@@ -87,12 +82,12 @@ const ProjectsDna = () => {
                                 >
                                     <img 
                                         src="/images/DNA/Py.png" 
-                                        alt="Python Molecule" 
-                                        className={`w-[128px] h-[128px] transition-all duration-300 ${getVialOpacityClass('python')} ${getVialScaleClass('python')}`} 
+                                        alt="Python" 
+                                        className={`w-[128px] h-[128px] transition-all duration-300 ${getLanguageOpacityClass('python')} ${getLanguageScaleClass('python')}`} 
                                     />
                                     <div className="flex items-center mt-2">
-                                        <div className="language-pattern pattern-python"></div>
-                                        <span className="text-xs text-black ml-1">Python</span>
+                                        <div className={`language-pattern pattern-python transition-opacity duration-300 ${getLanguageOpacityClass('python')}`}></div>
+                                        <span className={`text-xs text-black ml-1 transition-opacity duration-300 ${getLanguageOpacityClass('python')}`}>Python</span>
                                     </div>
                                 </div>
                                 <div 
@@ -102,12 +97,12 @@ const ProjectsDna = () => {
                                 >
                                     <img 
                                         src="/images/DNA/TS.png" 
-                                        alt="TypeScript Molecule" 
-                                        className={`w-[190px] h-[128px] transition-all duration-300 ${getVialOpacityClass('typescript')} ${getVialScaleClass('typescript')}`} 
+                                        alt="TypeScript" 
+                                        className={`w-[190px] h-[128px] transition-all duration-300 ${getLanguageOpacityClass('typescript')} ${getLanguageScaleClass('typescript')}`} 
                                     />
                                     <div className="flex items-center mt-2">
-                                        <div className="language-pattern pattern-typescript"></div>
-                                        <span className="text-xs text-black ml-1">TypeScript</span>
+                                        <div className={`language-pattern pattern-typescript transition-opacity duration-300 ${getLanguageOpacityClass('typescript')}`}></div>
+                                        <span className={`text-xs text-black ml-1 transition-opacity duration-300 ${getLanguageOpacityClass('typescript')}`}>TypeScript</span>
                                     </div>
                                 </div>
                             </div>
@@ -137,12 +132,12 @@ const ProjectsDna = () => {
                                 >
                                     <img 
                                         src="/images/DNA/Scala.png" 
-                                        alt="Scala Molecule" 
-                                        className={`w-[128px] h-[128px] transition-all duration-300 ${getVialOpacityClass('scala')} ${getVialScaleClass('scala')}`} 
+                                        alt="Scala" 
+                                        className={`w-[128px] h-[128px] transition-all duration-300 ${getLanguageOpacityClass('scala')} ${getLanguageScaleClass('scala')}`} 
                                     />
                                     <div className="flex items-center mt-2">
-                                        <div className="language-pattern pattern-scala"></div>
-                                        <span className="text-xs text-black ml-1">Scala</span>
+                                        <div className={`language-pattern pattern-scala transition-opacity duration-300 ${getLanguageOpacityClass('scala')}`}></div>
+                                        <span className={`text-xs text-black ml-1 transition-opacity duration-300 ${getLanguageOpacityClass('scala')}`}>Scala</span>
                                     </div>
                                 </div>
                                 <div 
@@ -152,12 +147,12 @@ const ProjectsDna = () => {
                                 >
                                     <img 
                                         src="/images/DNA/Rust.png" 
-                                        alt="Rust Molecule" 
-                                        className={`w-[100px] h-[128px] transition-all duration-300 ${getVialOpacityClass('rust')} ${getVialScaleClass('rust')}`} 
+                                        alt="Rust" 
+                                        className={`w-[100px] h-[128px] transition-all duration-300 ${getLanguageOpacityClass('rust')} ${getLanguageScaleClass('rust')}`} 
                                     />
                                     <div className="flex items-center mt-2">
-                                        <div className="language-pattern pattern-rust"></div>
-                                        <span className="text-xs text-black ml-1">Rust</span>
+                                        <div className={`language-pattern pattern-rust transition-opacity duration-300 ${getLanguageOpacityClass('rust')}`}></div>
+                                        <span className={`text-xs text-black ml-1 transition-opacity duration-300 ${getLanguageOpacityClass('rust')}`}>Rust</span>
                                     </div>
                                 </div>
                                 
@@ -168,12 +163,12 @@ const ProjectsDna = () => {
                                 >
                                     <img 
                                         src="/images/DNA/C++.png" 
-                                        alt="C++ Molecule" 
-                                        className={`w-[58px] h-[128px] transition-all duration-300 ${getVialOpacityClass('cpp')} ${getVialScaleClass('cpp')}`} 
+                                        alt="C++" 
+                                        className={`w-[58px] h-[128px] transition-all duration-300 ${getLanguageOpacityClass('cpp')} ${getLanguageScaleClass('cpp')}`} 
                                     />
                                     <div className="flex items-center mt-2">
-                                        <div className="language-pattern pattern-cpp"></div>
-                                        <span className="text-xs text-black ml-1">C++</span>
+                                        <div className={`language-pattern pattern-cpp transition-opacity duration-300 ${getLanguageOpacityClass('cpp')}`}></div>
+                                        <span className={`text-xs text-black ml-1 transition-opacity duration-300 ${getLanguageOpacityClass('cpp')}`}>C++</span>
                                     </div>
                                 </div>
                             </div>
