@@ -38,7 +38,7 @@ const WelcomeMessage = ({ showMessage }) => {
                           border-2 border-gray-200">
                 <div className="mb-4">
                     <img 
-                        src="images/welcome-moji.png" 
+                        src="/images/UI/welcome-moji.png" 
                         alt="Welcome Memoji" 
                         className="w-20 h-20 mx-auto object-cover"
                     />

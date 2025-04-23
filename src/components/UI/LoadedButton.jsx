@@ -49,7 +49,7 @@ const LoadedButton = ({ onBoardingPassClick }) => {
       {/* Boarding Pass */}
       <div className="boarding-pass-container">
         <img
-          src="/images/portfolio-boardingpass.svg"
+          src="/images/UI/portfolio-boardingpass.svg"
           alt="Boarding Pass"
           onClick={handleBoardingPassClick}
           className={`boarding-pass ${isPrinting ? "printing" : ""} ${!printingComplete ? "pointer-events-none" : "cursor-pointer"}`}

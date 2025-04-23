@@ -110,7 +110,7 @@ const Career = () => {
                         <div className="flex items-start justify-between mb-2">
                             <div className="flex items-center gap-2">
                                 <img 
-                                    src="/images/eagle-med.png" 
+                                    src="/icons/eagle-med.png" 
                                     alt="Eagle Medical Lab" 
                                     className="w-10 h-10"
                                 />

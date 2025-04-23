@@ -20,7 +20,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
   const books = [
     {
       id: 1,
-      cover: '/images/book-alchemisty.jpg',
+      cover: '/images/Introduction/book-alchemisty.jpg',
       title: 'The Alchemist',
       author: 'Paulo Coelho',
       category: 'Fiction',
@@ -31,7 +31,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
     },
     {
       id: 2,
-      cover: '/images/book-atomichabits.jpg',
+      cover: '/images/Introduction/book-atomichabits.jpg',
       title: 'Atomic Habits',
       author: 'James Clear',
       category: 'Non-Fiction',
@@ -42,7 +42,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
     },
     {
       id: 3,
-      cover: '/images/book-underc.jpg',
+      cover: '/images/Introduction/book-underc.jpg',
       title: 'The Undercover Economist',
       author: 'Tim Harford',
       category: 'Non-Fiction',
@@ -53,7 +53,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
     },
     {
       id: 4,
-      cover: '/images/book-felices.jpg',
+      cover: '/images/Introduction/book-felices.jpg',
       title: 'Felices Días Tío Sergio',
       author: 'Magali García Ramis',
       category: 'Fiction',
@@ -64,7 +64,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
     },
     {
       id: 5,
-      cover: '/images/book-msreadme.jpg',
+      cover: '/images/Introduction/book-msreadme.jpg',
       title: 'The Missing README',
       author: 'Chris Riccomini & Dmitriy Ryaboy',
       category: 'Non-Fiction',

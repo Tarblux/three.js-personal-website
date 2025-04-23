@@ -30,7 +30,7 @@ const LocationCard = () => {
       >
         <div className="relative w-full h-full">
           <img
-            src="/images/mke-landscape-2.png"
+            src="/images/Introduction/mke-landscape-2.png"
             alt="Milwaukee Map"
             className="w-full h-full object-cover rounded-lg"
           />
