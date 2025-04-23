@@ -2,24 +2,41 @@ import React from 'react';
 
 const ProjectCard = ({ title, date, image, description, category, technologies }) => {
     const getCategoryColor = (category) => {
-        switch(category) {
-            case 'Web Development':
-                return 'text-green-300';
-            case 'Research':
-                return 'text-white';
+        switch(category.toLowerCase()) {
+            case 'development':
+                return 'text-blue-400';
+            case 'research':
+                return 'text-purple-400';
+            case 'media':
+                return 'text-emerald-400';
             default:
-                return 'text-gray-100';
+                return 'text-white';
         }
     };
 
     const getBorderColor = (category) => {
-        switch(category) {
-            case 'Web Development':
-                return 'before:from-green-300';
-            case 'Research':
-                return 'before:from-purple-300';
+        switch(category.toLowerCase()) {
+            case 'development':
+                return 'before:from-blue-400/50';
+            case 'research':
+                return 'before:from-purple-400/50';
+            case 'media':
+                return 'before:from-emerald-400/50';
             default:
-                return 'before:from-gray-100';
+                return 'before:from-gray-400/50';
+        }
+    };
+
+    const getCategoryName = (category) => {
+        switch(category.toLowerCase()) {
+            case 'development':
+                return 'Software Development';
+            case 'research':
+                return 'Research';
+            case 'media':
+                return 'Digital Media';
+            default:
+                return category;
         }
     };
 
@@ -39,7 +56,7 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
                 {/* Category tag */}
                 <div className="absolute top-2 left-2 z-10">
                     <span className={`flex bg-black/15 backdrop-blur-sm ${getCategoryColor(category)} px-1.5 py-0.5 text-[0.65rem] rounded-[0.2rem] border border-white/20 shadow-sm`}>
-                        {category}
+                        {getCategoryName(category)}
                     </span>
                 </div>
 
@@ -72,8 +89,8 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
                 </div>
 
                 {/* Title and Description */}
-                <h3 className="text-xs font-bold mb-1">{title}</h3>
-                <p className="text-gray-600 text-[0.68rem] mb-8">
+                <h3 className="text-sm font-bold mb-1">{title}</h3>
+                <p className="text-gray-600 text-[0.68rem] mb-6">
                     {description}
                 </p>
             </div>
