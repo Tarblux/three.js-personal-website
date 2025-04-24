@@ -5,7 +5,7 @@ import ProjectsGit from './ProjectsGit';
 const ProjectsOverview = () => {
     return (
         <div className="absolute left-0 flex ml-5">
-            <div className="bg-white/20 backdrop-blur-md rounded-lg w-[600px] p-3">
+            <div className="bg-white/20 backdrop-blur-md rounded-lg w-[600px] p-3 border border-white/30">
                 {/* <h2 className="text-white text-lg font-medium mb-6 text-center">Project Labs</h2> */}
                 <div className="grid grid-cols-1 gap-6">
                     {/* DNA Section */}

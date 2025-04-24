@@ -21,7 +21,7 @@ const Career = () => {
 
     return (
         <div className="fixed top-8 right-8 z-0">
-            <div className="bg-white/20 backdrop-blur-md rounded-lg p-3 w-[308px] min-h-[420px]">
+            <div className="bg-white/20 backdrop-blur-md rounded-lg p-3 w-[308px] min-h-[420px] border border-white/30">
                 <h2 className="text-white text-sm font-medium mb-2 text-center">Professional Experience</h2>
                 
                 <div className="space-y-4">

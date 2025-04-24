@@ -26,7 +26,7 @@ const Introduction = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-0">
       {/* Glassmorphic Container */}
-      <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 w-full max-w-4xl mx-auto">
+      <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 w-full max-w-4xl mx-auto border border-white/30">
         <div className="grid grid-cols-12 gap-3 auto-rows-auto max-h-[500px]">
           <IntroCard />
           <LocationCard />
@@ -44,9 +44,9 @@ const Introduction = () => {
         >
           <div className="relative flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
             <img
-              src="/images/resume-thumbnail.png"
+              src="/images/Introduction/resume-thumbnail.png"
               alt="Resume Full"
-              className="max-w-[75vw] max-h-[75vh] rounded shadow-lg object-contain"
+              className="max-w-[85vw] max-h-[85vh] rounded shadow-lg object-contain"
             />
             <a
               href="/docs/Tariq-Williams-Resume.pdf"

@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 import ProjectFilter from '../UI/ProjectFilter';
 import ProjectDetails from './ProjectDetails';
+import { projects } from '../../data/projects';
 
 const ProjectsWarehouse = () => {
     const [filter, setFilter] = useState('all');
     const [selectedProject, setSelectedProject] = useState(null);
+    const [currentPage, setCurrentPage] = useState(0);
+    const containerRef = useRef(null);
 
     const calculateDuration = (startDate, endDate = null) => {
         const start = new Date(startDate);
@@ -33,58 +36,32 @@ const ProjectsWarehouse = () => {
         return d.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' }) + " '" + d.getFullYear().toString().slice(-2);
     };
 
-    const projects = [
-        {
-            title: "Three.js Personal Website",
-            startDate: "2024-10-01",
-            endDate: null,
-            image: "/images/Projects/project-tester.png",
-            description: "Interactive 3D portfolio website with modern tech stack",
-            category: "development",
-            technologies: ["Three.js", "React", "Node.js", "PostgreSQL"],
-            story: "This project represents a significant milestone in my web development journey. I wanted to create something that would not only showcase my work but also demonstrate my ability to work with modern web technologies and 3D graphics. The site features interactive 3D elements that respond to user interaction, creating an engaging and memorable experience.",
-            github: "https://github.com/Tarblux",
-            link: "https://google.com"
-        },
-        {
-            title: "Leetcode Dashboard",
-            startDate: "2024-01-01",
-            endDate: "2025-04-01",
-            image: "/images/Projects/project-leet.png",
-            description: "Personal progress tracking dashboard for coding practice",
-            category: "development",
-            technologies: ["React", "Node.js", "PostgreSQL"],
-            story: "The Leetcode Dashboard was born from my desire to better track and visualize my progress in algorithmic problem-solving. I built this tool to help myself and other developers maintain consistency in their coding practice and identify areas for improvement.",
-            github: "https://github.com/Tarblux",
-            link: "https://google.com"
-        },
-        {
-            title: "Creole Linguistics Study",
-            startDate: "2022-12-01",
-            endDate: "2023-02-01",
-            image: "/images/Projects/project-creo.png",
-            description: "Study of the Creole language spoken in Jamaica.",
-            category: "research",
-            technologies: ["R", "Python", "LaTeX"],
-            story: "This research project involved analyzing linguistic patterns in Jamaican Creole, combining traditional linguistic research methods with modern data analysis techniques. The study provided valuable insights into language evolution and cultural preservation.",
-            github: "https://github.com/Tarblux",
-            link: "https://google.com"
-        },
-        {
-            title: "Bukayo Saka Wall Art",
-            startDate: "2023-07-19",
-            endDate: "2023-07-19",
-            image: "/images/Projects/B Saks Poster.png",
-            description: "Minimalist black and white wall art design featuring Arsenal's Bukayo Saka",
-            category: "media",
-            technologies: ["Photoshop", "Digital Art", "Typography"],
-            story: "This artistic piece combines portrait photography and sports imagery in a minimalist black and white style. The design features Arsenal star Bukayo Saka in two contrasting poses - a formal portrait with a signature pose and a celebratory moment from a match. The composition is enhanced with his signature, the Nigerian flag, and the Arsenal crest, creating a powerful visual narrative that celebrates both his heritage and his club identity."
-        }
-    ];
-
     const filteredProjects = filter === 'all' 
         ? projects 
         : projects.filter(project => project.category.toLowerCase() === filter);
+
+    const totalPages = Math.ceil(filteredProjects.length / 4);
+    const currentProjects = filteredProjects.slice(currentPage * 4, (currentPage + 1) * 4);
+
+    const handleScroll = (event) => {
+        if (event.deltaY > 0 && currentPage < totalPages - 1) {
+            setCurrentPage(prev => prev + 1);
+        } else if (event.deltaY < 0 && currentPage > 0) {
+            setCurrentPage(prev => prev - 1);
+        }
+    };
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (container) {
+            container.addEventListener('wheel', handleScroll);
+            return () => container.removeEventListener('wheel', handleScroll);
+        }
+    }, [currentPage, totalPages]);
+
+    useEffect(() => {
+        setCurrentPage(0); // Reset to first page when filter changes
+    }, [filter]);
 
     const handleProjectClick = (project) => {
         const formattedProject = {
@@ -96,13 +73,16 @@ const ProjectsWarehouse = () => {
 
     return (
         <div className="absolute left-0 flex ml-12 mt-12">
-            <div className="bg-white/20 backdrop-blur-md rounded-lg w-[440px] p-2">
+            <div className="bg-white/20 backdrop-blur-md rounded-lg w-[440px] p-2 border border-white/30">
                 <div className="bg-white rounded-lg p-1 pb-5">
                     <div className="mb-5 mt-2">
                         <ProjectFilter onFilterChange={setFilter} />
                     </div>
-                    <div className="grid grid-cols-2 gap-y-4 justify-items-center">
-                        {filteredProjects.map((project, index) => {
+                    <div 
+                        ref={containerRef}
+                        className="grid grid-cols-2 gap-y-4 justify-items-center min-h-[500px] relative"
+                    >
+                        {currentProjects.map((project, index) => {
                             const startDate = formatDate(project.startDate);
                             const endDate = project.endDate ? formatDate(project.endDate) : 'Present';
                             const duration = calculateDuration(project.startDate, project.endDate);
@@ -120,6 +100,21 @@ const ProjectsWarehouse = () => {
                                 </div>
                             );
                         })}
+                    </div>
+                    <div className="flex flex-col items-center mt-4">
+                        <div className="flex justify-center gap-2">
+                            {Array.from({ length: totalPages }, (_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setCurrentPage(i)}
+                                    className={`h-1.5 w-1.5 rounded-full transition-all duration-300 hover:bg-gray-600 cursor-pointer
+                                        ${currentPage === i ? 'bg-gray-800 w-3' : 'bg-gray-300'}`}
+                                />
+                            ))}
+                        </div>
+                        <div className="text-gray-400 text-xs mt-2">
+                            {currentPage + 1} / {totalPages}
+                        </div>
                     </div>
                 </div>
             </div>
