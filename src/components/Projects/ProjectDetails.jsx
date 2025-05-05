@@ -80,7 +80,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             
             {/* Project Details Card */}
             <div 
-                className={`fixed right-[200px] top-[48px] w-[600px] h-[70vh] bg-white/95 backdrop-blur-sm
+                className={`fixed right-[200px] top-[48px] w-[600px] h-[75vh] bg-white/95 backdrop-blur-sm
                     rounded-2xl shadow-lg transform-gpu
                     ${isClosing ? 'animate-fold' : 'animate-unfold'}`}
                 style={{
@@ -91,7 +91,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                     {/* Close button */}
                     <button 
                         onClick={handleClose}
-                        className="absolute top-6 right-6 text-black hover:text-gray-600 transition-colors z-10"
+                        className="absolute top-7 right-8 text-black hover:text-gray-600 transition-colors z-10"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -100,7 +100,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
 
                     {/* Main media display with navigation */}
                     <div className="p-6 pb-2 relative">
-                        <div className="w-full h-[250px] rounded-xl overflow-hidden shadow-md relative group">
+                        <div className="w-full h-[300px] rounded-xl overflow-hidden !shadow-none relative group transition-all duration-300 hover:scale-[1.02] hover:rounded-2xl">
                             {currentMedia.type === 'video' ? (
                                 <iframe
                                     src={currentMedia.src}
@@ -140,13 +140,13 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                                         </svg>
                                     </button>
 
-                                    {/* Media counter and type indicator */}
-                                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs px-2 py-1 rounded-full">
-                                        {currentMediaIndex + 1} / {mediaItems.length}
-                                        <span className="ml-2">
-                                            {currentMedia.type === 'video' ? '📹' : '🖼️'}
-                                        </span>
-                                    </div>
+                                    {/* Media counter and type indicator - only show for images */}
+                                    {currentMedia.type === 'image' && (
+                                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs px-2 py-1 rounded-full">
+                                            {currentMediaIndex + 1} / {mediaItems.length}
+                                            <span className="ml-2">🖼️</span>
+                                        </div>
+                                    )}
                                 </>
                             )}
                         </div>
@@ -203,8 +203,8 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
 
                         {/* Story/Details */}
                         <div>
-                            <p className="text-gray-600 text-sm font-thin leading-relaxed">
-                                {project.story || "While working on this project, I focused on creating a solution that would effectively address the core requirements while maintaining clean code practices and optimal performance. The development process involved careful planning and iterative improvements based on feedback and testing."}
+                            <p className="text-gray-600 text-sm font-thin leading-relaxed ">
+                                {project.story || "Beep Boop, I'm a project story!"}
                             </p>
                         </div>
                     </div>

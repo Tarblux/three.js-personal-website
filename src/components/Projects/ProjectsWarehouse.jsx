@@ -37,8 +37,9 @@ const ProjectsWarehouse = () => {
     };
 
     const filteredProjects = filter === 'all' 
-        ? projects 
-        : projects.filter(project => project.category.toLowerCase() === filter);
+        ? [...projects].sort((a, b) => a.order - b.order)
+        : projects.filter(project => project.category.toLowerCase() === filter)
+            .sort((a, b) => a.order - b.order);
 
     const totalPages = Math.ceil(filteredProjects.length / 4);
     const currentProjects = filteredProjects.slice(currentPage * 4, (currentPage + 1) * 4);

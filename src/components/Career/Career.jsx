@@ -53,15 +53,26 @@ const Career = () => {
                             <div className="space-y-2 mb-4">
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
-                                    <span>Work on scala microservices architecture</span>
+                                    <span>
+                                        Developed features for a Python-based calculation service 
+                                        used to deliver risk analytics and financial computations 
+                                        within the OMS Server
+                                    </span>
                                 </div>
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
-                                    <span>Build Autoamtion for high frequency trading algorithms with risk analysis</span>
+                                    <span>
+                                        Built and maintained gRPC API routines enabling
+                                        seamless integration of calculation results into the
+                                        main OMS backend
+                                    </span>
                                 </div>
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
-                                    <span>Implement real-time market data processing systems</span>
+                                    <span>
+                                        Wrote unit tests for calculation workflows to ensure
+                                        accuracy and reliability of all calculations
+                                    </span>
                                 </div>
                             </div>
 
@@ -133,15 +144,24 @@ const Career = () => {
                             <div className="space-y-2 mt-4 mb-4">
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
-                                    <span>Analyzed medical laboratory data to identify trends and patterns</span>
+                                    <span>
+                                        Compiled blood and urine analysis data such as CBC,
+                                        Urinalysis, and metabolic panels in Microsoft Excel
+                                    </span>
                                 </div>
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
-                                    <span>Created data visualizations and reports for management</span>
+                                    <span>
+                                        Migrated the companies sample inventory database
+                                        from Microsoft access to SQL
+                                    </span>
                                 </div>
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
-                                    <span>Developed automated data processing scripts</span>
+                                    <span>
+                                        Provided weekly reports on trends in data
+                                        using R studio for data visualization
+                                    </span>
                                 </div>
                             </div>
 
