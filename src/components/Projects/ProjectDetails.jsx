@@ -80,7 +80,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             
             {/* Project Details Card */}
             <div 
-                className={`fixed right-[200px] top-[48px] w-[600px] h-[75vh] bg-white/95 backdrop-blur-sm
+                className={`fixed right-[200px] top-[48px] w-[600px] min-h-[400px] bg-white/95 backdrop-blur-sm
                     rounded-2xl shadow-lg transform-gpu
                     ${isClosing ? 'animate-fold' : 'animate-unfold'}`}
                 style={{
@@ -203,7 +203,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
 
                         {/* Story/Details */}
                         <div>
-                            <p className="text-gray-600 text-sm font-thin leading-relaxed ">
+                            <p className="text-gray-600 text-sm font-thin leading-relaxed mb-3">
                                 {project.story || "Beep Boop, I'm a project story!"}
                             </p>
                         </div>
