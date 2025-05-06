@@ -42,7 +42,7 @@ const ProjectsDna = () => {
             <div className="flex flex-row gap-8">
                 {/* DNA Animation */}
                 <div className="w-1/3 flex flex-col justify-center">
-                    <h3 className="text-white text-sm font-medium text-center mb-4">Projects DNA</h3>
+                    <h3 className="text-white text-md font-medium text-center mb-12">Projects DNA</h3>
                     <div
                         className="flex items-center justify-center"
                         style={{ '--uib-size': '250px', '--uib-speed': '6s' }}

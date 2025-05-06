@@ -43,7 +43,7 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
     return (
         <div className={`
             relative bg-white rounded-xl p-1 shadow-md hover:shadow-xl 
-            transition-all duration-300 ease-in-out w-[180px] min-h-[280px]
+            transition-all duration-300 ease-in-out w-[190px] min-h-[280px]
             hover:scale-105 cursor-pointer border border-gray-200
             before:absolute before:inset-0
             before:rounded-xl before:-z-10

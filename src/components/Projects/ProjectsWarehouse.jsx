@@ -109,13 +109,13 @@ const ProjectsWarehouse = () => {
                                     key={i}
                                     onClick={() => setCurrentPage(i)}
                                     className={`h-1.5 w-1.5 rounded-full transition-all duration-300 hover:bg-gray-600 cursor-pointer
-                                        ${currentPage === i ? 'bg-gray-800 w-3' : 'bg-gray-300'}`}
+                                        ${currentPage === i ? 'bg-blue-800 w-4' : 'bg-gray-300'}`}
                                 />
                             ))}
                         </div>
-                        <div className="text-gray-400 text-xs mt-2">
+                        {/* <div className="text-gray-400 text-xs mt-2">
                             {currentPage + 1} / {totalPages}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
