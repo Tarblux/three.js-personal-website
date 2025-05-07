@@ -113,9 +113,9 @@ const ProjectsWarehouse = () => {
                                 />
                             ))}
                         </div>
-                        {/* <div className="text-gray-400 text-xs mt-2">
+                        <div className="text-gray-400 text-xs mt-2">
                             {currentPage + 1} / {totalPages}
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>
