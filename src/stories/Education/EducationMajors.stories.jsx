@@ -5,6 +5,23 @@ export default {
   component: EducationMajors,
   parameters: {
     layout: 'fullscreen',
+    backgrounds: {
+      default: 'education-majors',
+      values: [
+        {
+          name: 'education-majors',
+          value: 'url("/src/stories/backgrounds/EducationMajors.jpg")',
+        },
+        {
+          name: 'light',
+          value: '#ffffff',
+        },
+        {
+          name: 'dark',
+          value: '#333333',
+        },
+      ],
+    },
   },
 };
 

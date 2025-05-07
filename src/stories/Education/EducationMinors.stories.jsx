@@ -5,6 +5,23 @@ export default {
   component: EducationMinors,
   parameters: {
     layout: 'fullscreen',
+    backgrounds: {
+      default: 'education-minors',
+      values: [
+        {
+          name: 'education-minors',
+          value: 'url("/src/stories/backgrounds/EducationMinors.jpg")',
+        },
+        {
+          name: 'light',
+          value: '#ffffff',
+        },
+        {
+          name: 'dark',
+          value: '#333333',
+        },
+      ],
+    },
   },
 };
 

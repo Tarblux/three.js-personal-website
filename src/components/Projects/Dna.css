@@ -1,0 +1,600 @@
+.helix-container {
+    /* Use the custom variables for size */
+    height: var(--uib-size);
+    width: var(--uib-size);
+    @apply flex flex-col items-center justify-center;
+  }
+  
+  .slice {
+    position: relative;
+    height: calc(var(--uib-size) / 12);
+    width: 100%;
+  }
+  
+  /* Pseudo-elements to create the helix effect */
+  .slice::before,
+  .slice::after {
+    --uib-a: calc(var(--uib-speed) / -2);
+    --uib-b: calc(var(--uib-speed) / -12);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: calc(50% - var(--uib-size) / 12);
+    height: 100%;
+    width: calc(100% / 6);
+    border-radius: 50%;
+    animation: orbit var(--uib-speed) linear infinite;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Configure animation delays for each slice */
+  .slice:nth-child(1)::after {
+    animation-delay: var(--uib-a);
+  }
+  
+  .slice:nth-child(2)::before {
+    animation-delay: var(--uib-b);
+  }
+  
+  .slice:nth-child(2)::after {
+    animation-delay: calc(var(--uib-a) + var(--uib-b));
+  }
+  
+  .slice:nth-child(3)::before {
+    animation-delay: calc(var(--uib-b) * 2);
+  }
+  
+  .slice:nth-child(3)::after {
+    animation-delay: calc(var(--uib-a) + var(--uib-b) * 2);
+  }
+  
+  .slice:nth-child(4)::before {
+    animation-delay: calc(var(--uib-b) * 3);
+  }
+  
+  .slice:nth-child(4)::after {
+    animation-delay: calc(var(--uib-a) + var(--uib-b) * 3);
+  }
+  
+  .slice:nth-child(5)::before {
+    animation-delay: calc(var(--uib-b) * 4);
+  }
+  
+  .slice:nth-child(5)::after {
+    animation-delay: calc(var(--uib-a) + var(--uib-b) * 4);
+  }
+  
+  .slice:nth-child(6)::before {
+    animation-delay: calc(var(--uib-b) * 5);
+  }
+  
+  .slice:nth-child(6)::after {
+    animation-delay: calc(var(--uib-a) + var(--uib-b) * 5);
+  }
+  
+  .slice:nth-child(7)::before {
+    animation-delay: calc(var(--uib-b) * 6);
+  }
+  
+  .slice:nth-child(7)::after {
+    animation-delay: calc(var(--uib-a) + var(--uib-b) * 6);
+  }
+  
+  .slice:nth-child(8)::before {
+    animation-delay: calc(var(--uib-b) * 7);
+  }
+  
+  .slice:nth-child(8)::after {
+    animation-delay: calc(var(--uib-a) + var(--uib-b) * 7);
+  }
+  
+  .slice:nth-child(9)::before {
+    animation-delay: calc(var(--uib-b) * 8);
+  }
+  
+  .slice:nth-child(9)::after {
+    animation-delay: calc(var(--uib-a) + var(--uib-b) * 8);
+  }
+  
+  .slice:nth-child(10)::before {
+    animation-delay: calc(var(--uib-b) * 9);
+  }
+  
+  .slice:nth-child(10)::after {
+    animation-delay: calc(var(--uib-a) + var(--uib-b) * 9);
+  }
+  
+  .slice:nth-child(11)::before {
+    animation-delay: calc(var(--uib-b) * 10);
+  }
+  
+  .slice:nth-child(11)::after {
+    animation-delay: calc(var(--uib-a) + var(--uib-b) * 10);
+  }
+  
+  .slice:nth-child(12)::before {
+    animation-delay: calc(var(--uib-b) * 11);
+  }
+  
+  .slice:nth-child(12)::after {
+    animation-delay: calc(var(--uib-a) + var(--uib-b) * 11);
+  }
+  
+  /* The orbit keyframe animation */
+  @keyframes orbit {
+    0% {
+      transform: translateX(calc(var(--uib-size) * 0.25)) scale(0.73684);
+      opacity: 0.65;
+    }
+    5% {
+      transform: translateX(calc(var(--uib-size) * 0.235)) scale(0.684208);
+      opacity: 0.58;
+    }
+    10% {
+      transform: translateX(calc(var(--uib-size) * 0.182)) scale(0.631576);
+      opacity: 0.51;
+    }
+    15% {
+      transform: translateX(calc(var(--uib-size) * 0.129)) scale(0.578944);
+      opacity: 0.44;
+    }
+    20% {
+      transform: translateX(calc(var(--uib-size) * 0.076)) scale(0.526312);
+      opacity: 0.37;
+    }
+    25% {
+      transform: translateX(0%) scale(0.47368);
+      opacity: 0.3;
+    }
+    30% {
+      transform: translateX(calc(var(--uib-size) * -0.076)) scale(0.526312);
+      opacity: 0.37;
+    }
+    35% {
+      transform: translateX(calc(var(--uib-size) * -0.129)) scale(0.578944);
+      opacity: 0.44;
+    }
+    40% {
+      transform: translateX(calc(var(--uib-size) * -0.182)) scale(0.631576);
+      opacity: 0.51;
+    }
+    45% {
+      transform: translateX(calc(var(--uib-size) * -0.235)) scale(0.684208);
+      opacity: 0.58;
+    }
+    50% {
+      transform: translateX(calc(var(--uib-size) * -0.25)) scale(0.73684);
+      opacity: 0.65;
+    }
+    55% {
+      transform: translateX(calc(var(--uib-size) * -0.235)) scale(0.789472);
+      opacity: 0.72;
+    }
+    60% {
+      transform: translateX(calc(var(--uib-size) * -0.182)) scale(0.842104);
+      opacity: 0.79;
+    }
+    65% {
+      transform: translateX(calc(var(--uib-size) * -0.129)) scale(0.894736);
+      opacity: 0.86;
+    }
+    70% {
+      transform: translateX(calc(var(--uib-size) * -0.076)) scale(0.947368);
+      opacity: 0.93;
+    }
+    75% {
+      transform: translateX(0%) scale(1);
+      opacity: 1;
+    }
+    80% {
+      transform: translateX(calc(var(--uib-size) * 0.076)) scale(0.947368);
+      opacity: 0.93;
+    }
+    85% {
+      transform: translateX(calc(var(--uib-size) * 0.129)) scale(0.894736);
+      opacity: 0.86;
+    }
+    90% {
+      transform: translateX(calc(var(--uib-size) * 0.182)) scale(0.842104);
+      opacity: 0.79;
+    }
+    95% {
+      transform: translateX(calc(var(--uib-size) * 0.235)) scale(0.789472);
+      opacity: 0.72;
+    }
+    100% {
+      transform: translateX(calc(var(--uib-size) * 0.25)) scale(0.73684);
+      opacity: 0.65;
+    }
+  }
+
+  /* Secondary Strand */
+  
+  .slice:nth-child(1)::before {
+    background-color: #e1160b;
+  }
+  
+  .slice:nth-child(2)::before {
+    background-color: #e1160b;
+  }
+  
+  .slice:nth-child(3)::before {
+    background-color: #e1160b;
+  }
+  
+  .slice:nth-child(4)::before {
+    background-color: #e1160b;
+  }
+  
+  .slice:nth-child(5)::before {
+    background-color: #e1160b;
+  }
+  
+  .slice:nth-child(6)::before {
+    background-color: #ff9f63;
+  }
+  
+  .slice:nth-child(7)::before {
+    background-color: #ff9f63;
+  }
+  
+  .slice:nth-child(8)::before {
+    background-color: #ff9f63;
+  }
+  
+  .slice:nth-child(9)::before {
+    background-color: #ff9f63;
+  }
+  
+  .slice:nth-child(10)::before {
+    background-color: #ff9f63;
+  }
+  
+  .slice:nth-child(11)::before {
+    background-color: #ff86d1;
+  }
+  
+  .slice:nth-child(12)::before {
+    background-color: #ff66c4;
+  }
+
+  /* Main Strand */
+  
+  .slice:nth-child(1)::after {
+    background-color: #5e17eb;
+  }
+  
+  .slice:nth-child(2)::after {
+    background-color: #5e17eb;
+  }
+  
+  .slice:nth-child(3)::after {
+    background-color: #5e17eb;
+  }
+  
+  .slice:nth-child(4)::after {
+    background-color: #5e17eb;
+  }
+  
+  .slice:nth-child(5)::after {
+    background-color: #5e17eb;
+  }
+  
+  .slice:nth-child(6)::after {
+    background-color: #5e17eb;
+  }
+  
+  .slice:nth-child(7)::after {
+    background-color: #004aad;
+  }
+  
+  .slice:nth-child(8)::after {
+    background-color: #004aad;
+  }
+  
+  .slice:nth-child(9)::after {
+    background-color: #004aad;
+  }
+  
+  .slice:nth-child(10)::after {
+    background-color: #004aad;
+  }
+  
+  .slice:nth-child(11)::after {
+    background-color: #004aad;
+  }
+  
+  .slice:nth-child(12)::after {
+    background-color: #004aad;
+  }
+  
+  /* Language tags with wave decorations */
+  .language-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .wave-python,
+  .wave-typescript,
+  .wave-scala,
+  .wave-java,
+  .wave-rust,
+  .wave-cpp {
+    width: 32px;
+    height: 9px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .wave-python::before,
+  .wave-typescript::before,
+  .wave-scala::before,
+  .wave-java::before,
+  .wave-rust::before,
+  .wave-cpp::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 45%, currentColor 45%, currentColor 55%, transparent 55%);
+    background-size: 10px 10px;
+    animation: wave 1s linear infinite;
+  }
+  
+  .wave-python::before {
+    color: #334dff;
+  }
+
+  .wave-typescript::before {
+    color: #ff3380;
+  }
+  
+  .wave-scala::before {
+    color: #a2fa27;
+  }
+  
+  .wave-java::before {
+    color: #37fff5;
+  }
+  
+  .wave-rust::before {
+    color: #d9d906;
+  }
+  
+  .wave-cpp::before {
+    color: #ec4899;
+  }
+  
+  @keyframes wave {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 10px 0;
+    }
+  }
+  
+  /* Hatched patterns for language labels */
+  .language-pattern {
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+    margin-left: 6px;
+    background-size: 7px 7px;
+    background-image: repeating-linear-gradient(
+      45deg,
+      currentColor 0,
+      currentColor 2px,
+      transparent 2px,
+      transparent 50%
+    );
+  }
+
+  .pattern-python {
+    color: #5e17eb;
+  }
+
+  .pattern-typescript {
+    color: #004aad;
+  }
+
+  .pattern-scala {
+    color: #e1160b;
+  }
+
+  .pattern-rust {
+    color: #ff9f63;
+  }
+
+  .pattern-cpp {
+    color: #ff66c4;
+  }
+  
+  /* Dimmed Main Strand */
+  .dim-main .slice:nth-child(1)::after,
+  .dim-main .slice:nth-child(2)::after,
+  .dim-main .slice:nth-child(3)::after,
+  .dim-main .slice:nth-child(4)::after,
+  .dim-main .slice:nth-child(5)::after,
+  .dim-main .slice:nth-child(6)::after {
+    background-color: #e8e2f5;
+  }
+
+  .dim-main .slice:nth-child(7)::after,
+  .dim-main .slice:nth-child(8)::after,
+  .dim-main .slice:nth-child(9)::after,
+  .dim-main .slice:nth-child(10)::after,
+  .dim-main .slice:nth-child(11)::after,
+  .dim-main .slice:nth-child(12)::after {
+    background-color: #e6f0f9;
+  }
+
+  /* Dimmed Secondary Strand */
+  .dim-secondary .slice:nth-child(1)::before,
+  .dim-secondary .slice:nth-child(2)::before,
+  .dim-secondary .slice:nth-child(3)::before,
+  .dim-secondary .slice:nth-child(4)::before,
+  .dim-secondary .slice:nth-child(5)::before {
+    background-color: #f2f9e6;
+  }
+
+  .dim-secondary .slice:nth-child(6)::before,
+  .dim-secondary .slice:nth-child(7)::before,
+  .dim-secondary .slice:nth-child(8)::before,
+  .dim-secondary .slice:nth-child(9)::before,
+  .dim-secondary .slice:nth-child(10)::before {
+    background-color: #fff2e6;
+  }
+
+  .dim-secondary .slice:nth-child(11)::before,
+  .dim-secondary .slice:nth-child(12)::before {
+    background-color: #ffe6f2;
+  }
+  
+  /* Language-specific highlighting */
+  .highlight-python .slice:nth-child(1)::after,
+  .highlight-python .slice:nth-child(2)::after,
+  .highlight-python .slice:nth-child(3)::after,
+  .highlight-python .slice:nth-child(4)::after,
+  .highlight-python .slice:nth-child(5)::after,
+  .highlight-python .slice:nth-child(6)::after {
+    background-color: #5e17eb;
+  }
+
+  .highlight-python .slice:nth-child(7)::after,
+  .highlight-python .slice:nth-child(8)::after,
+  .highlight-python .slice:nth-child(9)::after,
+  .highlight-python .slice:nth-child(10)::after,
+  .highlight-python .slice:nth-child(11)::after,
+  .highlight-python .slice:nth-child(12)::after {
+    background-color: #e6f0f9;
+  }
+
+  .highlight-typescript .slice:nth-child(1)::after,
+  .highlight-typescript .slice:nth-child(2)::after,
+  .highlight-typescript .slice:nth-child(3)::after,
+  .highlight-typescript .slice:nth-child(4)::after,
+  .highlight-typescript .slice:nth-child(5)::after,
+  .highlight-typescript .slice:nth-child(6)::after {
+    background-color: #e8e2f5;
+  }
+
+  .highlight-typescript .slice:nth-child(7)::after,
+  .highlight-typescript .slice:nth-child(8)::after,
+  .highlight-typescript .slice:nth-child(9)::after,
+  .highlight-typescript .slice:nth-child(10)::after,
+  .highlight-typescript .slice:nth-child(11)::after,
+  .highlight-typescript .slice:nth-child(12)::after {
+    background-color: #004aad;
+  }
+
+  /* When a language is highlighted, dim all other colors */
+  .highlight-python:not(.dim-main) .slice::after,
+  .highlight-typescript:not(.dim-main) .slice::after {
+    background-color: #e8e2f5;
+  }
+
+  .highlight-python:not(.dim-main) .slice:nth-child(1)::after,
+  .highlight-python:not(.dim-main) .slice:nth-child(2)::after,
+  .highlight-python:not(.dim-main) .slice:nth-child(3)::after,
+  .highlight-python:not(.dim-main) .slice:nth-child(4)::after,
+  .highlight-python:not(.dim-main) .slice:nth-child(5)::after,
+  .highlight-python:not(.dim-main) .slice:nth-child(6)::after {
+    background-color: #5e17eb;
+  }
+
+  .highlight-typescript:not(.dim-main) .slice:nth-child(7)::after,
+  .highlight-typescript:not(.dim-main) .slice:nth-child(8)::after,
+  .highlight-typescript:not(.dim-main) .slice:nth-child(9)::after,
+  .highlight-typescript:not(.dim-main) .slice:nth-child(10)::after,
+  .highlight-typescript:not(.dim-main) .slice:nth-child(11)::after,
+  .highlight-typescript:not(.dim-main) .slice:nth-child(12)::after {
+    background-color: #004aad;
+  }
+
+  /* Language-specific highlighting for secondary strand */
+  .highlight-scala .slice:nth-child(1)::before,
+  .highlight-scala .slice:nth-child(2)::before,
+  .highlight-scala .slice:nth-child(3)::before,
+  .highlight-scala .slice:nth-child(4)::before,
+  .highlight-scala .slice:nth-child(5)::before {
+    background-color: #e1160b;
+  }
+
+  .highlight-scala .slice:nth-child(6)::before,
+  .highlight-scala .slice:nth-child(7)::before,
+  .highlight-scala .slice:nth-child(8)::before,
+  .highlight-scala .slice:nth-child(9)::before,
+  .highlight-scala .slice:nth-child(10)::before,
+  .highlight-scala .slice:nth-child(11)::before,
+  .highlight-scala .slice:nth-child(12)::before {
+    background-color: #f2f9e6;
+  }
+
+  .highlight-rust .slice:nth-child(1)::before,
+  .highlight-rust .slice:nth-child(2)::before,
+  .highlight-rust .slice:nth-child(3)::before,
+  .highlight-rust .slice:nth-child(4)::before,
+  .highlight-rust .slice:nth-child(5)::before,
+  .highlight-rust .slice:nth-child(6)::before {
+    background-color: #f2f9e6;
+  }
+
+  .highlight-rust .slice:nth-child(7)::before,
+  .highlight-rust .slice:nth-child(8)::before,
+  .highlight-rust .slice:nth-child(9)::before,
+  .highlight-rust .slice:nth-child(10)::before {
+    background-color: #ff9f63;
+  }
+
+  .highlight-rust .slice:nth-child(11)::before,
+  .highlight-rust .slice:nth-child(12)::before {
+    background-color: #f2f9e6;
+  }
+
+  .highlight-cpp .slice:nth-child(1)::before,
+  .highlight-cpp .slice:nth-child(2)::before,
+  .highlight-cpp .slice:nth-child(3)::before,
+  .highlight-cpp .slice:nth-child(4)::before,
+  .highlight-cpp .slice:nth-child(5)::before,
+  .highlight-cpp .slice:nth-child(6)::before,
+  .highlight-cpp .slice:nth-child(7)::before,
+  .highlight-cpp .slice:nth-child(8)::before,
+  .highlight-cpp .slice:nth-child(9)::before,
+  .highlight-cpp .slice:nth-child(10)::before {
+    background-color: #f2f9e6;
+  }
+
+  .highlight-cpp .slice:nth-child(11)::before,
+  .highlight-cpp .slice:nth-child(12)::before {
+    background-color: #ff66c4;
+  }
+
+  /* When a secondary strand language is highlighted, dim all other colors */
+  .highlight-scala:not(.dim-secondary) .slice::before,
+  .highlight-rust:not(.dim-secondary) .slice::before,
+  .highlight-cpp:not(.dim-secondary) .slice::before {
+    background-color: #f2f9e6;
+  }
+
+  .highlight-scala:not(.dim-secondary) .slice:nth-child(1)::before,
+  .highlight-scala:not(.dim-secondary) .slice:nth-child(2)::before,
+  .highlight-scala:not(.dim-secondary) .slice:nth-child(3)::before,
+  .highlight-scala:not(.dim-secondary) .slice:nth-child(4)::before,
+  .highlight-scala:not(.dim-secondary) .slice:nth-child(5)::before {
+    background-color: #e1160b;
+  }
+
+  .highlight-rust:not(.dim-secondary) .slice:nth-child(7)::before,
+  .highlight-rust:not(.dim-secondary) .slice:nth-child(8)::before,
+  .highlight-rust:not(.dim-secondary) .slice:nth-child(9)::before,
+  .highlight-rust:not(.dim-secondary) .slice:nth-child(10)::before {
+    background-color: #ff9f63;
+  }
+
+  .highlight-cpp:not(.dim-secondary) .slice:nth-child(11)::before,
+  .highlight-cpp:not(.dim-secondary) .slice:nth-child(12)::before {
+    background-color: #ff66c4;
+  }
+  

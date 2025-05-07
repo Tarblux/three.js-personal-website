@@ -23,7 +23,6 @@ import Career from "./components/Career/Career.jsx"
 import ProjectsOverview from "./components/Projects/ProjectsOverview.jsx"
 import ProjectsWarehouse from "./components/Projects/ProjectsWarehouse.jsx"
 import ProjectsConstruction from "./components/Projects/ProjectsConstruction.jsx"
-import ProjectsPower from "./components/Projects/ProjectsPower.jsx"
 import Education from "./components/Education/Education.jsx"
 import EducationMajors from "./components/Education/EducationMajors.jsx"
 import EducationMinors from "./components/Education/EducationMinors.jsx"
@@ -120,15 +119,6 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             <ProjectsConstruction />
           </Section>
 
-          <Section 
-            top="440vh"
-            fadeInStart={520}
-            fadeInEnd={530}
-            fadeOutStart={545}
-            fadeOutEnd={550}
-          >
-            <ProjectsPower />
-          </Section>
 
           <Section 
             top="480vh"

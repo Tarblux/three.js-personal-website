@@ -5,6 +5,23 @@ export default {
   component: FootballPlay,
   parameters: {
     layout: 'fullscreen',
+    backgrounds: {
+      default: 'football-play',
+      values: [
+        {
+          name: 'football-play',
+          value: 'url("/src/stories/backgrounds/FootballPlay.jpg")',
+        },
+        {
+          name: 'light',
+          value: '#ffffff',
+        },
+        {
+          name: 'dark',
+          value: '#333333',
+        },
+      ],
+    },
   },
 };
 

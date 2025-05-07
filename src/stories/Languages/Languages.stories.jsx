@@ -5,6 +5,23 @@ export default {
   component: Languages,
   parameters: {
     layout: 'fullscreen',
+    backgrounds: {
+      default: 'languages',
+      values: [
+        {
+          name: 'languages',
+          value: 'url("/src/stories/backgrounds/Languages.jpg")',
+        },
+        {
+          name: 'light',
+          value: '#ffffff',
+        },
+        {
+          name: 'dark',
+          value: '#333333',
+        },
+      ],
+    },
   },
 };
 

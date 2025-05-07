@@ -41,10 +41,14 @@
     "@theatre/studio": "^0.7.2",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
+    "cal-heatmap": "^4.2.4",
+    "d3": "^7.9.0",
+    "dayjs": "^1.11.13",
     "leva": "^0.9.34",
     "r3f-perf": "^7.2.2",
     "react": "18.3",
     "react-dom": "18.3",
+    "react-icons": "^5.5.0",
     "three": "^0.166.1"
   }
 }

@@ -5,6 +5,23 @@ export default {
   component: EducationYonsei,
   parameters: {
     layout: 'fullscreen',
+    backgrounds: {
+      default: 'education-yonsei',
+      values: [
+        {
+          name: 'education-yonsei',
+          value: 'url("/src/stories/backgrounds/EducationYonsei.jpg")',
+        },
+        {
+          name: 'light',
+          value: '#ffffff',
+        },
+        {
+          name: 'dark',
+          value: '#333333',
+        },
+      ],
+    },
   },
 };
 

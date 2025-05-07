@@ -1,15 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ResumeCard = ({ onImageClick }) => {
+  const [showMessage, setShowMessage] = useState(false);
+  const [timer, setTimer] = useState(null);
+
+  const handleMouseEnter = () => {
+    const newTimer = setTimeout(() => {
+      setShowMessage(true);
+    }, 1000);
+    setTimer(newTimer);
+  };
+
+  const handleMouseLeave = () => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    setShowMessage(false);
+  };
+
   return (
-    <div className="col-span-1 row-span-2 flex flex-col items-center">
+    <div 
+      className="bg-white rounded-lg shadow p-1 col-span-2 row-span-1 flex flex-col items-center transform transition-transform duration-300 hover:scale-105 cursor-pointer relative" 
+      onClick={onImageClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <img
-        src="/images/resume-thumbnail.jpg"
+        src="/images/Introduction/resume-thumbnail.png"
         alt="Resume"
-        className="rounded mb-2 w-full h-auto transform transition-transform duration-300 hover:scale-105 cursor-pointer mt-4"
-        onClick={onImageClick}
+        className="rounded mb-1 w-full h-auto"
       />
-      <p className="text-sm text-gray-600">Click to enlarge !</p>
+      {showMessage && (
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center animate-fadeIn">
+          <p className="text-white text-sm font-medium">Click to view</p>
+        </div>
+      )}
     </div>
   );
 };
