@@ -1,7 +1,7 @@
 import React from 'react';
 
 const phaseColors = [
-    'bg-red-400',     // Idea
+    'bg-red-400',     // Plan
     'bg-orange-400',  // Design
     'bg-yellow-400',  // Development
     'bg-blue-400',   // Testing
@@ -105,12 +105,12 @@ const ProjectsConstructionCard = ({ title, date, image, description, category, t
                     {description}
                 </p>
             </div>
-            {/* Progress bars at the bottom, centered */}
+            {/* Progress bars */}
             <div className="flex justify-center items-center w-full mt-2 mb-2">
                 {Array.from({ length: 5 }).map((_, idx) => (
                     <div
                         key={idx}
-                        className={`h-1 w-6 rounded-full ${idx < phase ? filledColor : 'bg-gray-300'} mx-0.5`}
+                        className={`h-[3px] w-6 rounded-full ${idx < phase ? filledColor : 'bg-gray-300'} mx-0.5`}
                     />
                 ))}
             </div>
