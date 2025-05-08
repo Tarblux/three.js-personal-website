@@ -21,6 +21,10 @@ export default {
           '0%': { transform: 'scaleY(0)' },
           '100%': { transform: 'scaleY(1)' }
         },
+        idCardGloss: {
+          '0%': { backgroundPosition: '150% center' },
+          '100%': { backgroundPosition: '-50% center' }
+        },
         unfold: {
           '0%': { 
             transform: 'perspective(2000px) rotateX(90deg) scale(0.7)',
@@ -54,7 +58,8 @@ export default {
         fadeIn: 'fadeIn 0.3s ease-in-out',
         'slideUp': 'slideUp 0.5s ease-out forwards',
         'unfold': 'unfold 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards',
-        'fold': 'fold 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards'
+        'fold': 'fold 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards',
+        'idCardGloss': 'idCardGloss 1s linear'
       }
     },
   },
