@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
 const phaseColors = [
-    'bg-red-400',     // Idea
+    'bg-red-400',     // Plan
     'bg-orange-400',  // Design
-    'bg-yellow-400',  // Development
+    'bg-yellow-400',  // Develop
     'bg-blue-400',   // Testing
-    'bg-green-400'     // Deployment
+    'bg-green-400'     // Deploy
+];
+
+const phaseNames = [
+    'Planning',
+    'Designing',
+    'Developing',
+    'Testing',
+    'Deploying'
 ];
 
 const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
@@ -34,7 +42,7 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
             case 'media':
                 return 'text-emerald-500';
             default:
-                return 'text-white';
+                return 'text-black';
         }
     };
 
@@ -84,13 +92,19 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
                             <div className="text-gray-500 text-xs">{project.date}</div>
                         </div>
                         {/* Progress bars */}
-                        <div className="flex gap-0.5 mt-1 mb-3">
+                        <div className="flex items-center gap-0.5 mt-1 mb-3">
                             {Array.from({ length: 5 }).map((_, idx) => (
                                 <div
                                     key={idx}
                                     className={`h-1 w-8 rounded-full ${idx < (project.phase || 1) ? filledColor : 'bg-gray-300'}`}
                                 />
                             ))}
+                            <div className="flex items-center ml-2">
+                                <div className={`w-1.5 h-1.5 rounded-full ${filledColor}`} />
+                                <span className="text-[0.65rem] text-gray-500 ml-1">
+                                    {phaseNames[Math.max(0, Math.min((project.phase || 1) - 1, 4))]}
+                                </span>
+                            </div>
                         </div>
 
                         <h2 className="text-xl font-bold mb-2">{project.title}</h2>

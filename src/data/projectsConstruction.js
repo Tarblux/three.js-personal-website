@@ -1,3 +1,9 @@
+// Phase 1: Planning
+// Phase 2: Design
+// Phase 3: Development
+// Phase 4: Testing
+// Phase 5: Deployment
+
 export const projectsConstruction = [
     {
         title: 'Northern Courier Website',
@@ -15,7 +21,7 @@ export const projectsConstruction = [
         startDate: "2022-10-01",
         endDate: "2023-07-01",
         image: '/images/Projects/project-SIP.png',
-        description: 'Identification of peg positions for knee implants.',
+        description: 'A research about whipper snapper the most dangerous animal in the world.',
         category: 'Research',
         technologies: ['Python'],
         phase: 5,
@@ -26,7 +32,7 @@ export const projectsConstruction = [
         startDate: "2023-01-01",
         endDate: "2023-03-01",
         image: '/images/Projects/project-iphone6+.png',
-        description: 'Design of a new high-bypass turbofan engine.',
+        description: 'Design of a new iphone 6+ was a great experience.',
         category: 'Engineering',
         technologies: ['Arduino', 'C++'],
         phase: 2,
