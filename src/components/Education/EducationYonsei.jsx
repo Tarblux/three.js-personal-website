@@ -1,15 +1,22 @@
 import React from 'react'
+import { schools } from '../../data/schools'
+import StudentIDCard from './StudentIDCard'
+import YonseiDetails from './YonseiDetails'
+import Photodeck from './Photodeck'
 
 const EducationYonsei = () => {
+    const yonseiSchool = schools.find(school => school.name === 'Yonsei University');
+    
     return (
-        <div className="absolute left-0 right-0 flex justify-center">
-            <div className="bg-white/90 p-6 rounded-lg shadow-lg max-w-sm text-center">
-                <h2 className="text-2xl font-bold">Yonsei University</h2>
-                <p className="mt-3 text-gray-600">
-                    Place for ED (not erectile dysfunction)
-                </p>
+        <>
+            <div className="absolute left-7 top-0 flex flex-col items-start gap-8 p-8" style={{ zIndex: 10 }}>
+                <StudentIDCard school={yonseiSchool} />
             </div>
-        </div>
+            <YonseiDetails />
+            <div className="absolute left-9 bottom-20 p-8" style={{ zIndex: 10 }}>
+                <Photodeck />
+            </div>
+        </>
     );
 };
 

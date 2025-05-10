@@ -1,8 +1,8 @@
-import Education from '../../components/Education/Education';
+import EducationKzoo from '../../components/Education/EducationKzoo';
 
 export default {
-  title: 'Education/Education',
-  component: Education,
+  title: 'Education/EducationKzoo',
+  component: EducationKzoo,
   parameters: {
     layout: 'fullscreen',
     backgrounds: {
