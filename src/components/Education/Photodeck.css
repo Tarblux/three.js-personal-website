@@ -10,7 +10,6 @@
   width: 132px;
   background-color: #ebebeb;
   border: 5px solid #ffffff;
-  border-bottom: 40px solid #ffffff;
   left: 50%;
   top: 50%;
   translate: -50% -50%;
@@ -19,6 +18,10 @@
   transform-origin: bottom left;
   scale: 1;
   transition-duration: 200ms;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
 }
 
 .photodeck-card:hover {
@@ -26,19 +29,19 @@
 }
 
 .photodeck-container:hover .photodeck-card:nth-child(1) {
-  transform: rotate(-54deg) translate(0px, -8px);
-}
-
-.photodeck-container:hover .photodeck-card:nth-child(2) {
-  transform: rotate(-36deg) translate(0px, -8px);
-}
-
-.photodeck-container:hover .photodeck-card:nth-child(3) {
   transform: rotate(-18deg) translate(0px, -8px);
 }
 
-.photodeck-container:hover .photodeck-card:nth-child(4) {
+.photodeck-container:hover .photodeck-card:nth-child(2) {
+  transform: rotate(-9deg) translate(0px, -8px);
+}
+
+.photodeck-container:hover .photodeck-card:nth-child(3) {
   transform: rotate(0deg) translate(0px, -8px);
+}
+
+.photodeck-container:hover .photodeck-card:nth-child(4) {
+  transform: rotate(9deg) translate(0px, -8px);
 }
 
 .photodeck-container:hover .photodeck-card:nth-child(5) {
@@ -49,15 +52,92 @@
   transform: rotate(36deg) translate(0px, -8px);
 }
 
-.photodeck-container:hover .photodeck-card:nth-child(7) {
-  transform: rotate(54deg) translate(0px, -8px);
-}
-
 .photodeck-img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 150px;
   object-fit: cover;
   border-radius: 8% 8% 0 0;
   margin-bottom: 0;
+}
+
+.photodeck-info {
+  background-color: #fff;
+  padding: 8px 4px 10px 5px;
+  border-radius: 0 0 8% 8%;
+  text-align: center;
+  box-sizing: border-box;
+  min-height: 46px;
+  font-size: 10px;
+  font-family: inherit, sans-serif;
+  color: #6e6e6e;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.photodeck-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.photodeck-modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  padding: 16px 16px 8px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.photodeck-modal-content.no-bg {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.photodeck-modal-img {
+  max-width: 70vw;
+  max-height: 70vh;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.photodeck-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: white;
+  border: none;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.photodeck-modal-close:hover {
+  transform: scale(1.1);
 } 

@@ -2,7 +2,7 @@ export const schools = [
   {
     name: "Kalamazoo College",
     logo: "/images/Education/education-kzoo_logo.png",
-    idImage: "/images/Education/education-kzoo_id.png",
+    idImage: "/images/Education/education-kzoo_id.jpg",
     studentId: "269401",
     years: "2019 - 2023",
     degrees: [

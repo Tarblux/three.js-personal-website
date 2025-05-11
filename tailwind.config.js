@@ -52,6 +52,26 @@ export default {
             transform: 'perspective(2000px) rotateX(90deg) scale(0.7)',
             opacity: '0'
           }
+        },
+        modalIn: {
+          '0%': { 
+            transform: 'translateY(100%) scale(0.95)',
+            opacity: '0'
+          },
+          '100%': { 
+            transform: 'translateY(0) scale(1)',
+            opacity: '1'
+          }
+        },
+        modalOut: {
+          '0%': { 
+            transform: 'translateY(0) scale(1)',
+            opacity: '1'
+          },
+          '100%': { 
+            transform: 'translateY(100%) scale(0.95)',
+            opacity: '0'
+          }
         }
       },
       animation: {
@@ -59,7 +79,9 @@ export default {
         'slideUp': 'slideUp 0.5s ease-out forwards',
         'unfold': 'unfold 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards',
         'fold': 'fold 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards',
-        'idCardGloss': 'idCardGloss 1s linear'
+        'idCardGloss': 'idCardGloss 1s linear',
+        'modalIn': 'modalIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'modalOut': 'modalOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards'
       },
       backgroundImage: {
         'id-card-gloss': 'linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0.25) 60%, transparent 80%)',

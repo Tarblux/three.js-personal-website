@@ -24,8 +24,8 @@ import ProjectsOverview from "./components/Projects/ProjectsOverview.jsx"
 import ProjectsWarehouse from "./components/Projects/ProjectsWarehouse.jsx"
 import ProjectsConstruction from "./components/Projects/ProjectsConstruction.jsx"
 import Education from "./components/Education/EducationKzoo.jsx"
-import EducationMajors from "./components/Education/EducationMajors.jsx"
-import EducationMinors from "./components/Education/EducationMinors.jsx"
+import CollegeJobs from "./components/Education/EducationMajors.jsx"
+import CollegeClubs from "./components/Education/CollegeClubs.jsx"
 import EducationYonsei from "./components/Education/EducationYonsei.jsx"
 import Languages from "./components/Languages/Languages.jsx"
 import LanguagesMain from "./components/Languages/LanguagesMain.jsx"
@@ -137,7 +137,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             fadeOutStart={625}
             fadeOutEnd={635}
           >
-            <EducationMajors />
+            <CollegeJobs />
           </Section>
 
           <Section 
@@ -147,7 +147,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             fadeOutStart={660}
             fadeOutEnd={670}
           >
-            <EducationMinors />
+            <CollegeClubs />
           </Section>
           
           <Section 
