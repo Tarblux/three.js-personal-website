@@ -13,6 +13,9 @@ export default {
         geist: ['Geist Sans', 'sans-serif'], // Adds new custom geist font
       },
       keyframes: {
+        float: {
+          '50%': { transform: 'translateY(-10%) rotate(5deg)' },
+        },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
@@ -75,6 +78,7 @@ export default {
         }
       },
       animation: {
+        float: 'float 3s infinite ease-in-out',
         fadeIn: 'fadeIn 0.3s ease-in-out',
         'slideUp': 'slideUp 0.5s ease-out forwards',
         'unfold': 'unfold 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards',
