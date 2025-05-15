@@ -53,7 +53,7 @@ export const collegeJobs = [
     title: "Custodial Assistant",
     organization: "Facilities Management",
     startDate: "2022-06-01",
-    endDate: "2020-09-01",
+    endDate: "2022-09-01",
     logo: "/images/Education/k-logo-rounded.png",
     bullets: [
       "Assisted custodial staff in performing daily cleaning duties, including sweeping, mopping, and vacuuming of dorms and classroom facilities"

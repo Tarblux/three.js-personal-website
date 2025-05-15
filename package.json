@@ -34,6 +34,7 @@
     "vitest": "^3.1.1"
   },
   "dependencies": {
+    "@nivo/geo": "^0.96.0",
     "@react-three/drei": "^9.108.1",
     "@react-three/fiber": "^8.16.8",
     "@theatre/core": "^0.7.2",
@@ -43,12 +44,14 @@
     "@vercel/speed-insights": "^1.2.0",
     "cal-heatmap": "^4.2.4",
     "d3": "^7.9.0",
+    "d3-geo": "^3.1.1",
     "dayjs": "^1.11.13",
     "leva": "^0.9.34",
     "r3f-perf": "^7.2.2",
     "react": "18.3",
     "react-dom": "18.3",
     "react-icons": "^5.5.0",
-    "three": "^0.166.1"
+    "three": "^0.166.1",
+    "topojson-client": "^3.1.0"
   }
 }
