@@ -38,7 +38,7 @@ const FootballWatch = () => {
                     <div className="absolute" style={{ right: '1rem', top: '100px' }}>
                         <span className="font-bold text-[13px] text-black mr-1">Forward</span>
                         <div className="flex items-center mt-0.5">
-                            <span className="bg-blue-700 text-white text-xs font-bold px-1 py-0.5 rounded">RW</span>
+                            <span className="bg-red-700 text-white text-xs font-bold px-1 py-0.5 rounded">RW</span>
                             <img src="/images/Hobbies/hobbies-leftfoot.JPG" alt="Left foot" className="w-4 h-4 object-contain" />
                             <img src="/images/Hobbies/hobbies-rightfoot.JPG" alt="Right foot" className="w-4 h-4 object-contain opacity-50 -ml-1" />
                         </div>
