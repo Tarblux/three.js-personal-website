@@ -10,9 +10,9 @@ import LanguageJourney from './LanguageJourney';
 const { languageList, languageColors } = languagesMapData;
 
 const languageData = [];
-Object.entries(languageCountries).forEach(([language, countries]) => {
+Object.entries(languageCountries).forEach(([language, data]) => {
   const value = languageList.indexOf(language);
-  countries.forEach(code => {
+  data.countries.forEach(code => {
     languageData.push({ id: code, value });
   });
 });
