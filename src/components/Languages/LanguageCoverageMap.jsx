@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ResponsiveChoropleth } from '@nivo/geo';
+import { languageCountries } from '../../data/languageCountries.js';
 
 const LanguageCoverageMap = ({ mapData, features, languageColors, languageList }) => {
+  // Get the highlighted language from the map data
+  const highlightedLanguage = useMemo(() => {
+    if (mapData.length === 0) return null;
+    const value = mapData[0].value;
+    return languageList[value];
+  }, [mapData, languageList]);
+
+  // Get zoom settings based on the highlighted language
+  const projectionSettings = useMemo(() => {
+    if (!highlightedLanguage || !languageCountries[highlightedLanguage]) {
+      return {
+        scale: 90,
+        translation: [0.5, 0.7],
+        rotation: [0, 0, 0]
+      };
+    }
+    return languageCountries[highlightedLanguage].zoom;
+  }, [highlightedLanguage]);
+
   return (
     <div className="bg-white/90 rounded-lg shadow-lg p-2 col-span-1 row-span-2 md:col-span-2 md:row-span-2 flex flex-col transition-transform duration-300 ease-in-out hover:scale-[1.02]">
       <div className="flex items-center gap-2 mb-2 ml-2">
@@ -19,9 +39,9 @@ const LanguageCoverageMap = ({ mapData, features, languageColors, languageList }
             unknownColor="#eee"
             label="properties.name"
             valueFormat={v => languageList[v]}
-            projectionScale={90}
-            projectionTranslation={[0.5, 0.7]}
-            projectionRotation={[0, 0, 0]}
+            projectionScale={projectionSettings.scale}
+            projectionTranslation={projectionSettings.translation}
+            projectionRotation={projectionSettings.rotation}
             borderWidth={0.35}
             borderColor="#152538"
             legends={[
