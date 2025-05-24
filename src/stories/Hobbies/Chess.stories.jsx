@@ -1,8 +1,8 @@
-import Chess from '../../components/Hobbies/Chess';
+import ChessDashboard from '../../components/Hobbies/ChessDashboard';
 
 export default {
-  title: 'Hobbies/Chess',
-  component: Chess,
+  title: 'Hobbies/ChessDashboard',
+  component: ChessDashboard,
   parameters: {
     layout: 'fullscreen',
     backgrounds: {
