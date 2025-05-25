@@ -1,6 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+
+const API_BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : 'https://threejs-backend.tariqwill.com';
 
 const FootballWatch = () => {
+    const [standings, setStandings] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch(`${API_BASE_URL}/arsenal-standings`)
+            .then(res => res.json())
+            .then(data => {
+                setStandings(data);
+                setLoading(false);
+            })
+            .catch(() => setLoading(false));
+    }, []);
+
+    // Helper to add ordinal suffix
+    const formatOrdinal = (n) => {
+        if (typeof n !== 'number') return n;
+        const s = ["th", "st", "nd", "rd"], v = n % 100;
+        return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    };
+
     return (
         <div className="fixed top-8 left-8 z-10 w-[340px] flex flex-col justify-center h-auto">
             <div className="bg-white/20 backdrop-blur-md rounded-lg p-2.5 flex flex-col gap-2 border border-white/30 shadow-lg">
@@ -20,13 +45,13 @@ const FootballWatch = () => {
                         <img src="/images/Hobbies/hobbies-arsenal-badge.png" alt="Arsenal Badge" className="w-24 h-24 object-contain" />
                         {/* Info */}
                         <div className="flex-1 flex flex-col gap-1">
-                            <div className="text-sm text-gray-700">League Position: <span className="font-bold">2nd</span></div>
-                            <div className="text-sm text-gray-700">Points: <span className="font-bold">68</span></div>
+                            <div className="text-sm text-gray-700">League Position: <span className="font-bold">{loading || !standings ? '-' : formatOrdinal(standings.position)}</span></div>
+                            <div className="text-sm text-gray-700">Points: <span className="font-bold">{loading || !standings ? '-' : standings.points}</span></div>
                             <div className="text-sm text-gray-700 mt-1">Record:</div>
                             <div className="flex gap-2 mt-1">
-                                <span className="bg-green-400 text-white text-sm font-bold px-3 py-1 rounded-lg">18</span>
-                                <span className="bg-gray-400 text-white text-sm font-bold px-3 py-1 rounded-lg">14</span>
-                                <span className="bg-red-400 text-white text-sm font-bold px-3 py-1 rounded-lg">4</span>
+                                <span className="bg-green-400 text-white text-sm font-bold px-3 py-1 rounded-lg">{loading || !standings ? '-' : standings.wins}</span>
+                                <span className="bg-gray-400 text-white text-sm font-bold px-3 py-1 rounded-lg">{loading || !standings ? '-' : standings.draws}</span>
+                                <span className="bg-red-400 text-white text-sm font-bold px-3 py-1 rounded-lg">{loading || !standings ? '-' : standings.losses}</span>
                             </div>
                         </div>
                     </div>

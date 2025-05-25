@@ -4,6 +4,11 @@ import Tooltip from 'cal-heatmap/plugins/Tooltip';
 import LegendLite from 'cal-heatmap/plugins/LegendLite';
 import 'cal-heatmap/cal-heatmap.css';
 
+const API_BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : 'https://threejs-backend.tariqwill.com';
+
 const ProjectsGit = () => {
     const chartRef = useRef(null);
     const legendRef = useRef(null);
@@ -11,51 +16,53 @@ const ProjectsGit = () => {
     const [data, setData] = useState([]);
     const [selectedYear, setSelectedYear] = useState(2025);
     const [totalContributions, setTotalContributions] = useState(0);
+    const [dateRange, setDateRange] = useState({ start: null, end: null });
     const [isLoading, setIsLoading] = useState(true);
 
     const years = [2025, 2024, 2023];
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true);
             try {
-                let response;
                 let jsonData;
-
                 if (selectedYear === 2025) {
-                    try {
-                        response = await fetch('https://google.com');
-                        jsonData = await response.json();
-                        console.log(jsonData);
-                    } catch (error) {
-                        console.log('2025 data not available, falling back to 2024...');
-                        setSelectedYear(2024);
-                        return;
-                    }
-                } else {
-                    response = await fetch(`/data/git-contributions-${selectedYear}.json`);
+                    const response = await fetch(`${API_BASE_URL}/git-contributions`);
                     jsonData = await response.json();
+                    let startDate = new Date(jsonData.date_range_start);
+                    startDate.setMonth(startDate.getMonth() + 1);
+                    setTotalContributions(jsonData.total_contributions);
+                    setDateRange({
+                        start: startDate.toISOString(),
+                        end: jsonData.date_range_end
+                    });
+                    const contributions = jsonData.contributions;
+                    const formattedData = Object.entries(contributions).map(([date, value]) => ({
+                        date,
+                        value
+                    }));
+                    setData(formattedData);
+                } else {
+                    const response = await fetch(`/data/git-contributions-${selectedYear}.json`);
+                    jsonData = await response.json();
+                    const contributions = jsonData[0].contributions;
+                    setTotalContributions(jsonData[0].totalContributions);
+                    setDateRange({
+                        start: `${selectedYear}-01-01`,
+                        end: `${selectedYear}-12-31`
+                    });
+                    const formattedData = Object.entries(contributions).map(([date, value]) => ({
+                        date,
+                        value
+                    }));
+                    setData(formattedData);
                 }
-
-                const contributions = jsonData[0].contributions;
-                setTotalContributions(jsonData[0].totalContributions);
-                
-                const formattedData = Object.entries(contributions).map(([date, value]) => ({
-                    date,
-                    value
-                }));
-                
-                setData(formattedData);
             } catch (error) {
                 console.error('Error fetching contribution data:', error);
-                if (selectedYear === 2025) {
-                    console.log('Falling back to 2024 data...');
-                    setSelectedYear(2024);
-                }
             } finally {
                 setIsLoading(false);
             }
         };
-
         fetchData();
     }, [selectedYear]);
 
@@ -75,7 +82,7 @@ const ProjectsGit = () => {
                     y: 'value',
                 },
                 date: { 
-                    start: new Date(`${selectedYear}-01-01`),
+                    start: dateRange.start ? new Date(dateRange.start) : undefined,
                     highlight: new Date()
                 },
                 range: 12,
@@ -134,7 +141,7 @@ const ProjectsGit = () => {
                 cal.current = null;
             }
         };
-    }, [data, selectedYear]);
+    }, [data, dateRange]);
 
     const handleYearChange = (e) => {
         setSelectedYear(parseInt(e.target.value));

@@ -6,11 +6,6 @@ const TIME_CONTROL_ICONS = {
   rapid: '/images/Hobbies/hobbies-rapid.svg',
 };
 
-const RESULT_STYLES = {
-  win: 'bg-green-100 text-green-700 border-green-300',
-  loss: 'bg-red-100 text-red-700 border-red-300',
-  draw: 'bg-gray-200 text-gray-700 border-gray-300',
-};
 
 const RESULT_LABELS = {
   win: 'W',
@@ -56,7 +51,7 @@ const ChessGames = () => {
               rel="noopener noreferrer"
               className="block"
             >
-              <div className="flex items-center bg-white rounded-xl border border-gray-200 px-4 py-2 shadow-sm hover:shadow-md transition group">
+              <div className="flex items-center bg-white rounded-xl border border-gray-200 px-4 py-2 shadow-sm hover:shadow-md group transition-transform duration-200 hover:scale-105">
                 {/* Icon and time */}
                 <img
                   src={TIME_CONTROL_ICONS[game.time_control] || TIME_CONTROL_ICONS['blitz']}
