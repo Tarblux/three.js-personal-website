@@ -3,6 +3,7 @@ import 'flag-icons/css/flag-icons.min.css'
 import ChessRatings from './ChessRatings';
 import ChessProfile from './ChessProfile';
 import ChessGames from './ChessGames';
+import ChessStats from './ChessStats';
 
 const ChessDashboard = () => {
     return (
@@ -17,7 +18,7 @@ const ChessDashboard = () => {
                     <ChessProfile />
 
                     {/* Stats */}
-                    <div className="col-span-4 row-span-4 bg-white/90 rounded-lg shadow-lg" />
+                    <ChessStats />
 
                     {/* Last 5 Games */}
                     <ChessGames />
