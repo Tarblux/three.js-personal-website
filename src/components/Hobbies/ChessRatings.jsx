@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { SparkLineChart } from '@mui/x-charts/SparkLineChart';
 import ChessRatingCard from './ChessRatingCard';
 
 const API_BASE_URL =
@@ -7,13 +6,17 @@ const API_BASE_URL =
     ? 'http://localhost:3000'
     : 'https://threejs-backend.tariqwill.com';
 
-const mockBulletData = [1600, 1580, 1570, 1560, 1550, 1570, 1565,1534];
-const mockBlitzData = [1500, 1520, 1550, 1600, 1620, 1650, 1672,1634];
-const mockRapidData = [1490, 1492, 1493, 1494, 1495, 1495, 1495,1494];
+
 
 const ChessRatings = () => {
   const [ratings, setRatings] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [blitzMonthData, setBlitzMonthData] = useState([]);
+  const [blitzMonthChange, setBlitzMonthChange] = useState(0);
+  const [bulletMonthData, setBulletMonthData] = useState([]);
+  const [bulletMonthChange, setBulletMonthChange] = useState(0);
+  const [rapidMonthData, setRapidMonthData] = useState([]);
+  const [rapidMonthChange, setRapidMonthChange] = useState(0);
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/my-ratings`)
@@ -23,6 +26,35 @@ const ChessRatings = () => {
         setLoading(false);
       })
       .catch(() => setLoading(false));
+  }, []);
+
+  // Helper to fetch and set month data for a time control (all data for now but can change to 90d, week, month, year, all to reduce API call load)
+  const fetchMonthData = async (control, setData, setChange) => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/ratings-${control}?period=all`);
+      const data = await res.json();
+      const now = new Date();
+      const monthAgo = new Date(now);
+      monthAgo.setMonth(now.getMonth() - 1);
+      const monthData = Array.isArray(data)
+        ? data.filter(entry => new Date(entry.date) >= monthAgo)
+        : [];
+      setData(monthData.map(d => d.my_rating));
+      if (monthData.length > 1) {
+        setChange(monthData[monthData.length - 1].my_rating - monthData[0].my_rating);
+      } else {
+        setChange(0);
+      }
+    } catch {
+      setData([]);
+      setChange(0);
+    }
+  };
+
+  useEffect(() => {
+    fetchMonthData('blitz', setBlitzMonthData, setBlitzMonthChange);
+    fetchMonthData('bullet', setBulletMonthData, setBulletMonthChange);
+    fetchMonthData('rapid', setRapidMonthData, setRapidMonthChange);
   }, []);
 
   if (loading) {
@@ -82,8 +114,8 @@ const ChessRatings = () => {
           alt="Bullet"
           label="Bullet"
           rating={get(ratings, ['chess_bullet', 'last', 'rating'], 1565)}
-          sparklineData={mockBulletData}
-          change={get(ratings, ['rating_change_90d', 'bullet'], -52)}
+          sparklineData={bulletMonthData.length > 0 ? bulletMonthData : [1565]}
+          change={bulletMonthChange}
           getChangeColor={getChangeColor}
           getChangeTextColor={getChangeTextColor}
           formatChange={formatChange}
@@ -96,8 +128,8 @@ const ChessRatings = () => {
           alt="Blitz"
           label="Blitz"
           rating={get(ratings, ['chess_blitz', 'last', 'rating'], 1672)}
-          sparklineData={mockBlitzData}
-          change={get(ratings, ['rating_change_90d', 'blitz'], 120)}
+          sparklineData={blitzMonthData.length > 0 ? blitzMonthData : [1672]}
+          change={blitzMonthChange}
           getChangeColor={getChangeColor}
           getChangeTextColor={getChangeTextColor}
           formatChange={formatChange}
@@ -110,8 +142,8 @@ const ChessRatings = () => {
           alt="Rapid"
           label="Rapid"
           rating={get(ratings, ['chess_rapid', 'last', 'rating'], 1495)}
-          sparklineData={mockRapidData}
-          change={get(ratings, ['rating_change_90d', 'rapid'], 0)}
+          sparklineData={rapidMonthData.length > 0 ? rapidMonthData : [1495]}
+          change={rapidMonthChange}
           getChangeColor={getChangeColor}
           getChangeTextColor={getChangeTextColor}
           formatChange={formatChange}
