@@ -45,7 +45,7 @@ function filterData(allData, period) {
 
 const ChessStats = () => {
   const [selectedControl, setSelectedControl] = useState(timeControls[0]); // Default to Blitz
-  const [selectedPeriod, setSelectedPeriod] = useState(periods[3]); // Default to Year
+  const [selectedPeriod, setSelectedPeriod] = useState(periods[2]); // Default to Month
   const [ratings, setRatings] = useState({
     blitz: { year: null, all: null },
     rapid: { year: null, all: null },
@@ -207,7 +207,7 @@ const ChessStats = () => {
 
   return (
     <div className="col-span-4 row-span-4 flex flex-col relative">
-      {/* Top Row: Dropdowns and Stats (OUTSIDE the card) */}
+      {/* Top Row: Dropdowns and Stats*/}
       <div className="flex items-center justify-between w-full mb-2">
         {/* Dropdowns */}
         <div className="flex items-center gap-2">
