@@ -3,6 +3,20 @@
 @tailwind utilities;
 
 @font-face {
+    font-family: 'Pacifico';
+    src: url('../public/fonts/pacifico/Pacifico-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fredoka';
+    src: url('../public/fonts/fredoka/Fredoka-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Geist Sans';
     src: url('../public/fonts/geist/Geist-Light.woff2') format('woff2');
     font-style: normal;

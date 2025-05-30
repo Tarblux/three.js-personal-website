@@ -1,0 +1,250 @@
+.button {
+  --sz: 250px;
+  --dense: 5px;
+  height: var(--sz);
+  width: var(--sz);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none transparent;
+  margin: auto;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.button:hover .neck::after {
+  transform: translateY(-20px); /* Cap lifts on hover */
+}
+
+.neck { /* This is the small neck below the cap */
+  width: 60px;
+  height: 20px;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  background-color: #FFFFFF;
+  border: var(--dense) solid rgba(204, 204, 204, 0.3);
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.neck::before {
+  display: none;
+}
+
+.neck::after { /* This is the cap */
+  content: "";
+  position: absolute;
+  width: 137%;
+  height: 30px;
+  z-index: 4;
+  bottom: 100%;
+  margin-bottom: 2px;
+  border-radius: 8px 8px 2px 2px;
+  border: var(--dense) solid #DEDEDE;
+  background-color: #FFFFFF;
+  transition: all 0.25s ease 0.25s; /* Transition for the cap lift */
+}
+
+.body {
+  height: 260px;
+  width: 110px;
+  border-radius: 50px 50px 25px 25px;
+  border: calc(var(--dense) + 1px) solid rgba(204, 204, 204, 0.3);
+  position: relative;
+  z-index: 2;
+  background-color: rgba(230, 230, 250, 0.1);
+  overflow: hidden;
+  /* pointer-events: none; /* This line MUST be removed or commented out for .body to be hoverable */
+}
+
+/* --- START: MODIFIED LIQUID STYLES --- */
+.liquid {
+  position: absolute;
+  bottom: 0; /* Start from the bottom of the .body */
+  left: 0;
+  right: 0;
+  height: 85%; /* Adjust this percentage to change the liquid level */
+  background: #77C6F5; /* A nice light blue for water/liquid */
+  z-index: 1; /* Ensure liquid is behind bubbles but inside the body */
+  opacity: 0.7; /* Make it slightly transparent */
+  overflow: hidden; /* Important for the wave effect */
+}
+
+.liquid::before {
+  content: '';
+  position: absolute;
+  left: -30%; /* Start further left to allow for wave movement */
+  top: -25px; /* Adjust to position the wave crest slightly above the liquid line initially */
+  width: 200%; /* Make it wider than the liquid to allow for horizontal movement */
+  height: 30px; /* Height of the wave element */
+  background-color: #FFFFFF; /* Same as liquid, or slightly darker/lighter for effect */
+  opacity: 1; /* Wave should be fully opaque or match liquid's intended look */
+  border-radius: 25% 75% 15% 85% / 40% 60% 45% 55%; /* Creates a more pronounced wave shape */
+  animation: subtleWave 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes subtleWave {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    border-radius: 45% 55% 40% 60% / 60% 50% 55% 40%;
+  }
+  50% {
+    transform: translateY(-2px) translateX(5px) rotate(1deg); /* Slight lift and sideways movement */
+    border-radius: 50% 50% 45% 55% / 55% 45% 60% 50%;
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    border-radius: 40% 60% 50% 50% / 65% 55% 45% 50%;
+  }
+}
+/* --- END: MODIFIED LIQUID STYLES --- */
+
+
+/* .body::before,
+.body::after {
+  content: "";
+  position: absolute;
+  width: calc(var(--sz) + 20%);
+  height: calc(var(--sz) + 20%);
+  pointer-events: none;
+  --rotate: 30deg;
+  transition: all 0.25s ease 0.25s;
+} */
+
+/* .body::before {
+  border-radius: 95%;
+  top: 5%;
+  left: -25%;
+  transform: rotate(calc(var(--rotate) * -1));
+  background: linear-gradient(45deg, #8E0CFF, #FF1C1C);
+}
+
+.body::after {
+  border-radius: 40%;
+  top: 5%;
+  left: -25%;
+  transform: rotate(calc(var(--rotate) * -1));
+  background: linear-gradient(45deg, #8E0CFF, #FF1C1C);
+} */
+
+.bubbles { /* Container for all bubbles */
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  height: 95%;
+  z-index: 5;
+  pointer-events: none; /* Container doesn't need to capture events */
+}
+
+/* --- Continuous Bubbles --- */
+@keyframes floatUp {
+  0% {
+    bottom: 0;
+    opacity: 0;
+    transform: translateX(0);
+  }
+  10% {
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(8px); /* Wobble */
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    bottom: 100%;
+    opacity: 0;
+    transform: translateX(-8px); /* Wobble back */
+  }
+}
+
+.bubble { /* Styling for continuous bubbles */
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  animation-name: floatUp;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+}
+
+/* Individual continuous bubble sizes, positions, and animation timings */
+.bubble:nth-child(1) { width: 5px; height: 5px; left: 15%; animation-duration: 5s; animation-delay: 0s; }
+.bubble:nth-child(2) { width: 10px; height: 10px; left: 40%; animation-duration: 7s; animation-delay: 1.5s; }
+.bubble:nth-child(3) { width: 5px; height: 5px; left: 65%; animation-duration: 4s; animation-delay: 2.5s; }
+.bubble:nth-child(4) { width: 5px; height: 5px; left: 80%; animation-duration: 6s; animation-delay: 0.5s; }
+.bubble:nth-child(5) { width: 5px; height: 5px; left: 50%; animation-duration: 8s; animation-delay: 4s; }
+.bubble:nth-child(6) { width: 8px; height: 8px; left: 25%; animation-duration: 5.5s; animation-delay: 2s; }
+.bubble:nth-child(7) { width: 5px; height: 5px; left: 90%; animation-duration: 6.5s; animation-delay: 3s; }
+
+/* --- MODIFIED HOVER RULE --- */
+.body:hover .bubble {
+  opacity: 0 !important;
+  animation-play-state: paused;
+  transition: opacity 0.2s ease-out;
+}
+
+
+/* --- Explosion Bubbles --- */
+.explosion-bubble {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  opacity: 0;
+  bottom: 2%;
+}
+
+.explosion-bubble:nth-child(8) { width: 6px; height: 6px; left: 20%; }
+.explosion-bubble:nth-child(9) { width: 12px; height: 12px; left: 45%; }
+.explosion-bubble:nth-child(10) { width: 7px; height: 7px; left: 70%; }
+.explosion-bubble:nth-child(11) { width: 5px; height: 5px; left: 30%; }
+.explosion-bubble:nth-child(12) { width: 9px; height: 9px; left: 55%; }
+.explosion-bubble:nth-child(13) { width: 6px; height: 6px; left: 80%; }
+.explosion-bubble:nth-child(14) { width: 10px; height: 10px; left: 35%; }
+.explosion-bubble:nth-child(15) { width: 8px; height: 8px; left: 60%; }
+
+
+@keyframes sodaExplosion {
+  0% {
+    opacity: 0.0;
+    transform: translateY(0px) scale(0.4);
+  }
+  20% {
+    opacity: 0.9;
+    transform: translateY(-70px) scale(1);
+  }
+  80% {
+    opacity: 0.5;
+    transform: translateY(-220px) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-280px) scale(0.3);
+  }
+}
+
+.button:hover .explosion-bubble {
+  animation-name: sodaExplosion;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-delay: 0.15s;
+}
+
+.button:hover .explosion-bubble:nth-child(9) { animation-delay: calc(0.15s + 0.04s); animation-duration: 0.75s; }
+.button:hover .explosion-bubble:nth-child(10) { animation-delay: calc(0.15s + 0.01s); }
+.button:hover .explosion-bubble:nth-child(11) { animation-delay: calc(0.15s + 0.06s); animation-duration: 0.65s; }
+.button:hover .explosion-bubble:nth-child(12) { animation-delay: calc(0.15s + 0.03s); }
+.button:hover .explosion-bubble:nth-child(13) { animation-delay: calc(0.15s + 0.07s); animation-duration: 0.72s; }
+.button:hover .explosion-bubble:nth-child(14) { animation-delay: calc(0.15s + 0.02s); }
+.button:hover .explosion-bubble:nth-child(15) { animation-delay: calc(0.15s + 0.05s); }

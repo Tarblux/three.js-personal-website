@@ -10,7 +10,9 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Geist Sans', ...defaultTheme.fontFamily.sans], // Overrides default sans
-        geist: ['Geist Sans', 'sans-serif'], // Adds new custom geist font
+        geist: ['Geist Sans', 'sans-serif'], 
+        fredoka: ['Fredoka', 'sans-serif'],
+        pacifico: ['Pacifico', 'cursive'],
       },
       keyframes: {
         float: {
