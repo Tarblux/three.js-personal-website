@@ -15,10 +15,10 @@
 }
 
 .button:hover .neck::after {
-  transform: translateY(-20px); /* Cap lifts on hover */
+  transform: translateY(-20px);
 }
 
-.neck { /* This is the small neck below the cap */
+.neck { /* small neck below the cap */
   width: 60px;
   height: 20px;
   top: -14px;
@@ -40,7 +40,7 @@
   display: none;
 }
 
-.neck::after { /* This is the cap */
+.neck::after { /* cap */
   content: "";
   position: absolute;
   width: 137%;
@@ -51,10 +51,10 @@
   border-radius: 8px 8px 2px 2px;
   border: var(--dense) solid #DEDEDE;
   background-color: #FFFFFF;
-  transition: all 0.25s ease 0.25s; /* Transition for the cap lift */
+  transition: all 0.25s ease 0.25s;
 }
 
-.body {
+.body { /* main bottle body */
   height: 260px;
   width: 110px;
   border-radius: 50px 50px 25px 25px;
@@ -63,32 +63,30 @@
   z-index: 2;
   background-color: rgba(230, 230, 250, 0.1);
   overflow: hidden;
-  /* pointer-events: none; /* This line MUST be removed or commented out for .body to be hoverable */
 }
 
-/* --- START: MODIFIED LIQUID STYLES --- */
-.liquid {
+.liquid { /* The liquid inside the bottle */
   position: absolute;
-  bottom: 0; /* Start from the bottom of the .body */
+  bottom: 0;
   left: 0;
   right: 0;
-  height: 85%; /* Adjust this percentage to change the liquid level */
-  background: #77C6F5; /* A nice light blue for water/liquid */
-  z-index: 1; /* Ensure liquid is behind bubbles but inside the body */
-  opacity: 0.7; /* Make it slightly transparent */
-  overflow: hidden; /* Important for the wave effect */
+  height: 85%;
+  background: #77C6F5;
+  z-index: 1;
+  opacity: 0.7;
+  overflow: hidden;
 }
 
-.liquid::before {
+.liquid::before { /* The animated wave at the top of the liquid */
   content: '';
   position: absolute;
-  left: -30%; /* Start further left to allow for wave movement */
-  top: -25px; /* Adjust to position the wave crest slightly above the liquid line initially */
-  width: 200%; /* Make it wider than the liquid to allow for horizontal movement */
-  height: 30px; /* Height of the wave element */
-  background-color: #FFFFFF; /* Same as liquid, or slightly darker/lighter for effect */
-  opacity: 1; /* Wave should be fully opaque or match liquid's intended look */
-  border-radius: 25% 75% 15% 85% / 40% 60% 45% 55%; /* Creates a more pronounced wave shape */
+  left: -30%;
+  top: -25px;
+  width: 200%;
+  height: 30px;
+  background-color: #FFFFFF;
+  opacity: 1;
+  border-radius: 25% 75% 15% 85% / 40% 60% 45% 55%;
   animation: subtleWave 1.5s ease-in-out infinite alternate;
 }
 
@@ -98,7 +96,7 @@
     border-radius: 45% 55% 40% 60% / 60% 50% 55% 40%;
   }
   50% {
-    transform: translateY(-2px) translateX(5px) rotate(1deg); /* Slight lift and sideways movement */
+    transform: translateY(-2px) translateX(5px) rotate(1deg);
     border-radius: 50% 50% 45% 55% / 55% 45% 60% 50%;
   }
   100% {
@@ -106,35 +104,6 @@
     border-radius: 40% 60% 50% 50% / 65% 55% 45% 50%;
   }
 }
-/* --- END: MODIFIED LIQUID STYLES --- */
-
-
-/* .body::before,
-.body::after {
-  content: "";
-  position: absolute;
-  width: calc(var(--sz) + 20%);
-  height: calc(var(--sz) + 20%);
-  pointer-events: none;
-  --rotate: 30deg;
-  transition: all 0.25s ease 0.25s;
-} */
-
-/* .body::before {
-  border-radius: 95%;
-  top: 5%;
-  left: -25%;
-  transform: rotate(calc(var(--rotate) * -1));
-  background: linear-gradient(45deg, #8E0CFF, #FF1C1C);
-}
-
-.body::after {
-  border-radius: 40%;
-  top: 5%;
-  left: -25%;
-  transform: rotate(calc(var(--rotate) * -1));
-  background: linear-gradient(45deg, #8E0CFF, #FF1C1C);
-} */
 
 .bubbles { /* Container for all bubbles */
   position: absolute;
@@ -143,7 +112,7 @@
   width: 100%;
   height: 95%;
   z-index: 5;
-  pointer-events: none; /* Container doesn't need to capture events */
+  pointer-events: none;
 }
 
 /* --- Continuous Bubbles --- */
@@ -157,7 +126,7 @@
     opacity: 0.7;
   }
   50% {
-    transform: translateX(8px); /* Wobble */
+    transform: translateX(8px);
   }
   90% {
     opacity: 0.3;
@@ -165,11 +134,11 @@
   100% {
     bottom: 100%;
     opacity: 0;
-    transform: translateX(-8px); /* Wobble back */
+    transform: translateX(-8px);
   }
 }
 
-.bubble { /* Styling for continuous bubbles */
+.bubble { 
   position: absolute;
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 50%;
@@ -178,7 +147,6 @@
   animation-iteration-count: infinite;
 }
 
-/* Individual continuous bubble sizes, positions, and animation timings */
 .bubble:nth-child(1) { width: 5px; height: 5px; left: 15%; animation-duration: 5s; animation-delay: 0s; }
 .bubble:nth-child(2) { width: 10px; height: 10px; left: 40%; animation-duration: 7s; animation-delay: 1.5s; }
 .bubble:nth-child(3) { width: 5px; height: 5px; left: 65%; animation-duration: 4s; animation-delay: 2.5s; }
@@ -187,16 +155,14 @@
 .bubble:nth-child(6) { width: 8px; height: 8px; left: 25%; animation-duration: 5.5s; animation-delay: 2s; }
 .bubble:nth-child(7) { width: 5px; height: 5px; left: 90%; animation-duration: 6.5s; animation-delay: 3s; }
 
-/* --- MODIFIED HOVER RULE --- */
 .body:hover .bubble {
   opacity: 0 !important;
   animation-play-state: paused;
   transition: opacity 0.2s ease-out;
 }
 
-
 /* --- Explosion Bubbles --- */
-.explosion-bubble {
+.explosion-bubble { 
   position: absolute;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
@@ -212,7 +178,6 @@
 .explosion-bubble:nth-child(13) { width: 6px; height: 6px; left: 80%; }
 .explosion-bubble:nth-child(14) { width: 10px; height: 10px; left: 35%; }
 .explosion-bubble:nth-child(15) { width: 8px; height: 8px; left: 60%; }
-
 
 @keyframes sodaExplosion {
   0% {
