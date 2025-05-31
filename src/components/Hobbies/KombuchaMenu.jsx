@@ -6,7 +6,7 @@ const KombuchaMenu = () => {
   const [playingIdx, setPlayingIdx] = useState(null);
   return (
     <div className="flex justify-end w-full">
-      <div className="relative bg-white rounded-3xl shadow-2xl p-6 w-[710px] h-[710px] mr-8 mt-4">
+      <div className="relative bg-white rounded-3xl shadow-2xl p-6 w-[730px] h-[730px] mr-8 mt-4">
         {/* Header */}
         <div className="flex justify-between items-start ">
           <div className="flex flex-col items-center">
