@@ -15,7 +15,7 @@ const DropIcon = ({ color }) => (
   </svg>
 );
 
-const KombuchaBottle = ({ title, price, ingredients, personality, liquidColor, priceColor, isPlaying, onPlay, onStop }) => {
+const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidColor, priceColor, isPlaying, onPlay, onStop }) => {
   const audioRef = useRef(null);
 
   React.useEffect(() => {
@@ -83,7 +83,7 @@ const KombuchaBottle = ({ title, price, ingredients, personality, liquidColor, p
             <span className="font-bold rounded-md px-1 py-1 text-sm ml-2" style={{ fontSize: '0.7rem', background: priceColor, color: '#fff' }}> $ {price} </span>
           </div>
           <div className="mt-2 flex flex-col gap-1">
-            {ingredients.map((ingredient, idx) => (
+            {Array.isArray(ingredients) && ingredients.map((ingredient, idx) => (
               <span key={idx} className="flex items-start text-black font-semibold text-sm leading-tight">
                 <span className={`flex items-center${ingredient.iconType === 'img' ? ' mr-3' : ''}`}>
                   {ingredient.iconType === 'img' ? (
