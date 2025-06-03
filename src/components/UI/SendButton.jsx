@@ -21,7 +21,7 @@ const SendButton = ({ onClick, ...props }) => {
     }, ANIMATION.takeoff);
   };
 
-  const buttonClass = `button send-button${phase !== "idle" ? " is-animating" : ""}`;
+  const buttonClass = `send-button${phase !== "idle" ? " is-animating" : ""}`;
 
   return (
     <button
@@ -30,7 +30,7 @@ const SendButton = ({ onClick, ...props }) => {
       tabIndex={0}
       {...props}
     >
-      <div className="outline"></div>
+      <div className="send-outline"></div>
       <div className="state state--default">
         <div className="icon">
           <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

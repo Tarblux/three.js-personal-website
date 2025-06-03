@@ -77,7 +77,7 @@
 }
 
 /* Outline */
-.outline {
+.send-outline {
     position: absolute;
     border-radius: inherit;
     overflow: hidden;
@@ -86,7 +86,7 @@
     transition: opacity 0.4s ease;
     inset: -2px -3.5px;
 }
-.outline::before {
+.send-outline::before {
     content: "";
     position: absolute;
     inset: -100%;
@@ -107,10 +107,10 @@
         transform: rotate(360deg);
     }
 }
-.send-button:hover .outline {
+.send-button:hover .send-outline {
     opacity: 1;
 }
-.send-button:hover .outline::before {
+.send-button:hover .send-outline::before {
     animation-play-state: running;
 }
 
@@ -263,17 +263,17 @@
     transform: scale(1.25);
     margin-right: 8px;
 }
-.button.is-animating .state--default {
+.send-button.is-animating .state--default {
     position: absolute;
 }
-.button.is-animating .state--sent {
+.send-button.is-animating .state--sent {
     display: flex;
 }
-.button.is-animating .state--sent span {
+.send-button.is-animating .state--sent span {
     opacity: 0;
     animation: slideDown 0.8s ease forwards calc(var(--i) * 0.2s);
 }
-.button.is-animating .state--sent .icon svg {
+.send-button.is-animating .state--sent .icon svg {
     opacity: 0;
     animation: appear 1.2s ease forwards 0.8s;
 }

@@ -12,7 +12,10 @@ const Contact = () => {
     };
 
     return (
-        <div className="fixed top-8 right-8 z-10 w-[400px] flex flex-col justify-center h-auto gap-4">
+        <div className="fixed top-8 right-8 z-10 w-[400px] flex flex-col justify-center h-auto">
+            <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
+                Contact
+            </span>
             {/* Glassmorphic Card */}
             <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 border border-white/30 shadow-lg ">
                 {/* Main White Card */}
@@ -22,7 +25,7 @@ const Contact = () => {
                         <div className="relative w-32 h-32 flex-shrink-0">
                             {/* Gray background square */}
                             <div className="absolute w-36 h-36 bg-gray-200 rounded-2xl z-0"></div>
-                            {/* Profile image, hanging out */}
+                            {/* Profile image*/}
                             <img
                                 src="/images/Contact/profile-pic-contact.webp"
                                 alt="Profile"

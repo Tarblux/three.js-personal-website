@@ -43,21 +43,26 @@ const Languages = () => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-0">
-      {/* Glassmorphic Container */}
-      <div className="bg-white/20 backdrop-blur-md rounded-lg p-3 w-full max-w-5xl mx-auto border border-white/30">
-        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4 min-h-[80vh]">
-          <LanguageCoverageMap 
-            mapData={mapData} 
-            features={features} 
-            languageColors={languageColors} 
-            languageList={languageList} 
-          />
-          <LanguageLevels 
-            languageLevelsData={languageLevelsData} 
-            setHighlightedLanguage={setHighlightedLanguage} 
-            hoverTimeoutRef={hoverTimeoutRef} 
-          />
-          <LanguageJourney languageJourneyData={languageJourneyData} />
+      <div className="flex flex-col items-start w-full max-w-6xl">
+        <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
+          Languages
+        </span>
+        {/* Glassmorphic Container */}
+        <div className="bg-white/20 backdrop-blur-md rounded-lg p-3 w-full border border-white/30">
+          <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4 min-h-[80vh]">
+            <LanguageCoverageMap 
+              mapData={mapData} 
+              features={features} 
+              languageColors={languageColors} 
+              languageList={languageList} 
+            />
+            <LanguageLevels 
+              languageLevelsData={languageLevelsData} 
+              setHighlightedLanguage={setHighlightedLanguage} 
+              hoverTimeoutRef={hoverTimeoutRef} 
+            />
+            <LanguageJourney languageJourneyData={languageJourneyData} />
+          </div>
         </div>
       </div>
     </div>

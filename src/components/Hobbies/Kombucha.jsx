@@ -4,19 +4,22 @@ import './jar.css';
 const Kombucha = () => {
     return (
         <div className="fixed top-8 left-8 z-10 w-[400px] flex flex-col justify-center h-auto">
+            <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
+                Hobbies | Kombucha
+            </span>
             {/* Info Glass Panel */}
             <div className="bg-white/20 backdrop-blur-md rounded-lg p-6 border border-white/30 shadow-lg mb-4">
                 <p className="text-[13px] leading-snug text-gray-800">
-                    In late 2023, <span className="font-bold text-blue-700">I decided to start making my own drinks</span> 
+                    In late 2023, <span className="font-bold text-yellow-600">I decided to start making my own drinks</span> 
                     after realizing just how much sugar I was consuming from store-bought beverages. That little lifestyle 
-                    change led me down a rabbit hole and eventually into <span className="font-bold text-blue-700">the world 
+                    change led me down a rabbit hole and eventually into <span className="font-bold text-yellow-600">the world 
                     of kombucha brewing</span>. What started as a fun experiment quickly turned into a full-blown obsession. 
                     Kombucha ended up becoming my favorite thing to make—not just because it's tasty, but because 
-                    <span className="font-bold text-blue-700">fermentation gives it a kind of personality</span> so to speak. 
+                    <span className="font-bold text-yellow-600">fermentation gives it a kind of personality</span> so to speak. 
                     Every batch is a little different, shaped by the temperature, timing, and even the mood of the room 
-                    (or so I like to think). <span className="font-bold text-blue-700">It's like the drink evolves on its 
+                    (or so I like to think). <span className="font-bold text-yellow-600">It's like the drink evolves on its 
                     own terms</span>, and I'm just there to guide it along. There's nothing quite like that first sip after 
-                    two weeks—when the flavors hit just right, <span className="font-bold text-blue-700">it feels less like 
+                    two weeks—when the flavors hit just right, <span className="font-bold text-yellow-600">it feels less like 
                     tasting a drink and more like having it speak back to you.</span>
                 </p>
             </div>

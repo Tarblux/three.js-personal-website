@@ -4,7 +4,7 @@ import { footballMoments } from '../../data/footballMoments'
 const FootballMemories = () => {
     return (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-10 w-full max-w-4xl">
-            <span className="mb-2 bg-white/30 backdrop-blur-md rounded-lg px-2 py-1 shadow text-gray-500 text-xs font-semibold select-none inline-block">
+            <span className="mb-2 bg-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow text-gray-500 text-xs  select-none inline-block border border-white/30">
                 Favorite Moments
             </span>
             <div className="flex flex-col justify-center h-auto">

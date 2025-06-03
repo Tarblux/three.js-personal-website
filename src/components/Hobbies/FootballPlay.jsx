@@ -7,6 +7,9 @@ const FootballPlay = () => {
 
     return (
         <div className="fixed top-8 left-8 z-10 w-[340px] flex flex-col justify-center h-auto">
+            <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
+                Hobbies | Football
+            </span>
             <div className="bg-white/20 backdrop-blur-md rounded-lg p-2.5 flex flex-col gap-2 border border-white/30 shadow-lg">
                 {/* Blurb*/}
                 <div className="bg-white/90 rounded-lg shadow-lg hover:shadow-lg p-4 min-h-[100px] flex items-center justify-center group transform transition-transform duration-300 hover:scale-[1.02]">

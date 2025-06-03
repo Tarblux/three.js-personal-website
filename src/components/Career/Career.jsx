@@ -21,9 +21,10 @@ const Career = () => {
 
     return (
         <div className="fixed top-8 right-8 z-0">
-            <div className="bg-white/20 backdrop-blur-md rounded-lg p-3 w-[308px] min-h-[420px] border border-white/30">
-                <h2 className="text-white text-sm font-medium mb-2 text-center">Professional Experience</h2>
-                
+            <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs  inline-block mx-auto">
+                Professional Experience
+            </span>
+            <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-[308px] min-h-[420px] border border-white/30 shadow-lg">
                 <div className="space-y-4">
                     {/* Flextrade Experience */}
                     <div className={`bg-white rounded-lg shadow-lg p-3 transition-all duration-500 ${isExpanded ? 'opacity-50' : 'opacity-100'}`}>
@@ -32,7 +33,7 @@ const Career = () => {
                                 <img 
                                     src="/icons/flextrade_logo.jpg" 
                                     alt="Flextrade Systems" 
-                                    className="w-8 h-8 rounded"
+                                    className="w-8 h-8 rounded-md"
                                 />
                                 <div>
                                     <h3 className="text-xs font-bold">Software Engineer</h3>
@@ -54,15 +55,15 @@ const Career = () => {
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                     <span>
-                                        Developed features for a Python-based calculation service 
+                                        Develop features for a Python-based calculation service 
                                         used to deliver risk analytics and financial computations 
-                                        within the OMS Server
+                                        within the Order Management System (OMS)
                                     </span>
                                 </div>
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                     <span>
-                                        Built and maintained gRPC API routines enabling
+                                        Build and maintain gRPC API routines enabling
                                         seamless integration of calculation results into the
                                         main OMS backend
                                     </span>
@@ -70,7 +71,7 @@ const Career = () => {
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                     <span>
-                                        Wrote unit tests for calculation workflows to ensure
+                                        Write unit tests for calculation workflows to ensure
                                         accuracy and reliability of all calculations
                                     </span>
                                 </div>
@@ -81,20 +82,20 @@ const Career = () => {
                                 <div className="flex gap-4 mb-3">
                                     <div className="flex flex-col items-center">
                                         <img src="/icons/python.svg" alt="Python" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">Python</span>
+                                        <span className="text-[9px] mt-0.5 ">Python</span>
                                     </div>
                                     <div className="flex flex-col items-center">
                                         <img src="/icons/scala.svg" alt="Scala" className="w-6 h-6" />
                                         <span className="text-[9px] mt-0.5">Scala</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/grpc-icon-color.png" alt="gRPC" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">gRPC</span>
+                                        <img src="/icons/mysql.svg" alt="SQL" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">SQL</span>
                                     </div>
                                 </div>
 
                                 <p className="text-xs font-bold mb-3">Tools:</p>
-                                <div className="flex gap-4">
+                                <div className="flex gap-4 mb-3">
                                     <div className="flex flex-col items-center">
                                         <img src="/icons/docker.svg" alt="Docker" className="w-6 h-6" />
                                         <span className="text-[9px] mt-0.5">Docker</span>
@@ -107,11 +108,40 @@ const Career = () => {
                                         <img src="/icons/Jenkins_logo.svg" alt="Jenkins" className="w-6 h-6" />
                                         <span className="text-[9px] mt-0.5">Jenkins</span>
                                     </div>
+
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/intellijidea.svg" alt="IntelliJ" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">IntelliJ</span>
+                                        <img src="/icons/pycharm.svg" alt="Pycharm" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">Pycharm</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <img src="/icons/postman.svg" alt="Postman" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">Postman</span>
                                     </div>
                                 </div>
+
+                                <p className="text-xs font-bold mb-1">Libraries & Protocols:</p>
+                                <div className="flex gap-4 mb-3">
+                                    <div className="flex flex-col items-center">
+                                        <img src="/icons/grpc-icon-color.png" alt="gRPC" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">gRPC</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <img src="/icons/akka.svg" alt="Akka" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">Akka</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <img src="/icons/numpy.svg" alt="Numpy" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">Numpy</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <img src="/icons/pandas.svg" alt="Pandas" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">Pandas</span>
+                                    </div>
+                                </div>
+                                
+                                
+
+
                             </div>
                         </div>
                     </div>
@@ -185,12 +215,20 @@ const Career = () => {
                                 <p className="text-xs font-bold mb-3">Tools:</p>
                                 <div className="flex gap-4">
                                     <div className="flex flex-col items-center">
+                                        <img src="/icons/Rstudio.svg" alt="Rstudio" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">Rstudio</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
                                         <img src="/icons/Github_light.svg" alt="Github" className="w-6 h-6" />
                                         <span className="text-[9px] mt-0.5">Github</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/mysql.svg" alt="MySQL" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">MySQL</span>
+                                        <img src="/icons/excel.svg" alt="Excel" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">MS Excel</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <img src="/icons/access.svg" alt="Access" className="w-6 h-6" />
+                                        <span className="text-[9px] mt-0.5">MS Access</span>
                                     </div>
                                 </div>
                             </div>
