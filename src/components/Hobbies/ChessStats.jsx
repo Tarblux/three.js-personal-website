@@ -261,22 +261,60 @@ const ChessStats = () => {
       <div className="flex flex-col flex-1 bg-white rounded-2xl shadow min-h-[380px] transition-transform duration-200 hover:scale-[1.025] hover:shadow-2xl cursor-pointer">
         {/* Rating + Change*/}
         <div className="flex flex-row items-end justify-start min-w-[120px] px-4 pt-4 pb-2">
-          <span className="text-5xl font-extrabold text-[#2b4eff] leading-none mr-2" style={{lineHeight: '1.05'}}>{currentRating}</span>
-          <div className="flex flex-col items-start justify-end mb-1">
-            <span className="text-xs text-gray-400 font-semibold mb-1 ml-1">Rating Change</span>
-            <span
-              className={`text-lg font-bold flex items-center ${ratingChangeColor} ml-1`}
-              style={{marginTop: '-2px'}}
-            >
-              {ratingArrow}
-              <span className="ml-1">{ratingChange > 0 ? '+' : ''}{ratingChange}</span>
-            </span>
-          </div>
+          {loading ? (
+            <>
+              <div className="w-20 h-12 bg-gray-200 rounded animate-pulse mr-2"></div>
+              <div className="flex flex-col items-start justify-end mb-1">
+                <div className="w-20 h-3 bg-gray-200 rounded animate-pulse mb-2 ml-1"></div>
+                <div className="w-12 h-5 bg-gray-200 rounded animate-pulse ml-1"></div>
+              </div>
+            </>
+          ) : (
+            <>
+              <span className="text-5xl font-extrabold text-[#2b4eff] leading-none mr-2" style={{lineHeight: '1.05'}}>{currentRating}</span>
+              <div className="flex flex-col items-start justify-end mb-1">
+                <span className="text-xs text-gray-400 font-semibold mb-1 ml-1">Rating Change</span>
+                <span
+                  className={`text-lg font-bold flex items-center ${ratingChangeColor} ml-1`}
+                  style={{marginTop: '-2px'}}
+                >
+                  {ratingArrow}
+                  <span className="ml-1">{ratingChange > 0 ? '+' : ''}{ratingChange}</span>
+                </span>
+              </div>
+            </>
+          )}
         </div>
         {/* Line Chart Section */}
         <div className="flex-1 flex items-center justify-center mt-2 min-h-[340px] px-2 pb-4">
           {loading ? (
-            <span className="text-gray-400 text-lg">Loading...</span>
+            <div className="w-full h-full flex flex-col">
+              {/* Chart skeleton with gradient background */}
+              <div className="flex-1 bg-gradient-to-b from-gray-100 to-gray-50 rounded-lg animate-pulse relative overflow-hidden">
+                {/* Simulated chart lines */}
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-blue-100 to-transparent opacity-50"></div>
+                <div className="absolute inset-4">
+                  <div className="w-full h-px bg-gray-200 mt-8"></div>
+                  <div className="w-full h-px bg-gray-200 mt-12"></div>
+                  <div className="w-full h-px bg-gray-200 mt-12"></div>
+                  <div className="w-full h-px bg-gray-200 mt-12"></div>
+                </div>
+                {/* Simulated data points */}
+                <div className="absolute bottom-20 left-8 w-2 h-2 bg-blue-300 rounded-full"></div>
+                <div className="absolute bottom-24 left-20 w-2 h-2 bg-blue-300 rounded-full"></div>
+                <div className="absolute bottom-28 left-32 w-2 h-2 bg-blue-300 rounded-full"></div>
+                <div className="absolute bottom-20 left-44 w-2 h-2 bg-blue-300 rounded-full"></div>
+                <div className="absolute bottom-32 left-56 w-2 h-2 bg-blue-300 rounded-full"></div>
+              </div>
+              {/* X-axis labels skeleton */}
+              <div className="flex justify-between px-4 mt-2">
+                <div className="w-12 h-3 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-12 h-3 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-12 h-3 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-12 h-3 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-12 h-3 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+            </div>
           ) : error ? (
             <span className="text-red-500 text-lg">{error}</span>
           ) : (

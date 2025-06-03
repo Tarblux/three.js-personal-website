@@ -24,6 +24,7 @@ function getYearsString(startDate, endDate) {
 
 const CollegeJobs = () => {
     const [expandedJob, setExpandedJob] = useState(null);
+    const [hoveredJob, setHoveredJob] = useState(null);
     const regularJobs = collegeJobs.slice(0, 5);
     const volunteeringJobs = collegeJobs.slice(5);
 
@@ -40,6 +41,8 @@ const CollegeJobs = () => {
                                 key={job.id}
                                 className="bg-white rounded-lg shadow-lg p-3 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-xl hover:bg-gray-50"
                                 onClick={() => setExpandedJob(expandedJob === job.id ? null : job.id)}
+                                onMouseEnter={() => setHoveredJob(job.id)}
+                                onMouseLeave={() => setHoveredJob(null)}
                             >
                                 <div className="flex items-start justify-between">
                                     <div className="flex items-center gap-2.5">
@@ -62,7 +65,7 @@ const CollegeJobs = () => {
                                         </span>
                                     </div>
                                 </div>
-                                <div className={`transition-all duration-500 overflow-hidden ${expandedJob === job.id ? 'max-h-[200px] mt-3' : 'max-h-0'}`}>
+                                <div className={`transition-all duration-1000 overflow-hidden ${expandedJob === job.id || hoveredJob === job.id ? 'max-h-[200px] mt-3' : 'max-h-0'}`}>
                                     <ul className="list-disc pl-5 space-y-1">
                                         {job.bullets && job.bullets.map((bullet, idx) => (
                                             <li key={idx} className="text-gray-700 text-xs">{bullet}</li>
@@ -85,6 +88,8 @@ const CollegeJobs = () => {
                                 key={job.id}
                                 className="bg-white rounded-lg shadow-lg p-3 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-xl hover:bg-gray-50"
                                 onClick={() => setExpandedJob(expandedJob === job.id ? null : job.id)}
+                                onMouseEnter={() => setHoveredJob(job.id)}
+                                onMouseLeave={() => setHoveredJob(null)}
                             >
                                 <div className="flex items-start justify-between">
                                     <div className="flex items-center gap-2.5">
@@ -107,7 +112,7 @@ const CollegeJobs = () => {
                                         </span>
                                     </div>
                                 </div>
-                                <div className={`transition-all duration-500 overflow-hidden ${expandedJob === job.id ? 'max-h-[200px] mt-3' : 'max-h-0'}`}>
+                                <div className={`transition-all duration-1000 overflow-hidden ${expandedJob === job.id || hoveredJob === job.id ? 'max-h-[200px] mt-3' : 'max-h-0'}`}>
                                     <ul className="list-disc pl-5 space-y-1">
                                         {job.bullets && job.bullets.map((bullet, idx) => (
                                             <li key={idx} className="text-gray-700 text-xs">{bullet}</li>
