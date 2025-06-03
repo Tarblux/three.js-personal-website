@@ -15,7 +15,7 @@ export const languageCountries = {
   "Patois": {
     countries: [
       "JAM", "TTO", "GRD", "LCA", "VCT", "ATG", "KNA", "DMA", "GUY", "BHS", 
-      "BRB"
+      "BRB", "BLZ"
     ],
     zoom: {
       scale: 280,

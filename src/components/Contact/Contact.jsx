@@ -1,14 +1,30 @@
 import React, { useState, useRef } from 'react'
 import SendButton from '../UI/SendButton'
+import { useForm, ValidationError } from '@formspree/react';
 
 const Contact = () => {
     const [isTyping, setIsTyping] = useState(false);
     const [message, setMessage] = useState("");
+    const [hasSubmitted, setHasSubmitted] = useState(false);
     const messageRef = useRef(null);
+    const formRef = useRef(null);
+    const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_ID);
 
     const playSendSound = () => {
         const audio = new Audio('/sounds/send-swoosh.mp3');
         audio.play();
+    };
+
+    const handleSendClick = (e) => {
+        e.preventDefault();
+        playSendSound();
+        
+        // Only submit if we haven't already submitted , cuz people might abuse the send animation
+        if (!hasSubmitted && formRef.current) {
+            const formData = new FormData(formRef.current);
+            handleSubmit(formData);
+            setHasSubmitted(true);
+        }
     };
 
     return (
@@ -59,14 +75,35 @@ const Contact = () => {
                         <div className="flex-grow border-t border-gray-300"></div>
                     </div>
                     {/* Form */}
-                    <form className="flex flex-col gap-3">
+                    <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-3">
                         <div className="flex gap-3 w-full">
-                            <input type="text" placeholder="First Name" className="w-1/2 min-w-0 rounded-lg bg-gray-100 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs" />
-                            <input type="text" placeholder="Last Name" className="w-1/2 min-w-0 rounded-lg bg-gray-100 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs" />
+                            <input 
+                                type="text" 
+                                name="firstName"
+                                placeholder="First Name" 
+                                className="w-1/2 min-w-0 rounded-lg bg-gray-100 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs" 
+                            />
+                            <input 
+                                type="text" 
+                                name="lastName"
+                                placeholder="Last Name" 
+                                className="w-1/2 min-w-0 rounded-lg bg-gray-100 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs" 
+                            />
                         </div>
-                        <input type="email" placeholder="Email" className="rounded-lg bg-gray-100 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs" />
+                        <input 
+                            type="email" 
+                            name="email"
+                            placeholder="Email" 
+                            className="rounded-lg bg-gray-100 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs" 
+                        />
+                        <ValidationError 
+                            prefix="Email" 
+                            field="email"
+                            errors={state.errors}
+                        />
                         <textarea
                             ref={messageRef}
+                            name="message"
                             placeholder="Message"
                             rows={12}
                             className="rounded-lg bg-gray-100 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none text-xs"
@@ -82,6 +119,11 @@ const Contact = () => {
                                 }
                             }}
                         />
+                        <ValidationError 
+                            prefix="Message" 
+                            field="message"
+                            errors={state.errors}
+                        />
                     </form>
                 </div>
             </div>
@@ -90,7 +132,9 @@ const Contact = () => {
                 className={`absolute right-0 -bottom-[68px] flex items-center gap-2 transition-transform duration-500 ${isTyping ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-10 opacity-0 pointer-events-none'}`}
             >
                 <div className="bg-white/20 backdrop-blur-md rounded-xl p-1 border border-white/30 shadow-lg transition-transform duration-300 hover:scale-105">
-                    <SendButton onClick={playSendSound} />
+                    <SendButton 
+                        onClick={handleSendClick}
+                    />
                 </div>
             </div>
         </div>
