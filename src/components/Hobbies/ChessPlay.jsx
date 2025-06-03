@@ -3,9 +3,12 @@ import { Chessboard } from 'react-chessboard';
 
 const ChessPlay = () => {
     return (
-        <div className="fixed top-8 left-8 z-10 w-[360px] flex flex-col justify-center h-auto gap-4">
+        <div className="fixed top-8 left-8 z-10 w-[360px] flex flex-col justify-center h-auto ">
+            <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
+                Hobbies | Chess
+            </span>
             {/* Top Info Card */}
-            <div className="bg-white/20 backdrop-blur-md rounded-lg p-6 border border-white/30 shadow-lg transition-transform duration-300 hover:scale-[1.02]">
+            <div className="bg-white/20 backdrop-blur-md rounded-lg p-6 border border-white/30 shadow-lg transition-transform duration-300 hover:scale-[1.02] mb-4">
                 <p className="text-[13px] leading-snug text-gray-800">
                     I was <span className="font-bold text-blue-600">first introduced to chess when I was 11</span>, thanks to my <span className="font-bold text-blue-700">uncle Clinton</span>. Sadly, that chess phase didn't last long—high school rolled around and I found out it <span className="font-bold text-blue-700">apparently wasn't "cool" to play chess</span>, so I gave in to the peer pressure and dropped it. Fast forward to 2020, when COVID locked us all inside and I was finally old enough to realize I don't really care what's considered cool anymore. <span className="font-bold text-blue-700">I picked it back up, and now I can't imagine not having it in my life</span>—it's easily one of my favorite ways to unwind and challenge myself.
                 </p>

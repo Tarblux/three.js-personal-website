@@ -27,9 +27,12 @@ const FootballWatch = () => {
     };
 
     return (
-        <div className="fixed top-8 left-8 z-10 w-[340px] flex flex-col justify-center h-auto gap-4">
+        <div className="fixed top-8 left-8 z-10 w-[340px] flex flex-col justify-center h-auto ">
+            <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
+                Hobbies | Football
+            </span>
             {/* Top Info Card */}
-            <div className="bg-white/20 backdrop-blur-md rounded-lg p-6 border border-white/30 shadow-lg transition-transform duration-300 hover:scale-[1.02]">
+            <div className="bg-white/20 backdrop-blur-md rounded-lg p-6 border border-white/30 shadow-lg transition-transform duration-300 hover:scale-[1.02] mb-4">
                 <p className="text-[13px] leading-snug text-gray-800">
                     <span className="font-bold text-red-500">When I'm not at work</span> or deep into a project, 
                     there's a good chance you'll find me <span className="font-bold text-red-500">watching English Premier League football</span>. 
