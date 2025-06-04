@@ -20,7 +20,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
   const books = [
     {
       id: 1,
-      cover: '/images/Introduction/book-alchemisty.jpg',
+      cover: '/images/Introduction/book-alchemisty.webp',
       title: 'The Alchemist',
       author: 'Paulo Coelho',
       category: 'Fiction',
@@ -31,7 +31,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
     },
     {
       id: 2,
-      cover: '/images/Introduction/book-atomichabits.jpg',
+      cover: '/images/Introduction/book-atomichabits.webp',
       title: 'Atomic Habits',
       author: 'James Clear',
       category: 'Non-Fiction',
@@ -42,7 +42,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
     },
     {
       id: 3,
-      cover: '/images/Introduction/book-underc.jpg',
+      cover: '/images/Introduction/book-underc.webp',
       title: 'The Undercover Economist',
       author: 'Tim Harford',
       category: 'Non-Fiction',
@@ -53,7 +53,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
     },
     {
       id: 4,
-      cover: '/images/Introduction/book-felices.jpg',
+      cover: '/images/Introduction/book-felices.webp',
       title: 'Felices Días Tío Sergio',
       author: 'Magali García Ramis',
       category: 'Fiction',
@@ -64,7 +64,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
     },
     {
       id: 5,
-      cover: '/images/Introduction/book-msreadme.jpg',
+      cover: '/images/Introduction/book-msreadme.webp',
       title: 'The Missing README',
       author: 'Chris Riccomini & Dmitriy Ryaboy',
       category: 'Non-Fiction',
@@ -80,7 +80,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
     <div className="bg-white rounded-lg shadow p-3 col-span-4 row-span-1 flex flex-col transform transition-transform duration-300 hover:scale-105">
       <div className="flex items-center mb-2">
         <img
-          src="/emojis/emoji-books.png"
+          src="/emojis/emoji-books.webp"
           alt="Favorite Books"
           className="w-5 h-5 mr-2"
         />

@@ -5,7 +5,7 @@ const EducationCard = () => {
     <div className="bg-white rounded-lg shadow p-3 col-span-7 row-span-1 transform transition-transform duration-300 hover:scale-[1.03]">
       <div className="flex items-center mb-2">
         <img
-          src="/emojis/emoji-edu.png"
+          src="/emojis/emoji-edu.webp"
           alt="Education"
           className="w-5 h-5 mr-2"
         />

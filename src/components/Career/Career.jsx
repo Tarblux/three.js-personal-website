@@ -31,7 +31,7 @@ const Career = () => {
                         <div className="flex items-start justify-between mb-3">
                             <div className="flex items-center gap-2.5">
                                 <img 
-                                    src="/icons/flextrade_logo.jpg" 
+                                    src="/icons/flextrade_logo.webp" 
                                     alt="Flextrade Systems" 
                                     className="w-8 h-8 rounded-md"
                                 />
@@ -122,7 +122,7 @@ const Career = () => {
                                 <p className="text-xs font-bold mb-1">Libraries & Protocols:</p>
                                 <div className="flex gap-4 mb-3">
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/grpc-icon-color.png" alt="gRPC" className="w-6 h-6" />
+                                        <img src="/icons/grpc-icon-color.webp" alt="gRPC" className="w-6 h-6" />
                                         <span className="text-[9px] mt-0.5">gRPC</span>
                                     </div>
                                     <div className="flex flex-col items-center">
@@ -151,7 +151,7 @@ const Career = () => {
                         <div className="flex items-start justify-between mb-2">
                             <div className="flex items-center gap-2">
                                 <img 
-                                    src="/icons/eagle-med.png" 
+                                    src="/icons/eagle-med.webp" 
                                     alt="Eagle Medical Lab" 
                                     className="w-10 h-10"
                                 />

@@ -26,7 +26,7 @@ const ResumeCard = ({ onImageClick }) => {
       onMouseLeave={handleMouseLeave}
     >
       <img
-        src="/images/Introduction/resume-thumbnail.png"
+        src="/images/Introduction/resume-thumbnail.webp"
         alt="Resume"
         className="rounded mb-1 w-full h-auto"
       />

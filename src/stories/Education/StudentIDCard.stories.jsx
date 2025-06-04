@@ -15,8 +15,8 @@ export const Default = Template.bind({});
 Default.args = {
   school: {
     name: 'Yonsei University',
-    logo: '/images/Education/education-yonsei_logo.png',
-    idImage: '/images/Education/education-yonsei_id.png',
+    logo: '/images/Education/education-yonsei_logo.webp',
+    idImage: '/images/Education/education-yonsei_id.webp',
     studentId: '2023123456',
     degrees: [
       {

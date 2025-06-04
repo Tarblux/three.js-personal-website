@@ -40,12 +40,12 @@ export const row2Sections = [contentCreators, teachers, libraryCreators];
 
 export const specialThanks = [
   {
-    img: '/images/Contact/bruno-simon-headshot.jpg',
+    img: '/images/Contact/bruno-simon-headshot.webp',
     alt: 'Bruno Simon',
     text: `Bruno Simon's Three.js course was the single best resource that helped me overcome the biggest hurdles of this project.`,
   },
   {
-    img: '/images/Contact/aleks-headshot.jpeg',
+    img: '/images/Contact/aleks-headshot.webp',
     alt: 'Aleksandr',
     text: `Aleksandr has been by my side throughout this entire project—
 motivating me to finish, helping me troubleshoot bugs, and offering constant emotional support. 

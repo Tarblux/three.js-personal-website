@@ -64,7 +64,7 @@ const ChessProfile = () => {
         className="inline-flex focus:outline-none focus:ring-0"
       >
         <img
-          src="/images/Hobbies/hobbies-chesscom-profilepic.jpg"
+          src="/images/Hobbies/hobbies-chesscom-profilepic.webp"
           alt="Profile"
           className="w-28 h-28 rounded-xl object-cover shadow-md mr-4 transition-transform duration-300 hover:scale-105"
         />

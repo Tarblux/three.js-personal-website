@@ -24,15 +24,15 @@ const FootballPlay = () => {
                         <span className="font-bold text-[13px] text-black mr-1">Midfield</span>
                         <div className="flex items-center mt-0.5">
                             <span className="bg-green-600 text-white text-xs font-bold px-1 py-0.5 rounded">CM</span>
-                            <img src="/images/Hobbies/hobbies-leftfoot.jpg" alt="Left foot" className="w-4 h-4 object-contain opacity-50 ml-1" />
-                            <img src="/images/Hobbies/hobbies-rightfoot.jpg" alt="Right foot" className="w-4 h-4 object-contain  -ml-1" />
+                            <img src="/images/Hobbies/hobbies-leftfoot.webp" alt="Left foot" className="w-4 h-4 object-contain opacity-50 ml-1" />
+                            <img src="/images/Hobbies/hobbies-rightfoot.webp" alt="Right foot" className="w-4 h-4 object-contain  -ml-1" />
                         </div>
                     </div>
                     {/* Jersey image */}
-                    <img src="/images/Hobbies/hobbies-twill-kit.png" alt="Twill Jersey" className="absolute top-6 left-4 w-32 h-36 object-contain select-none" />
+                    <img src="/images/Hobbies/hobbies-twill-kit.webp" alt="Twill Jersey" className="absolute top-6 left-4 w-32 h-36 object-contain select-none" />
                     {/* Badge and name */}
                     <div className="absolute left-2 bottom-2 flex items-center">
-                        <img src="/images/Hobbies/hobbies-yaad.png" alt="Yaad badge" className="w-12 h-12 object-contain" />
+                        <img src="/images/Hobbies/hobbies-yaad.webp" alt="Yaad badge" className="w-12 h-12 object-contain" />
                         <div className="flex flex-col leading-none mt-2">
                             <span className="font-bold text-black text-[16px]">Tariq</span>
                             <span className="font-bold text-green-500 text-xl -mt-1">Williams</span>
@@ -41,12 +41,12 @@ const FootballPlay = () => {
                     {/* Headshot/Celebration */}
                     <div className="absolute bottom-0 right-8 w-40 h-48">
                         <img
-                            src="/images/Hobbies/hobbies-twill-headshot-2.png"
+                            src="/images/Hobbies/hobbies-twill-headshot-2.webp"
                             alt="Twill Headshot"
                             className="absolute inset-0 w-full h-full object-contain object-bottom select-none transition-opacity duration-300 opacity-100 group-hover:opacity-0"
                         />
                         <img
-                            src="/images/Hobbies/hobbies-twill-headshot-2.png"
+                            src="/images/Hobbies/hobbies-twill-headshot-2.webp"
                             alt="Twill Celebration"
                             className="absolute inset-0 w-full h-full object-contain object-bottom select-none transition-opacity duration-300 opacity-0 group-hover:opacity-100"
                         />
@@ -63,7 +63,7 @@ const FootballPlay = () => {
                         {/* Pitch image */}
                         <div className="relative w-[180px] h-[180px] flex items-center justify-start ml-6">
                             <img
-                                src="/images/Hobbies/hobbies-football-pitch.png"
+                                src="/images/Hobbies/hobbies-football-pitch.webp"
                                 alt="Football Pitch"
                                 className="w-full h-full object-contain select-none rotate-90"
                             />

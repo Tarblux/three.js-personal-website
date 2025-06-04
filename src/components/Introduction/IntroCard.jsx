@@ -5,7 +5,7 @@ const IntroCard = () => {
     <div className="bg-white rounded-lg shadow p-3 pb-4 col-span-3 row-span-2 flex flex-col items-center transform transition-transform duration-300 hover:scale-105">
       <div className="flex flex-col items-center space-y-2">
         <img
-          src="/images/Introduction/profile-pic.png"
+          src="/images/Introduction/profile-pic.webp"
           alt="Profile"
           className="w-38 h-38"
         />
