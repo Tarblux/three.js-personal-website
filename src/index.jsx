@@ -39,7 +39,7 @@ function Loader({ onBoardingPassClick }) {
   return (
     <div id="loader">
       <div className="loading-message">Building city...</div>
-      <video src="/images/city-loading.mp4" autoPlay muted playsInline disablePictureInPicture className="loading-video" />
+      <video src="/videos/city-loading.mp4" autoPlay muted playsInline disablePictureInPicture className="loading-video" />
       <div className="loading-bar-container">
         <div className="loading-bar" style={{ width: `${progress}%` }}></div>
       </div>
