@@ -117,7 +117,7 @@ const FootballPlay = () => {
                         {/* Highlight 1 */}
                         <div className="flex items-center justify-between bg-white/40 rounded-lg px-3 py-2 cursor-pointer border-2 hover:bg-gray-100 transition group"
                             onClick={() => {
-                                setHighlightVideoSrc('/images/Hobbies/hobbies-solo-dolo.MP4');
+                                setHighlightVideoSrc('/videos/hobbies-solo-dolo.mp4');
                                 setHighlightModalOpen(true);
                             }}
                         >
@@ -126,29 +126,40 @@ const FootballPlay = () => {
                                 <span className="text-gray-500 text-[13px]">0:06</span>
                                 {/* Play Button */}
                                 <span className="ml-1">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="10" fill="#fff" stroke="#222" strokeWidth="2"/>
-                                        <polygon points="10,8 16,12 10,16" fill="#222" />
-                                    </svg>
+                                    <img src="/images/Hobbies/play.svg" alt="Play" width="24" height="24" />
                                 </span>
                             </div>
                         </div>
                         {/* Highlight 2 */}
                         <div className="flex items-center justify-between bg-white/40 rounded-lg px-3 py-2 cursor-pointer border-2 hover:bg-gray-100 transition group"
                             onClick={() => {
-                                setHighlightVideoSrc('/images/Hobbies/hobbies-solo-dolo.MP4');
+                                setHighlightVideoSrc('/videos/tariq-freekick.mp4');
                                 setHighlightModalOpen(true);
                             }}
                         >
-                            <span className="font-bold text-[12px] text-black">Trying to pull a declan rice</span>
+                            <span className="font-bold text-[12px] text-black">Trying to do a declan rice</span>
                             <div className="flex items-center gap-1">
-                                <span className="text-gray-500 text-[13px]">0:12</span>
+                                <span className="text-gray-500 text-[13px]">0:07</span>
                                 {/* Play Button */}
                                 <span className="ml-1">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="10" fill="#fff" stroke="#222" strokeWidth="2"/>
-                                        <polygon points="10,8 16,12 10,16" fill="#222" />
-                                    </svg>
+                                    <img src="/images/Hobbies/play.svg" alt="Play" width="24" height="24" />
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Highlight 3 */}
+                        <div className="flex items-center justify-between bg-white/40 rounded-lg px-3 py-2 cursor-pointer border-2 hover:bg-gray-100 transition group"
+                            onClick={() => {
+                                setHighlightVideoSrc('/videos/tariq-blooper.mp4');
+                                setHighlightModalOpen(true);
+                            }}
+                        >
+                            <span className="font-bold text-[12px] text-black">Blooper</span>
+                            <div className="flex items-center gap-1">
+                                <span className="text-gray-500 text-[13px]">0:10</span>
+                                {/* Play Button */}
+                                <span className="ml-1">
+                                    <img src="/images/Hobbies/play.svg" alt="Play" width="24" height="24" />
                                 </span>
                             </div>
                         </div>
