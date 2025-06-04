@@ -21,7 +21,7 @@ const KombuchaMenu = () => {
             </span>
           </div>
           <img 
-            src="/images/Hobbies/tariqs-booch-lab.png"
+            src="/images/Hobbies/tariqs-booch-lab.webp"
             alt="Tariq's Booch Lab Logo"
             className="w-44 h-44 object-contain"
           />
@@ -50,7 +50,7 @@ const KombuchaMenu = () => {
           <div className="flex flex-col gap-1 items-start mb-1">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1">
-                <img src="/images/Hobbies/mint.png" alt="Mint" className="w-8 h-8 object-contain" />
+                <img src="/images/Hobbies/mint.webp" alt="Mint" className="w-8 h-8 object-contain" />
                 <span className="text-black font-semibold text-xs">Mint</span>
               </div>
               <div className="flex items-center gap-1">

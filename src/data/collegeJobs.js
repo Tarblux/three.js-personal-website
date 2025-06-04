@@ -5,7 +5,7 @@ export const collegeJobs = [
     organization: "Mathematics Dept",
     startDate: "2021-01-02",
     endDate: "2023-06-01",
-    logo: "/images/Education/k-logo-rounded.png",
+    logo: "/images/Education/k-logo-rounded.webp",
     bullets: [
       "Helped students by explaining in-class topics and concepts",
       "Collated weekly reports of areas for the professor to review"
@@ -17,7 +17,7 @@ export const collegeJobs = [
     organization: "Mathematics Dept",
     startDate: "2021-09-01",
     endDate: "2022-06-01",
-    logo: "/images/Education/k-logo-rounded.png",
+    logo: "/images/Education/k-logo-rounded.webp",
     bullets: [
       "Graded homework assignments and exams for undergraduate mathematics courses :\n(Calculus I, Calculus II, Discrete Math).",
       "Provided feedback to students to support their learning and understanding of course material."
@@ -29,7 +29,7 @@ export const collegeJobs = [
     organization: "Center for International Programs",
     startDate: "2021-09-01",
     endDate: "2023-06-01",
-    logo: "/images/Education/k-logo-rounded.png",
+    logo: "/images/Education/k-logo-rounded.webp",
     bullets: [
       "Designed graphics and publications about study abroad in Photoshop and Canva",
       "Collaborated with a group of Peer Advisors to guide students through the study abroad application process",
@@ -42,7 +42,7 @@ export const collegeJobs = [
     organization: "Admissions Office",
     startDate: "2022-08-01",
     endDate: "2023-03-01",
-    logo: "/images/Education/k-logo-rounded.png",
+    logo: "/images/Education/k-logo-rounded.webp",
     bullets: [
       "Led groups of campus visitors on educational and informative tours of the school campus",
       "Answered visitors' questions, provided recommendations for local restaurants and activities, and helped resolve any issues or concerns that arose during the tour"
@@ -54,7 +54,7 @@ export const collegeJobs = [
     organization: "Facilities Management",
     startDate: "2022-06-01",
     endDate: "2022-09-01",
-    logo: "/images/Education/k-logo-rounded.png",
+    logo: "/images/Education/k-logo-rounded.webp",
     bullets: [
       "Assisted custodial staff in performing daily cleaning duties, including sweeping, mopping, and vacuuming of dorms and classroom facilities"
     ]
@@ -65,7 +65,7 @@ export const collegeJobs = [
     organization: "Develop for Good",
     startDate: "2022-06-01",
     endDate: "2023-06-01",
-    logo: "/images/Education/develop_for_good_logo.jpg",
+    logo: "/images/Education/develop_for_good_logo.webp",
     bullets: [
       "Collaborated with non-profit organizations to develop web applications",
       "Designed UI/UX for web applications",
@@ -78,7 +78,7 @@ export const collegeJobs = [
     organization: "Communities in Schools Michigan",
     startDate: "2023-01-01",
     endDate: "2023-06-01",
-    logo: "/images/Education/communities_in_schools_of_michigan_inc_logo.jpg",
+    logo: "/images/Education/communities_in_schools_of_michigan_inc_logo.webp",
     bullets: [
       "Provided one-on-one tutoring in Mathematics and German to middle school students",
       "Developed Games and Activities to help students learn and practice math",

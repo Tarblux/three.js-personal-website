@@ -49,7 +49,7 @@ const ChessPlay = () => {
                                 {/* Player 1 Column (Me) */}
                                 <div className="flex flex-col items-center text-center h-full justify-start">
                                     <span className="font-bold text-black text-[12px]">Me</span>
-                                    <img src="/images/Hobbies/chess-blunderRasta.jpg" alt="Me" className="w-8 h-8 rounded-md object-cover border border-gray-300 my-1" />
+                                    <img src="/images/Hobbies/chess-blunderRasta.webp" alt="Me" className="w-8 h-8 rounded-md object-cover border border-gray-300 my-1" />
                                     <span className="bg-black text-white text-[10px] font-bold rounded px-1 py-0.5 mb-2">93.5</span>
                                     {/* Move type numbers */}
                                     <span className="bg-green-500 text-white text-[13px] font-bold rounded-md w-5 h-5 flex items-center justify-center mb-1">31</span>
@@ -72,7 +72,7 @@ const ChessPlay = () => {
                                 {/* Player 2 Column (Opponent) */}
                                 <div className="flex flex-col items-center text-center h-full justify-start">
                                     <span className="font-bold text-black text-[12px]">steph..</span>
-                                    <img src="/images/Hobbies/chess-steph.jpg" alt="stephskogatt" className="w-8 h-8 rounded-md object-cover border border-gray-300 my-1" />
+                                    <img src="/images/Hobbies/chess-steph.webp" alt="stephskogatt" className="w-8 h-8 rounded-md object-cover border border-gray-300 my-1" />
                                     <span className="bg-gray-100 text-black text-[10px] font-bold rounded px-1 py-0.5 border border-gray-300 mb-2">86.0</span>
                                     {/* Move type numbers */}
                                     <span className="bg-green-500 text-white text-[13px] font-bold rounded-md w-5 h-5 flex items-center justify-center mb-1">22</span>

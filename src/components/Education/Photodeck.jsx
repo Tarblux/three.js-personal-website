@@ -2,19 +2,19 @@ import React, { useState, useRef } from 'react';
 import './Photodeck.css';
 
 const deckImages = [
-  { src: '/images/Education/korea-4.jpg' },
-  { src: '/images/Education/korea-3.jpg' },
-  { src: '/images/Education/korea-2.jpg' },
-  { src: '/images/Education/korea-1.jpg' },
-  { src: '/images/Education/korea-0.jpg' }
+  { src: '/images/Education/korea-4.webp' },
+  { src: '/images/Education/korea-3.webp' },
+  { src: '/images/Education/korea-2.webp' },
+  { src: '/images/Education/korea-1.webp' },
+  { src: '/images/Education/korea-0.webp' }
 ];
 
 const modalImages = [
-  { src: '/images/Education/education-korea-4.png' },
-  { src: '/images/Education/education-korea-3.png' },
-  { src: '/images/Education/education-korea-2.png' },
-  { src: '/images/Education/education-korea-1.png' },
-  { src: '/images/Education/education-korea-0.png' }
+  { src: '/images/Education/education-korea-4.webp' },
+  { src: '/images/Education/education-korea-3.webp' },
+  { src: '/images/Education/education-korea-2.webp' },
+  { src: '/images/Education/education-korea-1.webp' },
+  { src: '/images/Education/education-korea-0.webp' }
 ];
 
 const Photodeck = () => {

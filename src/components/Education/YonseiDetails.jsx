@@ -18,7 +18,7 @@ const YonseiDetails = () => {
                         {/* Logo and Title */}
                         <div className="flex items-center w-full mb-2 mt-0">
                             <img
-                                src="/images/Education/education-yonsei_logo.png"
+                                src="/images/Education/education-yonsei_logo.webp"
                                 alt="Yonsei University Logo"
                                 className="w-10 h-10 mr-2"
                             />
@@ -27,7 +27,7 @@ const YonseiDetails = () => {
                                 <div className="flex items-center text-gray-600 text-[13px]">
                                     Seoul, South Korea
                                     <img
-                                        src="/images/Education/south-korea-roundflag.png"
+                                        src="/images/Education/south-korea-roundflag.webp"
                                         alt="South Korea Flag"
                                         className="w-5 h-5 ml-1"
                                     />

@@ -49,7 +49,7 @@ const Introduction = () => {
         >
           <div className="relative flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
             <img
-              src="/images/Introduction/resume-thumbnail.png"
+              src="/images/Introduction/resume-thumbnail.webp"
               alt="Resume Full"
               className="max-w-[85vw] max-h-[85vh] rounded shadow-lg object-contain"
             />

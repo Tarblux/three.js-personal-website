@@ -25,7 +25,7 @@ export const Default = Template.bind({});
 Default.args = {
     title: "Test Project",
     date: "Dec '24 - Present · 1 mo",
-    image: "/images/project-creo.png",
+    image: "/images/project-creo.webp",
     description: "Test project description",
     category: "Research",
     technologies: ["Test Technology 1", "Test Technology 2", "Test Technology 3"]
@@ -36,7 +36,7 @@ export const WebDevelopment = Template.bind({});
 WebDevelopment.args = {
     title: "Three.js Personal Website",
     date: "2024 - Present",
-    image: "/images/project-tester.png",
+    image: "/images/project-tester.webp",
     description: "Interactive 3D portfolio website with modern tech stack",
     category: "Web Development",
     technologies: ["Three.js", "React", "Node.js", "PostgreSQL"]
@@ -47,7 +47,7 @@ export const LongContent = Template.bind({});
 LongContent.args = {
     title: "Very Long Project Title That Might Need Special Handling",
     date: "Jan '23 - Dec '23 · 12 mo",
-    image: "/images/project-leet.png",
+    image: "/images/project-leet.webp",
     description: "This is a very long description that demonstrates how the card handles extended content. It should wrap properly and maintain the card's layout integrity.",
     category: "Development",
     technologies: ["Technology 1", "Technology 2", "Technology 3", "Technology 4", "Technology 5", "Technology 6"]

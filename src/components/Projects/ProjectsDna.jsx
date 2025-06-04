@@ -81,7 +81,7 @@ const ProjectsDna = () => {
                                     onMouseLeave={() => setHoveredLanguage(null)}
                                 >
                                     <img 
-                                        src="/images/Projects/DNA/Py.png" 
+                                        src="/images/Projects/DNA/Py.webp" 
                                         alt="Python" 
                                         className={`w-[128px] h-[128px] transition-all duration-300 ${getLanguageOpacityClass('python')} ${getLanguageScaleClass('python')}`} 
                                     />
@@ -96,7 +96,7 @@ const ProjectsDna = () => {
                                     onMouseLeave={() => setHoveredLanguage(null)}
                                 >
                                     <img 
-                                        src="/images/Projects/DNA/TS.png" 
+                                        src="/images/Projects/DNA/TS.webp" 
                                         alt="TypeScript" 
                                         className={`w-[190px] h-[128px] transition-all duration-300 ${getLanguageOpacityClass('typescript')} ${getLanguageScaleClass('typescript')}`} 
                                     />
@@ -131,7 +131,7 @@ const ProjectsDna = () => {
                                     onMouseLeave={() => setHoveredLanguage(null)}
                                 >
                                     <img 
-                                        src="/images/Projects/DNA/Scala.png" 
+                                        src="/images/Projects/DNA/Scala.webp" 
                                         alt="Scala" 
                                         className={`w-[128px] h-[128px] transition-all duration-300 ${getLanguageOpacityClass('scala')} ${getLanguageScaleClass('scala')}`} 
                                     />
@@ -146,7 +146,7 @@ const ProjectsDna = () => {
                                     onMouseLeave={() => setHoveredLanguage(null)}
                                 >
                                     <img 
-                                        src="/images/Projects/DNA/Rust.png" 
+                                        src="/images/Projects/DNA/Rust.webp" 
                                         alt="Rust" 
                                         className={`w-[100px] h-[128px] transition-all duration-300 ${getLanguageOpacityClass('rust')} ${getLanguageScaleClass('rust')}`} 
                                     />
@@ -162,7 +162,7 @@ const ProjectsDna = () => {
                                     onMouseLeave={() => setHoveredLanguage(null)}
                                 >
                                     <img 
-                                        src="/images/Projects/DNA/C++.png" 
+                                        src="/images/Projects/DNA/C++.webp" 
                                         alt="C++" 
                                         className={`w-[58px] h-[128px] transition-all duration-300 ${getLanguageOpacityClass('cpp')} ${getLanguageScaleClass('cpp')}`} 
                                     />

@@ -31,7 +31,7 @@ const StudentIDCard = ({ school }) => {
         />
         <div className="mt-1 w-full flex flex-row items-center justify-center gap-2">
           <img
-            src="/images/Education/education-barcode-2.jpg"
+            src="/images/Education/education-barcode-2.webp"
             alt="Student QR Code"
             className="object-contain w-6 h-6 mb-0"
           />
