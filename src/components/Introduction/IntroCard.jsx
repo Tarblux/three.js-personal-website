@@ -2,13 +2,18 @@ import React from 'react';
 
 const IntroCard = () => {
   return (
-    <div className="bg-white rounded-lg shadow p-3 pb-4 col-span-3 row-span-2 flex flex-col items-center transform transition-transform duration-300 hover:scale-105">
-      <div className="flex flex-col items-center space-y-2">
-        <img
-          src="/images/Introduction/profile-pic.webp"
-          alt="Profile"
-          className="w-38 h-38"
-        />
+    <div className="bg-white rounded-lg shadow p-3 pb-4 col-span-3 row-span-2 flex flex-col items-center transform transition-transform duration-300 hover:scale-105 overflow-visible">
+      <div className="flex flex-col items-center space-y-2 overflow-visible">
+        <div className="relative w-32 h-32 flex-shrink-0 mb-8">
+          {/* Gray background square */}
+          <div className="absolute w-36 h-36 bg-gray-200 rounded-2xl z-0"></div>
+          {/* Profile image*/}
+          <img
+            src="/images/Contact/profile-pic-contact.webp"
+            alt="Profile"
+            className="absolute -top-[52px] -left-2 w-52 h-52 object-cover rounded-2xl z-10 overflow-visible"
+          />
+        </div>
         <h2 className="text-xl font-bold tracking-tight">Tariq Williams</h2>
         <div className="space-y-0 text-center w-full">
           <p className="text-green-500 font-bold">Software Engineer</p>
