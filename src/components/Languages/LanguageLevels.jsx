@@ -24,13 +24,78 @@ const CEFRExplanationCard = ({ onClose }) => (
           <p>{description}</p>
         </div>
       ))}
+<div className="mt-4 pt-4 border-t border-gray-300">
+  <p className="text-xs text-gray-600">
+    For all my fellow language nerds (or anyone who just *really* loves a good table), here's the official CEFR scale straight from the source:{" "}
+    <a 
+      href="https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="text-blue-600 hover:text-blue-800 underline break-all"
+    >
+      https://www.coe.int/en/web/common-european-framework-reference-languages
+    </a>
+    . Nerd out responsibly.
+  </p>
+</div>
+
     </div>
   </div>
 );
 
+const getCEFRColor = (level) => {
+  const colors = {
+    'C2': '#19c37d',
+    'C1': '#19c37d', 
+    'B2': '#5BB751',
+    'B1': '#FFD600',
+    'A2': '#FF9130',
+    'A1': '#FF4A4A'
+  };
+  return colors[level] || '#9ca3af';
+};
+
+const getCEFRDots = (level) => {
+  const levels = {
+    'C2': 6,
+    'C1': 5,
+    'B2': 4,
+    'B1': 3,
+    'A2': 2,
+    'A1': 1
+  };
+  return levels[level] || 0;
+};
+
+const SkillDots = ({ level, skillName }) => {
+  const filledDots = getCEFRDots(level);
+  const color = getCEFRColor(level);
+  
+  return (
+    <div className="flex items-center gap-2 text-xs">
+      <span className="text-gray-400 capitalize">{skillName}</span>
+      <div className="flex gap-[3px]">
+        {[...Array(6)].map((_, index) => (
+          <div
+            key={index}
+            className="w-[5px] h-[10px] rounded-full"
+            style={{
+              backgroundColor: index < filledDots ? color : '#8A9097'
+            }}
+          />
+        ))}
+      </div>
+      <div className="w-[4px] h-[4px] rounded-full bg-gray-400"></div>
+      <span className="text-gray-400 text-xs">{level}</span>
+    </div>
+  );
+};
+
 const LanguageLevels = ({ languageLevelsData, setHighlightedLanguage, hoverTimeoutRef }) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
+  const [expandedLanguage, setExpandedLanguage] = useState(null);
+  const [hoveredLanguage, setHoveredLanguage] = useState(null);
 
   const handleMouseEnterHelp = () => {
     if (!isPinned) {
@@ -74,33 +139,67 @@ const LanguageLevels = ({ languageLevelsData, setHighlightedLanguage, hoverTimeo
           {languageLevelsData.map((lang) => (
             <div
               key={lang.name}
-              className="flex items-center justify-between p-2 rounded-xl bg-gray-200 cursor-pointer transition-all duration-200 hover:bg-gray-300 hover:scale-[1.05]"
+              className="flex flex-col p-2 rounded-xl bg-gray-200 cursor-pointer transition-all duration-200 hover:bg-gray-300 hover:scale-[1.02]"
+              onClick={() => setExpandedLanguage(expandedLanguage === lang.name ? null : lang.name)}
               onMouseEnter={() => {
                 clearTimeout(hoverTimeoutRef.current);
                 setHighlightedLanguage(lang.name);
+                setHoveredLanguage(lang.name);
               }}
               onMouseLeave={() => {
                 hoverTimeoutRef.current = setTimeout(() => {
                   setHighlightedLanguage(null);
+                  setHoveredLanguage(null);
                 }, 150);
               }}
             >
-              <div className="flex items-center gap-3">
-                <img src={lang.flag} alt={lang.name} className="w-8 h-8 rounded-full border" />
-                <div>
-                  <div className="font-bold text-lg">{lang.name}</div>
-                  <div className="text-xs text-gray-500 flex items-center gap-1">
-                    <img src={lang.icon} alt="icon" className="w-[13px] h-[13px] mr-1" />
-                    {lang.level}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <img src={lang.flag} alt={lang.name} className="w-8 h-8 rounded-full border" />
+                  <div>
+                    <div className="font-bold text-lg">{lang.name}</div>
+                    <div className="text-xs text-gray-500 flex items-center gap-1">
+                      <img src={lang.icon} alt="icon" className="w-[13px] h-[13px] mr-1" />
+                      {lang.level}
+                    </div>
                   </div>
                 </div>
+                <div className="flex items-center gap-3">
+                  <svg 
+                    width="8" 
+                    height="6" 
+                    viewBox="0 0 8 6" 
+                    fill="none" 
+                    className="text-gray-400"
+                  >
+                    <path 
+                      d="M1 1.5L4 4.5L7 1.5" 
+                      stroke="currentColor" 
+                      strokeWidth="1.5" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <span
+                    className="text-white font-bold w-10 h-10 flex items-center justify-center rounded-lg text-lg shadow"
+                    style={{ background: lang.cefrBg }}
+                  >
+                    {lang.cefr}
+                  </span>
+                </div>
               </div>
-              <span
-                className="text-white font-bold w-10 h-10 flex items-center justify-center rounded-lg text-lg shadow"
-                style={{ background: lang.cefrBg }}
-              >
-                {lang.cefr}
-              </span>
+              
+              {/* Expanded Details */}
+              <div className={`transition-all duration-300 overflow-hidden ${expandedLanguage === lang.name || hoveredLanguage === lang.name ? 'max-h-[200px] mt-3' : 'max-h-0'}`}>
+                {lang.details && (
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                    <SkillDots level={lang.details.speaking} skillName="speaking" />
+                    <SkillDots level={lang.details.reading} skillName="reading" />
+                    <SkillDots level={lang.details.listening} skillName="listening" />
+                    <SkillDots level={lang.details.writing} skillName="writing" />
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>
