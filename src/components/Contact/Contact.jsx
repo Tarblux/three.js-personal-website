@@ -28,25 +28,36 @@ const Contact = () => {
     };
 
     return (
+        // CONTACT_ROOT: This is the main positioning context for the absolute image and the card , so they can be positioned relative to each other
         <div className="fixed top-8 right-8 z-10 w-[400px] flex flex-col justify-center h-auto">
+            
+            {/* OVERFLOWING_IMAGE HACK: This is a hack to get the image to overflow the card  , because safari and chrome have different default styles for images :( */}
+            {/* The image needs to be positioned to align with where it would appear in the card */}
+            {/* Accounting for: Contact label (mb-2), glassmorphic wrapper (p-2), main card (p-4) */}
+            <div className="absolute top-[calc(1rem+0.5rem+1rem+1rem-42px)] left-[calc(1rem+1rem-0.5rem)] z-20">
+                {/* Gray background square */}
+                <div className="absolute top-[52px] left-2 w-36 h-36 bg-gray-200 rounded-2xl z-0"></div>
+                {/* Profile image */}
+                <img
+                    src="/images/Contact/profile-pic-contact.webp"
+                    alt="Profile"
+                    className="w-52 h-52 object-cover rounded-2xl z-10 relative -left-10"
+                />
+            </div>
+
             <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
                 Contact
             </span>
+            
             {/* Glassmorphic Card */}
             <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 border border-white/30 shadow-lg ">
                 {/* Main White Card */}
                 <div className="bg-white/90 p-4 rounded-lg shadow-lg text-left flex flex-col gap-4">
-                    {/* Top Row: Avatar + Heading */}
+                    {/* Top Row: Avatar Spacer + Heading */}
                     <div className="flex flex-row items-start gap-6 mb-5">
+                        {/* AVATAR_SPACER: This div creates space for the absolutely positioned image */}
                         <div className="relative w-32 h-32 flex-shrink-0">
-                            {/* Gray background square */}
-                            <div className="absolute w-36 h-36 bg-gray-200 rounded-2xl z-0"></div>
-                            {/* Profile image*/}
-                            <img
-                                src="/images/Contact/profile-pic-contact.webp"
-                                alt="Profile"
-                                className="absolute -top-[52px] -left-2 w-52 h-52 object-cover rounded-2xl z-10 overflow-visible"
-                            />
+                            {/* This spacer maintains the layout spacing where the image would have been , I hate safari and firefox for this lol */}
                         </div>
                         <div className="flex flex-col justify-center mt-2 ml-3">
                             <h2 className="text-2xl font-bold mb-1">Get in touch !</h2>
