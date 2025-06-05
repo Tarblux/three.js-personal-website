@@ -15,7 +15,7 @@ const DropIcon = ({ color }) => (
   </svg>
 );
 
-const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidColor, priceColor, isPlaying, onPlay, onStop }) => {
+const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidColor, priceColor, hoverImage, isPlaying, onPlay, onStop, onHoverImage, onHoverEnd }) => {
   const audioRef = useRef(null);
 
   React.useEffect(() => {
@@ -42,7 +42,7 @@ const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidCol
   };
 
   return (
-    <div className="kombucha-bottle-outer scale-[0.90]">
+    <div className="kombucha-bottle-outer scale-[0.90] relative">
       <div className="flex flex-row items-start gap-8 ">
         <audio ref={audioRef} src="/sounds/bottle-sfx.mp3" preload="auto" />
         <div className="bottle-wrapper -ml-[80px] -mr-[100px] relative">
@@ -75,6 +75,17 @@ const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidCol
               </div>
             </div>
           </button>
+          
+          {/* Photo icon below the bottle */}
+          <div className="flex justify-center -mt-4">
+            <img 
+              src="/images/Hobbies/photo.svg" 
+              alt="Photo" 
+              className="w-6 h-6 cursor-pointer opacity-60 hover:opacity-100 transition-opacity"
+              onMouseEnter={onHoverImage}
+              onMouseLeave={onHoverEnd}
+            />
+          </div>
         </div>
         {/* Details Section */}
         <div className="flex flex-col items-start mt-2">

@@ -62,8 +62,8 @@ export const languageCountries = {
       "SEY"
     ],
     zoom: {
-      scale: 150,
-      translation: [0.5, 0.7],
+      scale: 180,
+      translation: [0.4, 0.7],
       rotation: [0, 0, 0]
     }
   }

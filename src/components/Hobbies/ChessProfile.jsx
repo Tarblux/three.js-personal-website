@@ -20,17 +20,51 @@ const ChessProfile = () => {
       .catch(() => setLoading(false));
   }, []);
 
-  const formatDate = (isoString) => {
+  const formatRelativeDate = (isoString) => {
     if (!isoString) return '';
     const date = new Date(isoString);
-    return date.toLocaleString(undefined, {
-      year: 'numeric',
-      month: 'short',
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    
+    // Reset time to start of day for accurate comparison
+    const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    
+    const timeDiff = todayOnly.getTime() - dateOnly.getTime();
+    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    
+    // Format the date and time
+    const dateStr = date.toLocaleDateString(undefined, {
+      month: 'long',
       day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
+      year: 'numeric'
     });
+    const timeStr = date.toLocaleTimeString(undefined, {
+      hour: 'numeric',
+      minute: '2-digit'
+    });
+    
+    if (daysDiff === 0) {
+      return `Today (${dateStr} at ${timeStr})`;
+    } else if (daysDiff === 1) {
+      return `Yesterday (${dateStr} at ${timeStr})`;
+    } else if (daysDiff === 2) {
+      return `Two Days Ago (${dateStr}) at ${timeStr}`;
+    } else {
+      return `${daysDiff} Days Ago (${dateStr} at ${timeStr})`;
+    }
+  };
+
+  const isOnlineToday = () => {
+    if (!lastOnline) return false;
+    const date = new Date(lastOnline);
+    const today = new Date();
+    
+    const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    
+    return dateOnly.getTime() === todayOnly.getTime();
   };
 
   if (loading) {
@@ -83,14 +117,14 @@ const ChessProfile = () => {
         </div>
         <span className="text-gray-600 text-sm">Joined Dec 10, 2020</span>
         <div className="flex items-center gap-2 mt-1">
-          <span className="w-2 h-2 bg-yellow-400 rounded-full inline-block "></span>
+          <span className={`w-2 h-2 ${isOnlineToday() ? 'bg-green-500' : 'bg-yellow-500'} rounded-full inline-block`}></span>
           <span className="text-gray-500 text-xs">Last Online:</span>
         </div>
         <div className="flex flex-col items-start mt-0.5 ml-4">    
           <span className="text-gray-400 text-xs">
             {!lastOnline
-              ? '3 days ago'
-              : formatDate(lastOnline)}
+              ? 'Three Days Ago (June 1, 2024)'
+              : formatRelativeDate(lastOnline)}
           </span>
         </div>
       </div>

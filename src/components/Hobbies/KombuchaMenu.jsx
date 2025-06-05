@@ -4,8 +4,21 @@ import KombuchaBottle from './KombuchaBottle';
 
 const KombuchaMenu = () => {
   const [playingIdx, setPlayingIdx] = useState(null);
+  const [hoveredImage, setHoveredImage] = useState(null);
+  
   return (
     <div className="flex justify-end w-full">
+      {/* Hover image - positioned in the open space to the left */}
+      {hoveredImage && (
+        <div className="fixed left-[200px] top-1/2 transform -translate-y-1/2 z-30">
+          <img 
+            src={hoveredImage} 
+            alt="Hover Image" 
+            className="w-[400px] h-[400px] object-cover rounded-lg shadow-2xl border-4 border-white"
+          />
+        </div>
+      )}
+      
       <div className="relative bg-white rounded-3xl shadow-2xl p-6 w-[730px] h-[730px] mr-8 mt-4">
         {/* Header */}
         <div className="flex justify-between items-start ">
@@ -28,17 +41,27 @@ const KombuchaMenu = () => {
         </div>
         {/* Bottles Grid */}
         <div className="grid grid-cols-2  justify-center items-start">
-          {kombuchaBottles.map((bottle, idx) => (
-            <KombuchaBottle 
-              key={idx} 
-              {...bottle} 
-              liquidColor={bottle.liquidColor} 
-              priceColor={bottle.priceColor}
-              isPlaying={playingIdx === idx}
-              onPlay={() => setPlayingIdx(idx)}
-              onStop={() => setPlayingIdx(null)}
-            />
-          ))}
+          {kombuchaBottles.map((bottle, idx) => {
+            const hoverImages = [
+              '/images/Hobbies/nina.webp',
+              '/images/Hobbies/Dmango.jpg', 
+              '/images/Hobbies/sunset.webp'
+            ];
+            return (
+              <KombuchaBottle 
+                key={idx} 
+                {...bottle} 
+                liquidColor={bottle.liquidColor} 
+                priceColor={bottle.priceColor}
+                hoverImage={hoverImages[idx]}
+                isPlaying={playingIdx === idx}
+                onPlay={() => setPlayingIdx(idx)}
+                onStop={() => setPlayingIdx(null)}
+                onHoverImage={() => setHoveredImage(hoverImages[idx])}
+                onHoverEnd={() => setHoveredImage(null)}
+              />
+            );
+          })}
         </div>
         {/* Add-Ins and Payment Section */}
         <div className="absolute bottom-6 right-4 w-[320px] flex flex-col gap-1 z-10">

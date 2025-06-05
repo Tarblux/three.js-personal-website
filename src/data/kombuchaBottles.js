@@ -8,8 +8,8 @@ export const kombuchaBottles = [
     price: '3.00',
     ingredients: [
       { iconType: 'color', icon: '#FACC15', name: 'Fermented Tea', amount: '300 ml' },
-      { iconType: 'color', icon: '#29095D', name: 'BlackBerry Juice', amount: '350 ml' },
-      { iconType: 'color', icon: '#BE185D', name: 'Strawberry Juice', amount: '150 ml' },
+      { iconType: 'color', icon: '#29095D', name: 'BlackBerry Juice', amount: '150 ml' },
+      { iconType: 'color', icon: '#BE185D', name: 'Strawberry Juice', amount: '350 ml' },
       { iconType: 'img', icon: '/images/Hobbies/rhubarb.webp', name: 'Sweet Rhubarb Chunks', amount: '30 ml' },
     ],
     personality: `She's 'The Pretty Girl' and she knows it. Sweet, sassy, and always the life of the fiesta.`,

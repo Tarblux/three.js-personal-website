@@ -4,8 +4,7 @@ const languageLevelsExplanation = [
     title: 'Fluent',
     description: 
       `You speak like a native—effortlessly, precisely, and with full command of jokes, sarcasm, and complex ideas. 
-      You could give a TED Talk or argue about pineapple on pizza. 
-      Honestly, autocorrect backs off when you're typing.`
+      You could give a TED Talk or argue about pineapple on pizza. `
   },
   {
     level: 'C1',
@@ -28,9 +27,7 @@ const languageLevelsExplanation = [
     title: 'Intermediate',
     description:
       `You hold everyday conversations, explain ideas, and get by in most situations.
-      You still pause now and then, but you're in the game.
-      Sometimes, you even dream in the language—until your brain hits a word you forgot 
-      and switches to English mid-sentence.`
+      You still pause now and then, but you're in the game.`
   },
   {
     level: 'A2',
@@ -47,14 +44,6 @@ const languageLevelsExplanation = [
       `You can say who you are, ask simple things, and survive in a bakery.
       If people speak slowly, you might catch a word or two.
       You proudly say "bonjour," then run away before they reply.`
-  },
-  {
-    level: 'A0',
-    title: 'Just Starting Out',
-    description:
-      `You know a few phrases and survive mostly on vibes.
-      Every new word is a small win.
-      Right now, you're leaning heavily on Google Translate—and your will to learn.`
   },
 ];
 
