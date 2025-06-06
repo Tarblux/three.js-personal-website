@@ -45,7 +45,7 @@ export const collegeJobs = [
     logo: "/images/Education/k-logo-rounded.webp",
     bullets: [
       "Led groups of campus visitors on educational and informative tours of the school campus",
-      "Answered visitors' questions, provided recommendations for local restaurants and activities, and helped resolve any issues or concerns that arose during the tour"
+      "Answered questions, shared local recommendations, and resolved visitor concerns"
     ]
   },
   {
@@ -76,8 +76,8 @@ export const collegeJobs = [
     id: 6,
     title: "Math & German Tutor",
     organization: "Communities in Schools Michigan",
-    startDate: "2023-01-01",
-    endDate: "2023-06-01",
+    startDate: "2023-02-01",
+    endDate: "2023-07-01",
     logo: "/images/Education/communities_in_schools_of_michigan_inc_logo.webp",
     bullets: [
       "Provided one-on-one tutoring in Mathematics and German to middle school students",

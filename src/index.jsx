@@ -15,6 +15,60 @@ import MiniMap from "./components/UI/MiniMap.jsx"
 import SkipIntroButton from './components/UI/SkipIntroButton.jsx'
 import ScrollDebug from './components/UI/ScrollDebug.jsx'
 
+// --- Fun Easter Egg for Curious Developers ---
+
+const easterEgg = {
+  header: [
+    'color: #F92626',
+    'background: #333',
+    'font-size: 24px',
+    'font-weight: bold',
+    'padding: 10px 15px',
+    'border-radius: 8px',
+    'font-family: "Courier New", Courier, monospace',
+    'text-shadow: 2px 2px 4px #000000'
+  ].join(';'),
+  main: [
+    'color: #4CAF50',
+    'font-size: 14px',
+    'line-height: 1.6',
+    'font-family: "Courier New", Courier, monospace',
+  ].join(';'),
+};
+
+console.log('%cPsst... I see you!', easterEgg.header);
+console.log(
+`%c
+                 _
+    \\_     _     / )
+     \\ \\   / \\   / /
+      \\ \\ /   \\ / /
+       \\ /     \\ /
+       / \\     / \\
+      /   \\   /   \\
+     /     \\ /     \\
+    (_______V_______)
+     |             |
+     |  O       O  |
+     |      <      |
+     |             |
+     |  \\_______/  |
+     |_____________|
+        |       |
+       /         \\
+      /           \\
+     /             \\
+
+Well, well, well... you thought you could look at my code undetected?
+Since you're poking around in here, you're clearly curious.
+
+The source code is available on my GitHub: https://github.com/Tarblux/three.js-personal-website
+You can also ping me on LinkedIn for questions: https://www.linkedin.com/in/tariq-williams12/
+
+If you found a bug, let's just call it an 'undocumented feature' for now, shall we?
+`, easterEgg.main);
+
+
 if (import.meta.env.DEV) {
   studio.extend(extension)
   studio.initialize()

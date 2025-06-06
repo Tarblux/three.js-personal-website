@@ -34,14 +34,14 @@ const Contact = () => {
             {/* OVERFLOWING_IMAGE HACK: This is a hack to get the image to overflow the card  , because safari and chrome have different default styles for images :( */}
             {/* The image needs to be positioned to align with where it would appear in the card */}
             {/* Accounting for: Contact label (mb-2), glassmorphic wrapper (p-2), main card (p-4) */}
-            <div className="absolute top-[calc(1rem+0.5rem+1rem+1rem-42px)] left-[calc(1rem+1rem-0.5rem)] z-20">
+            <div className="absolute top-[calc(1rem+0.5rem+1rem+1rem-42px)] left-[calc(1rem+1rem-0.5rem)] z-20 pointer-events-none">
                 {/* Gray background square */}
                 <div className="absolute top-[52px] left-2 w-36 h-36 bg-gray-200 rounded-2xl z-0"></div>
                 {/* Profile image */}
                 <img
                     src="/images/Contact/profile-pic-contact.webp"
                     alt="Profile"
-                    className="w-52 h-52 object-cover rounded-2xl z-10 relative -left-10"
+                    className="w-52 h-52 object-cover rounded-2xl z-10 relative -left-10 pointer-events-auto"
                 />
             </div>
 
@@ -61,9 +61,9 @@ const Contact = () => {
                         </div>
                         <div className="flex flex-col justify-center mt-2 ml-3">
                             <h2 className="text-2xl font-bold mb-1">Get in touch !</h2>
-                            <span className="text-gray-500 text-xs">tarblux12@gmail.com</span>
+                            <span className="text-gray-500 text-xs ">tarblux12@gmail.com</span>
                             {/* Social Icons */}
-                            <div className="flex flex-row gap-3 mt-3">
+                            <div className="flex flex-row gap-3 mt-3 relative z-30">
                                 <a href="https://www.linkedin.com/in/tariq-williams12/" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
                                     <img src="/icons/linkedin.svg" alt="LinkedIn" className="w-5 h-5" />
                                 </a>
