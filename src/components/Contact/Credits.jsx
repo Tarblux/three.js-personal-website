@@ -21,10 +21,10 @@ const Credits = () => {
         <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
           Credits & Acknowledgements
         </span>
-        <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-full max-w-6xl mx-auto border border-white/30">
+        <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-full max-w-6xl mx-auto border border-white/30 transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl cursor-pointer">
           <div className="bg-white rounded-lg p-6">
             <p className="text-gray-500 mb-8 max-w-2xl text-xs">
-              The truth is, a project like this doesn't come together overnight—and it certainly wasn't a solo effort. 
+              The truth is, a project like this doesn't come together overnight , and it certainly wasn't a solo effort. 
               I want to give a heartfelt thank you to everyone who helped make this possible: my close friends and family, 
               the generous people on online forums who offered support when I was stuck, the brilliant library creators 
               whose tools saved me from writing thousands of lines of code, and all those who inspired me along the way. 

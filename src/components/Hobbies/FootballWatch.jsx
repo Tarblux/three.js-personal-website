@@ -34,12 +34,11 @@ const FootballWatch = () => {
             {/* Top Info Card */}
             <div className="bg-white/20 backdrop-blur-md rounded-lg p-6 border border-white/30 shadow-lg transition-transform duration-300 hover:scale-[1.02] mb-4">
                 <p className="text-[13px] leading-snug text-gray-800">
-                    <span className="font-bold text-red-500">When I'm not at work</span> or deep into a project, 
-                    there's a good chance you'll find me <span className="font-bold text-red-500">watching English Premier League football</span>. 
-                    I've always loved the game—though <span className="font-bold text-red-500">playing it is a whole different story</span>. 
-                    Still, that doesn't stop me from yelling tactical advice at the TV like I belong on the sidelines. 
-                    Watching the pros and <span className="font-bold text-red-500">pretending I could keep up for ten minutes is all part of the fun.</span> 
-                    The red (or the huge logo below) may have given it away but my favorite team is <span className="font-bold text-red-500">ARSENAL</span>
+                    <span className="font-bold text-red-500">During my brief moments of freedom</span> from work or a project, 
+                    I'm likely investing my emotional stability in <span className="font-bold text-red-500">English Premier League football</span>. 
+                    I adore the beautiful game, even though <span className="font-bold text-red-500">my own coordination is more 'newborn foal' than 'pro footballer'</span>. 
+                    Still, I provide unsolicited tactical advice to my television screen while watching the pros and <span className="font-bold text-red-500">pretend I wouldn't need an oxygen tank after a light jog</span>. 
+                    The red (or the huge logo below) may have given it away but my favorite team is <span className="font-bold text-red-500">ARSENAL</span>.
                 </p>
             </div>
             {/* Main Card Stack */}

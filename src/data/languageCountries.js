@@ -2,7 +2,7 @@ export const languageCountries = {
   "English": {
     countries: [
       "USA", "GBR", "CAN", "AUS", "NZL", "IRL", "GUY", "ZAF", "NGA", "KEN", 
-      "GHA", "UGA", "SGP", "IND", "PAK", "PHL", "ZWE", "BWA", "NAM", "LBR", 
+      "GHA", "UGA", "SGP",  "ZWE", "BWA", "NAM", "LBR", "JAM",
       "SLE", "CMR", "MWI", "RWA", "TZA", "ZMB", "SWZ", "LSO", "FJI", "SLB", 
       "PNG"
     ],

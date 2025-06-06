@@ -47,7 +47,7 @@ export const specialThanks = [
   {
     img: '/images/Contact/aleks-headshot.webp',
     alt: 'Aleksandr',
-    text: `Aleksandr has been by my side throughout this entire project—
+    text: `Aleksandr has been by my side throughout this entire project ,
 motivating me to finish, helping me troubleshoot bugs, and offering constant emotional support. 
 Thank you Sanya !`,
   },

@@ -81,15 +81,21 @@ const Career = () => {
                                 <p className="text-xs font-bold mb-3">Programming Languages:</p>
                                 <div className="flex gap-4 mb-3">
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/python.svg" alt="Python" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/python.svg" alt="Python" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5 ">Python</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/scala.svg" alt="Scala" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Scala_(programming_language)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/scala.svg" alt="Scala" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Scala</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/mysql.svg" alt="SQL" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/SQL" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/mysql.svg" alt="SQL" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">SQL</span>
                                     </div>
                                 </div>
@@ -97,24 +103,34 @@ const Career = () => {
                                 <p className="text-xs font-bold mb-3">Tools:</p>
                                 <div className="flex gap-4 mb-3">
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/docker.svg" alt="Docker" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Docker_(software)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/docker.svg" alt="Docker" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Docker</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/jira-1.svg" alt="Jira" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Jira_(software)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/jira-1.svg" alt="Jira" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Jira</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/Jenkins_logo.svg" alt="Jenkins" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Jenkins_(software)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/Jenkins_logo.svg" alt="Jenkins" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Jenkins</span>
                                     </div>
 
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/pycharm.svg" alt="Pycharm" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/PyCharm" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/pycharm.svg" alt="Pycharm" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Pycharm</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/postman.svg" alt="Postman" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Postman_(software)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/postman.svg" alt="Postman" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Postman</span>
                                     </div>
                                 </div>
@@ -122,19 +138,27 @@ const Career = () => {
                                 <p className="text-xs font-bold mb-1">Libraries & Protocols:</p>
                                 <div className="flex gap-4 mb-3">
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/grpc-icon-color.webp" alt="gRPC" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/GRPC" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/grpc-icon-color.webp" alt="gRPC" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">gRPC</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/akka.svg" alt="Akka" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Akka_(toolkit)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/akka.svg" alt="Akka" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Akka</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/numpy.svg" alt="Numpy" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/NumPy" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/numpy.svg" alt="Numpy" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Numpy</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/pandas.svg" alt="Pandas" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Pandas_(software)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/pandas.svg" alt="Pandas" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Pandas</span>
                                     </div>
                                 </div>
@@ -199,15 +223,21 @@ const Career = () => {
                                 <p className="text-xs font-bold mb-3">Programming Languages:</p>
                                 <div className="flex gap-4 mb-3">
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/R_light.svg" alt="R" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/R_(programming_language)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/R_light.svg" alt="R" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">R</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/python.svg" alt="Python" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/python.svg" alt="Python" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Python</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/postgresql.svg" alt="PostgreSQL" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/PostgreSQL" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/postgresql.svg" alt="PostgreSQL" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">PostgreSQL</span>
                                     </div>
                                 </div>
@@ -215,19 +245,27 @@ const Career = () => {
                                 <p className="text-xs font-bold mb-3">Tools:</p>
                                 <div className="flex gap-4">
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/Rstudio.svg" alt="Rstudio" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/RStudio" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/Rstudio.svg" alt="Rstudio" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Rstudio</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/Github_light.svg" alt="Github" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/GitHub" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/Github_light.svg" alt="Github" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Github</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/excel.svg" alt="Excel" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Microsoft_Excel" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/excel.svg" alt="Excel" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">MS Excel</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/access.svg" alt="Access" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Microsoft_Access" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/access.svg" alt="Access" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">MS Access</span>
                                     </div>
                                 </div>
