@@ -7,6 +7,9 @@ const FootballPlay = () => {
 
     return (
         <div className="fixed top-8 left-8 z-10 w-[340px] flex flex-col justify-center h-auto">
+            <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
+                Hobbies | Football
+            </span>
             <div className="bg-white/20 backdrop-blur-md rounded-lg p-2.5 flex flex-col gap-2 border border-white/30 shadow-lg">
                 {/* Blurb*/}
                 <div className="bg-white/90 rounded-lg shadow-lg hover:shadow-lg p-4 min-h-[100px] flex items-center justify-center group transform transition-transform duration-300 hover:scale-[1.02]">
@@ -21,15 +24,15 @@ const FootballPlay = () => {
                         <span className="font-bold text-[13px] text-black mr-1">Midfield</span>
                         <div className="flex items-center mt-0.5">
                             <span className="bg-green-600 text-white text-xs font-bold px-1 py-0.5 rounded">CM</span>
-                            <img src="/images/Hobbies/hobbies-leftfoot.jpg" alt="Left foot" className="w-4 h-4 object-contain opacity-50 ml-1" />
-                            <img src="/images/Hobbies/hobbies-rightfoot.jpg" alt="Right foot" className="w-4 h-4 object-contain  -ml-1" />
+                            <img src="/images/Hobbies/hobbies-leftfoot.webp" alt="Left foot" className="w-4 h-4 object-contain opacity-50 ml-1" />
+                            <img src="/images/Hobbies/hobbies-rightfoot.webp" alt="Right foot" className="w-4 h-4 object-contain  -ml-1" />
                         </div>
                     </div>
                     {/* Jersey image */}
-                    <img src="/images/Hobbies/hobbies-twill-kit.png" alt="Twill Jersey" className="absolute top-6 left-4 w-32 h-36 object-contain select-none" />
+                    <img src="/images/Hobbies/hobbies-twill-kit.webp" alt="Twill Jersey" className="absolute top-6 left-4 w-32 h-36 object-contain select-none" />
                     {/* Badge and name */}
                     <div className="absolute left-2 bottom-2 flex items-center">
-                        <img src="/images/Hobbies/hobbies-yaad.png" alt="Yaad badge" className="w-12 h-12 object-contain" />
+                        <img src="/images/Hobbies/hobbies-yaad.webp" alt="Yaad badge" className="w-12 h-12 object-contain" />
                         <div className="flex flex-col leading-none mt-2">
                             <span className="font-bold text-black text-[16px]">Tariq</span>
                             <span className="font-bold text-green-500 text-xl -mt-1">Williams</span>
@@ -38,12 +41,12 @@ const FootballPlay = () => {
                     {/* Headshot/Celebration */}
                     <div className="absolute bottom-0 right-8 w-40 h-48">
                         <img
-                            src="/images/Hobbies/hobbies-twill-headshot-2.png"
+                            src="/images/Hobbies/hobbies-twill-headshot-2.webp"
                             alt="Twill Headshot"
                             className="absolute inset-0 w-full h-full object-contain object-bottom select-none transition-opacity duration-300 opacity-100 group-hover:opacity-0"
                         />
                         <img
-                            src="/images/Hobbies/hobbies-twill-headshot-2.png"
+                            src="/images/Hobbies/hobbies-twill-headshot-2.webp"
                             alt="Twill Celebration"
                             className="absolute inset-0 w-full h-full object-contain object-bottom select-none transition-opacity duration-300 opacity-0 group-hover:opacity-100"
                         />
@@ -60,7 +63,7 @@ const FootballPlay = () => {
                         {/* Pitch image */}
                         <div className="relative w-[180px] h-[180px] flex items-center justify-start ml-6">
                             <img
-                                src="/images/Hobbies/hobbies-football-pitch.png"
+                                src="/images/Hobbies/hobbies-football-pitch.webp"
                                 alt="Football Pitch"
                                 className="w-full h-full object-contain select-none rotate-90"
                             />
@@ -114,7 +117,7 @@ const FootballPlay = () => {
                         {/* Highlight 1 */}
                         <div className="flex items-center justify-between bg-white/40 rounded-lg px-3 py-2 cursor-pointer border-2 hover:bg-gray-100 transition group"
                             onClick={() => {
-                                setHighlightVideoSrc('/images/Hobbies/hobbies-solo-dolo.MP4');
+                                setHighlightVideoSrc('/videos/hobbies-solo-dolo.mp4');
                                 setHighlightModalOpen(true);
                             }}
                         >
@@ -123,29 +126,40 @@ const FootballPlay = () => {
                                 <span className="text-gray-500 text-[13px]">0:06</span>
                                 {/* Play Button */}
                                 <span className="ml-1">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="10" fill="#fff" stroke="#222" strokeWidth="2"/>
-                                        <polygon points="10,8 16,12 10,16" fill="#222" />
-                                    </svg>
+                                    <img src="/images/Hobbies/play.svg" alt="Play" width="24" height="24" />
                                 </span>
                             </div>
                         </div>
                         {/* Highlight 2 */}
                         <div className="flex items-center justify-between bg-white/40 rounded-lg px-3 py-2 cursor-pointer border-2 hover:bg-gray-100 transition group"
                             onClick={() => {
-                                setHighlightVideoSrc('/images/Hobbies/hobbies-solo-dolo.MP4');
+                                setHighlightVideoSrc('/videos/tariq-freekick.mp4');
                                 setHighlightModalOpen(true);
                             }}
                         >
-                            <span className="font-bold text-[12px] text-black">Trying to pull a declan rice</span>
+                            <span className="font-bold text-[12px] text-black">Trying to do a declan rice</span>
                             <div className="flex items-center gap-1">
-                                <span className="text-gray-500 text-[13px]">0:12</span>
+                                <span className="text-gray-500 text-[13px]">0:07</span>
                                 {/* Play Button */}
                                 <span className="ml-1">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="10" fill="#fff" stroke="#222" strokeWidth="2"/>
-                                        <polygon points="10,8 16,12 10,16" fill="#222" />
-                                    </svg>
+                                    <img src="/images/Hobbies/play.svg" alt="Play" width="24" height="24" />
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Highlight 3 */}
+                        <div className="flex items-center justify-between bg-white/40 rounded-lg px-3 py-2 cursor-pointer border-2 hover:bg-gray-100 transition group"
+                            onClick={() => {
+                                setHighlightVideoSrc('/videos/tariq-blooper.mp4');
+                                setHighlightModalOpen(true);
+                            }}
+                        >
+                            <span className="font-bold text-[12px] text-black">Blooper</span>
+                            <div className="flex items-center gap-1">
+                                <span className="text-gray-500 text-[13px]">0:10</span>
+                                {/* Play Button */}
+                                <span className="ml-1">
+                                    <img src="/images/Hobbies/play.svg" alt="Play" width="24" height="24" />
                                 </span>
                             </div>
                         </div>

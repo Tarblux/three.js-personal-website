@@ -92,7 +92,7 @@ const LanguageJourney = ({ languageJourneyData }) => {
                   }}
                 />
                 {activeTooltip === idx && (
-                  <div className="absolute z-[9999] w-64 p-3 bg-white rounded-lg shadow-lg -translate-x-1/2 -translate-y-full -top-11 left-1/2">
+                  <div className="absolute z-[9999] w-64 p-3 bg-white rounded-lg shadow-lg -translate-x-1/2 -translate-y-full -top-16 left-1/2">
                     <div className="text-sm text-gray-700">{step.story}</div>
                     <div className="absolute w-2 h-2 bg-white transform rotate-45 -bottom-1 left-1/2 -translate-x-1/2"></div>
                   </div>

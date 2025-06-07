@@ -59,9 +59,82 @@ const ChessRatings = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center w-full h-full py-8">
-        <span className="text-gray-400 text-sm">Loading...</span>
-      </div>
+      <>
+        {/* Puzzles Card Skeleton */}
+        <div className="col-span-1 row-span-1">
+          <div className="bg-white rounded-2xl shadow-md h-28 flex flex-row px-1 py-4 justify-start">
+            <div className="flex flex-col justify-end">
+              <div className="flex flex-row items-center">
+                <div className="w-12 h-12 mr-1 bg-gray-200 rounded animate-pulse"></div>
+                <div className="flex flex-col justify-center ml-1">
+                  <div className="w-16 h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
+                  <div className="w-8 h-7 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col items-center justify-center ml-20">
+              <div className="w-6 h-5 bg-transparent"></div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Bullet Card Skeleton */}
+        <div className="col-span-2 row-span-1">
+          <div className="bg-white rounded-2xl shadow-md h-28 flex flex-row px-1 py-4 justify-start">
+            <div className="flex flex-col justify-end">
+              <div className="flex flex-row items-center">
+                <div className="w-10 h-10 bg-gray-200 rounded animate-pulse"></div>
+                <div className="flex flex-col justify-center ml-1">
+                  <div className="w-12 h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
+                  <div className="w-8 h-7 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col items-center justify-center ml-10">
+              <div className="w-[150px] h-[50px] bg-gray-200 rounded animate-pulse mb-1"></div>
+              <div className="w-8 h-5 bg-gray-200 rounded animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Blitz Card Skeleton */}
+        <div className="col-span-2 row-span-1">
+          <div className="bg-white rounded-2xl shadow-md h-28 flex flex-row px-1 py-4 justify-start">
+            <div className="flex flex-col justify-end">
+              <div className="flex flex-row items-center">
+                <div className="w-10 h-10 bg-gray-200 rounded animate-pulse"></div>
+                <div className="flex flex-col justify-center ml-1">
+                  <div className="w-12 h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
+                  <div className="w-8 h-7 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col items-center justify-center ml-10">
+              <div className="w-[150px] h-[50px] bg-gray-200 rounded animate-pulse mb-1"></div>
+              <div className="w-8 h-5 bg-gray-200 rounded animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Rapid Card Skeleton */}
+        <div className="col-span-2 row-span-1">
+          <div className="bg-white rounded-2xl shadow-md h-28 flex flex-row px-1 py-4 justify-start">
+            <div className="flex flex-col justify-end">
+              <div className="flex flex-row items-center">
+                <div className="w-10 h-10 bg-gray-200 rounded animate-pulse"></div>
+                <div className="flex flex-col justify-center ml-1">
+                  <div className="w-12 h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
+                  <div className="w-8 h-7 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col items-center justify-center ml-10">
+              <div className="w-[150px] h-[50px] bg-gray-200 rounded animate-pulse mb-1"></div>
+              <div className="w-8 h-5 bg-gray-200 rounded animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 

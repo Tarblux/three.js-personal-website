@@ -1,27 +1,76 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { collegeClubs } from '../../data/collegeClubs'
 
-const ClubCard = ({ name, role, value, img }) => (
-    <div className="w-[195px] h-[285px] bg-white/20 backdrop-blur-md rounded-[20px] border-2 border-white/30 flex flex-col items-center justify-center text-gray-700 transition-all duration-200 ease-in-out relative cursor-pointer hover:scale-104 group shadow-none hover:shadow-none focus:shadow-none mx-2">
-        <img
-            src={img}
-            alt={name}
-            className="h-[60%] absolute transition-all duration-200 ease-in-out z-[1] group-hover:blur-[3px] group-hover:animate-float object-contain"
-        />
-        <div className="opacity-0 group-hover:opacity-100 flex flex-col items-start justify-end w-full h-full gap-0 group-hover:gap-2 p-4 z-[5] transition-all duration-200 ease-in-out">
-            <p className="text-base font-bold max-w-full break-words overflow-hidden">{name}</p>
-            <p className="text-sm text-gray-400 font-light max-w-full break-words overflow-hidden">{role}</p>
-            <p className="text-sm font-bold max-w-full break-words overflow-hidden">{value}</p>
-        </div>
-    </div>
-);
+function calculateDuration(startDate, endDate) {
+    const start = new Date(startDate);
+    const end = endDate ? new Date(endDate) : new Date();
+    let years = end.getFullYear() - start.getFullYear();
+    let months = end.getMonth() - start.getMonth();
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+    let result = '';
+    if (years > 0) result += `${years} yr${years > 1 ? 's' : ''} `;
+    if (months > 0) result += `${months} mo${months > 1 ? 's' : ''}`;
+    return result.trim() || '0 mos';
+}
+
+function getYearsString(startDate, endDate) {
+    const startYear = new Date(startDate).getFullYear();
+    const endYear = endDate ? new Date(endDate).getFullYear() : 'Present';
+    return `${startYear} - ${endYear}`;
+}
 
 const CollegeClubs = () => {
+    const [expandedClub, setExpandedClub] = useState(null);
+    const [hoveredClub, setHoveredClub] = useState(null);
+
     return (
-        <div className="w-full h-screen flex items-center justify-center">
-            <div className="flex flex-row justify-center items-center">
-                <ClubCard name="Chess Club" role="President" value="2022 - 2023" img="/images/Education/exco-chess-2.svg" />
-                <ClubCard name="KalamAfrica" role="Member" value="2020 - 2023" img="/images/Education/exco-africa.svg" />
-                <ClubCard name="Caribbean Student Society" role="Vice President" value="2021" img="/images/Education/exco-island.svg" />
+        <div className="fixed top-8 left-8 z-0">
+            <div className="flex flex-col items-start">
+                <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
+                    College Clubs & Organizations
+                </span>
+                <div className="bg-white/20 backdrop-blur-md rounded-lg p-3 w-[320px] min-h-[320px] border border-white/30">
+                    <div className="space-y-4">
+                        {collegeClubs.map((club) => (
+                            <div
+                                key={club.id}
+                                className="bg-white rounded-lg shadow-lg p-3 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-xl hover:bg-gray-50"
+                                onClick={() => setExpandedClub(expandedClub === club.id ? null : club.id)}
+                                onMouseEnter={() => setHoveredClub(club.id)}
+                                onMouseLeave={() => setHoveredClub(null)}
+                            >
+                                <div className="flex items-start justify-between">
+                                    <div className="flex items-center gap-2.5">
+                                        <img
+                                            src={club.logo}
+                                            alt={`${club.organization} Logo`}
+                                            className="w-8 h-8 rounded"
+                                        />
+                                        <div>
+                                            <h3 className="text-xs font-bold">{club.organization}</h3>
+                                            <p className="text-gray-600 text-xs">{club.title}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <span className="bg-gray-200 px-2 py-0.5 rounded text-xs text-gray-600 whitespace-nowrap">
+                                            {getYearsString(club.startDate, club.endDate)}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className={`transition-all duration-1000 overflow-hidden ${expandedClub === club.id || hoveredClub === club.id ? 'max-h-[200px] mt-3' : 'max-h-0'}`}>
+                                    <ul className="list-disc pl-5 space-y-1">
+                                        {club.bullets && club.bullets.map((bullet, idx) => (
+                                            <li key={idx} className="text-gray-700 text-xs">{bullet}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );

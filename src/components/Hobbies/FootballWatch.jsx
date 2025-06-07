@@ -27,16 +27,18 @@ const FootballWatch = () => {
     };
 
     return (
-        <div className="fixed top-8 left-8 z-10 w-[340px] flex flex-col justify-center h-auto gap-4">
+        <div className="fixed top-8 left-8 z-10 w-[340px] flex flex-col justify-center h-auto ">
+            <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
+                Hobbies | Football
+            </span>
             {/* Top Info Card */}
-            <div className="bg-white/20 backdrop-blur-md rounded-lg p-6 border border-white/30 shadow-lg transition-transform duration-300 hover:scale-[1.02]">
+            <div className="bg-white/20 backdrop-blur-md rounded-lg p-6 border border-white/30 shadow-lg transition-transform duration-300 hover:scale-[1.02] mb-4">
                 <p className="text-[13px] leading-snug text-gray-800">
-                    <span className="font-bold text-red-500">When I'm not at work</span> or deep into a project, 
-                    there's a good chance you'll find me <span className="font-bold text-red-500">watching English Premier League football</span>. 
-                    I've always loved the game—though <span className="font-bold text-red-500">playing it is a whole different story</span>. 
-                    Still, that doesn't stop me from yelling tactical advice at the TV like I belong on the sidelines. 
-                    Watching the pros and <span className="font-bold text-red-500">pretending I could keep up for ten minutes is all part of the fun.</span> 
-                    The red (or the huge logo below) may have given it away but my favorite team is <span className="font-bold text-red-500">ARSENAL</span>
+                    <span className="font-bold text-red-500">During my brief moments of freedom</span> from work or a project, 
+                    I'm likely investing my emotional stability in <span className="font-bold text-red-500">English Premier League football</span>. 
+                    I adore the beautiful game, even though <span className="font-bold text-red-500">my own coordination is more 'newborn foal' than 'pro footballer'</span>. 
+                    Still, I provide unsolicited tactical advice to my television screen while watching the pros and <span className="font-bold text-red-500">pretend I wouldn't need an oxygen tank after a light jog</span>. 
+                    The red (or the huge logo below) may have given it away but my favorite team is <span className="font-bold text-red-500">ARSENAL</span>.
                 </p>
             </div>
             {/* Main Card Stack */}
@@ -55,7 +57,7 @@ const FootballWatch = () => {
                         </div>
                         <div className="flex items-center gap-4 mt-7">
                             {/* Arsenal Badge */}
-                            <img src="/images/Hobbies/hobbies-arsenal-badge.png" alt="Arsenal Badge" className="w-24 h-24 object-contain" />
+                            <img src="/images/Hobbies/hobbies-arsenal-badge.webp" alt="Arsenal Badge" className="w-24 h-24 object-contain" />
                             {/* Info */}
                             <div className="flex-1 flex flex-col gap-1">
                                 <div className="text-sm text-gray-700">League Position: <span className="font-bold">{loading || !standings ? '-' : formatOrdinal(standings.position)}</span></div>
@@ -77,15 +79,15 @@ const FootballWatch = () => {
                             <span className="font-bold text-[13px] text-black mr-1">Forward</span>
                             <div className="flex items-center mt-0.5">
                                 <span className="bg-red-700 text-white text-xs font-bold px-1 py-0.5 rounded">RW</span>
-                                <img src="/images/Hobbies/hobbies-leftfoot.JPG" alt="Left foot" className="w-4 h-4 object-contain" />
-                                <img src="/images/Hobbies/hobbies-rightfoot.JPG" alt="Right foot" className="w-4 h-4 object-contain opacity-50 -ml-1" />
+                                <img src="/images/Hobbies/hobbies-leftfoot.webp" alt="Left foot" className="w-4 h-4 object-contain" />
+                                <img src="/images/Hobbies/hobbies-rightfoot.webp" alt="Right foot" className="w-4 h-4 object-contain opacity-50 -ml-1" />
                             </div>
                         </div>
                         {/* Jersey image */}
-                        <img src="/images/Hobbies/hobbies-bsaks-jersey.png" alt="Saka Jersey" className="absolute top-6 left-4 w-32 h-36 object-contain select-none" />
+                        <img src="/images/Hobbies/hobbies-bsaks-jersey.webp" alt="Saka Jersey" className="absolute top-6 left-4 w-32 h-36 object-contain select-none" />
                         {/* England badge and name */}
                         <div className="absolute left-2 bottom-2 flex items-center">
-                            <img src="/images/Hobbies/hobbies-engerland.png" alt="England badge" className="w-12 h-12 object-contain" />
+                            <img src="/images/Hobbies/hobbies-engerland.webp" alt="England badge" className="w-12 h-12 object-contain" />
                             <div className="flex flex-col leading-none mt-2">
                                 <span className="font-bold text-black text-[15px]">Bukayo</span>
                                 <span className="font-bold text-red-400 text-3xl -mt-1">Saka</span>
@@ -99,7 +101,7 @@ const FootballWatch = () => {
                             className="absolute inset-0 w-full h-full object-contain object-bottom select-none transition-opacity duration-300 opacity-100 group-hover:opacity-0"
                           />
                           <img
-                            src="/images/Hobbies/hobbies-bsaks-celebration.PNG"
+                            src="/images/Hobbies/hobbies-bsaks-celebration.webp"
                             alt="Bukayo Saka Celebration"
                             className="absolute inset-0 w-full h-full object-contain object-bottom select-none transition-opacity duration-300 opacity-0 group-hover:opacity-100"
                           />

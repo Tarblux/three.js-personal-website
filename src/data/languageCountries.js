@@ -2,7 +2,7 @@ export const languageCountries = {
   "English": {
     countries: [
       "USA", "GBR", "CAN", "AUS", "NZL", "IRL", "GUY", "ZAF", "NGA", "KEN", 
-      "GHA", "UGA", "SGP", "IND", "PAK", "PHL", "ZWE", "BWA", "NAM", "LBR", 
+      "GHA", "UGA", "SGP",  "ZWE", "BWA", "NAM", "LBR", "JAM",
       "SLE", "CMR", "MWI", "RWA", "TZA", "ZMB", "SWZ", "LSO", "FJI", "SLB", 
       "PNG"
     ],
@@ -15,7 +15,7 @@ export const languageCountries = {
   "Patois": {
     countries: [
       "JAM", "TTO", "GRD", "LCA", "VCT", "ATG", "KNA", "DMA", "GUY", "BHS", 
-      "BRB"
+      "BRB", "BLZ"
     ],
     zoom: {
       scale: 280,
@@ -62,8 +62,8 @@ export const languageCountries = {
       "SEY"
     ],
     zoom: {
-      scale: 150,
-      translation: [0.5, 0.7],
+      scale: 180,
+      translation: [0.4, 0.7],
       rotation: [0, 0, 0]
     }
   }

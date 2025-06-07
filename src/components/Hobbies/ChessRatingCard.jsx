@@ -30,7 +30,7 @@ const ChessRatingCard = ({
         width={150}
         height={50}
         showTooltip={true}
-        curve="monotone"
+        curve="monotoneX"
         color={getChangeColor(change)}
         sx={{ marginBottom: '-12px', '& .MuiLineElement-root': { strokeWidth: 4, strokeLinecap: 'round' } }}
       />

@@ -21,7 +21,7 @@ const LocationCard = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-lg px-1 py-1 col-span-5 row-span-1 relative overflow-hidden group transform transition-transform duration-300 hover:scale-105">
+    <div className="bg-white rounded-lg px-1 py-1 col-span-5 row-span-1 relative overflow-hidden transform transition-transform duration-300 hover:scale-105">
       <a 
         href="https://www.google.com/maps/@43.0252086,-87.8610821,12z?entry=ttu&g_ep=EgoyMDI1MDQwMi4xIKXMDSoASAFQAw%3D%3D"
         target="_blank"
@@ -30,7 +30,7 @@ const LocationCard = () => {
       >
         <div className="relative w-full h-full">
           <img
-            src="/images/Introduction/mke-landscape-2.png"
+            src="/images/Introduction/mke-landscape-2.webp"
             alt="Milwaukee Map"
             className="w-full h-full object-cover rounded-lg"
           />

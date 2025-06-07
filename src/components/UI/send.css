@@ -1,0 +1,302 @@
+.send-button {
+    --primary: #2076FF;
+    --neutral-1: rgba(255,255,255,0.80);
+    --neutral-2: rgba(255,255,255,0.60);
+    --radius: 10px;
+    cursor: pointer;
+    border-radius: var(--radius);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    background: var(--neutral-1);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    color: #222;
+    box-shadow: 0 2px 16px 0 rgba(32, 118, 255, 0.10), 0 1.5px 6px 0 rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    min-width: 200px;
+    padding: 20px;
+    height: 48px;
+    font-family: "Galano Grotesque", Poppins, Montserrat, sans-serif;
+    font-style: normal;
+    font-size: 18px;
+    font-weight: 600;
+    overflow: hidden;
+}
+.send-button:hover {
+    background: rgba(255,255,255,0.95);
+    color: var(--primary);
+    box-shadow: 0 4px 24px 0 rgba(32, 118, 255, 0.13), 0 2px 8px 0 rgba(0,0,0,0.10);
+}
+.send-button:active {
+    background: rgba(255,255,255,0.85);
+    color: var(--primary);
+    box-shadow: 0 2px 8px 0 rgba(32, 118, 255, 0.10), 0 1px 4px 0 rgba(0,0,0,0.08);
+    transform: scale(0.98);
+}
+.send-button:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    border: 2.5px solid transparent;
+    background: none;
+    z-index: 0;
+    pointer-events: none;
+}
+.send-button::before {
+    content: "";
+    inset: 7px 6px 6px 6px;
+    position: absolute;
+    background: none;
+    border-radius: 30px;
+    filter: none;
+    z-index: 2;
+}
+.state p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.state .icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transform: scale(1.25);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.state .icon svg {
+    overflow: visible;
+}
+
+/* Outline */
+.send-outline {
+    position: absolute;
+    border-radius: inherit;
+    overflow: hidden;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    inset: -2px -3.5px;
+}
+.send-outline::before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    background: conic-gradient(
+        from 180deg,
+        transparent 60%,
+        white 80%,
+        transparent 100%
+    );
+    animation: spin 2s linear infinite;
+    animation-play-state: paused;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.send-button:hover .send-outline {
+    opacity: 1;
+}
+.send-button:hover .send-outline::before {
+    animation-play-state: running;
+}
+
+/* Letters */
+.state p span {
+    display: block;
+    opacity: 0;
+    animation: slideDown 0.8s ease forwards calc(var(--i) * 0.03s);
+}
+.send-button:hover p span {
+    opacity: 1;
+    animation: wave 0.5s ease forwards calc(var(--i) * 0.02s);
+}
+.send-button.is-animating p span {
+    opacity: 1;
+    animation: disapear 0.6s ease forwards calc(var(--i) * 0.03s);
+}
+@keyframes wave {
+    30% {
+        opacity: 1;
+        transform: translateY(4px) translateX(0) rotate(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-3px) translateX(0) rotate(0);
+        color: var(--primary);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) rotate(0);
+    }
+}
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) translateX(5px) rotate(-90deg);
+        color: var(--primary);
+        filter: blur(5px);
+    }
+    30% {
+        opacity: 1;
+        transform: translateY(4px) translateX(0) rotate(0);
+        filter: blur(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-3px) translateX(0) rotate(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) rotate(0);
+    }
+}
+@keyframes disapear {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translateX(5px) translateY(20px);
+        color: var(--primary);
+        filter: blur(5px);
+    }
+}
+
+/* Plane */
+.state--default .icon svg {
+    animation: land 0.6s ease forwards;
+}
+.send-button:hover .state--default .icon {
+    transform: rotate(45deg);
+}
+.send-button.is-animating .state--default .icon svg {
+    animation: takeOff 0.8s linear forwards;
+}
+.send-button.is-animating .state--default .icon {
+    transform: rotate(0) scale(1.25);
+}
+@keyframes takeOff {
+    0% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(70px) rotate(45deg) scale(2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(160px) rotate(45deg) scale(0);
+    }
+}
+@keyframes land {
+    0% {
+        transform: translateX(-60px) translateY(30px) rotate(-50deg) scale(2);
+        opacity: 0;
+        filter: blur(3px);
+    }
+    100% {
+        transform: translateX(0) translateY(0) rotate(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* Contrail */
+.state--default .icon:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    height: 2px;
+    width: 0;
+    left: -5px;
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5));
+}
+.send-button.is-animating .state--default .icon:before {
+    animation: contrail 0.8s linear forwards;
+}
+@keyframes contrail {
+    0% {
+        width: 0;
+        opacity: 1;
+    }
+    8% {
+        width: 15px;
+    }
+    60% {
+        opacity: 0.7;
+        width: 80px;
+    }
+    100% {
+        opacity: 0;
+        width: 160px;
+    }
+}
+
+/* States */
+.state {
+    padding-left: 29px;
+    z-index: 2;
+    display: flex;
+    position: relative;
+}
+.state--default span:nth-child(4) {
+    margin-right: 5px;
+}
+.state--sent {
+    display: none;
+}
+.state--sent svg {
+    transform: scale(1.25);
+    margin-right: 8px;
+}
+.send-button.is-animating .state--default {
+    position: absolute;
+}
+.send-button.is-animating .state--sent {
+    display: flex;
+}
+.send-button.is-animating .state--sent span {
+    opacity: 0;
+    animation: slideDown 0.8s ease forwards calc(var(--i) * 0.2s);
+}
+.send-button.is-animating .state--sent .icon svg {
+    opacity: 0;
+    animation: appear 1.2s ease forwards 0.8s;
+}
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(4) rotate(-40deg);
+        color: var(--primary);
+        filter: blur(4px);
+    }
+    30% {
+        opacity: 1;
+        transform: scale(0.6);
+        filter: blur(1px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+  

@@ -41,7 +41,47 @@ const ChessGames = () => {
       </div>
       <div className="flex-1 flex flex-col gap-2">
         {loading ? (
-          <div className="text-center text-gray-400 mt-8">Loading...</div>
+          // Skeleton loading state with 5 placeholder game cards
+          Array.from({ length: 5 }).map((_, index) => (
+            <div key={index} className="block">
+              <div className="flex items-center bg-white rounded-xl border border-gray-200 px-4 py-2 shadow-sm">
+                {/* Icon and time skeleton */}
+                <div className="w-4 h-4 mr-1 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-12 h-4 bg-gray-200 rounded animate-pulse mr-3"></div>
+                
+                {/* Player columns skeleton */}
+                <div className="flex flex-col items-start mr-2 min-w-[80px]">
+                  <div className="flex items-center">
+                    <div className="w-20 h-4 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="w-4 h-3 bg-gray-200 rounded animate-pulse ml-1"></div>
+                  </div>
+                  <div className="flex items-center gap-1 mt-1">
+                    <div className="w-8 h-3 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="w-2 h-2 bg-gray-200 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+                
+                <div className="w-6 h-4 bg-gray-200 rounded animate-pulse mx-4"></div>
+                
+                <div className="flex flex-col items-start mr-2 min-w-[80px]">
+                  <div className="flex items-center">
+                    <div className="w-16 h-4 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="w-4 h-3 bg-gray-200 rounded animate-pulse ml-1"></div>
+                  </div>
+                  <div className="flex items-center gap-1 mt-1">
+                    <div className="w-8 h-3 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="w-2 h-2 bg-gray-200 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+                
+                {/* Spacer */}
+                <div className="flex-1" />
+                
+                {/* Result skeleton */}
+                <div className="w-6 h-6 rounded-full bg-gray-200 animate-pulse"></div>
+              </div>
+            </div>
+          ))
         ) : (
           games.map((game) => (
             <a

@@ -8,7 +8,7 @@ const KzooDetails = () => {
                     {/* Campus Image*/}
                     <div className="w-full p-2 pb-1 flex justify-center items-center">
                         <img
-                            src="/images/Education/education-kzoocampus.png"
+                            src="/images/Education/education-kzoocampus.webp"
                             alt="Kalamazoo College Campus"
                             className="w-full h-[110px] object-cover rounded-xl border border-blue-100"
                         />
@@ -18,7 +18,7 @@ const KzooDetails = () => {
                         {/* Logo and Title */}
                         <div className="flex items-center w-full mb-2 mt-0">
                             <img
-                                src="/images/Education/education-kzoo_logo(2).png"
+                                src="/images/Education/education-kzoo_logo(2).webp"
                                 alt="Kalamazoo College Logo"
                                 className="w-10 h-10 mr-2"
                             />
@@ -27,7 +27,7 @@ const KzooDetails = () => {
                                 <div className="flex items-center text-gray-600 text-[13px]">
                                     Kalamazoo, MI
                                     <img
-                                        src="/images/Education/united-states-roundflag.png"
+                                        src="/images/Education/united-states-roundflag.webp"
                                         alt="USA Flag"
                                         className="w-3 h-3 ml-1"
                                     />

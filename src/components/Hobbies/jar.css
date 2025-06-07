@@ -1,0 +1,215 @@
+.jar-button {
+  --sz: 250px;
+  --dense: 5px;
+  height: var(--sz);
+  width: var(--sz);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none transparent;
+  margin: auto;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+
+.jar-neck {
+  width: calc(var(--sz) / 2.2);
+  height: 6px;
+  top: -5px;
+  position: absolute;
+  border: var(--dense) solid transparent;
+  background-color: transparent;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+
+.jar-neck::before {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  height: calc(var(--dense) * 4);
+  border: var(--dense) solid #0000;
+  border-radius: 4px;
+  z-index: 9;
+  top: -26px;
+  right: auto;
+  transition: all 0.25s ease;
+}
+
+
+.jar-neck::after {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 20px;
+  z-index: 4;
+  bottom: 100%;
+  margin-bottom: 2px;
+  border-radius: 8px 8px 2px 2px;
+  border: var(--dense) solid #DEDEDE;
+  background-color: #FFFFFF;
+  transition: all 0.25s ease 0.25s;
+}
+
+
+.jar-neck::before {
+  display: none;
+}
+
+
+
+.jar-body {
+  height: 250px;
+  width: 190px;
+  border-radius: 50px 50px 25px 25px;
+  border: calc(var(--dense) + 1px) solid rgba(204 204 204 / 0.3);
+  position: relative;
+  z-index: 2;
+  background-color: rgba(230, 230, 250, 0.1);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+
+
+
+.jar-body::before,
+.jar-body::after {
+  content: "";
+  position: absolute;
+  width: calc(var(--sz) + 20%);
+  height: calc(var(--sz) + 20%);
+  pointer-events: none;
+  --rotate: 30deg;
+  transition: all 0.25s ease 0.25s;
+}
+
+
+.jar-body::before {
+  border-radius: 95%;
+  top: 35%;
+  left: -25%;
+  transform: rotate(calc(var(--rotate) * -1));
+  background: linear-gradient(45deg, #FFA72D, #FCE355);
+  animation: jar-liquid 7s infinite cubic-bezier(0.5, 0.7, 0.7, 0.5) 0s;
+}
+
+
+.jar-body::after {
+  border-radius: 40%;
+  top: 35%;
+  left: -25%;
+  transform: rotate(calc(var(--rotate) * -1));
+  background: linear-gradient(45deg, #FFA72D, #FCE355);
+  animation: jar-liquid 8s infinite cubic-bezier(0.5, 0.7, 0.7, 0.5) 0s;
+}
+
+
+@keyframes jar-liquid {
+  0% {
+    transform: rotate(0deg);
+  }
+  0% {
+    transform: rotate(calc(var(--rotate) * 12)) rotate(calc(var(--rotate) * -1));
+  }
+}
+
+
+ .jar-bubbles {
+  position: absolute;
+  bottom: 10px; /* Start slightly above the very bottom */
+  left: 0;
+  width: 100%;
+  height: 95%; /* Bubbles float up most of the jar height */
+  z-index: 5;  /* Ensure bubbles are above the liquid pseudo-elements */
+  pointer-events: none;
+}
+
+
+.jar-bubble {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.4); /* Light, semi-transparent white */
+  border-radius: 50%; /* Makes it a circle */
+  opacity: 0;
+  bottom: 0;
+  animation: jar-floatUp 6s infinite ease-in; /* 'floatUp' animation, 6s duration, infinite loop */
+}
+
+
+.jar-bubble:nth-child(1) {
+  width: 10px; height: 10px;
+  left: 15%;
+  animation-duration: 5s;
+  animation-delay: 0s;
+}
+.jar-bubble:nth-child(2) {
+  width: 15px; height: 15px;
+  left: 40%;
+  animation-duration: 7s;
+  animation-delay: 1.5s;
+}
+.jar-bubble:nth-child(3) {
+  width: 8px; height: 8px;
+  left: 65%;
+  animation-duration: 4s;
+  animation-delay: 2.5s;
+}
+.jar-bubble:nth-child(4) {
+  width: 12px; height: 12px;
+  left: 80%;
+  animation-duration: 6s;
+  animation-delay: 0.5s;
+}
+.jar-bubble:nth-child(5) {
+  width: 7px; height: 7px;
+  left: 50%;
+  animation-duration: 8s;
+  animation-delay: 4s;
+}
+.jar-bubble:nth-child(6) {
+    width: 14px; height: 14px;
+    left: 25%;
+    animation-duration: 5.5s;
+    animation-delay: 2s;
+}
+.jar-bubble:nth-child(7) {
+    width: 9px; height: 9px;
+    left: 90%;
+    animation-duration: 6.5s;
+    animation-delay: 3s;
+}
+
+
+
+@keyframes jar-floatUp {
+  0% {
+    bottom: 0;
+    opacity: 0;
+    transform: translateX(0);
+  }
+  10% {
+    opacity: 0.7; /* Appear (not fully opaque) */
+  }
+  50% {
+    transform: translateX(8px); /* Add a slight wobble */
+  }
+  90% {
+      opacity: 0.3;
+  }
+  100% {
+    bottom: 100%; /* Float to the top */
+    opacity: 0;
+    transform: translateX(-8px); /* Wobble back */
+  }
+}
+
+
+    

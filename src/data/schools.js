@@ -1,8 +1,8 @@
 export const schools = [
   {
     name: "Kalamazoo College",
-    logo: "/images/Education/education-kzoo_logo.png",
-    idImage: "/images/Education/education-kzoo_id.jpg",
+    logo: "/images/Education/education-kzoo_logo.webp",
+    idImage: "/images/Education/education-kzoo_id.webp",
     studentId: "269401",
     years: "2019 - 2023",
     degrees: [
@@ -13,8 +13,8 @@ export const schools = [
   },
   {
     name: "Yonsei University",
-    logo: "/images/Education/education-yonsei_logo.png",
-    idImage: "/images/Education/education-yonsei_id.png",
+    logo: "/images/Education/education-yonsei_logo.webp",
+    idImage: "/images/Education/education-yonsei_id.webp",
     studentId: "760802",
     years: "Jan 2022 - Jun 2022",
     degrees: [

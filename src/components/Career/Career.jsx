@@ -21,18 +21,19 @@ const Career = () => {
 
     return (
         <div className="fixed top-8 right-8 z-0">
-            <div className="bg-white/20 backdrop-blur-md rounded-lg p-3 w-[308px] min-h-[420px] border border-white/30">
-                <h2 className="text-white text-sm font-medium mb-2 text-center">Professional Experience</h2>
-                
+            <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs  inline-block mx-auto">
+                Professional Experience
+            </span>
+            <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-[308px] min-h-[420px] border border-white/30 shadow-lg">
                 <div className="space-y-4">
                     {/* Flextrade Experience */}
                     <div className={`bg-white rounded-lg shadow-lg p-3 transition-all duration-500 ${isExpanded ? 'opacity-50' : 'opacity-100'}`}>
                         <div className="flex items-start justify-between mb-3">
                             <div className="flex items-center gap-2.5">
                                 <img 
-                                    src="/icons/flextrade_logo.jpg" 
+                                    src="/icons/flextrade_logo.webp" 
                                     alt="Flextrade Systems" 
-                                    className="w-8 h-8 rounded"
+                                    className="w-8 h-8 rounded-md"
                                 />
                                 <div>
                                     <h3 className="text-xs font-bold">Software Engineer</h3>
@@ -54,15 +55,15 @@ const Career = () => {
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                     <span>
-                                        Developed features for a Python-based calculation service 
+                                        Develop features for a Python-based calculation service 
                                         used to deliver risk analytics and financial computations 
-                                        within the OMS Server
+                                        within the Order Management System (OMS)
                                     </span>
                                 </div>
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                     <span>
-                                        Built and maintained gRPC API routines enabling
+                                        Build and maintain gRPC API routines enabling
                                         seamless integration of calculation results into the
                                         main OMS backend
                                     </span>
@@ -70,7 +71,7 @@ const Career = () => {
                                 <div className="flex items-start gap-2 text-gray-700 text-xs">
                                     <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                     <span>
-                                        Wrote unit tests for calculation workflows to ensure
+                                        Write unit tests for calculation workflows to ensure
                                         accuracy and reliability of all calculations
                                     </span>
                                 </div>
@@ -80,38 +81,91 @@ const Career = () => {
                                 <p className="text-xs font-bold mb-3">Programming Languages:</p>
                                 <div className="flex gap-4 mb-3">
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/python.svg" alt="Python" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">Python</span>
+                                        <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/python.svg" alt="Python" className="w-6 h-6" />
+                                        </a>
+                                        <span className="text-[9px] mt-0.5 ">Python</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/scala.svg" alt="Scala" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Scala_(programming_language)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/scala.svg" alt="Scala" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Scala</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/grpc-icon-color.png" alt="gRPC" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">gRPC</span>
+                                        <a href="https://en.wikipedia.org/wiki/SQL" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/mysql.svg" alt="SQL" className="w-6 h-6" />
+                                        </a>
+                                        <span className="text-[9px] mt-0.5">SQL</span>
                                     </div>
                                 </div>
 
                                 <p className="text-xs font-bold mb-3">Tools:</p>
-                                <div className="flex gap-4">
+                                <div className="flex gap-4 mb-3">
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/docker.svg" alt="Docker" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Docker_(software)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/docker.svg" alt="Docker" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Docker</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/jira-1.svg" alt="Jira" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Jira_(software)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/jira-1.svg" alt="Jira" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Jira</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/Jenkins_logo.svg" alt="Jenkins" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Jenkins_(software)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/Jenkins_logo.svg" alt="Jenkins" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Jenkins</span>
                                     </div>
+
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/intellijidea.svg" alt="IntelliJ" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">IntelliJ</span>
+                                        <a href="https://en.wikipedia.org/wiki/PyCharm" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/pycharm.svg" alt="Pycharm" className="w-6 h-6" />
+                                        </a>
+                                        <span className="text-[9px] mt-0.5">Pycharm</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <a href="https://en.wikipedia.org/wiki/Postman_(software)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/postman.svg" alt="Postman" className="w-6 h-6" />
+                                        </a>
+                                        <span className="text-[9px] mt-0.5">Postman</span>
                                     </div>
                                 </div>
+
+                                <p className="text-xs font-bold mb-1">Libraries & Protocols:</p>
+                                <div className="flex gap-4 mb-3">
+                                    <div className="flex flex-col items-center">
+                                        <a href="https://en.wikipedia.org/wiki/GRPC" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/grpc-icon-color.webp" alt="gRPC" className="w-6 h-6" />
+                                        </a>
+                                        <span className="text-[9px] mt-0.5">gRPC</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <a href="https://en.wikipedia.org/wiki/Akka_(toolkit)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/akka.svg" alt="Akka" className="w-6 h-6" />
+                                        </a>
+                                        <span className="text-[9px] mt-0.5">Akka</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <a href="https://en.wikipedia.org/wiki/NumPy" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/numpy.svg" alt="Numpy" className="w-6 h-6" />
+                                        </a>
+                                        <span className="text-[9px] mt-0.5">Numpy</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <a href="https://en.wikipedia.org/wiki/Pandas_(software)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/pandas.svg" alt="Pandas" className="w-6 h-6" />
+                                        </a>
+                                        <span className="text-[9px] mt-0.5">Pandas</span>
+                                    </div>
+                                </div>
+                                
+                                
+
+
                             </div>
                         </div>
                     </div>
@@ -121,7 +175,7 @@ const Career = () => {
                         <div className="flex items-start justify-between mb-2">
                             <div className="flex items-center gap-2">
                                 <img 
-                                    src="/icons/eagle-med.png" 
+                                    src="/icons/eagle-med.webp" 
                                     alt="Eagle Medical Lab" 
                                     className="w-10 h-10"
                                 />
@@ -169,15 +223,21 @@ const Career = () => {
                                 <p className="text-xs font-bold mb-3">Programming Languages:</p>
                                 <div className="flex gap-4 mb-3">
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/R_light.svg" alt="R" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/R_(programming_language)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/R_light.svg" alt="R" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">R</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/python.svg" alt="Python" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/python.svg" alt="Python" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Python</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/postgresql.svg" alt="PostgreSQL" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/PostgreSQL" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/postgresql.svg" alt="PostgreSQL" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">PostgreSQL</span>
                                     </div>
                                 </div>
@@ -185,12 +245,28 @@ const Career = () => {
                                 <p className="text-xs font-bold mb-3">Tools:</p>
                                 <div className="flex gap-4">
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/Github_light.svg" alt="Github" className="w-6 h-6" />
+                                        <a href="https://en.wikipedia.org/wiki/RStudio" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/Rstudio.svg" alt="Rstudio" className="w-6 h-6" />
+                                        </a>
+                                        <span className="text-[9px] mt-0.5">Rstudio</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <a href="https://en.wikipedia.org/wiki/GitHub" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/Github_light.svg" alt="Github" className="w-6 h-6" />
+                                        </a>
                                         <span className="text-[9px] mt-0.5">Github</span>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <img src="/icons/mysql.svg" alt="MySQL" className="w-6 h-6" />
-                                        <span className="text-[9px] mt-0.5">MySQL</span>
+                                        <a href="https://en.wikipedia.org/wiki/Microsoft_Excel" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/excel.svg" alt="Excel" className="w-6 h-6" />
+                                        </a>
+                                        <span className="text-[9px] mt-0.5">MS Excel</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <a href="https://en.wikipedia.org/wiki/Microsoft_Access" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:scale-125 hover:rotate-3">
+                                            <img src="/icons/access.svg" alt="Access" className="w-6 h-6" />
+                                        </a>
+                                        <span className="text-[9px] mt-0.5">MS Access</span>
                                     </div>
                                 </div>
                             </div>

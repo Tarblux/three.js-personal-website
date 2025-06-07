@@ -73,48 +73,53 @@ const ProjectsWarehouse = () => {
     };
 
     return (
-        <div className="absolute left-0 flex ml-12 mt-12">
-            <div className="bg-white/20 backdrop-blur-md rounded-lg w-[440px] p-2 border border-white/30">
-                <div className="bg-white rounded-lg p-1 pb-5">
-                    <div className="mb-5 mt-2">
-                        <ProjectFilter onFilterChange={setFilter} />
-                    </div>
-                    <div 
-                        ref={containerRef}
-                        className="grid grid-cols-2 gap-y-4 justify-items-center min-h-[500px] relative"
-                    >
-                        {currentProjects.map((project, index) => {
-                            const startDate = formatDate(project.startDate);
-                            const endDate = project.endDate ? formatDate(project.endDate) : 'Present';
-                            const duration = calculateDuration(project.startDate, project.endDate);
-                            
-                            return (
-                                <div key={index} onClick={() => handleProjectClick(project)}>
-                                    <ProjectCard
-                                        title={project.title}
-                                        date={`${startDate} - ${endDate} · ${duration}`}
-                                        image={project.image}
-                                        description={project.description}
-                                        category={project.category}
-                                        technologies={project.technologies}
-                                    />
-                                </div>
-                            );
-                        })}
-                    </div>
-                    <div className="flex flex-col items-center mt-4">
-                        <div className="flex justify-center gap-2">
-                            {Array.from({ length: totalPages }, (_, i) => (
-                                <button
-                                    key={i}
-                                    onClick={() => setCurrentPage(i)}
-                                    className={`h-1.5 w-1.5 rounded-full transition-all duration-300 hover:bg-gray-600 cursor-pointer
-                                        ${currentPage === i ? 'bg-blue-800 w-4' : 'bg-gray-300'}`}
-                                />
-                            ))}
+        <div className="absolute left-0 flex ml-12 mt-10">
+            <div className="flex flex-col items-start">
+                <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
+                    Projects Warehouse
+                </span>
+                <div className="bg-white/20 backdrop-blur-md rounded-lg w-[440px] p-2 border border-white/30">
+                    <div className="bg-white rounded-lg p-1 pb-5">
+                        <div className="mb-5 mt-2">
+                            <ProjectFilter onFilterChange={setFilter} />
                         </div>
-                        <div className="text-gray-400 text-xs mt-2">
-                            {currentPage + 1} / {totalPages}
+                        <div 
+                            ref={containerRef}
+                            className="grid grid-cols-2 gap-y-4 justify-items-center min-h-[500px] relative"
+                        >
+                            {currentProjects.map((project, index) => {
+                                const startDate = formatDate(project.startDate);
+                                const endDate = project.endDate ? formatDate(project.endDate) : 'Present';
+                                const duration = calculateDuration(project.startDate, project.endDate);
+                                
+                                return (
+                                    <div key={index} onClick={() => handleProjectClick(project)}>
+                                        <ProjectCard
+                                            title={project.title}
+                                            date={`${startDate} - ${endDate} · ${duration}`}
+                                            image={project.image}
+                                            description={project.description}
+                                            category={project.category}
+                                            technologies={project.technologies}
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                        <div className="flex flex-col items-center mt-4">
+                            <div className="flex justify-center gap-2">
+                                {Array.from({ length: totalPages }, (_, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => setCurrentPage(i)}
+                                        className={`h-1.5 w-1.5 rounded-full transition-all duration-300 hover:bg-gray-600 cursor-pointer
+                                            ${currentPage === i ? 'bg-blue-800 w-4' : 'bg-gray-300'}`}
+                                    />
+                                ))}
+                            </div>
+                            <div className="text-gray-400 text-xs mt-2">
+                                {currentPage + 1} / {totalPages}
+                            </div>
                         </div>
                     </div>
                 </div>
