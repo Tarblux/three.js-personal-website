@@ -78,14 +78,14 @@ const ProjectsWarehouse = () => {
                 <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
                     Projects Warehouse
                 </span>
-                <div className="bg-white/20 backdrop-blur-md rounded-lg w-[440px] p-2 border border-white/30">
-                    <div className="bg-white rounded-lg p-1 pb-5">
-                        <div className="mb-5 mt-2">
-                            <ProjectFilter onFilterChange={setFilter} />
-                        </div>
+                <div className="bg-white/20 backdrop-blur-md rounded-lg w-[500px] border border-white/30 overflow-hidden px-1 py-2">
+                    <div className="px-[6px] pb-0">
+                        <ProjectFilter onFilterChange={setFilter} filter={filter} />
+                    </div>
+                    <div className="bg-white rounded-lg mx-1 px-4 pt-4 pb-5">
                         <div 
                             ref={containerRef}
-                            className="grid grid-cols-2 gap-y-4 justify-items-center min-h-[500px] relative"
+                            className="grid grid-cols-2 gap-4 justify-items-center min-h-[620px] relative"
                         >
                             {currentProjects.map((project, index) => {
                                 const startDate = formatDate(project.startDate);
@@ -106,8 +106,8 @@ const ProjectsWarehouse = () => {
                                 );
                             })}
                         </div>
-                        <div className="flex flex-col items-center mt-4">
-                            <div className="flex justify-center gap-2">
+                        <div className="flex items-center justify-center gap-4 mt-4">
+                            <div className="flex gap-2">
                                 {Array.from({ length: totalPages }, (_, i) => (
                                     <button
                                         key={i}
@@ -117,7 +117,7 @@ const ProjectsWarehouse = () => {
                                     />
                                 ))}
                             </div>
-                            <div className="text-gray-400 text-xs mt-2">
+                            <div className="text-gray-400 text-xs">
                                 {currentPage + 1} / {totalPages}
                             </div>
                         </div>

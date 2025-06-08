@@ -43,7 +43,7 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
     return (
         <div className={`
             relative bg-white rounded-xl p-1 shadow-md hover:shadow-xl 
-            transition-all duration-300 ease-in-out w-[190px] min-h-[280px]
+            transition-all duration-300 ease-in-out w-[220px] min-h-[300px]
             hover:scale-105 cursor-pointer border border-gray-200
             before:absolute before:inset-0
             before:rounded-xl before:-z-10
@@ -65,7 +65,7 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
                     <img 
                         src={image} 
                         alt={title} 
-                        className="w-full h-32 object-cover rounded-lg"
+                        className="w-full h-36 object-cover rounded-lg"
                     />
                     
                     {/* Technology tags overlay */}
