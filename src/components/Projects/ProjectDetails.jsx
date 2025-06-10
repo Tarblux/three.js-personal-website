@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import GitActivity from './GitActivity';
 
 const ProjectDetails = ({ project, isVisible, onClose }) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
@@ -80,7 +81,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             
             {/* Project Details Card */}
             <div 
-                className={`fixed right-[200px] top-[48px] w-[600px] min-h-[400px] bg-white/95 backdrop-blur-sm
+                className={`fixed right-[300px] top-[70px] w-[650px] min-h-[400px] bg-white/95 backdrop-blur-sm
                     rounded-2xl shadow-lg transform-gpu
                     ${isClosing ? 'animate-fold' : 'animate-unfold'}`}
                 style={{
@@ -210,6 +211,9 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                     </div>
                 </div>
             </div>
+            
+            {/* Git Activity*/}
+            <GitActivity isVisible={isVisible} />
         </>
     );
 };
