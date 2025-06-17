@@ -1,0 +1,36 @@
+// Based on GitHub's language colors
+export const LANGUAGE_COLORS = {
+    "JavaScript": "#f1e05a",
+    "CSS": "#563d7c",
+    "HTML": "#e34c26",
+    "TypeScript": "#2b7489",
+    "Python": "#3572A5",
+    "Java": "#b07219",
+    "C++": "#f34b7d",
+    "C": "#555555",
+    "Go": "#00ADD8",
+    "Rust": "#dea584",
+    "PHP": "#4F5D95",
+    "Ruby": "#701516",
+    "Swift": "#ffac45",
+    "Kotlin": "#F18E33",
+    "Dart": "#00B4AB",
+    "Shell": "#89e051",
+    "PowerShell": "#012456",
+    "R": "#198CE7",
+    "Scala": "#c22d40",
+    "Clojure": "#db5855",
+    "Haskell": "#5e5086",
+    "Lua": "#000080",
+    "Perl": "#0298c3",
+    "Objective-C": "#438eff",
+    "Assembly": "#6E4C13",
+    "Vue": "#2c3e50",
+    "Svelte": "#ff3e00",
+    "LaTeX": "#3D6117",
+    "MATLAB": "#e16737",
+    "Jupyter Notebook": "#DA5B0B",
+    "Other": "#8b949e"
+};
+
+export default LANGUAGE_COLORS; 

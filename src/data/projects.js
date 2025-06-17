@@ -13,23 +13,23 @@ export const projects = [
                 demonstrate my ability to work with modern web technologies and 3D graphics. 
                 The site features interactive 3D elements that respond to user interaction, 
                 creating an engaging and memorable experience.`,
-        github: "https://github.com/Tarblux",
+        github: "https://github.com/Tarblux/three.js-personal-website",
         link: "https://google.com"
     },
     {
-        title: "Leetcode Dashboard",
+        title: "Chess Dashboard",
         order: 2,
         startDate: "2024-01-01",
         endDate: "2025-04-01",
         image: "/images/Projects/project-leet.webp",
-        description: "Personal progress tracking dashboard for coding practice",
+        description: "Personal progress tracking dashboard for chess practice",
         category: "development",
         technologies: ["React", "Node.js", "PostgreSQL"],
-        story: `The Leetcode Dashboard was born from my desire to better track and visualize 
+        story: `The Chess Dashboard was born from my desire to better track and visualize 
                 my progress in algorithmic problem-solving. I built this tool to help myself 
                 and other developers maintain consistency in their coding practice and identify 
                 areas for improvement.`,
-        github: "https://github.com/Tarblux",
+        github: "https://github.com/Tarblux/chess-analysis-server",
         link: "https://google.com"
     },
     {
@@ -65,7 +65,7 @@ export const projects = [
                 combining traditional linguistic research methods with modern data analysis 
                 techniques. The study provided valuable insights into language evolution and 
                 cultural preservation.`,
-        github: "https://github.com/Tarblux",
+        github: "https://github.com/Tarblux/Creole-Linguistics-Data-Analytics",
         link: "https://youtu.be/Ddhjw3gK5gw "
     },
     {

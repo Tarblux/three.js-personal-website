@@ -1,32 +1,143 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SparkLineChart } from '@mui/x-charts/SparkLineChart';
+import { LANGUAGE_COLORS } from '../../data/languageColors';
+import { GIT_FALLBACK_DATA } from '../../data/gitFallbackData';
 
-const GitActivity = ({ isVisible }) => {
+const extractRepoNameFromGithubUrl = (githubUrl) => {
+    if (!githubUrl) return null;
+    
+    try {
+        const url = new URL(githubUrl);
+        const pathParts = url.pathname.split('/').filter(part => part.length > 0);
+        
+        // GitHub URL format: https://github.com/username/repo-name
+        if (pathParts.length >= 2) {
+            return pathParts[1];
+        }
+    } catch (error) {
+        console.error('Invalid GitHub URL:', githubUrl);
+    }
+    
+    return null;
+};
+
+// Custom component for the gradient line
+const GradientLine = (props) => {
+  const { d, ...other } = props;
+  return (
+    <>
+      <defs>
+        <linearGradient id="line-gradient" gradientTransform="rotate(90)">
+          <stop offset="0%" stopColor="#5FDD74" />
+          <stop offset="100%" stopColor="#008000" />
+        </linearGradient>
+      </defs>
+      <path d={d} {...other} stroke="url(#line-gradient)" fill="none" strokeWidth={2} />
+    </>
+  );
+};
+
+// Custom component for the gradient area
+const GradientArea = (props) => {
+  const { d, ...other } = props;
+  return (
+    <>
+      <defs>
+        <linearGradient id="area-gradient" gradientTransform="rotate(90)">
+          <stop offset="0%" stopColor="#d4ffb2" stopOpacity={0.4} />
+          <stop offset="100%" stopColor="#008000" stopOpacity={0} />
+        </linearGradient>
+      </defs>
+      <path d={d} {...other} fill="url(#area-gradient)" />
+    </>
+  );
+};
+
+const GitActivity = ({ 
+    isVisible, 
+    project = null, // project object instead of individual props , maybe refactor this idk
+    repo = null,
+    showComponent = true,
+}) => {
+    const [gitData, setGitData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Early return if not visible , not sure if this even improves performance
     if (!isVisible) return null;
 
-    // Sample activity data for the sparkline
-    const activityData = [2, 1, 4, 5, 2, 3, 6, 4, 3, 7, 5, 8, 6, 4, 9, 7, 5, 6, 8, 4, 3, 5, 7, 6, 4, 8, 9, 5, 6, 7];
-    const totalCommits = 101;
+    
+    const repoName = project?.github 
+        ? extractRepoNameFromGithubUrl(project.github) 
+        : repo || "three.js-personal-website";
+    
+    
+    if (project && !project.github) {
+        return null;
+    }
 
-    // Sample recent commits data
-    const recentCommits = [
-        { message: "Merge pull request #6 from....", timestamp: "1 day ago" },
-        { message: "Clean up wording and text", timestamp: "2 days ago" },
-        { message: "General Pre Release Touch ups", timestamp: "4 days ago" }
-    ];
+    // If no repo name could be determined, don't show the component
+    if (!repoName) {
+        return null;
+    }
+      
+    const API_BASE_URL = process.env.NODE_ENV === 'development' 
+        ? 'http://localhost:3000' 
+        : 'https://threejs-backend.tariqwill.com';
 
-    // Programming languages data colors
-    const languages = [
-        { name: "JavaScript", percentage: 68.7, color: "#f1e05a" },
-        { name: "CSS", percentage: 11.2, color: "#563d7c" },
-        { name: "HTML", percentage: 9.1, color: "#e34c26" },
-        { name: "TypeScript", percentage: 7.8, color: "#2b7489" },
-        { name: "Other", percentage: 3.2, color: "#8b949e" }
-    ];
+    useEffect(() => {
+        const fetchGitData = async () => {
+            if (!repoName) {
+                setLoading(false);
+                return;
+            }
+
+            try {
+                setLoading(true);
+                const response = await fetch(`${API_BASE_URL}/git-repos?repo=${repoName}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch git data');
+                }
+                const data = await response.json();
+                setGitData(data);
+                setError(null);
+            } catch (err) {
+                console.error('Error fetching git data:', err);
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchGitData();
+    }, [API_BASE_URL, repoName]);
+
+    const getFallbackData = (repoName) => {
+        return GIT_FALLBACK_DATA[repoName] || GIT_FALLBACK_DATA["three.js-personal-website"];
+    };
+
+    // Use real data if available, otherwise fallback
+    const currentData = gitData || getFallbackData(repoName);
+    const activityData = currentData.commits_per_week?.commitsPerWeek || getFallbackData(repoName).commits_per_week.commitsPerWeek;
+    const totalCommits = currentData.total_commits || getFallbackData(repoName).total_commits;
+    const recentCommits = currentData.latest_commits?.commits || getFallbackData(repoName).latest_commits.commits;
+
+    // Process language data with decoupled colors
+    const languages = currentData.language_percentages 
+        ? Object.entries(currentData.language_percentages).map(([name, percentage]) => ({
+            name,
+            percentage: parseFloat(percentage),
+            color: LANGUAGE_COLORS[name] || LANGUAGE_COLORS["Other"]
+        })).sort((a, b) => b.percentage - a.percentage)
+        : Object.entries(getFallbackData(repoName).language_percentages).map(([name, percentage]) => ({
+            name,
+            percentage: parseFloat(percentage),
+            color: LANGUAGE_COLORS[name] || LANGUAGE_COLORS["Other"]
+        })).sort((a, b) => b.percentage - a.percentage);
 
     return (
-        <div className="fixed right-[50px] top-[70px] w-[240px] h-[480px] bg-white backdrop-blur-sm rounded-2xl shadow-lg border border-white/30">
-            <div className="p-4 h-full flex flex-col">
+        <div className={`fixed right-[50px] top-[70px] w-[240px] min-h-[400px] max-h-[600px] bg-white backdrop-blur-sm rounded-2xl shadow-lg border border-white/30 transition-opacity duration-1000 ${showComponent ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="p-4 flex flex-col">
                 {/* Header with GitHub Icon, Title, and Activity Dot */}
                 <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -45,31 +156,41 @@ const GitActivity = ({ isVisible }) => {
                         </div>
                         <span className="text-sm font-medium text-gray-800">Github Activity</span>
                     </div>
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <div className={`w-2 h-2 rounded-full ${loading ? 'bg-yellow-500' : error ? 'bg-red-500' : 'bg-green-500'} animate-pulse`}></div>
                 </div>
                 
                 {/* Sparkline Chart */}
-                <div className="mb-4">
-                    <SparkLineChart
-                        data={activityData}
-                        width={200}
-                        height={60}
-                        showTooltip={true}
-                        curve="monotoneX"
-                        color="#22c55e"
-                        sx={{ 
-                            '& .MuiLineElement-root': { 
-                                strokeWidth: 2.5, 
-                                strokeLinecap: 'round' 
-                            } 
-                        }}
-                    />
+                <div className="mb-4 -mt-6">
+                    {loading ? (
+                        <div className="w-[200px] h-[60px] bg-gray-200 rounded animate-pulse"></div>
+                    ) : (
+                        <SparkLineChart
+                            data={activityData}
+                            width={200}
+                            height={60}
+                            showTooltip={true}
+                            curve="monotoneX"
+                            area
+                            slots={{
+                                line: GradientLine,
+                                area: GradientArea,
+                            }}
+                            sx={{
+                                '& .MuiSparkLine-line': {
+                                    stroke: 'none',
+                                },
+                                '& .MuiSparkLine-area': {
+                                    fill: 'none',
+                                }
+                            }}
+                        />
+                    )}
                 </div>
                 
                 {/* Total Commits */}
-                <div className="mb-4">
+                <div className="mb-1.5">
                     <span className="text-sm font-semibold text-black">
-                        Total Commits: <span className="text-green-600">{totalCommits}</span>
+                        Total Commits: <span className="text-green-600">{loading ? '...' : totalCommits}</span>
                     </span>
                 </div>
                 
@@ -77,63 +198,93 @@ const GitActivity = ({ isVisible }) => {
                 <div className="mb-4">
                     <h4 className="text-sm font-semibold text-black mb-3">Latest Commits:</h4>
                     <div className="space-y-2">
-                        {recentCommits.map((commit, index) => (
-                            <div key={index} className="flex items-start gap-2">
-                                {/* Bullet point and vertical line */}
-                                <div className="flex flex-col items-center mt-1">
-                                    <div className="w-1.5 h-1.5 bg-black rounded-full flex-shrink-0"></div>
-                                    {index < recentCommits.length - 1 && (
-                                        <div className="w-px h-6 bg-gray-300 mt-1"></div>
-                                    )}
+                        {loading ? (
+                            // Loading skeleton
+                            Array.from({ length: 3 }).map((_, index) => (
+                                <div key={index} className="flex items-start gap-2">
+                                    <div className="flex flex-col items-center mt-1">
+                                        <div className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-pulse"></div>
+                                        {index < 2 && <div className="w-px h-6 bg-gray-200 mt-1"></div>}
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="w-full h-3 bg-gray-200 rounded animate-pulse mb-1"></div>
+                                        <div className="w-16 h-2 bg-gray-200 rounded animate-pulse"></div>
+                                    </div>
                                 </div>
-                                {/* Commit details */}
-                                <div className="flex-1 min-w-0">
-                                    <p className="text-xs text-black font-medium leading-tight mb-1">
-                                        {commit.message}
-                                    </p>
-                                    <p className="text-xs text-gray-500">
-                                        {commit.timestamp}
-                                    </p>
+                            ))
+                        ) : (
+                            recentCommits.slice(0, 3).map((commit, index) => (
+                                <div key={index} className="flex items-start gap-2">
+                                    {/* Bullet point and vertical line */}
+                                    <div className="flex flex-col items-center mt-1">
+                                        <div className="w-1.5 h-1.5 bg-black rounded-full flex-shrink-0"></div>
+                                        {index < recentCommits.slice(0, 3).length - 1 && (
+                                            <div className="w-px h-6 bg-gray-300 mt-1"></div>
+                                        )}
+                                    </div>
+                                    {/* Commit details */}
+                                    <div className="flex-1 min-w-0">
+                                        <p className="text-xs text-black font-medium leading-tight mb-1">
+                                            {commit.message.length > 50 ? `${commit.message.substring(0, 50)}...` : commit.message}
+                                        </p>
+                                        <p className="text-xs text-gray-500">
+                                            {commit.timeAgo}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))
+                        )}
                     </div>
                 </div>
 
                 {/* Languages Section */}
-                <div className="flex-1">
+                <div className="pb-2">
                     <h4 className="text-sm font-semibold text-black mb-3">Languages</h4>
                     
                     {/* Language Percentage Bar */}
                     <div className="mb-3">
-                        <div className="flex h-2 bg-gray-200 rounded-full overflow-hidden">
-                            {languages.map((language, index) => (
-                                <div
-                                    key={index}
-                                    className="h-full transition-all duration-500 ease-out"
-                                    style={{
-                                        width: `${language.percentage}%`,
-                                        backgroundColor: language.color,
-                                        animationDelay: `${index * 100}ms`
-                                    }}
-                                />
-                            ))}
-                        </div>
+                        {loading ? (
+                            <div className="h-2 bg-gray-200 rounded-full animate-pulse"></div>
+                        ) : (
+                            <div className="flex h-2 bg-gray-200 rounded-full overflow-hidden">
+                                {languages.map((language, index) => (
+                                    <div
+                                        key={index}
+                                        className="h-full transition-all duration-500 ease-out"
+                                        style={{
+                                            width: `${language.percentage}%`,
+                                            backgroundColor: language.color,
+                                            animationDelay: `${index * 100}ms`
+                                        }}
+                                    />
+                                ))}
+                            </div>
+                        )}
                     </div>
                     
                     {/* Language List */}
                     <div className="grid grid-cols-2 gap-x-2 gap-y-1">
-                        {languages.map((language, index) => (
-                            <div key={index} className="flex items-center gap-2">
-                                <div
-                                    className="w-[5px] h-[5px] rounded-full flex-shrink-0"
-                                    style={{ backgroundColor: language.color }}
-                                />
-                                <span className="text-[10px] text-black font-medium">
-                                    {language.name} {language.percentage}%
-                                </span>
-                            </div>
-                        ))}
+                        {loading ? (
+                            // Loading skeleton
+                            Array.from({ length: 4 }).map((_, index) => (
+                                <div key={index} className="flex items-center gap-2">
+                                    <div className="w-[5px] h-[5px] bg-gray-300 rounded-full animate-pulse"></div>
+                                    <div className="w-12 h-2 bg-gray-200 rounded animate-pulse"></div>
+                                </div>
+                            ))
+                        ) : (
+                            languages.map((language, index) => (
+                                <div key={index} className="flex items-center gap-2">
+                                    <div
+                                        className="w-[5px] h-[5px] rounded-full flex-shrink-0"
+                                        style={{ backgroundColor: language.color }}
+                                    />
+                                    <span className="text-[10px] text-black font-medium">
+                                        {language.name} {language.percentage.toFixed(1)}%
+                                    </span>
+                                </div>
+                            ))
+                        )}
                     </div>
                 </div>
             </div>

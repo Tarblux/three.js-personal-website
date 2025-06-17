@@ -4,26 +4,37 @@ import GitActivity from './GitActivity';
 const ProjectDetails = ({ project, isVisible, onClose }) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
     const [isClosing, setIsClosing] = useState(false);
+    const [showGitActivity, setShowGitActivity] = useState(false);
+    const [renderGitActivity, setRenderGitActivity] = useState(false);
 
     // Reset currentMediaIndex when project changes
     useEffect(() => {
         setCurrentMediaIndex(0);
     }, [project]);
 
-    // Reset closing state when visibility changes
+    // Reset closing state when visibility changes , needs to be refactored but works for now
     useEffect(() => {
         if (isVisible) {
             setIsClosing(false);
+
+            setRenderGitActivity(true);
+            const timer = setTimeout(() => setShowGitActivity(true), 300);
+            return () => clearTimeout(timer);
+        } else {
+            setShowGitActivity(false);
+            const timer = setTimeout(() => setRenderGitActivity(false), 1000);
+            return () => clearTimeout(timer);
         }
     }, [isVisible]);
 
     const handleClose = () => {
         setIsClosing(true);
-        // Wait for animation to complete before actually closing
+        setShowGitActivity(false);
         setTimeout(() => {
             onClose();
             setIsClosing(false);
-        }, 700); // Match animation duration
+            setRenderGitActivity(false);
+        }, 700);
     };
     
     if (!isVisible || !project) return null;
@@ -213,7 +224,13 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             </div>
             
             {/* Git Activity*/}
-            <GitActivity isVisible={isVisible} />
+            {renderGitActivity && (
+                <GitActivity 
+                    isVisible={true} 
+                    project={project} 
+                    showComponent={showGitActivity}
+                />
+            )}
         </>
     );
 };
