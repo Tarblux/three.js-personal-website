@@ -54,7 +54,7 @@ const ProjectsConstructionCard = ({ title, date, image, description, category, t
     return (
         <div className={`
             relative bg-white rounded-xl p-1 shadow-md hover:shadow-xl 
-            transition-all duration-300 ease-in-out w-[190px] min-h-[275px]
+            transition-all duration-300 ease-in-out w-[220px] min-h-[300px]
             hover:scale-105 cursor-pointer border border-gray-200
             before:absolute before:inset-0
             before:rounded-xl before:-z-10
@@ -77,7 +77,7 @@ const ProjectsConstructionCard = ({ title, date, image, description, category, t
                     <img 
                         src={image} 
                         alt={title} 
-                        className="w-full h-32 object-cover rounded-lg"
+                        className="w-full h-36 object-cover rounded-lg"
                     />
                     {/* Technology tags overlay */}
                     <div className="absolute bottom-2 left-2 right-2 flex flex-wrap gap-0.5">
@@ -93,7 +93,7 @@ const ProjectsConstructionCard = ({ title, date, image, description, category, t
                 </div>
             </div>
 
-            <div className="pl-2 flex-1 flex flex-col">
+            <div className="pl-2">
                 {/* Date */}
                 <div className="text-gray-500 text-xs mb-1">
                     {date}
@@ -101,7 +101,7 @@ const ProjectsConstructionCard = ({ title, date, image, description, category, t
 
                 {/* Title and Description */}
                 <h3 className="text-sm font-bold mb-1">{title}</h3>
-                <p className="text-gray-600 text-[0.68rem] mb-2">
+                <p className="text-gray-600 text-[0.68rem] mb-6">
                     {description}
                 </p>
             </div>

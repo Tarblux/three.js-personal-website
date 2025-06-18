@@ -18,7 +18,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             setIsClosing(false);
 
             setRenderGitActivity(true);
-            const timer = setTimeout(() => setShowGitActivity(true), 300);
+            const timer = setTimeout(() => setShowGitActivity(true), 1000);
             return () => clearTimeout(timer);
         } else {
             setShowGitActivity(false);
@@ -229,6 +229,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                     isVisible={true} 
                     project={project} 
                     showComponent={showGitActivity}
+                    position={{ right: '50px', top: '70px' }}
                 />
             )}
         </>

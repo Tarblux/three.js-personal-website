@@ -58,6 +58,7 @@ const GitActivity = ({
     project = null, // project object instead of individual props , maybe refactor this idk
     repo = null,
     showComponent = true,
+    position = { right: '50px', top: '70px' }, // Default positioning, can be overridden by parent
 }) => {
     const [gitData, setGitData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -136,8 +137,16 @@ const GitActivity = ({
         })).sort((a, b) => b.percentage - a.percentage);
 
     return (
-        <div className={`fixed right-[50px] top-[70px] w-[240px] min-h-[400px] max-h-[600px] bg-white backdrop-blur-sm rounded-2xl shadow-lg border border-white/30 transition-opacity duration-1000 ${showComponent ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="p-4 flex flex-col">
+        <div 
+            className={`fixed w-[240px] min-h-[350px] max-h-[600px] bg-white backdrop-blur-sm rounded-2xl shadow-lg border border-white/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-xl ${showComponent ? 'opacity-100' : 'opacity-0'}`}
+            style={{
+                right: position.right,
+                top: position.top,
+                left: position.left,
+                bottom: position.bottom
+            }}
+        >
+            <div className="p-3 flex flex-col">
                 {/* Header with GitHub Icon, Title, and Activity Dot */}
                 <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -160,15 +169,19 @@ const GitActivity = ({
                 </div>
                 
                 {/* Sparkline Chart */}
-                <div className="mb-4 -mt-6">
+                <div className="mb-1 -mt-4">
                     {loading ? (
-                        <div className="w-[200px] h-[60px] bg-gray-200 rounded animate-pulse"></div>
+                        <div className="w-[200px] h-[30px] bg-gray-200 rounded animate-pulse"></div>
+                    ) : !activityData || !Array.isArray(activityData) ? null : activityData.every((v) => v === 0) ? (
+                        <div className="flex items-center justify-center w-[200px] h-[60px] mt-2">
+                            <span className="text-gray-400 text-xs">No Commits This Year🥲</span>
+                        </div>
                     ) : (
                         <SparkLineChart
                             data={activityData}
                             width={200}
-                            height={60}
-                            showTooltip={true}
+                            height={50}
+                            showTooltip={false}
                             curve="monotoneX"
                             area
                             slots={{
@@ -196,44 +209,47 @@ const GitActivity = ({
                 
                 {/* Latest Commits Section */}
                 <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-black mb-3">Latest Commits:</h4>
-                    <div className="space-y-2">
-                        {loading ? (
-                            // Loading skeleton
-                            Array.from({ length: 3 }).map((_, index) => (
-                                <div key={index} className="flex items-start gap-2">
-                                    <div className="flex flex-col items-center mt-1">
-                                        <div className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-pulse"></div>
-                                        {index < 2 && <div className="w-px h-6 bg-gray-200 mt-1"></div>}
+                    <h4 className="text-sm font-semibold text-black mb-3">Latest Commits</h4>
+                    <div className="relative">
+                        {/* Vertical dashed line - only shown when not loading and there are commits */}
+                        {!loading && recentCommits && recentCommits.length > 0 &&
+                            <div className="absolute top-1.5 left-[3px] w-px h-full border-[1px] border-dashed border-gray-300"></div>
+                        }
+                        
+                        <div className="space-y-4">
+                            {loading ? (
+                                // Loading skeleton
+                                Array.from({ length: 3 }).map((_, index) => (
+                                    <div key={index} className="flex items-start gap-2">
+                                        <div className="flex flex-col items-center mt-1">
+                                            <div className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-pulse"></div>
+                                            {index < 2 && <div className="w-px h-6 bg-gray-200 mt-1"></div>}
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <div className="w-full h-3 bg-gray-200 rounded animate-pulse mb-1"></div>
+                                            <div className="w-16 h-2 bg-gray-200 rounded animate-pulse"></div>
+                                        </div>
                                     </div>
-                                    <div className="flex-1 min-w-0">
-                                        <div className="w-full h-3 bg-gray-200 rounded animate-pulse mb-1"></div>
-                                        <div className="w-16 h-2 bg-gray-200 rounded animate-pulse"></div>
+                                ))
+                            ) : (
+                                recentCommits.slice(0, 3).map((commit) => (
+                                    <div key={commit.sha} className="flex items-start gap-2.5 relative">
+                                        {/* Bullet point - sits on top of the line */}
+                                        <div className="w-[8px] h-[8px] bg-gray-500 rounded-[40%] flex-shrink-0 mt-1 z-10"></div>
+                                        
+                                        {/* Commit details */}
+                                        <div className="flex-1 min-w-0">
+                                            <p className="text-[12px] text-black font-medium leading-tight">
+                                                {commit.message.length > 50 ? `${commit.message.substring(0, 50)}...` : commit.message}
+                                            </p>
+                                            <p className="text-[10px] text-gray-500">
+                                                {commit.timeAgo}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            ))
-                        ) : (
-                            recentCommits.slice(0, 3).map((commit, index) => (
-                                <div key={index} className="flex items-start gap-2">
-                                    {/* Bullet point and vertical line */}
-                                    <div className="flex flex-col items-center mt-1">
-                                        <div className="w-1.5 h-1.5 bg-black rounded-full flex-shrink-0"></div>
-                                        {index < recentCommits.slice(0, 3).length - 1 && (
-                                            <div className="w-px h-6 bg-gray-300 mt-1"></div>
-                                        )}
-                                    </div>
-                                    {/* Commit details */}
-                                    <div className="flex-1 min-w-0">
-                                        <p className="text-xs text-black font-medium leading-tight mb-1">
-                                            {commit.message.length > 50 ? `${commit.message.substring(0, 50)}...` : commit.message}
-                                        </p>
-                                        <p className="text-xs text-gray-500">
-                                            {commit.timeAgo}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))
-                        )}
+                                ))
+                            )}
+                        </div>
                     </div>
                 </div>
 
@@ -263,7 +279,7 @@ const GitActivity = ({
                     </div>
                     
                     {/* Language List */}
-                    <div className="grid grid-cols-2 gap-x-2 gap-y-1">
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-1">
                         {loading ? (
                             // Loading skeleton
                             Array.from({ length: 4 }).map((_, index) => (
@@ -279,8 +295,8 @@ const GitActivity = ({
                                         className="w-[5px] h-[5px] rounded-full flex-shrink-0"
                                         style={{ backgroundColor: language.color }}
                                     />
-                                    <span className="text-[10px] text-black font-medium">
-                                        {language.name} {language.percentage.toFixed(1)}%
+                                    <span className="text-[11px] text-black font-medium whitespace-nowrap">
+                                        <b>{language.name.length > 10 ? `${language.name.substring(0, 10)}...` : language.name}</b> {language.percentage.toFixed(1)}%
                                     </span>
                                 </div>
                             ))

@@ -1,13 +1,13 @@
 export const projects = [
     {
-        title: "Three.js Personal Website",
+        title: "Three.js Portfolio Frontend",
         order: 1,
         startDate: "2024-10-01",
         endDate: null,
         image: "/images/Projects/project-tester.webp",
         description: "Interactive 3D portfolio website with modern tech stack",
         category: "development",
-        technologies: ["Three.js", "React", "Node.js", "PostgreSQL"],
+        technologies: ["Three.js", "React", 'TailwindCSS'],
         story: `This project represents a significant milestone in my web development journey. 
                 I wanted to create something that would not only showcase my work but also 
                 demonstrate my ability to work with modern web technologies and 3D graphics. 
@@ -17,20 +17,54 @@ export const projects = [
         link: "https://google.com"
     },
     {
-        title: "Chess Dashboard",
-        order: 2,
-        startDate: "2024-01-01",
-        endDate: "2025-04-01",
+        title: "Personal Website (Old)",
+        order: 3,
+        startDate: "2023-01-01",
+        endDate: "2025-05-01",
         image: "/images/Projects/project-leet.webp",
-        description: "Personal progress tracking dashboard for chess practice",
+        description: "My original personal website, built with basic html, css, and javascript.",
         category: "development",
-        technologies: ["React", "Node.js", "PostgreSQL"],
-        story: `The Chess Dashboard was born from my desire to better track and visualize 
-                my progress in algorithmic problem-solving. I built this tool to help myself 
-                and other developers maintain consistency in their coding practice and identify 
-                areas for improvement.`,
-        github: "https://github.com/Tarblux/chess-analysis-server",
-        link: "https://google.com"
+        technologies: ["HTML", "CSS", "JavaScript"],
+        story: `My original personal website, built with basic html, css, and javascript.`,
+        github: "https://github.com/Tarblux/Personal-Website",
+        link: "https://tarblux.github.io/Personal-Website/"
+    },
+    {
+        title: "Three.js Portfolio Backend",
+        order: 2,
+        startDate: "2025-05-01",
+        endDate: null,
+        image: "/images/Projects/project-leet.webp",
+        description: "Backend for my three.js portfolio website.",
+        category: "development",
+        technologies: ["Node.js", "Express", "PostgreSQL"],
+        story: `Backend for my three.js portfolio website.`,
+        github: "https://github.com/Tarblux/threejs-portfolio-backend",
+    },
+    {
+        title: "Coding Practice",
+        order: 3,
+        startDate: "2025-05-01",
+        endDate: null,
+        image: "/images/Projects/B Saks Poster.webp",
+        description: "A collection of coding practice problems.",
+        category: "development",
+        technologies: ["Algorithms", "Data Structures", ],
+        story: `A collection of coding practice problems.`,
+        github: "https://github.com/Tarblux/Coding-Practice",
+    },
+    {
+        title: "Chess Data API",
+        order: 3,
+        startDate: "2025-04-01",
+        endDate: null,
+        image: "/images/Projects/B Saks Poster.webp",
+        description: "API for chess data.",
+        category: "development",
+        technologies: ["Next.js", "Typescript", "Vercel"],
+        story: `API for chess data.`,
+        github: "https://github.com/Tarblux/chess-data-api",
+        link: "https://chess-data-api.vercel.app/"
     },
     {
         title: "EPL Transfer Market Analysis",
@@ -112,5 +146,28 @@ export const projects = [
                 celebratory moment from a match. The composition is enhanced with his signature, 
                 the Nigerian flag, and the Arsenal crest, creating a powerful visual narrative 
                 that celebrates both his heritage and his club identity.`
+    },
+    {
+        title: 'iPhone 8 Deconstruction',
+        order: 8,
+        startDate: "2024-10-01",
+        endDate: null,
+        image: '/images/Projects/project-iphone6+.webp',
+        description: 'A research about the iPhone 8.',
+        category: 'Development',
+        technologies: ['Photoshop', 'Digital Art', 'Typography'],
+        story: `A research-driven project to optimize the placement of pegs in knee implants using computational models. The work contributed to improved surgical outcomes and was presented at a medical engineering conference.`
+    },
+    {
+        title: 'My Blender Models',
+        order: 9,
+        startDate: "2025-01-02",
+        endDate: null,
+        image: '/images/Projects/project-iphone6+.webp',
+        description: 'My Blender Models.',
+        category: 'Development',
+        technologies: ['Blender', '3D Printing'],
+        story: `This project is a collection of my Blender models. I've been using Blender for a while now and I've learned a lot about the software. I've also been using 3D printing to print out my models. I've learned a lot about the software and the hardware.`,
+        github: "https://github.com/Tarblux/blender-blems"
     }
 ]; 

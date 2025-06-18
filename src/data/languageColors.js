@@ -30,6 +30,7 @@ export const LANGUAGE_COLORS = {
     "LaTeX": "#3D6117",
     "MATLAB": "#e16737",
     "Jupyter Notebook": "#DA5B0B",
+    "Blender": "#f5792a",
     "Other": "#8b949e"
 };
 

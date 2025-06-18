@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import GitActivity from './GitActivity';
 
 const phaseColors = [
     'bg-red-400',     // Plan
@@ -9,25 +10,42 @@ const phaseColors = [
 ];
 
 const phaseNames = [
-    'Planning',
-    'Designing',
-    'Developing',
-    'Testing',
-    'Deploying'
+    'Plan',
+    'Design',
+    'Develop',
+    'Test',
+    'Deploy'
 ];
 
 const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
     const [isClosing, setIsClosing] = useState(false);
+    const [showGitActivity, setShowGitActivity] = useState(false);
+    const [renderGitActivity, setRenderGitActivity] = useState(false);
 
     useEffect(() => {
-        if (isVisible) setIsClosing(false);
-    }, [isVisible]);
+        if (isVisible) {
+            setIsClosing(false);
+            
+            // Only show git activity if the project has a github link
+            if (project?.github) {
+                setRenderGitActivity(true);
+                const timer = setTimeout(() => setShowGitActivity(true), 1000);
+                return () => clearTimeout(timer);
+            }
+        } else {
+            setShowGitActivity(false);
+            const timer = setTimeout(() => setRenderGitActivity(false), 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [isVisible, project]);
 
     const handleClose = () => {
         setIsClosing(true);
+        setShowGitActivity(false);
         setTimeout(() => {
             onClose();
             setIsClosing(false);
+            setRenderGitActivity(false);
         }, 700);
     };
 
@@ -142,6 +160,15 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
                     </div>
                 </div>
             </div>
+            {/* Git Activity */}
+            {renderGitActivity && (
+                <GitActivity 
+                    isVisible={true} 
+                    project={project}
+                    showComponent={showGitActivity}
+                    position={{ left: '710px', top: '50px' }}
+                />  
+            )}
         </>
     );
 };
