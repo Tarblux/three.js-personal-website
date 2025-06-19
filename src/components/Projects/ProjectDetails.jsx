@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import GitActivity from './GitActivity';
+import ProjectArticleViewer from './ProjectArticleViewer';
 
 const ProjectDetails = ({ project, isVisible, onClose }) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [isClosing, setIsClosing] = useState(false);
     const [showGitActivity, setShowGitActivity] = useState(false);
     const [renderGitActivity, setRenderGitActivity] = useState(false);
+    const scrollContainerRef = useRef(null);
 
     // Reset currentMediaIndex when project changes
     useEffect(() => {
-        setCurrentMediaIndex(0);
+        if (project) {
+            setCurrentMediaIndex(0);
+            setSelectedImageIndex(0);
+        }
     }, [project]);
 
     // Reset closing state when visibility changes , needs to be refactored but works for now
@@ -36,8 +42,6 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             setRenderGitActivity(false);
         }, 700);
     };
-    
-    if (!isVisible || !project) return null;
 
     const getYoutubeVideoId = (url) => {
         if (!url) return null;
@@ -45,35 +49,95 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
         return match ? match[1] : null;
     };
 
-    // Combine images and video into a single media array
-    const mediaItems = [
-        ...(project.images || [project.image]).map(img => ({ type: 'image', src: img })),
+    // Combine images and video into a single media array - with safety checks
+    const mediaItems = project ? [
+        ...(project.images || [project.image]).filter(Boolean).map(img => ({ type: 'image', src: img })),
         ...(project.link && getYoutubeVideoId(project.link) ? [{
             type: 'video',
             src: `https://www.youtube.com/embed/${getYoutubeVideoId(project.link)}`
         }] : [])
-    ];
+    ] : [];
 
-    const nextMedia = () => {
-        setCurrentMediaIndex((prev) => (prev + 1) % mediaItems.length);
+    // Filter only images for the thumbnail selection
+    const imageItems = mediaItems.filter(item => item.type === 'image');
+
+    const handleImageSelect = (index) => {
+        setSelectedImageIndex(index);
+        setCurrentMediaIndex(index);
     };
 
-    const prevMedia = () => {
-        setCurrentMediaIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
+    // Get scroll positions for images - can be defined in project data or calculated
+    const getImageScrollPositions = () => {
+        // If project has custom scroll positions defined, use those
+        if (project?.imageScrollPositions && project.imageScrollPositions.length === imageItems.length) {
+            return project.imageScrollPositions;
+        }
+        
+        // Default fallback to equal divisions if no custom positions are defined
+        if (imageItems.length <= 1) return [0];
+        
+        return imageItems.map((_, index) => index / (imageItems.length - 1));
     };
 
-    const getCategoryColor = (category) => {
-        switch(category?.toLowerCase()) {
-            case 'development':
-                return 'text-blue-500';
-            case 'research':
-                return 'text-purple-500';
-            case 'media':
-                return 'text-emerald-500';
-            default:
-                return 'text-white';
+    // Scroll-based image selection with custom positions
+    useEffect(() => {
+        const scrollContainer = scrollContainerRef.current;
+        if (!scrollContainer || !imageItems.length || !isVisible) return;
+
+        const imageScrollPositions = getImageScrollPositions();
+
+        const handleScroll = () => {
+            const scrollTop = scrollContainer.scrollTop;
+            const scrollHeight = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+            const scrollPercentage = scrollTop / scrollHeight;
+
+            // Find the appropriate image index based on custom scroll positions
+            let imageIndex = 0;
+            
+            for (let i = 0; i < imageScrollPositions.length; i++) {
+                if (scrollPercentage >= imageScrollPositions[i]) {
+                    imageIndex = i;
+                } else {
+                    break;
+                }
+            }
+
+            // Only update if the index has changed
+            if (imageIndex !== selectedImageIndex) {
+                setSelectedImageIndex(imageIndex);
+                setCurrentMediaIndex(imageIndex);
+            }
+        };
+
+        scrollContainer.addEventListener('scroll', handleScroll);
+
+        return () => {
+            if (scrollContainer) {
+                scrollContainer.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [imageItems.length, selectedImageIndex, isVisible, project?.imageScrollPositions]);
+
+    // Manual selection overrides scroll-based selection temporarily
+    const handleManualImageSelect = (index) => {
+        setSelectedImageIndex(index);
+        setCurrentMediaIndex(index);
+        
+        // Scroll to the corresponding position using custom scroll positions
+        const scrollContainer = scrollContainerRef.current;
+        if (scrollContainer && imageItems.length > 1) {
+            const imageScrollPositions = getImageScrollPositions();
+            const scrollPercentage = imageScrollPositions[index] || 0;
+            const targetScrollTop = scrollPercentage * (scrollContainer.scrollHeight - scrollContainer.clientHeight);
+            scrollContainer.scrollTo({
+                top: targetScrollTop,
+                behavior: 'smooth'
+            });
         }
     };
+
+    // Early return after all hooks
+    if (!isVisible || !project) return null;
 
     // Safety check for currentMediaIndex
     const safeMediaIndex = Math.min(currentMediaIndex, mediaItems.length - 1);
@@ -92,27 +156,28 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             
             {/* Project Details Card */}
             <div 
-                className={`fixed right-[300px] top-[70px] w-[650px] min-h-[400px] bg-white/95 backdrop-blur-sm
-                    rounded-2xl shadow-lg transform-gpu
+                className={`fixed right-[300px] top-[70px] w-[750px] h-[calc(100vh-140px)] bg-white/95 backdrop-blur-sm
+                    rounded-2xl shadow-lg transform-gpu flex flex-col
                     ${isClosing ? 'animate-fold' : 'animate-unfold'}`}
                 style={{
                     transformOrigin: 'center center'
                 }}
             >
-                <div className="h-full relative">
-                    {/* Close button */}
-                    <button 
-                        onClick={handleClose}
-                        className="absolute top-7 right-8 text-black hover:text-gray-600 transition-colors z-10"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                {/* Close button */}
+                <button 
+                    onClick={handleClose}
+                    className="absolute top-7 right-8 text-black hover:text-gray-600 transition-colors z-10"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
 
-                    {/* Main media display with navigation */}
+                {/* Static Header Section */}
+                <div className="flex-shrink-0">
+                    {/* Main media display */}
                     <div className="p-6 pb-2 relative">
-                        <div className="w-full h-[300px] rounded-xl overflow-hidden !shadow-none relative group transition-all duration-300 hover:scale-[1.02] hover:rounded-2xl">
+                        <div className="w-full h-[300px] rounded-xl overflow-hidden !shadow-none relative transition-all duration-300">
                             {currentMedia.type === 'video' ? (
                                 <iframe
                                     src={currentMedia.src}
@@ -128,43 +193,33 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                                     className="w-full h-full object-cover"
                                 />
                             )}
-                            
-                            {/* Navigation arrows */}
-                            {mediaItems.length > 1 && (
-                                <>
-                                    {/* Left arrow */}
-                                    <button
-                                        onClick={prevMedia}
-                                        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                        </svg>
-                                    </button>
-                                    
-                                    {/* Right arrow */}
-                                    <button
-                                        onClick={nextMedia}
-                                        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </button>
-
-                                    {/* Media counter and type indicator - only show for images */}
-                                    {currentMedia.type === 'image' && (
-                                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs px-2 py-1 rounded-full">
-                                            {currentMediaIndex + 1} / {mediaItems.length}
-                                            <span className="ml-2">🖼️</span>
-                                        </div>
-                                    )}
-                                </>
-                            )}
                         </div>
+                        
+                        {/* Image thumbnails */}
+                        {imageItems.length > 1 && (
+                            <div className="mt-3 flex gap-2 overflow-x-auto">
+                                {imageItems.map((item, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => handleManualImageSelect(index)}
+                                        className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                                            selectedImageIndex === index 
+                                                ? 'border-blue-400 shadow-lg shadow-blue-400/50 ring-2 ring-blue-400/30' 
+                                                : 'border-gray-300 hover:border-gray-400'
+                                        }`}
+                                    >
+                                        <img 
+                                            src={item.src} 
+                                            alt={`Thumbnail ${index + 1}`}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
-                    <div className="px-6">
+                    <div className="px-6 pb-2">
                         {/* Header with date and links */}
                         <div className="mb-2 mr-2 flex justify-between items-center">
                             <div className="text-gray-500 text-xs">{project.date}</div>
@@ -185,41 +240,17 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                                 )}
                             </div>
                         </div>
-
-                        <h2 className="text-xl font-bold mb-2">{project.title}</h2>
-
-                        {/* Description */}
-                        <div className="mb-3">
-                            <p className="text-gray-800 text-xs">{project.description}</p>
-                        </div>
-
-                        {/* Technologies and Category */}
-                        <div className="mb-3">
-                            <div className="flex flex-wrap gap-1.5">
-                                <span 
-                                    className={`flex bg-white px-1.5 py-[0.1rem] text-[0.65rem] rounded border border-gray-200 ${getCategoryColor(project.category)}`}
-                                >
-                                    {project.category === 'development' ? 'Software Development' :
-                                     project.category === 'research' ? 'Research' : 'Digital Media'}
-                                </span>
-                                {project.technologies.map((tech, index) => (
-                                    <span 
-                                        key={index}
-                                        className="flex bg-white px-1.5 py-[0.1rem] text-[0.65rem] rounded border border-gray-200 text-gray-500"
-                                    >
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Story/Details */}
-                        <div>
-                            <p className="text-gray-600 text-sm font-thin leading-relaxed mb-3">
-                                {project.story || "Beep Boop, I'm a project story!"}
-                            </p>
-                        </div>
                     </div>
+                </div>
+
+                {/* Scrollable Article Content */}
+                <div ref={scrollContainerRef} className="flex-1 overflow-y-auto overscroll-contain">
+                    <ProjectArticleViewer 
+                        project={project} 
+                        onImageSelect={handleManualImageSelect}
+                        selectedImageIndex={selectedImageIndex}
+                        imageItems={imageItems}
+                    />
                 </div>
             </div>
             

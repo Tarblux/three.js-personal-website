@@ -4,6 +4,12 @@ export const projects = [
         order: 1,
         startDate: "2024-10-01",
         endDate: null,
+        images: [
+            "/images/Projects/project-leet.webp",
+            "/images/Projects/project-SIP.webp",
+            "/images/Projects/project-tester.webp"
+        ],
+        imageScrollPositions: [0.1, 0.8, 1],
         image: "/images/Projects/project-tester.webp",
         description: "Interactive 3D portfolio website with modern tech stack",
         category: "development",
@@ -14,7 +20,8 @@ export const projects = [
                 The site features interactive 3D elements that respond to user interaction, 
                 creating an engaging and memorable experience.`,
         github: "https://github.com/Tarblux/three.js-personal-website",
-        link: "https://google.com"
+        link: "https://tariqwill.com",
+        articleComponent: "ThreeJsWebsiteArticle"
     },
     {
         title: "Personal Website (Old)",
@@ -27,7 +34,8 @@ export const projects = [
         technologies: ["HTML", "CSS", "JavaScript"],
         story: `My original personal website, built with basic html, css, and javascript.`,
         github: "https://github.com/Tarblux/Personal-Website",
-        link: "https://tarblux.github.io/Personal-Website/"
+        link: "https://tarblux.github.io/Personal-Website/",
+        articleComponent: "PersonalWebsiteOldArticle"
     },
     {
         title: "Three.js Portfolio Backend",
@@ -40,6 +48,7 @@ export const projects = [
         technologies: ["Node.js", "Express", "PostgreSQL"],
         story: `Backend for my three.js portfolio website.`,
         github: "https://github.com/Tarblux/threejs-portfolio-backend",
+        articleComponent: "ThreeJsBackendArticle"
     },
     {
         title: "Coding Practice",
@@ -52,6 +61,7 @@ export const projects = [
         technologies: ["Algorithms", "Data Structures", ],
         story: `A collection of coding practice problems.`,
         github: "https://github.com/Tarblux/Coding-Practice",
+        articleComponent: "CodingPracticeArticle"
     },
     {
         title: "Chess Data API",
@@ -64,7 +74,8 @@ export const projects = [
         technologies: ["Next.js", "Typescript", "Vercel"],
         story: `API for chess data.`,
         github: "https://github.com/Tarblux/chess-data-api",
-        link: "https://chess-data-api.vercel.app/"
+        link: "https://chess-data-api.vercel.app/",
+        articleComponent: "ChessDataApiArticle"
     },
     {
         title: "EPL Transfer Market Analysis",
@@ -79,7 +90,8 @@ export const projects = [
                 between English Premier League teams' transfer market activity and their 
                 on-field performance. This Senior Individualized Project (SIP) combined 
                 economic theory with statistical analysis to understand the impact of 
-                transfer spending on team success.`
+                transfer spending on team success.`,
+        articleComponent: "EplTransferAnalysisArticle"
     },
     {
         title: "Creole Linguistics Study",
@@ -100,7 +112,8 @@ export const projects = [
                 techniques. The study provided valuable insights into language evolution and 
                 cultural preservation.`,
         github: "https://github.com/Tarblux/Creole-Linguistics-Data-Analytics",
-        link: "https://youtu.be/Ddhjw3gK5gw "
+        link: "https://youtu.be/Ddhjw3gK5gw ",
+        articleComponent: "CreoleLinguisticsArticle"
     },
     {
         title: "Sustainability at Kalamazoo College",
@@ -115,7 +128,8 @@ export const projects = [
                 sustainability practices and initiatives at Kalamazoo College. The project 
                 combined environmental research with digital design to create engaging 
                 and informative content that promotes campus sustainability efforts.`,
-        link: "https://youtu.be/_HPbgnWnV9c"
+        link: "https://youtu.be/_HPbgnWnV9c",
+        articleComponent: "SustainabilityDocumentaryArticle"
     },
     {
         title: "iPhone 6 Plus Deconstruction",
@@ -129,7 +143,8 @@ export const projects = [
         story: `Created a detailed technical documentation of the iPhone 6 Plus, breaking 
                 down its key components and specifications. This visual guide showcases 
                 the device's internal architecture, from its A8 chip to its camera systems, 
-                providing insights into Apple's revolutionary smartphone design.`
+                providing insights into Apple's revolutionary smartphone design.`,
+        articleComponent: "IPhone6DeconstructionArticle"
     },
     {
         title: "Bukayo Saka Wall Art",
@@ -145,7 +160,8 @@ export const projects = [
                 in two contrasting poses - a formal portrait with a signature pose and a 
                 celebratory moment from a match. The composition is enhanced with his signature, 
                 the Nigerian flag, and the Arsenal crest, creating a powerful visual narrative 
-                that celebrates both his heritage and his club identity.`
+                that celebrates both his heritage and his club identity.`,
+        articleComponent: "BukayoSakaArtArticle"
     },
     {
         title: 'iPhone 8 Deconstruction',
@@ -156,7 +172,8 @@ export const projects = [
         description: 'A research about the iPhone 8.',
         category: 'Development',
         technologies: ['Photoshop', 'Digital Art', 'Typography'],
-        story: `A research-driven project to optimize the placement of pegs in knee implants using computational models. The work contributed to improved surgical outcomes and was presented at a medical engineering conference.`
+        story: `A research-driven project to optimize the placement of pegs in knee implants using computational models. The work contributed to improved surgical outcomes and was presented at a medical engineering conference.`,
+        articleComponent: "IPhone8DeconstructionArticle"
     },
     {
         title: 'My Blender Models',
@@ -168,6 +185,7 @@ export const projects = [
         category: 'Development',
         technologies: ['Blender', '3D Printing'],
         story: `This project is a collection of my Blender models. I've been using Blender for a while now and I've learned a lot about the software. I've also been using 3D printing to print out my models. I've learned a lot about the software and the hardware.`,
-        github: "https://github.com/Tarblux/blender-blems"
+        github: "https://github.com/Tarblux/blender-blems",
+        articleComponent: "BlenderModelsArticle"
     }
 ]; 
