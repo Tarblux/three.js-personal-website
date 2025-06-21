@@ -17,11 +17,11 @@ const ProjectFilter = ({ onFilterChange, filter }) => {
                 onClick={() => onFilterChange('development')}
                 className={`px-3 py-2 text-xs rounded-t-lg mx-0.5 transition-all flex-1 text-center relative ${
                     filter === 'development' 
-                        ? 'bg-white text-blue-400  font-semibold tab-active' 
+                        ? 'bg-white text-cyan-500  font-semibold tab-active' 
                         : 'text-gray-700 hover:text-black hover:bg-white/50'
                 }`}
             >
-                Development
+                Engineering
             </button>
             <button 
                 onClick={() => onFilterChange('research')}

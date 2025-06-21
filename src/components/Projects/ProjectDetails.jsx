@@ -51,7 +51,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
 
     // Combine images and video into a single media array - with safety checks
     const mediaItems = project ? [
-        ...(project.images || [project.image]).filter(Boolean).map(img => ({ type: 'image', src: img })),
+                    ...(project.images || [project.thumbnail]).filter(Boolean).map(img => ({ type: 'image', src: img })),
         ...(project.link && getYoutubeVideoId(project.link) ? [{
             type: 'video',
             src: `https://www.youtube.com/embed/${getYoutubeVideoId(project.link)}`
@@ -136,7 +136,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
         }
     };
 
-    // Early return after all hooks
+    // Early return after all hooks , for some reason this is needed to prevent the project details from being rendered before the project is loaded
     if (!isVisible || !project) return null;
 
     // Safety check for currentMediaIndex
@@ -156,7 +156,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             
             {/* Project Details Card */}
             <div 
-                className={`fixed right-[300px] top-[70px] w-[750px] h-[calc(100vh-140px)] bg-white/95 backdrop-blur-sm
+                className={`fixed right-[300px] top-[20px] w-[750px] h-[calc(100vh-100px)] bg-white/95 backdrop-blur-sm
                     rounded-2xl shadow-lg transform-gpu flex flex-col
                     ${isClosing ? 'animate-fold' : 'animate-unfold'}`}
                 style={{
@@ -260,7 +260,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                     isVisible={true} 
                     project={project} 
                     showComponent={showGitActivity}
-                    position={{ right: '50px', top: '70px' }}
+                    position={{ right: '50px', top: '20px' }}
                 />
             )}
         </>

@@ -131,7 +131,7 @@ const ThreeJsWebsiteArticle = ({ project, onImageSelect, selectedImageIndex, ima
       {/* <div className="mt-8">
         <h3 className="text-lg font-semibold mb-4 text-gray-800">Project Gallery</h3>
         <ImageArray 
-          images={project.images || [project.image]}
+                          images={project.images || [project.thumbnail]}
           gap="2"
           rounded="lg"
           aspectRatio="square"

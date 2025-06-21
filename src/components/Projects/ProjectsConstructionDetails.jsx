@@ -97,7 +97,7 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
                     <div className="p-6 pb-2 relative">
                         <div className="w-full h-[300px] rounded-xl overflow-hidden !shadow-none relative group transition-all duration-300 hover:scale-[1.02] hover:rounded-2xl">
                             <img 
-                                src={project.image} 
+                                src={project.thumbnail} 
                                 alt={project.title}
                                 className="w-full h-full object-cover"
                             />

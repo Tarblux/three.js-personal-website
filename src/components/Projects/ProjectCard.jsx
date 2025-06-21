@@ -4,20 +4,20 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
     const getCategoryColor = (category) => {
         switch(category.toLowerCase()) {
             case 'development':
-                return 'text-blue-400';
+                return 'text-cyan-300';
             case 'research':
-                return 'text-purple-400';
+                return 'text-pink-300';
             case 'media':
                 return 'text-emerald-400';
             default:
-                return 'text-white';
+                return 'text-gray-600';
         }
     };
 
     const getBorderColor = (category) => {
         switch(category.toLowerCase()) {
             case 'development':
-                return 'before:from-blue-400/50';
+                return 'before:from-cyan-500/50';
             case 'research':
                 return 'before:from-purple-400/50';
             case 'media':
@@ -30,7 +30,7 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
     const getCategoryName = (category) => {
         switch(category.toLowerCase()) {
             case 'development':
-                return 'Software Development';
+                return 'Software Engineering';
             case 'research':
                 return 'Research';
             case 'media':
@@ -44,7 +44,7 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
         <div className={`
             relative bg-white rounded-xl p-1 shadow-md hover:shadow-xl 
             transition-all duration-300 ease-in-out w-[220px] min-h-[300px]
-            hover:scale-105 cursor-pointer border border-gray-200
+            hover:scale-105 cursor-pointer border-2 border-gray-200
             before:absolute before:inset-0
             before:rounded-xl before:-z-10
             before:bg-gradient-to-r ${getBorderColor(category)} before:to-transparent
@@ -55,7 +55,7 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
             <div className="relative mb-3">
                 {/* Category tag */}
                 <div className="absolute top-2 left-2 z-10">
-                    <span className={`flex bg-black/15 backdrop-blur-sm ${getCategoryColor(category)} px-1.5 py-0.5 text-[0.65rem] rounded-[0.2rem] border border-white/20 shadow-sm`}>
+                    <span className={`flex bg-white/15 backdrop-blur-sm ${getCategoryColor(category)} px-1.5 py-0.5 text-[0.65rem] rounded-[0.2rem] border border-white/20 shadow-sm`}>
                         {getCategoryName(category)}
                     </span>
                 </div>
@@ -73,7 +73,7 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
                         {technologies.map((tech, index) => (
                             <span 
                                 key={index}
-                                className={`flex bg-black/20 backdrop-blur-sm text-gray-100 px-1 py-[0.1rem] text-[0.585rem] rounded-[0.2rem] border border-white/20 shadow-sm`}
+                                className={`flex bg-white/20 backdrop-blur-sm text-gray-100 px-1 py-[0.1rem] text-[0.585rem] rounded-[0.2rem] border border-white/20 shadow-sm`}
                             >
                                 {tech}
                             </span>
@@ -90,7 +90,7 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
 
                 {/* Title and Description */}
                 <h3 className="text-sm font-bold mb-1">{title}</h3>
-                <p className="text-gray-600 text-[0.68rem] mb-6">
+                <p className="text-gray-600 text-[12px] mb-6">
                     {description}
                 </p>
             </div>

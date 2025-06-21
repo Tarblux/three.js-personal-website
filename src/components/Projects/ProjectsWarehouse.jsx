@@ -97,7 +97,7 @@ const ProjectsWarehouse = () => {
                                         <ProjectCard
                                             title={project.title}
                                             date={`${startDate} - ${endDate} · ${duration}`}
-                                            image={project.image}
+                                            image={project.thumbnail}
                                             description={project.description}
                                             category={project.category}
                                             technologies={project.technologies}

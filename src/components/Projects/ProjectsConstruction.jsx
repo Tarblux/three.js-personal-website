@@ -52,7 +52,7 @@ const ProjectsConstruction = () => {
                                     <ProjectsConstructionCard
                                         title={project.title}
                                         date={`${formatDate(project.startDate)} - ${project.endDate ? formatDate(project.endDate) : 'Present'} · ${calculateDuration(project.startDate, project.endDate)}`}
-                                        image={project.image}
+                                        image={project.thumbnail}
                                         description={project.description}
                                         category={project.category}
                                         technologies={project.technologies}

@@ -3,15 +3,15 @@ export const projects = [
         title: "Three.js Portfolio Frontend",
         order: 1,
         startDate: "2024-10-01",
-        endDate: null,
+        endDate: "2025-06-01",
         images: [
             "/images/Projects/project-leet.webp",
             "/images/Projects/project-SIP.webp",
             "/images/Projects/project-tester.webp"
         ],
         imageScrollPositions: [0.1, 0.8, 1],
-        image: "/images/Projects/project-tester.webp",
-        description: "Interactive 3D portfolio website with modern tech stack",
+        thumbnail: "/images/Projects/threejs-frontend/threejs-front-thumbnail.jpg",
+        description: "Immersive 3D portfolio with animations and a glassmorphic interface",
         category: "development",
         technologies: ["Three.js", "React", 'TailwindCSS'],
         story: `This project represents a significant milestone in my web development journey. 
@@ -24,11 +24,24 @@ export const projects = [
         articleComponent: "ThreeJsWebsiteArticle"
     },
     {
+        title: "Three.js Portfolio Backend",
+        order: 2,
+        startDate: "2025-05-01",
+        endDate: "2025-06-01",
+        thumbnail: "/images/Projects/threejs-back/threejs-back-thumbnail.jpg",
+        description: "Backend service delivering live GitHub, chess, and soccer data to the portfolio",
+        category: "development",
+        technologies: ["Node.js", "Express", "PostgreSQL"],
+        story: `Backend for my three.js portfolio website.`,
+        github: "https://github.com/Tarblux/threejs-portfolio-backend",
+        articleComponent: "ThreeJsBackendArticle"
+    },
+    {
         title: "Personal Website (Old)",
         order: 3,
         startDate: "2023-01-01",
         endDate: "2025-05-01",
-        image: "/images/Projects/project-leet.webp",
+        thumbnail: "/images/Projects/oldpersonal/oldPersonal-thumbnail.jpg",
         description: "My original personal website, built with basic html, css, and javascript.",
         category: "development",
         technologies: ["HTML", "CSS", "JavaScript"],
@@ -38,54 +51,14 @@ export const projects = [
         articleComponent: "PersonalWebsiteOldArticle"
     },
     {
-        title: "Three.js Portfolio Backend",
-        order: 2,
-        startDate: "2025-05-01",
-        endDate: null,
-        image: "/images/Projects/project-leet.webp",
-        description: "Backend for my three.js portfolio website.",
-        category: "development",
-        technologies: ["Node.js", "Express", "PostgreSQL"],
-        story: `Backend for my three.js portfolio website.`,
-        github: "https://github.com/Tarblux/threejs-portfolio-backend",
-        articleComponent: "ThreeJsBackendArticle"
-    },
-    {
-        title: "Coding Practice",
-        order: 3,
-        startDate: "2025-05-01",
-        endDate: null,
-        image: "/images/Projects/B Saks Poster.webp",
-        description: "A collection of coding practice problems.",
-        category: "development",
-        technologies: ["Algorithms", "Data Structures", ],
-        story: `A collection of coding practice problems.`,
-        github: "https://github.com/Tarblux/Coding-Practice",
-        articleComponent: "CodingPracticeArticle"
-    },
-    {
-        title: "Chess Data API",
-        order: 3,
-        startDate: "2025-04-01",
-        endDate: null,
-        image: "/images/Projects/B Saks Poster.webp",
-        description: "API for chess data.",
-        category: "development",
-        technologies: ["Next.js", "Typescript", "Vercel"],
-        story: `API for chess data.`,
-        github: "https://github.com/Tarblux/chess-data-api",
-        link: "https://chess-data-api.vercel.app/",
-        articleComponent: "ChessDataApiArticle"
-    },
-    {
         title: "EPL Transfer Market Analysis",
-        order: 3,
+        order: 4,
         startDate: "2022-01-01",
         endDate: "2022-12-31",
-        image: "/images/Projects/project-SIP.webp",
-        description: "Econometric analysis of Premier League transfer market impact on performance",
+        thumbnail: "/images/Projects/epl-transfer-analysis/epl-thumbnail.jpg",
+        description: "Econometric analysis of how Premier League transfer spending affects team performance",
         category: "research",
-        technologies: ["Econometrics", "Statistical Analysis", "Research Methods"],
+        technologies: ["Econometrics", "Stata",],
         story: `Conducted comprehensive econometric research analyzing the relationship 
                 between English Premier League teams' transfer market activity and their 
                 on-field performance. This Senior Individualized Project (SIP) combined 
@@ -94,8 +67,22 @@ export const projects = [
         articleComponent: "EplTransferAnalysisArticle"
     },
     {
+        title: "Chess Data API",
+        order: 5,
+        startDate: "2025-04-01",
+        endDate: null,
+        thumbnail: "/images/Projects/chess-data-api/chessapi-thumbnail.jpg",
+        description: "A proxy for the Chess.com API that serves customized live chess data for my projects",
+        category: "development",
+        technologies: ["Next.js", "Typescript", "Vercel"],
+        story: `API for chess data.`,
+        github: "https://github.com/Tarblux/chess-data-api",
+        link: "https://chess-data-api.vercel.app/",
+        articleComponent: "ChessDataApiArticle"
+    },
+    {
         title: "Creole Linguistics Study",
-        order: 4,
+        order: 6,
         startDate: "2022-12-01",
         endDate: "2023-02-01",
         images: [
@@ -103,8 +90,8 @@ export const projects = [
             "/images/Projects/project-creo-1.webp",
             "/images/Projects/project-creo-2.webp"
         ],
-        image: "/images/Projects/project-creo.webp",
-        description: "Study of the Creole language spoken in Jamaica.",
+        thumbnail: "/images/Projects/creole-linguistics/creole-thumbnail.jpg",
+        description: "Linguistic research of English Creole phonemics and its convergence with standard English",
         category: "research",
         technologies: ["R", "Python", "LaTeX"],
         story: `This research project involved analyzing linguistic patterns in Jamaican Creole, 
@@ -116,14 +103,27 @@ export const projects = [
         articleComponent: "CreoleLinguisticsArticle"
     },
     {
+        title: "Coding Practice",
+        order: 7,
+        startDate: "2023-08-01",
+        endDate: null,
+        thumbnail: "/images/Projects/codingPractice/codingPractice-thumbnail.jpg",
+        description: "A collection of my coding problems, algorithms, and programming language studies in Jupyter Notebooks.",
+        category: "development",
+        technologies: ["Algorithms", "Data Structures", ],
+        story: `A collection of coding practice problems.`,
+        github: "https://github.com/Tarblux/Coding-Practice",
+        articleComponent: "CodingPracticeArticle"
+    },
+    {
         title: "Sustainability at Kalamazoo College",
-        order: 5,
+        order: 8,
         startDate: "2023-09-01",
         endDate: "2023-12-01",
-        image: "/images/Projects/project-ecodoc.webp",
-        description: "Documentary of sustainability initiatives and practices at K College",
+        thumbnail: "/images/Projects/sustainability-documentary/sustainability-thumbnail.jpg",
+        description: "Documentary of sustainability initiatives and practices at Kalamazoo College",
         category: "media",
-        technologies: ["Digital Design", "Research", "Documentation"],
+        technologies: ["Video Editing", "Cinematography", ],
         story: `Created comprehensive documentation for the Eco Club highlighting 
                 sustainability practices and initiatives at Kalamazoo College. The project 
                 combined environmental research with digital design to create engaging 
@@ -132,14 +132,14 @@ export const projects = [
         articleComponent: "SustainabilityDocumentaryArticle"
     },
     {
-        title: "iPhone 6 Plus Deconstruction",
-        order: 6,
+        title: "iPhone Deconstruction Art",
+        order: 9,
         startDate: "2023-07-06",
         endDate: "2023-07-06",
-        image: "/images/Projects/project-iphone6+.webp",
-        description: "Detailed technical breakdown and component analysis of the iPhone 6 Plus",
+        thumbnail: "/images/Projects/iphone-deconstruction/iphones-thumbnail.jpg",
+        description: "A detailed deconstruction of the iPhone 6+ and (RED) editions transformed into wall art pieces",
         category: "media",
-        technologies: ["Technical Drawing", "Product Design", "Digital Illustration"],
+        technologies: ["Technical Drawing", "Hardware", "Digital Art"],
         story: `Created a detailed technical documentation of the iPhone 6 Plus, breaking 
                 down its key components and specifications. This visual guide showcases 
                 the device's internal architecture, from its A8 chip to its camera systems, 
@@ -147,12 +147,12 @@ export const projects = [
         articleComponent: "IPhone6DeconstructionArticle"
     },
     {
-        title: "Bukayo Saka Wall Art",
-        order: 7,
+        title: "Graphic Design Portfolio",
+        order: 10,
         startDate: "2023-07-19",
         endDate: "2023-07-19",
-        image: "/images/Projects/B Saks Poster.webp",
-        description: "Minimalist black and white wall art design featuring Arsenal's Bukayo Saka",
+        thumbnail: "/images/Projects/graphics-portfolio/graphics-thumbnail.jpg",
+        description: "A collection of my graphic design work, including posters, logos, and other designs.",
         category: "media",
         technologies: ["Photoshop", "Digital Art", "Typography"],
         story: `This artistic piece combines portrait photography and sports imagery in a 
@@ -164,25 +164,13 @@ export const projects = [
         articleComponent: "BukayoSakaArtArticle"
     },
     {
-        title: 'iPhone 8 Deconstruction',
-        order: 8,
-        startDate: "2024-10-01",
-        endDate: null,
-        image: '/images/Projects/project-iphone6+.webp',
-        description: 'A research about the iPhone 8.',
-        category: 'Development',
-        technologies: ['Photoshop', 'Digital Art', 'Typography'],
-        story: `A research-driven project to optimize the placement of pegs in knee implants using computational models. The work contributed to improved surgical outcomes and was presented at a medical engineering conference.`,
-        articleComponent: "IPhone8DeconstructionArticle"
-    },
-    {
-        title: 'My Blender Models',
-        order: 9,
+        title: 'Blender Models',
+        order: 11,
         startDate: "2025-01-02",
         endDate: null,
-        image: '/images/Projects/project-iphone6+.webp',
-        description: 'My Blender Models.',
-        category: 'Development',
+        thumbnail: '/images/Projects/blender-models/blender-thumbnail.jpg',
+        description: 'A collection of my Blender models and 3D assets I have created.',
+        category: 'media',
         technologies: ['Blender', '3D Printing'],
         story: `This project is a collection of my Blender models. I've been using Blender for a while now and I've learned a lot about the software. I've also been using 3D printing to print out my models. I've learned a lot about the software and the hardware.`,
         github: "https://github.com/Tarblux/blender-blems",
