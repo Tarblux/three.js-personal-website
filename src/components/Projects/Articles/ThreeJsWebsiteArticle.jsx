@@ -12,8 +12,8 @@ const ThreeJsWebsiteArticle = ({ project, onImageSelect, selectedImageIndex, ima
       name: "Three.js",
       icon: "/icons/Three.js_light.svg",
       description: "A JavaScript library for creating 3D graphics in the browser.",
-      howIUsedIt: "I used Three.js to create interactive 3D models and scenes for my portfolio website. It allowed me to render complex 3D environments directly in the browser with smooth animations and user interactions.",
-      whyIChoseIt: "Three.js is the industry standard for 3D web graphics, with excellent documentation and a large community. It provides the perfect balance between power and ease of use for creating immersive web experiences.",
+      howIUsedIt: "Everything 3D you see (the model, animations, lighting, sky, and textures) is powered by Three.js. Without it, you'd just be staring at some floating UI cards over a plain background.",
+      whyIChoseIt: "Honestly, it chose itself. Three.js is the most stable and mature option for browser-based 3D, with a strong community that makes debugging less painful.",
       color: '#9333EA'
     },
     {
@@ -21,25 +21,34 @@ const ThreeJsWebsiteArticle = ({ project, onImageSelect, selectedImageIndex, ima
       name: "React",
       icon: "/icons/React_light.svg",
       description: "A JavaScript library for building user interfaces",
-      howIUsedIt: "Used React to build the component-based architecture of my portfolio, managing state and creating reusable UI components that work seamlessly with the 3D elements.",
-      whyIChoseIt: "React's component-based architecture makes it perfect for building scalable applications with clean, maintainable code. The virtual DOM also helps with performance when integrating with Three.js.",
+      howIUsedIt: "I used React to structure the portfolio as a component-based app. It manages state and makes the UI reusable and responsive, especially when syncing with 3D elements.",
+      whyIChoseIt: "I needed something that could handle lots of state changes and dynamic UI. React was the obvious choice since my vanilla JavaScript was getting out of hand fast.",
       color: '#3B82F6'
     },
     {
       id: 3,
       name: "TailwindCSS",
-      icon: "/icons/Tailwind CSS_wordmark_light.svg",
+      icon: "/icons/tailwindcss.svg",
       description: "A utility-first CSS framework",
-      howIUsedIt: "Used TailwindCSS for rapid prototyping and consistent styling throughout the application, creating responsive layouts that complement the 3D elements.",
-      whyIChoseIt: "TailwindCSS allows for rapid development with its utility-first approach while maintaining design consistency. It's perfect for creating modern, responsive web interfaces.",
+      howIUsedIt: "TailwindCSS sped up the styling process and kept styles scoped inside components. It helped keep things clean and consistent across the UI.",
+      whyIChoseIt: "To be completely honest I picked it because it looked like cool tech and it seemed like everyone was using it , so I figured I would see what all the fuss was about.",
       color: '#3B82F6'
+    },
+    {
+      id: 4,
+      name: "Storybook",
+      icon: "/icons/storybook.svg",
+      description: "A UI library for building components",
+      howIUsedIt: "I used Storybook to isolate and preview each UI component in a clean environment. This made development faster and much more focused.",
+      whyIChoseIt: "Since the site loads 3D models and a whole animated train before even reaching the UI, I needed a way to work on components without waiting for the full experience to load.",
+      color: '#FF317C'
     }
   ];
 
   const additionalTools = [
     {
       name: "Adobe After Effects",
-      description: "I used Adobe After Effects to create motion graphics and visual effects that were later integrated into the 3D scenes, adding dynamic elements that enhance the overall user experience.",
+      description: "I used Adobe After Effects to create motion graphics and visual effects that were later integrated into the 3D scenes. For example, the stock ticker on the stock trading office was created in After Effects.",
       color: "#9999FF"
     },
     {
@@ -49,12 +58,12 @@ const ThreeJsWebsiteArticle = ({ project, onImageSelect, selectedImageIndex, ima
     },
     {
       name: "Theatre.js",
-      description: "I used Theatre.js for creating complex animations and cinematic sequences within the 3D environment, allowing for precise timing and professional-quality motion design in the browser.",
+      description: "I used Theatre.js for creating complex animations and cinematic sequences within the 3D environment, it allowed me to visualize and test animations before implementing them in Three.js.",
       color: "#4A90E2"
     },
     {
       name: "Canva",
-      description: "I used Canva for rapid prototyping of UI elements and creating consistent brand assets that were later implemented in the final design system.",
+      description: "I used Canva for graphic design and UI prototyping. I originally planned to use Figma, but since I'd been using Canva for years, it was the fastest way to get started. I genuinely meant to switch to Figma ..... but then I blinked and suddenly I was doing everything with it.",
       color: "#00C4CC"
     }
   ];
@@ -78,21 +87,43 @@ const ThreeJsWebsiteArticle = ({ project, onImageSelect, selectedImageIndex, ima
 
       <TextBlock title="Core Features" color="purple">
         <FeatureBlock
-          image="/images/Projects/project-tester.webp"
+          image="/images/Projects/threejs-frontend/city-model.webp"
           title="Interactive 3D Model"
-          description="The 3D model was made in Blender to create immersive environments that respond to user interaction, providing a unique navigation experience through different sections of the portfolio."
+          description={
+            <>
+              The 3D model was built in Blender to create a cityscape that reflects different parts of my life and portfolio. 
+              Each area corresponds to a theme or experience, making navigation feel more like exploration.
+              There's a stock trading office to represent my fintech career, and a chess park for one of my favorite hobbies. 
+              An animated train moves through the city, serving as a lighthearted way to bring guests from the web into this digital world.
+            </>
+          }
         />
         
         <FeatureBlock
-          image="/images/Projects/project-tester.webp"
-          title="Glassmorphism UI"
-          description="Apple calls it liquid glass but I say they are pulling a coop but not a toop so what are they without my real deal presence. I am like a whipper and never a snapper."
+          image="/images/Projects/threejs-frontend/glass-ui.webp"
+          title="Glassmorphic UI"
+          description={
+            <>
+              Layered on top of the city is a glassmorphic UI built with over 100 custom React components. 
+              These elements give users more context without overwhelming the experience.
+              Fully modeling the interface in 3D would have made it hard to absorb the content. 
+              The transparent glass effect lets users stay connected to the city while interacting with information.
+            </>
+          }
         />
         
         <FeatureBlock
-          image="/images/Projects/project-tester.webp"
+          image="/images/Projects/threejs-frontend/backend-integration.webp"
           title="Backend Integration"
-          description="To help bring it to life I decided that I must provide a steady feed of grain and petrol so hence we have a backend but we are never not here."
+          description={
+            <>
+              The site connects to an Express.js server that streams live data about my chess activity, 
+              favorite sports team, and GitHub activity.
+              In fact, if the activity card to the right is blinking green, all systems are live. 
+              If not, maybe the backend is just running on my imagination. Either way, pulling in live data 
+              helped bring the city to life in a dynamic and personal way.
+            </>
+          }
         />
       </TextBlock>
 
@@ -123,9 +154,38 @@ const ThreeJsWebsiteArticle = ({ project, onImageSelect, selectedImageIndex, ima
         </div>
       </CollapsibleSection>
 
-      <TextBlock title="Project Story" color="indigo">
-        <p>{project.story}</p>
+      <TextBlock title="Reflection" color="teal">
+        <h4 className="font-semibold text-lg text-gray-800 mb-2">Biggest Challenge</h4>
+        <p className="text-gray-600 mb-4">
+          The hardest part was building two worlds — a 3D experience and a 2D interface — and making them feel like one cohesive project. At times, it genuinely felt like I was working on two completely different apps that were refusing to get along.
+        </p>
+        <p className="text-gray-600 mb-4">
+          Managing the state between the 3D scene and the React UI was especially exhausting. But somewhere in the chaos, it became a fun challenge. It forced me to rethink my initial ideas constantly and dive deep into creative problem-solving.
+        </p>
+        <h4 className="font-semibold text-lg text-gray-800 mb-2">Lessons Learned</h4>
+        <p className="text-gray-600 mb-4">
+          Yes, I picked up new frameworks, tools, and UI/UX design skills. But honestly, the biggest lesson was about project management.
+        </p>
+        <p className="text-gray-600 mb-4">
+          Here's a confession: I thought I could finish this entire project in three months. I even taped a plan to my wall (you'll find it below — feel free to laugh). The problem? I never clearly defined what "done" actually looked like. That led me to keep adding features, expanding the scope, and slowly burying myself under an ever-growing backlog. I nearly gave up more than once.
+        </p>
+        <div className="mb-4">
+          <img 
+            src="/images/Projects/threejs-frontend/timeline.webp" 
+            alt="Project timeline plan" 
+            className="w-full rounded-lg shadow-md"
+          />
+        </div>
+        <h4 className="font-semibold text-lg text-gray-800 mb-2">What I'd do differently</h4>
+        <p className="text-gray-600 mb-4">
+          Next time, I'd start with a full end-to-end prototype. Something rough but complete , just to outline the vision from the start.
+        </p>
+        <p className="text-gray-600 mb-4">
+          Instead, I kept building in isolated parts, constantly refactoring or fixing things that never made it into the final site. I even wanted to change core features midway through but was already too deep to pivot easily. That cost me time I'll never get back but hey you live and you learn.
+        </p>
       </TextBlock>
+
+      {/* <TextBlock title="Related Documents" color="red" /> */}
 
       {/* Project Gallery */}
       {/* <div className="mt-8">

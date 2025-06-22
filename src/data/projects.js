@@ -5,11 +5,12 @@ export const projects = [
         startDate: "2024-10-01",
         endDate: "2025-06-01",
         images: [
-            "/images/Projects/project-leet.webp",
-            "/images/Projects/project-SIP.webp",
-            "/images/Projects/project-tester.webp"
+            "/images/Projects/threejs-frontend/city-model.webp",
+            "/images/Projects/threejs-frontend/glass-ui.webp",
+            "/images/Projects/threejs-frontend/backend-integration.webp",
+            "/images/Projects/threejs-frontend/timeline.webp"
         ],
-        imageScrollPositions: [0.1, 0.8, 1],
+        imageScrollPositions: [0.01, 0.2, 0.35, 0.93],
         thumbnail: "/images/Projects/threejs-frontend/threejs-front-thumbnail.jpg",
         description: "Immersive 3D portfolio with animations and a glassmorphic interface",
         category: "development",

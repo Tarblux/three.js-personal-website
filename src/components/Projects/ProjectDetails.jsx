@@ -156,7 +156,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             
             {/* Project Details Card */}
             <div 
-                className={`fixed right-[300px] top-[20px] w-[750px] h-[calc(100vh-100px)] bg-white/95 backdrop-blur-sm
+                className={`fixed right-[300px] top-[20px] w-[750px] h-[calc(100vh-50px)] bg-white/95 backdrop-blur-sm
                     rounded-2xl shadow-lg transform-gpu flex flex-col
                     ${isClosing ? 'animate-fold' : 'animate-unfold'}`}
                 style={{
