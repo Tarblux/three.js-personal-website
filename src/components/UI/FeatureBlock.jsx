@@ -9,7 +9,7 @@ const FeatureBlock = ({
   imageClassName = '',
   reverse = false 
 }) => {
-  const containerClass = `flex ${reverse ? 'flex-row-reverse' : 'flex-row'} items-start gap-6 mb-8 ${className}`;
+  const containerClass = `flex ${reverse ? 'flex-row-reverse' : 'flex-row'} items-start gap-6 ${className}`;
   
   return (
     <div className={containerClass}>

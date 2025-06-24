@@ -258,7 +258,7 @@ const ChessStats = () => {
         </div>
       </div>
       {/* Card Container: White background for rating and chart */}
-      <div className="flex flex-col flex-1 bg-white rounded-2xl shadow min-h-[380px] transition-transform duration-200 hover:scale-[1.025] hover:shadow-2xl cursor-pointer">
+      <div className="flex flex-col flex-1 bg-white rounded-2xl shadow min-h-[380px] max-h-[480px] transition-transform duration-200 hover:scale-[1.025] hover:shadow-2xl cursor-pointer">
         {/* Rating + Change*/}
         <div className="flex flex-row items-end justify-start min-w-[120px] px-4 pt-4 pb-2">
           {loading ? (

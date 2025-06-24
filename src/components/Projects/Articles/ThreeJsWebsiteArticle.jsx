@@ -86,45 +86,45 @@ const ThreeJsWebsiteArticle = ({ project, onImageSelect, selectedImageIndex, ima
       </TextBlock>
 
       <TextBlock title="Core Features" color="purple">
-        <FeatureBlock
-          image="/images/Projects/threejs-frontend/city-model.webp"
-          title="Interactive 3D Model"
-          description={
-            <>
-              The 3D model was built in Blender to create a cityscape that reflects different parts of my life and portfolio. 
-              Each area corresponds to a theme or experience, making navigation feel more like exploration.
-              There's a stock trading office to represent my fintech career, and a chess park for one of my favorite hobbies. 
-              An animated train moves through the city, serving as a lighthearted way to bring guests from the web into this digital world.
-            </>
-          }
-        />
-        
-        <FeatureBlock
-          image="/images/Projects/threejs-frontend/glass-ui.webp"
-          title="Glassmorphic UI"
-          description={
-            <>
-              Layered on top of the city is a glassmorphic UI built with over 100 custom React components. 
-              These elements give users more context without overwhelming the experience.
-              Fully modeling the interface in 3D would have made it hard to absorb the content. 
-              The transparent glass effect lets users stay connected to the city while interacting with information.
-            </>
-          }
-        />
-        
-        <FeatureBlock
-          image="/images/Projects/threejs-frontend/backend-integration.webp"
-          title="Backend Integration"
-          description={
-            <>
-              The site connects to an Express.js server that streams live data about my chess activity, 
-              favorite sports team, and GitHub activity.
-              In fact, if the activity card to the right is blinking green, all systems are live. 
-              If not, maybe the backend is just running on my imagination. Either way, pulling in live data 
-              helped bring the city to life in a dynamic and personal way.
-            </>
-          }
-        />
+        <div className="space-y-8">
+          <FeatureBlock
+            image="/images/Projects/threejs-frontend/city-model.webp"
+            title="Interactive 3D Model"
+            description={
+              <>
+                The 3D model was built in Blender to create a cityscape that reflects different parts of my life and portfolio. 
+                Each area corresponds to a theme or experience, making navigation feel more like exploration.
+                There's a stock trading office to represent my fintech career, and a chess park for one of my favorite hobbies. 
+                An animated train moves through the city, serving as a lighthearted way to bring guests from the web into this digital world.
+              </>
+            }
+          />
+          <FeatureBlock
+            image="/images/Projects/threejs-frontend/glass-ui.webp"
+            title="Glassmorphic UI"
+            description={
+              <>
+                Layered on top of the city is a glassmorphic UI built with over 100 custom React components. 
+                These elements give users more context without overwhelming the experience.
+                Fully modeling the interface in 3D would have made it hard to absorb the content. 
+                The transparent glass effect lets users stay connected to the city while interacting with information.
+              </>
+            }
+          />
+          <FeatureBlock
+            image="/images/Projects/threejs-frontend/backend-integration.webp"
+            title="Backend Integration"
+            description={
+              <>
+                The site connects to an Express.js server that streams live data about my chess activity, 
+                favorite sports team, and GitHub activity.
+                In fact, if the activity card to the right is blinking green, all systems are live. 
+                If not, maybe the backend is just running on my imagination. Either way, pulling in live data 
+                helped bring the city to life in a dynamic and personal way.
+              </>
+            }
+          />
+        </div>
       </TextBlock>
 
       <TechStack 

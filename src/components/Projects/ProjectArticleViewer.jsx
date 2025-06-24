@@ -9,10 +9,12 @@ import ChessDataApiArticle from './Articles/ChessDataApiArticle';
 import EplTransferAnalysisArticle from './Articles/EplTransferAnalysisArticle';
 import CreoleLinguisticsArticle from './Articles/CreoleLinguisticsArticle';
 import SustainabilityDocumentaryArticle from './Articles/SustainabilityDocumentaryArticle';
-import IPhone6DeconstructionArticle from './Articles/IPhone6DeconstructionArticle';
+import IPhoneDeconstructionArticle from './Articles/IPhoneDeconstructionArticle';
 import BukayoSakaArtArticle from './Articles/BukayoSakaArtArticle';
-import IPhone8DeconstructionArticle from './Articles/IPhone8DeconstructionArticle';
 import BlenderModelsArticle from './Articles/BlenderModelsArticle';
+import ChessAnalysisServerArticle from './Articles/ChessAnalysisServerArticle';
+import FootballAnalyticsArticle from './Articles/FootballAnalyticsArticle';
+import KombuchaMonitorArticle from './Articles/KombuchaMonitorArticle';
 
 // Component mapping
 const articleComponents = {
@@ -24,10 +26,12 @@ const articleComponents = {
   EplTransferAnalysisArticle,
   CreoleLinguisticsArticle,
   SustainabilityDocumentaryArticle,
-  IPhone6DeconstructionArticle,
+  IPhoneDeconstructionArticle,
   BukayoSakaArtArticle,
-  IPhone8DeconstructionArticle,
-  BlenderModelsArticle
+  BlenderModelsArticle,
+  ChessAnalysisServerArticle,
+  FootballAnalyticsArticle,
+  KombuchaMonitorArticle
 };
 
 const ProjectArticleViewer = ({ project, onImageSelect, selectedImageIndex, imageItems }) => {

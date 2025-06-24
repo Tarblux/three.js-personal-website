@@ -29,6 +29,16 @@ export const projects = [
         order: 2,
         startDate: "2025-05-01",
         endDate: "2025-06-01",
+        images: [
+            "/images/Projects/threejs-back/fullsystem.webp",
+            "/images/Projects/threejs-back/client request.webp",
+            "/images/Projects/threejs-back/mid-panel.webp",
+            "/images/Projects/threejs-back/rh-panel.webp",
+            "/images/Projects/threejs-back/servicelayer.webp",
+            "/images/Projects/threejs-back/datalayer.webp",
+            "/images/Projects/threejs-back/dockerp.webp",
+        ],
+        imageScrollPositions: [0.01, 0.45, 0.55, 0.6, 0.7, 0.8, 0.9],
         thumbnail: "/images/Projects/threejs-back/threejs-back-thumbnail.jpg",
         description: "Backend service delivering live GitHub, chess, and soccer data to the portfolio",
         category: "development",
@@ -40,8 +50,12 @@ export const projects = [
     {
         title: "Personal Website (Old)",
         order: 3,
-        startDate: "2023-01-01",
-        endDate: "2025-05-01",
+        startDate: "2023-01-02",
+        endDate: "2023-05-07",
+        images: [
+            "/images/Projects/oldpersonal/oldPersonal-panel.webp",
+        ],
+        imageScrollPositions: [0.01],
         thumbnail: "/images/Projects/oldpersonal/oldPersonal-thumbnail.jpg",
         description: "My original personal website, built with basic html, css, and javascript.",
         category: "development",
@@ -56,6 +70,10 @@ export const projects = [
         order: 4,
         startDate: "2022-01-01",
         endDate: "2022-12-31",
+        images: [
+            "/images/Projects/epl-transfer-analysis/epl-panel.webp",
+        ],
+        imageScrollPositions: [0.01],
         thumbnail: "/images/Projects/epl-transfer-analysis/epl-thumbnail.jpg",
         description: "Econometric analysis of how Premier League transfer spending affects team performance",
         category: "research",
@@ -72,6 +90,10 @@ export const projects = [
         order: 5,
         startDate: "2025-04-01",
         endDate: null,
+        images: [
+            "/images/Projects/chess-data-api/chessapi-panel.webp",
+        ],
+        imageScrollPositions: [0.01],
         thumbnail: "/images/Projects/chess-data-api/chessapi-thumbnail.jpg",
         description: "A proxy for the Chess.com API that serves customized live chess data for my projects",
         category: "development",
@@ -87,10 +109,9 @@ export const projects = [
         startDate: "2022-12-01",
         endDate: "2023-02-01",
         images: [
-            "/images/Projects/project-creo.webp",
-            "/images/Projects/project-creo-1.webp",
-            "/images/Projects/project-creo-2.webp"
+            "/images/Projects/creole-linguistics/creole-panel.webp",
         ],
+        imageScrollPositions: [0.01],
         thumbnail: "/images/Projects/creole-linguistics/creole-thumbnail.jpg",
         description: "Linguistic research of English Creole phonemics and its convergence with standard English",
         category: "research",
@@ -108,6 +129,10 @@ export const projects = [
         order: 7,
         startDate: "2023-08-01",
         endDate: null,
+        images: [
+            "/images/Projects/codingPractice/codingpractice-panel.webp",
+        ],
+        imageScrollPositions: [0.01],
         thumbnail: "/images/Projects/codingPractice/codingPractice-thumbnail.jpg",
         description: "A collection of my coding problems, algorithms, and programming language studies in Jupyter Notebooks.",
         category: "development",
@@ -121,14 +146,17 @@ export const projects = [
         order: 8,
         startDate: "2023-09-01",
         endDate: "2023-12-01",
-        thumbnail: "/images/Projects/sustainability-documentary/sustainability-thumbnail.jpg",
-        description: "Documentary of sustainability initiatives and practices at Kalamazoo College",
+        images: [
+            "/images/Projects/sustainability-documentary/sustainability-panel.webp",
+        ],  
+        imageScrollPositions: [0.01],
+        thumbnail: "/images/Projects/sustainability-documentary/sustainability-thumbnail.webp",
+        description: "Documentary of sustainability initiatives and practices at K College",
         category: "media",
         technologies: ["Video Editing", "Cinematography", ],
-        story: `Created comprehensive documentation for the Eco Club highlighting 
-                sustainability practices and initiatives at Kalamazoo College. The project 
-                combined environmental research with digital design to create engaging 
-                and informative content that promotes campus sustainability efforts.`,
+        story: `In my senior year, after wrapping up all my required courses, I decided to branch out and try something new 
+                and so I enrolled in an Intro to Documentary class. Our final project was to create a short documentary, 
+                and as a member of the campus Eco Club, I saw the perfect opportunity.`,
         link: "https://youtu.be/_HPbgnWnV9c",
         articleComponent: "SustainabilityDocumentaryArticle"
     },
@@ -137,6 +165,10 @@ export const projects = [
         order: 9,
         startDate: "2023-07-06",
         endDate: "2023-07-06",
+        images: [
+            "/images/Projects/iphone-deconstruction/iphone8-mock.webp",
+        ],
+        imageScrollPositions: [0.01],
         thumbnail: "/images/Projects/iphone-deconstruction/iphones-thumbnail.jpg",
         description: "A detailed deconstruction of the iPhone 6+ and (RED) editions transformed into wall art pieces",
         category: "media",
@@ -145,30 +177,36 @@ export const projects = [
                 down its key components and specifications. This visual guide showcases 
                 the device's internal architecture, from its A8 chip to its camera systems, 
                 providing insights into Apple's revolutionary smartphone design.`,
-        articleComponent: "IPhone6DeconstructionArticle"
+        articleComponent: "IPhoneDeconstructionArticle"
     },
-    {
-        title: "Graphic Design Portfolio",
-        order: 10,
-        startDate: "2023-07-19",
-        endDate: "2023-07-19",
-        thumbnail: "/images/Projects/graphics-portfolio/graphics-thumbnail.jpg",
-        description: "A collection of my graphic design work, including posters, logos, and other designs.",
-        category: "media",
-        technologies: ["Photoshop", "Digital Art", "Typography"],
-        story: `This artistic piece combines portrait photography and sports imagery in a 
-                minimalist black and white style. The design features Arsenal star Bukayo Saka 
-                in two contrasting poses - a formal portrait with a signature pose and a 
-                celebratory moment from a match. The composition is enhanced with his signature, 
-                the Nigerian flag, and the Arsenal crest, creating a powerful visual narrative 
-                that celebrates both his heritage and his club identity.`,
-        articleComponent: "BukayoSakaArtArticle"
-    },
+    // {
+    //     title: "Graphic Design Portfolio",
+    //     order: 10,
+    //     startDate: "2023-07-19",
+    //     endDate: "2023-07-19",
+    //     thumbnail: "/images/Projects/graphics-portfolio/graphics-thumbnail.jpg",
+    //     description: "A collection of my graphic design work, including posters, logos, and other designs.",
+    //     category: "media",
+    //     technologies: ["Photoshop", "Digital Art", "Typography"],
+    //     story: `This artistic piece combines portrait photography and sports imagery in a 
+    //             minimalist black and white style. The design features Arsenal star Bukayo Saka 
+    //             in two contrasting poses - a formal portrait with a signature pose and a 
+    //             celebratory moment from a match. The composition is enhanced with his signature, 
+    //             the Nigerian flag, and the Arsenal crest, creating a powerful visual narrative 
+    //             that celebrates both his heritage and his club identity.`,
+    //     articleComponent: "BukayoSakaArtArticle"
+    // },
     {
         title: 'Blender Models',
         order: 11,
         startDate: "2025-01-02",
         endDate: null,
+        images: [
+            "/images/Projects/threejs-frontend/city-model.webp",
+            "/images/Projects/blender-models/berger.webp",
+            "/images/Projects/blender-models/random-polygon.webp",
+        ],
+        imageScrollPositions: [0.01, 0.5, 0.9],
         thumbnail: '/images/Projects/blender-models/blender-thumbnail.jpg',
         description: 'A collection of my Blender models and 3D assets I have created.',
         category: 'media',

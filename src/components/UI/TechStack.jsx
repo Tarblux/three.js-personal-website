@@ -4,7 +4,8 @@ const TechStack = ({
   title = "Tech Stack",
   techItems = [],
   className = "",
-  defaultSelectedIndex = 0 
+  defaultSelectedIndex = 0,
+  showWhyChoseIt = true
 }) => {
   const [hoveredTech, setHoveredTech] = useState(null);
   const [selectedTech, setSelectedTech] = useState(techItems[defaultSelectedIndex] || techItems[0]);
@@ -94,7 +95,7 @@ const TechStack = ({
               )}
 
               {/* Why I chose it section */}
-              {selectedTech.whyIChoseIt && (
+              {selectedTech.whyIChoseIt && showWhyChoseIt && (
                 <div className="mb-3">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-3 h-3 bg-gray-500 rounded-full flex items-center justify-center">
