@@ -9,16 +9,7 @@ const ThreeJsBackendArticle = () => {
         <p>
           A multi-domain backend server used to power the frontend of my personal portfolio. 
           It's built with Node.js and Express and acts as a central hub for aggregating and 
-          serving personal data from various sources like my live{' '}
-          <a 
-            href="http://chess.com/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-blue-500 hover:underline"
-          >
-            Chess.com
-          </a>{' '}
-          stats, GitHub activity, and sports team standings. The main function is to provide 
+          serving personal data from various sources like my live Chess.com stats, GitHub activity, and sports team standings. The main function is to provide 
           a single, reliable API endpoint for my frontend to fetch and display real-time 
           information about me.
         </p>

@@ -2,7 +2,6 @@ import React from 'react';
 import TextBlock from '../../UI/TextBlock';
 import FeatureBlock from '../../UI/FeatureBlock';
 import TechStack from '../../UI/TechStack';
-import ImageArray from '../../UI/ImageArray';
 import CollapsibleSection from '../../UI/CollapsibleSection';
 
 const ThreeJsWebsiteArticle = ({ project, onImageSelect, selectedImageIndex, imageItems }) => {
@@ -11,10 +10,10 @@ const ThreeJsWebsiteArticle = ({ project, onImageSelect, selectedImageIndex, ima
       id: 1,
       name: "Three.js",
       icon: "/icons/Three.js_light.svg",
-      description: "A JavaScript library for creating 3D graphics in the browser.",
-      howIUsedIt: "Everything 3D you see (the model, animations, lighting, sky, and textures) is powered by Three.js. Without it, you'd just be staring at some floating UI cards over a plain background.",
-      whyIChoseIt: "Honestly, it chose itself. Three.js is the most stable and mature option for browser-based 3D, with a strong community that makes debugging less painful.",
-      color: '#9333EA'
+      description: "A JavaScript 3D library for creating and displaying animated 3D computer graphics",
+      howIUsedIt: "Three.js is the core of this entire project. I'm using it to create an immersive 3D environment that serves as the main interface for my portfolio.",
+      whyIChoseIt: "Honestly, it chose itself. Three.js is the most stable and mature option for browser-based 3D. With its strong community and active contributors, it was really the only option that made sense",
+      color: '#000000'
     },
     {
       id: 2,

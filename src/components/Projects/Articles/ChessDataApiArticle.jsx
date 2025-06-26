@@ -9,8 +9,7 @@ const ChessDataApiArticle = () => {
       name: "Next.js",
       icon: "/icons/nextjs.svg",
       description: "A React framework for building full-stack web applications",
-      howIUsedIt: "Next.js made it easy to set up API routes as serverless functions. " +
-        "Each endpoint is lightweight, efficient, and deploys seamlessly.",
+      howIUsedIt: "I'm mainly using Next.js for its API routes. There's no real frontend — it just serves as a clean way to structure and deploy backend logic without spinning up a full server.",
       whyIChoseIt: "It works perfectly with Vercel's ecosystem. Honestly, they built it, " +
         "so the integration is smooth and hassle-free.",
       color: '#000000'
@@ -20,8 +19,7 @@ const ChessDataApiArticle = () => {
       name: "TypeScript",
       icon: "/icons/typescript.svg",
       description: "A strongly typed programming language that builds on JavaScript",
-      howIUsedIt: "I wrote the entire project in TypeScript to add type safety, " +
-        "better tooling support, and more predictable code behavior.",
+      howIUsedIt: "I wrote the entire project in TypeScript to add type safety",
       whyIChoseIt: "After working on several JavaScript-heavy projects, I became increasingly " +
         "aware of its limitations. Switching to TypeScript felt like a natural next step " +
         "for long-term maintainability.",
@@ -100,9 +98,9 @@ const ChessDataApiArticle = () => {
           and scalable architecture for all my chess-related projects.
         </p>
         <p>
-          The serverless approach means I don't have to worry about server maintenance, 
-          and the TypeScript implementation ensures the codebase remains robust and easy 
-          to extend as my needs evolve.
+          Because each endpoint is modular and self-contained, I can easily reuse or update 
+          them across different projects — whether it's for visualizations, analysis, or future tools. 
+          And with everything deployed serverlessly, there's zero overhead in maintaining the infrastructure.
         </p>
       </TextBlock>
     </div>
