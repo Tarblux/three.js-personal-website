@@ -55,9 +55,8 @@ const LoadedButton = ({ onBoardingPassClick }) => {
           className={`boarding-pass ${isPrinting ? "printing" : ""} ${!printingComplete ? "pointer-events-none" : "cursor-pointer"}`}
         />
         {printingComplete && (
-          <div className={`text-white text-sm opacity-80 text-center message ${printingComplete ? "printing" : ""}`}>
+          <div className={`text-white text-lg opacity-100 text-center message ${printingComplete ? "printing" : ""}`}>
             Headphones recommended 🎧<br />
-            A baby came onboard a few stops back ......
           </div>
         )}
       </div>

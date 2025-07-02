@@ -20,7 +20,7 @@ const ResumeCard = ({ onImageClick }) => {
 
   return (
     <div 
-      className="bg-white rounded-lg shadow p-1 col-span-2 row-span-1 flex flex-col items-center transform transition-transform duration-300 hover:scale-105 cursor-pointer relative" 
+      className="bg-white rounded-lg shadow p-1 md:col-span-2 md:row-span-1 flex flex-col items-center transform transition-transform duration-300 hover:scale-105 cursor-pointer relative" 
       onClick={onImageClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

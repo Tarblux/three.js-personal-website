@@ -21,7 +21,7 @@ const LocationCard = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-lg px-1 py-1 col-span-5 row-span-1 relative overflow-hidden transform transition-transform duration-300 hover:scale-105">
+    <div className="bg-white rounded-lg px-1 py-1 md:col-span-5 md:row-span-1 relative overflow-hidden transform transition-transform duration-300 hover:scale-105 min-h-[200px] md:min-h-0">
       <a 
         href="https://www.google.com/maps/@43.0252086,-87.8610821,12z?entry=ttu&g_ep=EgoyMDI1MDQwMi4xIKXMDSoASAFQAw%3D%3D"
         target="_blank"
