@@ -39,23 +39,28 @@ const ProjectsConstruction = () => {
     };
 
     return (
-        <div className="absolute right-0 top-0 flex flex-row-reverse items-start mr-12 mt-12">
-            <div className="bg-white/20 backdrop-blur-md rounded-lg w-[440px] p-1.5 border border-white/30">
-                <div className="bg-white rounded-lg p-1 pb-5 pt-5">
-                    <div className="grid grid-cols-2 gap-y-4 justify-items-center min-h-[500px] relative">
-                        {projectsConstruction.map((project, idx) => (
-                            <div key={idx} onClick={() => handleProjectClick(project)}>
-                                <ProjectsConstructionCard
-                                    title={project.title}
-                                    date={`${formatDate(project.startDate)} - ${project.endDate ? formatDate(project.endDate) : 'Present'} · ${calculateDuration(project.startDate, project.endDate)}`}
-                                    image={project.image}
-                                    description={project.description}
-                                    category={project.category}
-                                    technologies={project.technologies}
-                                    phase={project.phase}
-                                />
-                            </div>
-                        ))}
+        <div className="absolute right-0 top-0 flex flex-row-reverse items-start mr-12 mt-10">
+            <div className="flex flex-col items-start">
+                <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
+                    Projects Construction
+                </span>
+                <div className="bg-white/20 backdrop-blur-md rounded-lg w-[500px] p-1.5 border border-white/30">
+                    <div className="bg-white rounded-lg p-1 pb-5 pt-5">
+                        <div className="grid grid-cols-2 gap-4 justify-items-center min-h-[620px] relative">
+                            {projectsConstruction.map((project, idx) => (
+                                <div key={idx} onClick={() => handleProjectClick(project)}>
+                                    <ProjectsConstructionCard
+                                        title={project.title}
+                                        date={`${formatDate(project.startDate)} - ${project.endDate ? formatDate(project.endDate) : 'Present'} · ${calculateDuration(project.startDate, project.endDate)}`}
+                                        image={project.thumbnail}
+                                        description={project.description}
+                                        category={project.category}
+                                        technologies={project.technologies}
+                                        phase={project.phase}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

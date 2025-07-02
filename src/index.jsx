@@ -63,7 +63,7 @@ Well, well, well... you thought you could look at my code undetected?
 Since you're poking around in here, you're clearly curious.
 
 The source code is available on my GitHub: https://github.com/Tarblux/three.js-personal-website
-You can also ping me on LinkedIn for questions: https://www.linkedin.com/in/tariq-williams12/
+You can also ping me on LinkedIn for questions , or just let me know you found it lol: https://www.linkedin.com/in/tariq-williams12/
 
 If you found a bug, let's just call it an 'undocumented feature' for now, shall we?
 `, easterEgg.main);

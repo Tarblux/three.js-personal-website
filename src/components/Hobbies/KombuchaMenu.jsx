@@ -44,7 +44,7 @@ const KombuchaMenu = () => {
           {kombuchaBottles.map((bottle, idx) => {
             const hoverImages = [
               '/images/Hobbies/nina.webp',
-              '/images/Hobbies/Dmango.jpg', 
+              '/images/Hobbies/Dmango.webp', 
               '/images/Hobbies/sunset.webp'
             ];
             return (

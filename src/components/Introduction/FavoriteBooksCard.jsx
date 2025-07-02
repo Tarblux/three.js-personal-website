@@ -19,7 +19,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow p-3 col-span-4 row-span-1 flex flex-col transform transition-transform duration-300 hover:scale-105">
+    <div className="bg-white rounded-lg shadow p-3 md:col-span-4 md:row-span-1 flex flex-col transform transition-transform duration-300 hover:scale-105">
       <div className="flex items-center mb-2">
         <img
           src="/emojis/emoji-books.webp"
@@ -30,7 +30,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
       </div>
 
       <div className="flex-1 flex items-center justify-center">
-        <div className="flex gap-[4px] px-0.5 py-1 w-[300px] h-[160px] rounded-[4px]">
+        <div className="flex gap-[4px] px-0.5 py-1 w-full max-w-[300px] h-[160px] rounded-[4px]">
           {favoriteBooks.map((book) => (
             <div
               key={book.id}

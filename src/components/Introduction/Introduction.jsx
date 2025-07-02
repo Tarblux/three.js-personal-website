@@ -24,14 +24,25 @@ const Introduction = () => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-0">
-      <div className="flex flex-col items-start">
+    <div className="min-h-screen flex items-center justify-center z-0 p-4 md:p-0">
+      <div className="flex flex-col items-start w-full max-w-4xl">
         <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
           Introduction
         </span>
         {/* Glassmorphic Container */}
-        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 w-full max-w-4xl mx-auto border border-white/30">
-          <div className="grid grid-cols-12 gap-3 auto-rows-auto max-h-[500px]">
+        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 w-full border border-white/30">
+          {/* Mobile: Stack cards vertically */}
+          <div className="md:hidden flex flex-col gap-4">
+            <IntroCard />
+            <EducationCard />
+            <ResumeCard onImageClick={handleImageClick} />
+            {/* LocationCard is hidden on mobile */}
+            {/* <LocationCard /> */}
+            <FavoriteBooksCard onBookClick={handleBookClick} />
+          </div>
+          
+          {/* Desktop: Use original grid layout */}
+          <div className="hidden md:grid md:grid-cols-12 gap-3 auto-rows-auto max-h-[600px]">
             <IntroCard />
             <LocationCard />
             <FavoriteBooksCard onBookClick={handleBookClick} />
@@ -44,14 +55,14 @@ const Introduction = () => {
       {/* Resume Modal Overlay */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 bg-black/75 flex items-center justify-center z-[9999]"
+          className="fixed inset-0 bg-black/75 flex items-center justify-center z-[9999] p-4"
           onClick={handleCloseModal}
         >
-          <div className="relative flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
+          <div className="relative flex flex-col items-center gap-4 w-full max-w-md" onClick={(e) => e.stopPropagation()}>
             <img
               src="/images/Introduction/resume-thumbnail.webp"
               alt="Resume Full"
-              className="max-w-[85vw] max-h-[85vh] rounded shadow-lg object-contain"
+              className="max-w-full max-h-[70vh] rounded shadow-lg object-contain"
             />
             <a
               href="/docs/Tariq-Williams-Resume.pdf"
@@ -73,11 +84,11 @@ const Introduction = () => {
       {/* Books Modal Overlay */}
       {isBookModalOpen && selectedBook && (
         <div
-          className="fixed inset-0 bg-black/75 flex items-center justify-center z-[9999]"
+          className="fixed inset-0 bg-black/75 flex items-center justify-center z-[9999] p-4 overflow-y-auto"
           onClick={handleCloseBookModal}
         >
           <div 
-            className="bg-white rounded-lg shadow-lg relative max-w-2xl w-full mx-4 p-6 flex gap-6"
+            className="bg-white rounded-lg shadow-lg relative w-full max-w-2xl flex flex-col md:flex-row gap-6 p-4 md:p-6 max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -89,14 +100,14 @@ const Introduction = () => {
               </svg>
             </button>
             
-            <div className="w-1/3">
+            <div className="w-full md:w-1/3 flex-shrink-0 flex items-start justify-center">
               <img
                 src={selectedBook.cover}
                 alt={selectedBook.title}
-                className="w-full h-auto rounded-lg shadow-md"
+                className="w-auto max-w-[220px] max-h-[40vh] md:max-w-full md:max-h-[350px] rounded-lg shadow-md mx-auto"
               />
             </div>
-            <div className="w-2/3">
+            <div className="w-full md:w-2/3">
               <div className="flex items-center gap-2 mb-2">
                 <span className={`px-3 py-1 rounded-full text-sm ${
                   selectedBook.category === 'Fiction' 
