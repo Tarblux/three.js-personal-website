@@ -3,7 +3,7 @@ import React from 'react';
 const StudentIDCard = ({ school }) => {
   return (
     <div
-      className="bg-white rounded-xl shadow-xl p-3 flex flex-row items-start mx-auto border-2 border-blue-200 relative min-w-[450px] min-h-[100px] overflow-hidden transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl group"
+      className="bg-white rounded-xl shadow-xl p-3 flex flex-row items-start mx-auto border-2 border-blue-200 relative w-full max-w-[320px] md:min-w-[450px] md:max-w-none min-h-[100px] overflow-hidden transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl group"
     >
       {/* Gloss shimmer overlay */}
       <div

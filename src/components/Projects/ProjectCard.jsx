@@ -44,7 +44,7 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
         <div className={`
             relative bg-white rounded-xl p-1 shadow-md hover:shadow-xl 
             transition-all duration-300 ease-in-out w-[220px] min-h-[300px]
-            hover:scale-105 cursor-pointer border-2 border-gray-200
+            hover:scale-[1.02] cursor-pointer border-2 border-gray-200
             before:absolute before:inset-0
             before:rounded-xl before:-z-10
             before:bg-gradient-to-r ${getBorderColor(category)} before:to-transparent

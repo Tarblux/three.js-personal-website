@@ -149,15 +149,16 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
         <>
             {/* Backdrop with blur effect */}
             <div 
-                className={`fixed inset-0 bg-black/5 backdrop-blur-[2px] transition-opacity duration-500
+                className={`fixed inset-0 bg-black/5 backdrop-blur-[2px] transition-opacity duration-500 z-40
                     ${isClosing ? 'opacity-0' : 'opacity-100'}`}
                 onClick={handleClose}
             />
             
             {/* Project Details Card */}
             <div 
-                className={`fixed right-[300px] top-[20px] w-[750px] h-[calc(100vh-50px)] bg-white/95 backdrop-blur-sm
-                    rounded-2xl shadow-lg transform-gpu flex flex-col
+                className={`fixed inset-4 md:right-[300px] md:top-[20px] md:left-auto md:bottom-auto 
+                    md:w-[750px] md:h-[calc(100vh-50px)] w-auto h-auto bg-white/95 backdrop-blur-sm
+                    rounded-2xl shadow-lg transform-gpu flex flex-col z-50
                     ${isClosing ? 'animate-fold' : 'animate-unfold'}`}
                 style={{
                     transformOrigin: 'center center'
@@ -176,8 +177,8 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                 {/* Static Header Section */}
                 <div className="flex-shrink-0">
                     {/* Main media display */}
-                    <div className="p-6 pb-2 relative">
-                        <div className="w-full h-[300px] rounded-xl overflow-hidden !shadow-none relative transition-all duration-300">
+                    <div className="p-4 md:p-6 pb-2 relative">
+                        <div className="w-full h-[200px] md:h-[300px] rounded-xl overflow-hidden !shadow-none relative transition-all duration-300">
                             {currentMedia.type === 'video' ? (
                                 <iframe
                                     src={currentMedia.src}
@@ -202,7 +203,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                                     <button
                                         key={index}
                                         onClick={() => handleManualImageSelect(index)}
-                                        className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                                        className={`flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
                                             selectedImageIndex === index 
                                                 ? 'border-blue-400 shadow-lg shadow-blue-400/50 ring-2 ring-blue-400/30' 
                                                 : 'border-gray-300 hover:border-gray-400'
@@ -219,7 +220,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                         )}
                     </div>
 
-                    <div className="px-6 pb-2">
+                    <div className="px-4 md:px-6 pb-2">
                         {/* Header with date and links */}
                         <div className="mb-2 mr-2 flex justify-between items-center">
                             <div className="text-gray-500 text-xs">{project.date}</div>
@@ -244,7 +245,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                 </div>
 
                 {/* Scrollable Article Content */}
-                <div ref={scrollContainerRef} className="flex-1 overflow-y-auto overscroll-contain">
+                <div ref={scrollContainerRef} className="flex-1 overflow-y-auto overscroll-contain px-2 md:px-0">
                     <ProjectArticleViewer 
                         project={project} 
                         onImageSelect={handleManualImageSelect}
@@ -254,14 +255,16 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
                 </div>
             </div>
             
-            {/* Git Activity*/}
+            {/* Git Activity - Hidden on mobile */}
             {renderGitActivity && (
-                <GitActivity 
-                    isVisible={true} 
-                    project={project} 
-                    showComponent={showGitActivity}
-                    position={{ right: '50px', top: '20px' }}
-                />
+                <div className="hidden md:block relative z-[60]">
+                    <GitActivity 
+                        isVisible={true} 
+                        project={project} 
+                        showComponent={showGitActivity}
+                        position={{ right: '50px', top: '20px' }}
+                    />
+                </div>
             )}
         </>
     );

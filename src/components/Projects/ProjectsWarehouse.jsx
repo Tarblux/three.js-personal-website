@@ -73,19 +73,19 @@ const ProjectsWarehouse = () => {
     };
 
     return (
-        <div className="absolute left-0 flex ml-12 mt-10">
-            <div className="flex flex-col items-start">
+        <div className="relative md:absolute md:left-0 flex flex-col md:flex-row mx-4 md:mx-0 md:ml-12 mt-4 md:mt-10">
+            <div className="flex flex-col items-start w-full md:w-auto">
                 <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
                     Projects Warehouse
                 </span>
-                <div className="bg-white/20 backdrop-blur-md rounded-lg w-[500px] border border-white/30 overflow-hidden px-1 py-2">
+                <div className="bg-white/20 backdrop-blur-md rounded-lg w-full md:w-[500px] border border-white/30 overflow-hidden px-1 py-2 md:max-h-none max-h-[calc(100vh-8rem)] flex flex-col">
                     <div className="px-[6px] pb-0">
                         <ProjectFilter onFilterChange={setFilter} filter={filter} />
                     </div>
-                    <div className="bg-white rounded-lg mx-1 px-4 pt-4 pb-5">
+                    <div className="bg-white rounded-lg mx-1 px-4 pt-4 pb-4 md:pb-5 flex-1 md:h-auto">
                         <div 
                             ref={containerRef}
-                            className="grid grid-cols-2 gap-4 justify-items-center min-h-[620px] relative"
+                            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-4 justify-items-center min-h-[620px] relative md:overflow-visible overflow-y-auto md:max-h-none max-h-[calc(100vh-22rem)] md:py-0 py-2"
                         >
                             {currentProjects.map((project, index) => {
                                 const startDate = formatDate(project.startDate);
@@ -106,7 +106,45 @@ const ProjectsWarehouse = () => {
                                 );
                             })}
                         </div>
-                        <div className="flex items-center justify-center gap-4 mt-4">
+                        {/* Mobile Navigation - Previous/Next buttons */}
+                        <div className="flex md:hidden items-center justify-between mt-3">
+                            <button
+                                onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+                                disabled={currentPage === 0}
+                                className={`flex items-center gap-1 px-2 py-1 rounded text-xs font-medium transition-all duration-200 ${
+                                    currentPage === 0 
+                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
+                                        : 'bg-blue-500 text-white hover:bg-blue-600 shadow-sm'
+                                }`}
+                            >
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                                Previous
+                            </button>
+                            
+                            <div className="text-gray-500 text-xs font-medium">
+                                {currentPage + 1} / {totalPages}
+                            </div>
+                            
+                            <button
+                                onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
+                                disabled={currentPage === totalPages - 1}
+                                className={`flex items-center gap-1 px-2 py-1 rounded text-xs font-medium transition-all duration-200 ${
+                                    currentPage === totalPages - 1 
+                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
+                                        : 'bg-blue-500 text-white hover:bg-blue-600 shadow-sm'
+                                }`}
+                            >
+                                Next
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        {/* Desktop Navigation - Dot pagination */}
+                        <div className="hidden md:flex items-center justify-center gap-4 mt-4">
                             <div className="flex gap-2">
                                 {Array.from({ length: totalPages }, (_, i) => (
                                     <button

@@ -29,12 +29,11 @@ const Contact = () => {
 
     return (
         // CONTACT_ROOT: This is the main positioning context for the absolute image and the card , so they can be positioned relative to each other
-        <div className="fixed top-8 right-8 z-10 w-[400px] flex flex-col justify-center h-auto">
-            
+        <div className="fixed md:top-8 md:right-8 md:w-[400px] w-full max-w-[95vw] left-1/2 md:left-auto top-0 right-0 z-10 flex flex-col justify-center h-auto p-2 md:p-0 -translate-x-1/2 md:translate-x-0">
             {/* OVERFLOWING_IMAGE HACK: This is a hack to get the image to overflow the card  , because safari and chrome have different default styles for images :( */}
             {/* The image needs to be positioned to align with where it would appear in the card */}
             {/* Accounting for: Contact label (mb-2), glassmorphic wrapper (p-2), main card (p-4) */}
-            <div className="absolute top-[calc(1rem+0.5rem+1rem+1rem-42px)] left-[calc(1rem+1rem-0.5rem)] z-20 pointer-events-none">
+            <div className="absolute top-[calc(1rem+0.5rem+1rem+1rem-42px)] left-[calc(1rem+1rem-0.5rem)] z-20 pointer-events-none hidden md:block">
                 {/* Gray background square */}
                 <div className="absolute top-[52px] left-2 w-36 h-36 bg-gray-200 rounded-2xl z-0"></div>
                 {/* Profile image */}
@@ -56,10 +55,10 @@ const Contact = () => {
                     {/* Top Row: Avatar Spacer + Heading */}
                     <div className="flex flex-row items-start gap-6 mb-5">
                         {/* AVATAR_SPACER: This div creates space for the absolutely positioned image */}
-                        <div className="relative w-32 h-32 flex-shrink-0">
+                        <div className="relative w-32 h-32 flex-shrink-0 hidden md:block">
                             {/* This spacer maintains the layout spacing where the image would have been , I hate safari and firefox for this lol */}
                         </div>
-                        <div className="flex flex-col justify-center mt-2 ml-3">
+                        <div className="flex flex-col justify-center mt-2 ml-3 w-full">
                             <h2 className="text-2xl font-bold mb-1">Get in touch !</h2>
                             <span className="text-gray-500 text-xs ">tarblux12@gmail.com</span>
                             {/* Social Icons */}
@@ -87,18 +86,18 @@ const Contact = () => {
                     </div>
                     {/* Form */}
                     <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-3">
-                        <div className="flex gap-3 w-full">
+                        <div className="flex gap-3 w-full flex-col sm:flex-row">
                             <input 
                                 type="text" 
                                 name="firstName"
                                 placeholder="First Name" 
-                                className="w-1/2 min-w-0 rounded-lg bg-gray-100 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs" 
+                                className="w-full sm:w-1/2 min-w-0 rounded-lg bg-gray-100 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs" 
                             />
                             <input 
                                 type="text" 
                                 name="lastName"
                                 placeholder="Last Name" 
-                                className="w-1/2 min-w-0 rounded-lg bg-gray-100 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs" 
+                                className="w-full sm:w-1/2 min-w-0 rounded-lg bg-gray-100 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs" 
                             />
                         </div>
                         <input 

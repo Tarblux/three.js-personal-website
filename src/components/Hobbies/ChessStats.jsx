@@ -43,7 +43,7 @@ function filterData(allData, period) {
   return allData.filter(entry => new Date(entry.date) >= filterDate);
 }
 
-const ChessStats = () => {
+const ChessStats = ({ isMobile }) => {
   const [selectedControl, setSelectedControl] = useState(timeControls[0]); // Default to Blitz
   const [selectedPeriod, setSelectedPeriod] = useState(periods[2]); // Default to Month
   const [ratings, setRatings] = useState({
@@ -206,11 +206,11 @@ const ChessStats = () => {
   else if (period === 'week') tickModulo = 1;
 
   return (
-    <div className="col-span-4 row-span-4 flex flex-col relative">
+    <div className="sm:col-span-4 sm:row-span-4 flex flex-col relative">
       {/* Top Row: Dropdowns and Stats*/}
-      <div className="flex items-center justify-between w-full mb-2">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full mb-3 sm:mb-2 gap-3 sm:gap-0">
         {/* Dropdowns */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 justify-center sm:justify-start">
           {/* Time Control Dropdown */}
           <div className="relative">
             <CustomSelect
@@ -235,47 +235,48 @@ const ChessStats = () => {
           </div>  
         </div>
         {/* Stats */}
-        <div className="flex items-center">
+        <div className="flex items-center justify-center sm:justify-end">
           <div className="flex flex-col justify-start">
-            <div className="flex flex-row gap-4">
+            <div className="flex flex-row gap-6 sm:gap-4">
               {/* Label Row */}
-              <div className="flex flex-col items-start">
+              <div className="flex flex-col items-center sm:items-start">
                 <div className="flex items-center gap-0.5">
                   <img src="/images/Hobbies/hobbies-ranking.svg" alt="Global Rank" className="w-4 h-4" />
-                  <span className="font-semibold text-gray-400 text-md">Global Rank</span>
+                  <span className="font-semibold text-gray-400 text-sm sm:text-md">Global Rank</span>
                 </div>
-                <span className="font-bold text-[#0A0E14] text-[13px] ml-5">{globalRank}</span>
+                <span className="font-bold text-[#0A0E14] text-sm sm:text-[13px] sm:ml-5">{globalRank}</span>
               </div>
-              <div className="flex flex-col items-start">
+              <div className="flex flex-col items-center sm:items-start">
                 <div className="flex items-center gap-0.5">
                   <img src="/images/Hobbies/hobbies-percentile.svg" alt="Percentile" className="w-4 h-4" />
-                  <span className="font-semibold text-gray-400 text-md">Percentile</span>
+                  <span className="font-semibold text-gray-400 text-sm sm:text-md">Percentile</span>
                 </div>
-                <span className="font-bold text-[#0A0E14] text-[13px] ml-5">{percentile}</span>
+                <span className="font-bold text-[#0A0E14] text-sm sm:text-[13px] sm:ml-5">{percentile}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
       {/* Card Container: White background for rating and chart */}
-      <div className="flex flex-col flex-1 bg-white rounded-2xl shadow min-h-[380px] max-h-[480px] transition-transform duration-200 hover:scale-[1.025] hover:shadow-2xl cursor-pointer">
+      <div className="flex flex-col flex-1 bg-white rounded-2xl shadow min-h-[300px] max-h-[400px] sm:min-h-[380px] sm:max-h-[480px] transition-transform duration-200 hover:scale-[1.025] hover:shadow-2xl cursor-pointer">
         {/* Rating + Change*/}
-        <div className="flex flex-row items-end justify-start min-w-[120px] px-4 pt-4 pb-2">
+        <div className="flex flex-row items-end justify-center sm:justify-start min-w-[120px] px-3 sm:px-4 pt-3 sm:pt-4 pb-2">
           {loading ? (
             <>
-              <div className="w-20 h-12 bg-gray-200 rounded animate-pulse mr-2"></div>
-              <div className="flex flex-col items-start justify-end mb-1">
-                <div className="w-20 h-3 bg-gray-200 rounded animate-pulse mb-2 ml-1"></div>
-                <div className="w-12 h-5 bg-gray-200 rounded animate-pulse ml-1"></div>
+              <div className="w-16 h-10 sm:w-20 sm:h-12 bg-gray-200 rounded animate-pulse mr-2"></div>
+              <div className="flex flex-col items-center sm:items-start justify-end mb-1">
+                <div className="w-16 sm:w-20 h-3 bg-gray-200 rounded animate-pulse mb-1 sm:mb-2 sm:ml-1"></div>
+                <div className="w-10 sm:w-12 h-4 sm:h-5 bg-gray-200 rounded animate-pulse sm:ml-1"></div>
               </div>
             </>
           ) : (
             <>
-              <span className="text-5xl font-extrabold text-[#2b4eff] leading-none mr-2" style={{lineHeight: '1.05'}}>{currentRating}</span>
-              <div className="flex flex-col items-start justify-end mb-1">
-                <span className="text-xs text-gray-400 font-semibold mb-1 ml-1">Rating Change</span>
+              <span className="text-4xl sm:text-5xl font-extrabold text-[#2b4eff] leading-none mr-2" style={{lineHeight: '1.05'}}>{currentRating}</span>
+              <div className="flex flex-col items-center sm:items-start justify-end mb-1">
+                <span className="text-xs text-gray-400 font-semibold mb-1 sm:ml-1">Rating Change</span>
                 <span
-                  className={`text-lg font-bold flex items-center ${ratingChangeColor} ml-1`}
+                  className={`text-lg font-bold flex items-center ${ratingChangeColor} sm:ml-1`}
                   style={{marginTop: '-2px'}}
                 >
                   {ratingArrow}
@@ -285,8 +286,9 @@ const ChessStats = () => {
             </>
           )}
         </div>
+        
         {/* Line Chart Section */}
-        <div className="flex-1 flex items-center justify-center mt-2 min-h-[340px] px-2 pb-4">
+        <div className="flex-1 flex items-center justify-center mt-1 sm:mt-2 min-h-[240px] sm:min-h-[340px] px-1 sm:px-2 pb-3 sm:pb-4">
           {loading ? (
             <div className="w-full h-full flex flex-col">
               {/* Chart skeleton with gradient background */}
@@ -294,25 +296,25 @@ const ChessStats = () => {
                 {/* Simulated chart lines */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-blue-100 to-transparent opacity-50"></div>
                 <div className="absolute inset-4">
-                  <div className="w-full h-px bg-gray-200 mt-8"></div>
-                  <div className="w-full h-px bg-gray-200 mt-12"></div>
-                  <div className="w-full h-px bg-gray-200 mt-12"></div>
-                  <div className="w-full h-px bg-gray-200 mt-12"></div>
+                  <div className="w-full h-px bg-gray-200 mt-6 sm:mt-8"></div>
+                  <div className="w-full h-px bg-gray-200 mt-8 sm:mt-12"></div>
+                  <div className="w-full h-px bg-gray-200 mt-8 sm:mt-12"></div>
+                  <div className="w-full h-px bg-gray-200 mt-8 sm:mt-12"></div>
                 </div>
                 {/* Simulated data points */}
-                <div className="absolute bottom-20 left-8 w-2 h-2 bg-blue-300 rounded-full"></div>
-                <div className="absolute bottom-24 left-20 w-2 h-2 bg-blue-300 rounded-full"></div>
-                <div className="absolute bottom-28 left-32 w-2 h-2 bg-blue-300 rounded-full"></div>
-                <div className="absolute bottom-20 left-44 w-2 h-2 bg-blue-300 rounded-full"></div>
-                <div className="absolute bottom-32 left-56 w-2 h-2 bg-blue-300 rounded-full"></div>
+                <div className="absolute bottom-16 sm:bottom-20 left-6 sm:left-8 w-2 h-2 bg-blue-300 rounded-full"></div>
+                <div className="absolute bottom-18 sm:bottom-24 left-16 sm:left-20 w-2 h-2 bg-blue-300 rounded-full"></div>
+                <div className="absolute bottom-20 sm:bottom-28 left-26 sm:left-32 w-2 h-2 bg-blue-300 rounded-full"></div>
+                <div className="absolute bottom-16 sm:bottom-20 left-36 sm:left-44 w-2 h-2 bg-blue-300 rounded-full"></div>
+                <div className="hidden sm:block absolute bottom-32 left-56 w-2 h-2 bg-blue-300 rounded-full"></div>
               </div>
               {/* X-axis labels skeleton */}
-              <div className="flex justify-between px-4 mt-2">
-                <div className="w-12 h-3 bg-gray-200 rounded animate-pulse"></div>
-                <div className="w-12 h-3 bg-gray-200 rounded animate-pulse"></div>
-                <div className="w-12 h-3 bg-gray-200 rounded animate-pulse"></div>
-                <div className="w-12 h-3 bg-gray-200 rounded animate-pulse"></div>
-                <div className="w-12 h-3 bg-gray-200 rounded animate-pulse"></div>
+              <div className="flex justify-between px-3 sm:px-4 mt-1 sm:mt-2">
+                <div className="w-8 sm:w-12 h-2 sm:h-3 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-8 sm:w-12 h-2 sm:h-3 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-8 sm:w-12 h-2 sm:h-3 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-8 sm:w-12 h-2 sm:h-3 bg-gray-200 rounded animate-pulse"></div>
+                <div className="hidden sm:block w-12 h-3 bg-gray-200 rounded animate-pulse"></div>
               </div>
             </div>
           ) : error ? (
@@ -334,7 +336,7 @@ const ChessStats = () => {
                   tickLabelInterval: (value, index) => index % tickModulo === 0,
                   tickSize: 1,
                   tickLabelStyle: {
-                    fontSize: 10,
+                    fontSize: isMobile ? 8 : 10,
                     fill: '#000000',
                   },
                   disableTicks: false,
@@ -351,8 +353,8 @@ const ChessStats = () => {
                     curve: 'monotoneX',
                   },
                 ]}
-                height={340}
-                margin={{ left: 20, right: 20, top: 10, bottom: 10 }}
+                height={isMobile ? 240 : 340}
+                margin={{ left: isMobile ? 15 : 20, right: isMobile ? 15 : 20, top: isMobile ? 8 : 10, bottom: isMobile ? 8 : 10 }}
                 grid={{horizontal: true }}
                 sx={{
                   '& .MuiAreaElement-root': {

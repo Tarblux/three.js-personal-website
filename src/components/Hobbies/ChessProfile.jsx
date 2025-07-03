@@ -6,7 +6,7 @@ const API_BASE_URL =
     ? 'http://localhost:3000'
     : 'https://threejs-backend.tariqwill.com';
 
-const ChessProfile = () => {
+const ChessProfile = ({ isMobile }) => {
   const [lastOnline, setLastOnline] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -69,20 +69,20 @@ const ChessProfile = () => {
 
   if (loading) {
     return (
-      <div className="col-span-3 row-span-1 flex items-start px-4 py-2">
-        <div className="w-28 h-28 rounded-xl bg-gray-200 animate-pulse shadow-md mr-4"></div>
+      <div className="flex items-start px-3 sm:px-4 py-2">
+        <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-xl bg-gray-200 animate-pulse shadow-md mr-3 sm:mr-4"></div>
         <div className="flex flex-col min-w-0">
           <div className="flex items-center gap-2">
-            <div className="w-32 h-6 bg-gray-200 rounded animate-pulse"></div>
-            <div className="w-6 h-4 bg-gray-200 rounded animate-pulse"></div>
+            <div className="w-24 sm:w-32 h-5 sm:h-6 bg-gray-200 rounded animate-pulse"></div>
+            <div className="w-5 sm:w-6 h-3 sm:h-4 bg-gray-200 rounded animate-pulse"></div>
           </div>
-          <div className="w-28 h-4 bg-gray-200 rounded animate-pulse mt-1"></div>
+          <div className="w-20 sm:w-28 h-3 sm:h-4 bg-gray-200 rounded animate-pulse mt-1"></div>
           <div className="flex items-center gap-2 mt-2">
             <div className="w-2 h-2 bg-gray-200 rounded-full animate-pulse"></div>
-            <div className="w-20 h-3 bg-gray-200 rounded animate-pulse"></div>
+            <div className="w-16 sm:w-20 h-3 bg-gray-200 rounded animate-pulse"></div>
           </div>
           <div className="flex flex-col items-start mt-1 ml-4">    
-            <div className="w-24 h-3 bg-gray-200 rounded animate-pulse"></div>
+            <div className="w-20 sm:w-24 h-3 bg-gray-200 rounded animate-pulse"></div>
           </div>
         </div>
       </div>
@@ -90,7 +90,7 @@ const ChessProfile = () => {
   }
 
   return (
-    <div className="col-span-3 row-span-1 flex items-start px-4 py-2">
+    <div className="flex items-start px-3 sm:px-4 py-2 sm:col-span-3 sm:row-span-1">
       <a
         href="https://www.chess.com/member/blunderrasta"
         target="_blank"
@@ -100,7 +100,7 @@ const ChessProfile = () => {
         <img
           src="/images/Hobbies/hobbies-chesscom-profilepic.webp"
           alt="Profile"
-          className="w-28 h-28 rounded-xl object-cover shadow-md mr-4 transition-transform duration-300 hover:scale-105"
+          className="w-20 h-20 sm:w-28 sm:h-28 rounded-xl object-cover shadow-md mr-3 sm:mr-4 transition-transform duration-300 hover:scale-105"
         />
       </a>
       <div className="flex flex-col min-w-0">
@@ -109,11 +109,11 @@ const ChessProfile = () => {
             href="https://www.chess.com/member/blunderrasta"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold text-xl truncate hover:underline focus:underline"
+            className="font-bold text-lg sm:text-xl truncate hover:underline focus:underline"
           >
             BlunderRasta
           </a>
-          <span className="fi fi-jm rounded-[4px] overflow-hidden border border-white" title="Jamaica" style={{ fontSize: '1rem', verticalAlign: 'middle' }}></span>
+          <span className="fi fi-jm rounded-[4px] overflow-hidden border border-white" title="Jamaica" style={{ fontSize: '0.875rem', verticalAlign: 'middle' }}></span>
         </div>
         <span className="text-gray-600 text-sm">Joined Dec 10, 2020</span>
         <div className="flex items-center gap-2 mt-1">
