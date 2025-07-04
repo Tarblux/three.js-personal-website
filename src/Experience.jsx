@@ -67,7 +67,17 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
         </SheetProvider>
         <Scroll html style={{ width: "100vw", height: "100vh" }}>
 
-          <WelcomeMessage showMessage={showWelcome} />
+          <Section 
+            top="-10vh"
+            fadeInStart={-10}
+            fadeInEnd={0}
+            fadeOutStart={10}
+            fadeOutEnd={20}
+          >
+            <div className="flex justify-center items-center h-screen">
+              <WelcomeMessage showMessage={showWelcome} />
+            </div>
+          </Section>
           
           <Section 
             top="-20vh"
