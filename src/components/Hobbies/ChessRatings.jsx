@@ -8,7 +8,7 @@ const API_BASE_URL =
 
 
 
-const ChessRatings = () => {
+const ChessRatings = ({ isMobile }) => {
   const [ratings, setRatings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [blitzMonthData, setBlitzMonthData] = useState([]);
@@ -59,82 +59,26 @@ const ChessRatings = () => {
 
   if (loading) {
     return (
-      <>
-        {/* Puzzles Card Skeleton */}
-        <div className="col-span-1 row-span-1">
-          <div className="bg-white rounded-2xl shadow-md h-28 flex flex-row px-1 py-4 justify-start">
-            <div className="flex flex-col justify-end">
-              <div className="flex flex-row items-center">
-                <div className="w-12 h-12 mr-1 bg-gray-200 rounded animate-pulse"></div>
-                <div className="flex flex-col justify-center ml-1">
-                  <div className="w-16 h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
-                  <div className="w-8 h-7 bg-gray-200 rounded animate-pulse"></div>
+      <div className="grid grid-cols-2 gap-2 sm:contents sm:gap-4">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <div key={index} className="sm:col-span-1 sm:row-span-1">
+            <div className="bg-white rounded-2xl shadow-md h-24 sm:h-28 flex flex-row px-2 sm:px-1 py-3 sm:py-4 justify-start">
+              <div className="flex flex-col justify-end">
+                <div className="flex flex-row items-center">
+                  <div className="w-8 h-8 sm:w-12 sm:h-12 mr-1 bg-gray-200 rounded animate-pulse"></div>
+                  <div className="flex flex-col justify-center ml-1">
+                    <div className="w-12 sm:w-16 h-3 sm:h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
+                    <div className="w-8 h-5 sm:h-7 bg-gray-200 rounded animate-pulse"></div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex flex-col items-center justify-center ml-20">
-              <div className="w-6 h-5 bg-transparent"></div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Bullet Card Skeleton */}
-        <div className="col-span-2 row-span-1">
-          <div className="bg-white rounded-2xl shadow-md h-28 flex flex-row px-1 py-4 justify-start">
-            <div className="flex flex-col justify-end">
-              <div className="flex flex-row items-center">
-                <div className="w-10 h-10 bg-gray-200 rounded animate-pulse"></div>
-                <div className="flex flex-col justify-center ml-1">
-                  <div className="w-12 h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
-                  <div className="w-8 h-7 bg-gray-200 rounded animate-pulse"></div>
-                </div>
+              <div className="hidden sm:flex flex-col items-center justify-center ml-10 sm:ml-20">
+                <div className="w-6 h-5 bg-transparent"></div>
               </div>
             </div>
-            <div className="flex flex-col items-center justify-center ml-10">
-              <div className="w-[150px] h-[50px] bg-gray-200 rounded animate-pulse mb-1"></div>
-              <div className="w-8 h-5 bg-gray-200 rounded animate-pulse"></div>
-            </div>
           </div>
-        </div>
-        
-        {/* Blitz Card Skeleton */}
-        <div className="col-span-2 row-span-1">
-          <div className="bg-white rounded-2xl shadow-md h-28 flex flex-row px-1 py-4 justify-start">
-            <div className="flex flex-col justify-end">
-              <div className="flex flex-row items-center">
-                <div className="w-10 h-10 bg-gray-200 rounded animate-pulse"></div>
-                <div className="flex flex-col justify-center ml-1">
-                  <div className="w-12 h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
-                  <div className="w-8 h-7 bg-gray-200 rounded animate-pulse"></div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col items-center justify-center ml-10">
-              <div className="w-[150px] h-[50px] bg-gray-200 rounded animate-pulse mb-1"></div>
-              <div className="w-8 h-5 bg-gray-200 rounded animate-pulse"></div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Rapid Card Skeleton */}
-        <div className="col-span-2 row-span-1">
-          <div className="bg-white rounded-2xl shadow-md h-28 flex flex-row px-1 py-4 justify-start">
-            <div className="flex flex-col justify-end">
-              <div className="flex flex-row items-center">
-                <div className="w-10 h-10 bg-gray-200 rounded animate-pulse"></div>
-                <div className="flex flex-col justify-center ml-1">
-                  <div className="w-12 h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
-                  <div className="w-8 h-7 bg-gray-200 rounded animate-pulse"></div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col items-center justify-center ml-10">
-              <div className="w-[150px] h-[50px] bg-gray-200 rounded animate-pulse mb-1"></div>
-              <div className="w-8 h-5 bg-gray-200 rounded animate-pulse"></div>
-            </div>
-          </div>
-        </div>
-      </>
+        ))}
+      </div>
     );
   }
 
@@ -161,68 +105,118 @@ const ChessRatings = () => {
   };
 
   return (
-    <>
+    <div className="grid grid-cols-2 gap-2 sm:contents sm:gap-4">
       {/* Puzzles Card */}
-      <div className="col-span-1 row-span-1">
-        <div className="bg-white rounded-2xl shadow-md h-28 flex flex-row px-1 py-4 justify-start transition-transform duration-200 hover:scale-105">
-          {/* Left: Icon and Info */}
-          <div className="flex flex-col justify-end">
+      <div className="sm:col-span-1 sm:row-span-1">
+        <div className="bg-white rounded-2xl shadow-md h-24 sm:h-28 flex flex-row px-2 sm:px-1 py-3 sm:py-4 sm:mt-[16px] justify-start transition-transform duration-200 hover:scale-105">
+          <div className="flex flex-col justify-end sm:justify-center">
             <div className="flex flex-row items-center">
-              <img src="/images/Hobbies/hobbies-puzzle.svg" alt="Puzzles" className="w-12 h-12 mr-1" />
+              <img src="/images/Hobbies/hobbies-puzzle.svg" alt="Puzzles" className="w-8 h-8 sm:w-10 sm:h-10 mr-1" />
               <div className="flex flex-col justify-center ml-1">
-                <span className="text-gray-400 font-semibold text-sm">Puzzles</span>
-                <span className="text-2xl font-bold text-black leading-tight">{get(ratings, ['tactics', 'highest', 'rating'], 0)}</span>
+                <span className="text-gray-500 font-semibold text-xs sm:text-md">Puzzles</span>
+                <span className="text-xl sm:text-2xl font-bold text-black leading-tight">{get(ratings, ['tactics', 'highest', 'rating'], 0)}</span>
               </div>
             </div>
           </div>
-          {/* Right: Change */}
-          <div className="flex flex-col items-center justify-center ml-20">
+          <div className="hidden sm:flex flex-col items-center justify-center ml-10">
             <span className="text-transparent font-bold text-lg">+0</span>
           </div>
         </div>
       </div>
-      <div className="col-span-2 row-span-1">
-        <ChessRatingCard
-          iconSrc="/images/Hobbies/hobbies-bullet.svg"
-          alt="Bullet"
-          label="Bullet"
-          rating={get(ratings, ['chess_bullet', 'last', 'rating'], 1565)}
-          sparklineData={bulletMonthData.length > 0 ? bulletMonthData : [1565]}
-          change={bulletMonthChange}
-          getChangeColor={getChangeColor}
-          getChangeTextColor={getChangeTextColor}
-          formatChange={formatChange}
-        />
+      
+      {/* Bullet Card */}
+      <div className="sm:col-span-2 sm:row-span-1">
+        <div className="bg-white rounded-2xl shadow-md h-24 sm:h-28 flex flex-row px-2 sm:px-1 py-3 sm:py-4 justify-start transition-transform duration-200 hover:scale-105 relative sm:bg-transparent sm:shadow-none sm:rounded-none sm:p-0">
+          {/* Mobile version - simple layout */}
+          <div className="flex flex-col justify-end sm:hidden">
+            <div className="flex flex-row items-center">
+              <img src="/images/Hobbies/hobbies-bullet.svg" alt="Bullet" className="w-8 h-8 mr-1" />
+              <div className="flex flex-col justify-center ml-1">
+                <span className="text-gray-400 font-semibold text-xs">Bullet</span>
+                <span className="text-xl font-bold text-black leading-tight">{get(ratings, ['chess_bullet', 'last', 'rating'], 1565)}</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Desktop version - with chart */}
+          <div className="hidden sm:flex w-full">
+            <ChessRatingCard
+              iconSrc="/images/Hobbies/hobbies-bullet.svg"
+              alt="Bullet"
+              label="Bullet"
+              rating={get(ratings, ['chess_bullet', 'last', 'rating'], 1565)}
+              sparklineData={bulletMonthData.length > 0 ? bulletMonthData : [1565]}
+              change={bulletMonthChange}
+              getChangeColor={getChangeColor}
+              getChangeTextColor={getChangeTextColor}
+              formatChange={formatChange}
+            />
+          </div>
+        </div>
       </div>
+      
       {/* Blitz Card */}
-      <div className="col-span-2 row-span-1">
-        <ChessRatingCard
-          iconSrc="/images/Hobbies/hobbies-blitz.svg"
-          alt="Blitz"
-          label="Blitz"
-          rating={get(ratings, ['chess_blitz', 'last', 'rating'], 1672)}
-          sparklineData={blitzMonthData.length > 0 ? blitzMonthData : [1672]}
-          change={blitzMonthChange}
-          getChangeColor={getChangeColor}
-          getChangeTextColor={getChangeTextColor}
-          formatChange={formatChange}
-        />
+      <div className="sm:col-span-2 sm:row-span-1">
+        <div className="bg-white rounded-2xl shadow-md h-24 sm:h-28 flex flex-row px-2 sm:px-1 py-3 sm:py-4 justify-start transition-transform duration-200 hover:scale-105 relative sm:bg-transparent sm:shadow-none sm:rounded-none sm:p-0">
+          {/* Mobile version - simple layout */}
+          <div className="flex flex-col justify-end sm:hidden">
+            <div className="flex flex-row items-center">
+              <img src="/images/Hobbies/hobbies-blitz.svg" alt="Blitz" className="w-8 h-8 mr-1" />
+              <div className="flex flex-col justify-center ml-1">
+                <span className="text-gray-400 font-semibold text-xs">Blitz</span>
+                <span className="text-xl font-bold text-black leading-tight">{get(ratings, ['chess_blitz', 'last', 'rating'], 1672)}</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Desktop version - with chart */}
+          <div className="hidden sm:flex w-full">
+            <ChessRatingCard
+              iconSrc="/images/Hobbies/hobbies-blitz.svg"
+              alt="Blitz"
+              label="Blitz"
+              rating={get(ratings, ['chess_blitz', 'last', 'rating'], 1672)}
+              sparklineData={blitzMonthData.length > 0 ? blitzMonthData : [1672]}
+              change={blitzMonthChange}
+              getChangeColor={getChangeColor}
+              getChangeTextColor={getChangeTextColor}
+              formatChange={formatChange}
+            />
+          </div>
+        </div>
       </div>
+      
       {/* Rapid Card */}
-      <div className="col-span-2 row-span-1">
-        <ChessRatingCard
-          iconSrc="/images/Hobbies/hobbies-rapid.svg"
-          alt="Rapid"
-          label="Rapid"
-          rating={get(ratings, ['chess_rapid', 'last', 'rating'], 1495)}
-          sparklineData={rapidMonthData.length > 0 ? rapidMonthData : [1495]}
-          change={rapidMonthChange}
-          getChangeColor={getChangeColor}
-          getChangeTextColor={getChangeTextColor}
-          formatChange={formatChange}
-        />
+      <div className="sm:col-span-2 sm:row-span-1">
+        <div className="bg-white rounded-2xl shadow-md h-24 sm:h-28 flex flex-row px-2 sm:px-1 py-3 sm:py-4 justify-start transition-transform duration-200 hover:scale-105 relative sm:bg-transparent sm:shadow-none sm:rounded-none sm:p-0">
+          {/* Mobile version - simple layout */}
+          <div className="flex flex-col justify-end sm:hidden">
+            <div className="flex flex-row items-center">
+              <img src="/images/Hobbies/hobbies-rapid.svg" alt="Rapid" className="w-8 h-8 mr-1" />
+              <div className="flex flex-col justify-center ml-1">
+                <span className="text-gray-400 font-semibold text-xs">Rapid</span>
+                <span className="text-xl font-bold text-black leading-tight">{get(ratings, ['chess_rapid', 'last', 'rating'], 1495)}</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Desktop version - with chart */}
+          <div className="hidden sm:flex w-full">
+            <ChessRatingCard
+              iconSrc="/images/Hobbies/hobbies-rapid.svg"
+              alt="Rapid"
+              label="Rapid"
+              rating={get(ratings, ['chess_rapid', 'last', 'rating'], 1495)}
+              sparklineData={rapidMonthData.length > 0 ? rapidMonthData : [1495]}
+              change={rapidMonthChange}
+              getChangeColor={getChangeColor}
+              getChangeTextColor={getChangeTextColor}
+              formatChange={formatChange}
+            />
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

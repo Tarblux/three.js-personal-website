@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import './bottle.css';
 
 const DropIcon = ({ color }) => (
@@ -17,6 +17,7 @@ const DropIcon = ({ color }) => (
 
 const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidColor, priceColor, hoverImage, isPlaying, onPlay, onStop, onHoverImage, onHoverEnd }) => {
   const audioRef = useRef(null);
+  const [isMobileImageShowing, setIsMobileImageShowing] = useState(false);
 
   React.useEffect(() => {
     if (!isPlaying && audioRef.current) {
@@ -41,6 +42,34 @@ const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidCol
     }
   };
 
+  // Mobile click handlers
+  const handleBottleClick = (e) => {
+    // Prevent event from bubbling and only handle on touch devices
+    e.preventDefault();
+    
+    // Start bottle animation/sound on mobile click
+    if (onPlay) onPlay();
+    
+    // Auto-stop after animation duration (match the CSS animation)
+    setTimeout(() => {
+      if (onStop) onStop();
+    }, 2000); // 2 seconds to match typical bottle animation
+  };
+
+  const handlePhotoClick = (e) => {
+    // Prevent event from bubbling
+    e.preventDefault();
+    
+    // Toggle image display on mobile
+    if (isMobileImageShowing) {
+      setIsMobileImageShowing(false);
+      if (onHoverEnd) onHoverEnd();
+    } else {
+      setIsMobileImageShowing(true);
+      if (onHoverImage) onHoverImage();
+    }
+  };
+
   return (
     <div className="kombucha-bottle-outer scale-[0.90] relative">
       <div className="flex flex-row items-start gap-8 ">
@@ -51,6 +80,7 @@ const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidCol
             className="button scale-[0.8] origin-center"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onClick={handleBottleClick}
           >
             <div className="neck"></div>
             <div className="body">
@@ -84,6 +114,8 @@ const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidCol
               className="w-6 h-6 cursor-pointer opacity-60 hover:opacity-100 transition-opacity"
               onMouseEnter={onHoverImage}
               onMouseLeave={onHoverEnd}
+              onClick={handlePhotoClick}
+              onTouchStart={handlePhotoClick}
             />
           </div>
         </div>

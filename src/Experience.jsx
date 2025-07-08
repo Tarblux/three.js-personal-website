@@ -7,6 +7,7 @@ import { Perf } from "r3f-perf"
 import { SheetProvider, PerspectiveCamera, useCurrentSheet} from "@theatre/r3f"
 
 import { useSkyControls } from "./hooks/useSkyControls.js"
+import { useCloudControls } from "./hooks/useCloudControls.js"
 import CameraPath from "./Main Frame.theatre-project-state.json"
 import { Landscape } from './components-3d/Landscape.jsx'
 import { ProjectLabs } from './components-3d/ProjectLabs.jsx'
@@ -16,6 +17,10 @@ import { LanguageInstitute } from "./components-3d/LanguageInstitute.jsx"
 import { Downtown } from "./components-3d/Downtown.jsx"
 import { Recreation } from "./components-3d/Recreation.jsx"
 import { ContactTower} from "./components-3d/ContactTower.jsx"
+import { Train } from "./components-3d/Train.jsx"
+import { TrainWheel } from "./components-3d/TrainWheel.jsx"
+import { Clouds } from "./components-3d/Clouds.jsx"
+import { TrainSmoke } from "./components-3d/TrainSmoke.jsx"
 
 import Section from "./helpers/Section.jsx"
 import Introduction from "./components/Introduction/Introduction.jsx"
@@ -67,7 +72,17 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
         </SheetProvider>
         <Scroll html style={{ width: "100vw", height: "100vh" }}>
 
-          <WelcomeMessage showMessage={showWelcome} />
+          <Section 
+            top="-10vh"
+            fadeInStart={-10}
+            fadeInEnd={0}
+            fadeOutStart={10}
+            fadeOutEnd={20}
+          >
+            <div className="flex justify-center items-center h-screen">
+              <WelcomeMessage showMessage={showWelcome} />
+            </div>
+          </Section>
           
           <Section 
             top="-20vh"
@@ -242,7 +257,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
 
         </Scroll>
       </ScrollControls>
-      {/* <Perf position="bottom-right" /> */}
+      <Perf position="bottom-right" />
     </>
   );
 }
@@ -327,12 +342,16 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       <Downtown castShadow receiveShadow />
       <Recreation castShadow receiveShadow />
       <ContactTower castShadow receiveShadow />
+      <Train castShadow receiveShadow />
+      <TrainWheel castShadow receiveShadow />
+      <TrainSmoke />
+      <Clouds />
 
       <group ref={cameraRig}>
         <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={5000} />
       </group>
 
-      {/* <OrbitControls /> */}
+      {/* <OrbitControls />  */}
     </>
   );
 }

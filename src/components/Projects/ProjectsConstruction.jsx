@@ -39,14 +39,14 @@ const ProjectsConstruction = () => {
     };
 
     return (
-        <div className="absolute right-0 top-0 flex flex-row-reverse items-start mr-12 mt-10">
-            <div className="flex flex-col items-start">
+        <div className="relative md:absolute md:right-0 md:top-0 flex flex-col md:flex-row-reverse items-start mx-4 md:mr-12 mt-4 md:mt-10">
+            <div className="flex flex-col items-start w-full md:w-auto">
                 <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
                     Projects Construction
                 </span>
-                <div className="bg-white/20 backdrop-blur-md rounded-lg w-[500px] p-1.5 border border-white/30">
-                    <div className="bg-white rounded-lg p-1 pb-5 pt-5">
-                        <div className="grid grid-cols-2 gap-4 justify-items-center min-h-[620px] relative">
+                <div className="bg-white/20 backdrop-blur-md rounded-lg w-full md:w-[500px] p-1.5 border border-white/30 max-h-[calc(100vh-8rem)] md:max-h-[calc(100vh-6rem)]">
+                    <div className="bg-white rounded-lg p-1 pb-5 pt-5 h-full overflow-hidden">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center overflow-y-auto h-full max-h-[calc(100vh-12rem)] md:max-h-[calc(100vh-10rem)] pr-2 py-2">
                             {projectsConstruction.map((project, idx) => (
                                 <div key={idx} onClick={() => handleProjectClick(project)}>
                                     <ProjectsConstructionCard

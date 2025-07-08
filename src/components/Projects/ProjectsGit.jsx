@@ -73,6 +73,9 @@ const ProjectsGit = () => {
             cal.current = new CalHeatmap();
         }
 
+        // Check if mobile screen
+        const isMobile = window.innerWidth < 640;
+
         cal.current.paint(
             {
                 data: {
@@ -95,15 +98,15 @@ const ProjectsGit = () => {
                 },
                 domain: {
                     type: 'month',
-                    gutter: 4,
+                    gutter: isMobile ? 2 : 4,
                     label: { text: 'MMM', textAlign: 'start', position: 'top' },
                 },
                 subDomain: { 
                     type: 'ghDay', 
                     radius: 1, 
-                    width: 7.3, 
-                    height: 7, 
-                    gutter: 2,
+                    width: isMobile ? 5 : 7.3, 
+                    height: isMobile ? 5 : 7, 
+                    gutter: isMobile ? 1 : 2,
                     highlight: 'now'
                 },
                 itemSelector: chartRef.current,
@@ -127,9 +130,9 @@ const ProjectsGit = () => {
                         includeBlank: true,
                         itemSelector: legendRef.current,
                         radius: 1,
-                        width: 7,
-                        height: 7,
-                        gutter: 2,
+                        width: isMobile ? 5 : 7,
+                        height: isMobile ? 5 : 7,
+                        gutter: isMobile ? 1 : 2,
                     },
                 ]
             ]
@@ -148,23 +151,23 @@ const ProjectsGit = () => {
     };
 
     return (
-        <div className="p-6">
-            <div className="flex justify-between items-center mb-1">
-                <h3 className="text-lg font-semibold text-black">
+        <div className="p-2 sm:p-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-1 gap-2 sm:gap-0">
+                <h3 className="text-sm sm:text-lg font-semibold text-black">
                     <span className="text-[#40c463]">{totalContributions}</span> contributions in {selectedYear === new Date().getFullYear() ? 'the last year' : selectedYear}
                 </h3>
                 <select
                     value={selectedYear}
                     onChange={handleYearChange}
-                    className="px-2 py-1 text-sm bg-[#000000] text-white rounded-md border border-gray-300 hover:bg-[#2f3640] cursor-pointer"
+                    className="px-2 py-1 text-xs sm:text-sm bg-[#000000] text-white rounded-md border border-gray-300 hover:bg-[#2f3640] cursor-pointer"
                 >
                     {years.map(year => (
                         <option key={year} value={year}>{year}</option>
                     ))}
                 </select>
             </div>
-            <div id="git-contribution-chart" ref={chartRef} className="mb-4"></div>
-            <div className="float-right text-xs mb-4">
+            <div id="git-contribution-chart" ref={chartRef} className="mb-2 sm:mb-4 overflow-x-auto"></div>
+            <div className="flex justify-end items-center text-xs mb-2 sm:mb-4 gap-1">
                 <span className="text-gray-500">Less</span>
                 <div
                     id="git-contribution-legend"

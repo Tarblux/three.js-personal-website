@@ -84,14 +84,15 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
         <>
             {/* Backdrop with blur effect */}
             <div 
-                className={`fixed inset-0 bg-black/5 backdrop-blur-[2px] transition-opacity duration-500
+                className={`fixed inset-0 bg-black/5 backdrop-blur-[2px] transition-opacity duration-500 z-40
                     ${isClosing ? 'opacity-0' : 'opacity-100'}`}
                 onClick={handleClose}
             />
             {/* Project Details Card */}
             <div 
-                className={`fixed left-[100px] top-[48px] w-[600px] h-[calc(100vh-100px)] bg-white/95 backdrop-blur-sm
-                    rounded-2xl shadow-lg transform-gpu flex flex-col
+                className={`fixed inset-4 md:left-[100px] md:top-[48px] md:right-auto md:bottom-auto 
+                    md:w-[600px] md:h-[calc(100vh-100px)] w-auto h-auto bg-white/95 backdrop-blur-sm
+                    rounded-2xl shadow-lg transform-gpu flex flex-col z-50
                     ${isClosing ? 'animate-fold' : 'animate-unfold'}`}
                 style={{ transformOrigin: 'center center' }}
             >
@@ -108,8 +109,8 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
                 {/* Static Header Section */}
                 <div className="flex-shrink-0">
                     {/* Main image display */}
-                    <div className="p-6 pb-2 relative">
-                        <div className="w-full h-[300px] rounded-xl overflow-hidden !shadow-none relative group transition-all duration-300 hover:scale-[1.02] hover:rounded-2xl">
+                    <div className="p-4 md:p-6 pb-2 relative">
+                        <div className="w-full h-[200px] md:h-[300px] rounded-xl overflow-hidden !shadow-none relative group transition-all duration-300 hover:scale-[1.02] hover:rounded-2xl">
                             <img 
                                 src={project.thumbnail} 
                                 alt={project.title}
@@ -118,7 +119,7 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
                         </div>
                     </div>
 
-                    <div className="px-6 pb-2">
+                    <div className="px-4 md:px-6 pb-2">
                         {/* Header with date and links */}
                         <div className="mb-2 mr-2 flex justify-between items-center">
                             <div className="text-gray-500 text-xs">{project.startDate}</div>
@@ -183,7 +184,7 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
                     </div>
                 </div>
                 {/* Scrollable Article Content */}
-                <div ref={scrollContainerRef} className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-2 pb-4">
+                <div ref={scrollContainerRef} className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-2 md:px-2 pb-4">
                     <ProjectArticleViewer 
                         project={project} 
                         onImageSelect={handleImageSelect}
@@ -192,14 +193,16 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
                     />
                 </div>
             </div>
-            {/* Git Activity */}
+            {/* Git Activity - Hidden on mobile */}
             {renderGitActivity && (
-                <GitActivity 
-                    isVisible={true} 
-                    project={project}
-                    showComponent={showGitActivity}
-                    position={{ left: '710px', top: '50px' }}
-                />  
+                <div className="hidden md:block relative z-[60]">
+                    <GitActivity 
+                        isVisible={true} 
+                        project={project}
+                        showComponent={showGitActivity}
+                        position={{ left: '710px', top: '50px' }}
+                    />  
+                </div>
             )}
         </>
     );

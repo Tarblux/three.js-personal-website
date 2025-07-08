@@ -3,8 +3,8 @@ import React from 'react';
 const YonseiDetails = () => {
     return (
         <a href="https://www.yonsei.ac.kr/sc/index.do" target="_blank" rel="noopener noreferrer" className="block">
-            <div className="absolute top-8 right-8 flex justify-center items-center p-1.5 bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl cursor-pointer">
-                <div className="bg-white w-[240px] rounded-2xl shadow-lg flex flex-col items-center overflow-hidden">
+            <div className="relative md:absolute md:top-8 left-1/2 -translate-x-1/2 md:right-8 md:left-auto md:translate-x-0 w-full max-w-[320px] px-2 md:w-auto md:max-w-none flex justify-center items-center p-1.5 bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl cursor-pointer">
+                <div className="bg-white w-full md:w-[240px] rounded-2xl shadow-lg flex flex-col items-center overflow-hidden">
                     {/* Campus Image*/}
                     <div className="w-full p-2 pb-1 flex justify-center items-center">
                         <img
