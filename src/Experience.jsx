@@ -1,13 +1,11 @@
 import { useRef, useState, useEffect } from "react"
 import { useFrame } from "@react-three/fiber"
-import { ScrollControls, useScroll, Scroll, Sky, OrbitControls} from "@react-three/drei"
+import { ScrollControls, useScroll, Scroll, OrbitControls} from "@react-three/drei"
 import { getProject, val } from "@theatre/core"
-import { useControls } from "leva"
+// import { useControls } from "leva"
 import { Perf } from "r3f-perf"
 import { SheetProvider, PerspectiveCamera, useCurrentSheet} from "@theatre/r3f"
 
-import { useSkyControls } from "./hooks/useSkyControls.js"
-import { useCloudControls } from "./hooks/useCloudControls.js"
 import CameraPath from "./Main Frame.theatre-project-state.json"
 import { Landscape } from './components-3d/Landscape.jsx'
 import { ProjectLabs } from './components-3d/ProjectLabs.jsx'
@@ -19,8 +17,9 @@ import { Recreation } from "./components-3d/Recreation.jsx"
 import { ContactTower} from "./components-3d/ContactTower.jsx"
 import { Train } from "./components-3d/Train.jsx"
 import { TrainWheel } from "./components-3d/TrainWheel.jsx"
-import { Clouds } from "./components-3d/Clouds.jsx"
+import { Clouds } from './components-3d/Clouds.jsx'
 import { TrainSmoke } from "./components-3d/TrainSmoke.jsx"
+import { Sky } from './components-3d/Sky.jsx'
 
 import Section from "./helpers/Section.jsx"
 import Introduction from "./components/Introduction/Introduction.jsx"
@@ -263,14 +262,6 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
 }
 
 function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrollProgress }) {
-  // -------------------------------Debug controls --------------------------------
-
-  // Sky
-
-  const { turbidity, rayleigh, mieC, mieD, sunPosition, distance } = useSkyControls()
-
-
-  // ------------------------------- ↑ Debug controls  ↑ --------------------------------
 
   const sheet = useCurrentSheet();
   const scroll = useScroll();
@@ -333,7 +324,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
 
   return (
     <>
-      <Sky turbidity={turbidity} rayleigh={rayleigh} mieCoefficient={mieC} mieDirectionalG={mieD} sunPosition={sunPosition} distance={distance}/>
+      <Sky />
       <Landscape castShadow receiveShadow />
       <ProjectLabs castShadow receiveShadow />
       <LandscapeProps castShadow receiveShadow />
