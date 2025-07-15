@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect } from "react"
 import { useFrame } from "@react-three/fiber"
-import { ScrollControls, useScroll, Scroll, OrbitControls} from "@react-three/drei"
+import { ScrollControls, useScroll, Scroll, OrbitControls, PerspectiveCamera } from "@react-three/drei"
 import { getProject, val } from "@theatre/core"
-// import { useControls } from "leva"
+import { useControls, folder } from "leva"
 import { Perf } from "r3f-perf"
-import { SheetProvider, PerspectiveCamera, useCurrentSheet} from "@theatre/r3f"
+import { SheetProvider, PerspectiveCamera as TheatrePerspectiveCamera, useCurrentSheet} from "@theatre/r3f"
 
 import CameraPath from "./Main Frame.theatre-project-state.json"
 import { Landscape } from './components-3d/Landscape.jsx'
@@ -19,6 +19,7 @@ import { Train } from "./components-3d/Train.jsx"
 import { TrainWheel } from "./components-3d/TrainWheel.jsx"
 import { Clouds } from './components-3d/Clouds.jsx'
 import { TrainSmoke } from "./components-3d/TrainSmoke.jsx"
+import { FactorySmoke } from "./components-3d/FactorySmoke.jsx"
 import { Sky } from './components-3d/Sky.jsx'
 
 import Section from "./helpers/Section.jsx"
@@ -79,7 +80,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             fadeOutEnd={20}
           >
             <div className="flex justify-center items-center h-screen">
-              <WelcomeMessage showMessage={showWelcome} />
+              {/* <WelcomeMessage showMessage={showWelcome} /> */}
             </div>
           </Section>
           
@@ -231,7 +232,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             fadeOutStart={1155}
             fadeOutEnd={1165}
           >
-            <ChessDashboard />
+            {/* <ChessDashboard /> */}
           </Section>
 
           <Section 
@@ -268,6 +269,15 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   const cameraRig = useRef();
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
+  // Add debug controls
+  const { debugMode, cameraPosition, cameraTarget } = useControls("Debug", {
+    debugMode: { value: false, label: "Enable Debug Mode" },
+    "Debug Camera": folder({
+      cameraPosition: { value: [-245, 37, 135], label: "Position" },
+      cameraTarget: { value: [0, 0, 0], label: "Target" },
+    }, { collapsed: false })
+  }, { collapsed: false });
+
   useEffect(() => {
     const handleMouseMove = (event) => {
       setMouse({
@@ -285,6 +295,9 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   }, [sheet]);
 
   useFrame((state, delta) => {
+    // Skip theatre updates when in debug mode
+    if (debugMode) return;
+
     const sequenceLength = val(sheet.sequence.pointer.length);
 
     if (autoPlay) {
@@ -336,13 +349,27 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       <Train castShadow receiveShadow />
       <TrainWheel castShadow receiveShadow />
       <TrainSmoke />
+      <FactorySmoke />
       <Clouds />
 
-      <group ref={cameraRig}>
-        <PerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={5000} />
-      </group>
-
-      {/* <OrbitControls />  */}
+      {debugMode ? (
+        // Debug mode: Use regular camera with OrbitControls
+        <>
+          <PerspectiveCamera 
+            makeDefault 
+            position={cameraPosition} 
+            fov={45} 
+            near={10} 
+            far={5000} 
+          />
+          <OrbitControls target={cameraTarget} />
+        </>
+      ) : (
+        // Normal mode: Use Theatre.js camera
+        <group ref={cameraRig}>
+          <TheatrePerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={5000} />
+        </group>
+      )}
     </>
   );
 }
