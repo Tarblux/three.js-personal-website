@@ -16,7 +16,7 @@ export function useSkyControls() {
       "Atmosphere Properties": folder(
         {
           turbidity: {
-            value: 2.0,
+            value: 18,
             min: 0,
             max: 20,
             step: 0.1,
@@ -51,7 +51,7 @@ export function useSkyControls() {
             step: 0.01,
           },
           azimuth: {
-            value: 0,
+            value: 0.68,
             min: 0,
             max: 1,
             step: 0.01,

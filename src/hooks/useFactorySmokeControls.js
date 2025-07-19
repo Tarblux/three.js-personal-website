@@ -4,86 +4,107 @@ export function useFactorySmokeControls() {
   const {
     enabled,
     stackCount,
-    puffCount,
-    segments,
-    volume,
-    opacity,
-    fade,
-    riseSpeed,
-    resetHeight,
-    bounds,
-    color,
+    stackSpacing,
     positionX,
     positionY,
     positionZ,
-    scaleMultiplier,
-    driftAmount,
-    puffOffset,
-    fadeStrength,
-    expansion,
-    stackSpacing,
+    scale,
+    emissionRate,
+    maxParticles,
+    maxLife,
+    radius,
+    maxSize,
+    sizeStart,
+    sizeEnd,
+    velocityY,
+    velocityVariation,
+    dragStrength,
+    turbulence,
+    rotationRate,
+    alphaStart,
+    alphaMax,
+    alphaEnd,
   } = useControls(
     "Factory Smoke",
     {
       enabled: { value: true },
       "Stack Configuration": folder(
         {
-          stackCount: { value: 3, min: 1, max: 5, step: 1 },
+          stackCount: { value: 2, min: 1, max: 5, step: 1 },
           stackSpacing: { value: 5, min: 1, max: 20, step: 1 },
         },
         { collapsed: false }
       ),
-      "Smoke Properties": folder(
+      "Position": folder(
         {
-          puffCount: { value: 4, min: 1, max: 8, step: 1 },
-          segments: { value: 18, min: 5, max: 40, step: 1 },
-          volume: { value: 3.9, min: 0, max: 20, step: 0.1 },
-          opacity: { value: 1, min: 0, max: 1, step: 0.01 },
-          fade: { value: 150, min: 50, max: 500, step: 10 },
-          riseSpeed: { value: 2.5, min: 0, max: 5, step: 0.1 },
-          resetHeight: { value: 20, min: 5, max: 30, step: 0.5 },
-          bounds: { value: [0.1, 4, 1.2], min: 0.1, max: 5, step: 0.1 },
-          color: "#FDFDFD",
-          driftAmount: { value: 0.03, min: 0, max: 0.1, step: 0.001 },
-          puffOffset: { value: 1.5, min: 0.5, max: 3, step: 0.1 },
-          fadeStrength: { value: 0.8, min: 0, max: 1, step: 0.01 },
-          expansion: { value: 1.2, min: 0.5, max: 3, step: 0.1 },
+          positionX: { value: -103, min: -1000, max: 1000, step: 0.1 },
+          positionY: { value: 27, min: -5, max: 200, step: 0.1 },
+          positionZ: { value: 27, min: -1000, max: 1000, step: 0.1 },
+          scale: { value: 1.0, min: 0.1, max: 50, step: 0.1 },
         },
         { collapsed: true }
       ),
-      "Position & Scale": folder(
+      "Emission": folder(
         {
-          positionX: { value: -206, min: -1000, max: 1000, step: 0.01 },
-          positionY: { value: 58, min: 50, max: 200, step: 0.01 },
-          positionZ: { value: 53.75, min: -1000, max: 1000, step: 0.01 },
-          scaleMultiplier: { value: 1, min: 0.5, max: 10, step: 0.1 },
+          emissionRate: { value: 30.0, min: 1, max: 100, step: 1 },
+          maxParticles: { value: 800, min: 100, max: 2000, step: 100 },
+          maxLife: { value: 8.0, min: 0.5, max: 20, step: 0.1 },
+          radius: { value: 0.4, min: 0.1, max: 2, step: 0.1 },
+        },
+        { collapsed: true }
+      ),
+      "Particle Size": folder(
+        {
+          maxSize: { value: 7.8, min: 0.5, max: 20, step: 0.5 },
+          sizeStart: { value: 0.4, min: 0.1, max: 2, step: 0.1 },
+          sizeEnd: { value: 2.4, min: 0.5, max: 5, step: 0.1 },
+        },
+        { collapsed: true }
+      ),
+      "Physics": folder(
+        {
+          velocityY: { value: 4, min: 0, max: 8, step: 0.1 },
+          velocityVariation: { value: 0.6, min: 0, max: 2, step: 0.1 },
+          dragStrength: { value: 0.15, min: 0, max: 1, step: 0.05 },
+          turbulence: { value: 0.1, min: 0, max: 0.5, step: 0.01 },
+          rotationRate: { value: 0.015, min: 0, max: 0.1, step: 0.005 },
+        },
+        { collapsed: true }
+      ),
+      "Appearance": folder(
+        {
+          alphaStart: { value: 0.0, min: 0, max: 1, step: 0.1 },
+          alphaMax: { value: 0.6, min: 0, max: 1, step: 0.1 },
+          alphaEnd: { value: 0.0, min: 0, max: 1, step: 0.1 },
         },
         { collapsed: true }
       ),
     },
-    { collapsed: true }
+    { collapsed: false }
   );
 
   return {
     enabled,
     stackCount,
-    puffCount,
-    segments,
-    volume,
-    opacity,
-    fade,
-    riseSpeed,
-    resetHeight,
-    bounds,
-    color,
+    stackSpacing,
     positionX,
     positionY,
     positionZ,
-    scaleMultiplier,
-    driftAmount,
-    puffOffset,
-    fadeStrength,
-    expansion,
-    stackSpacing,
+    scale,
+    emissionRate,
+    maxParticles,
+    maxLife,
+    radius,
+    maxSize,
+    sizeStart,
+    sizeEnd,
+    velocityY,
+    velocityVariation,
+    dragStrength,
+    turbulence,
+    rotationRate,
+    alphaStart,
+    alphaMax,
+    alphaEnd,
   };
 } 

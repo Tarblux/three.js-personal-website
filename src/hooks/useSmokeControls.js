@@ -3,79 +3,97 @@ import { useControls, folder } from "leva";
 export function useSmokeControls() {
   const {
     enabled,
-    puffCount,
-    segments,
-    volume,
-    opacity,
-    fade,
-    riseSpeed,
-    resetHeight,
-    bounds,
-    color,
+    emissionRate,
+    maxParticles,
+    maxLife,
+    maxSize,
+    radius,
     positionX,
     positionY,
     positionZ,
-    scaleMultiplier,
-    driftAmount,
-    puffOffset,
-    fadeStrength,
-    expansion,
-    minOpacity,
+    velocityY,
+    velocityVariation,
+    dragStrength,
+    turbulence,
+    alphaStart,
+    alphaMax,
+    alphaEnd,
+    sizeStart,
+    sizeEnd,
+    rotationRate,
+    scale,
   } = useControls(
     "Train Smoke",
     {
       enabled: { value: true },
-      "Smoke Properties": folder(
+      "Position": folder(
         {
-          puffCount: { value: 5, min: 1, max: 8, step: 1 },
-          segments: { value: 18, min: 5, max: 40, step: 1 },
-          volume: { value: 3.9, min: 0, max: 20, step: 0.1 },
-          opacity: { value: 0.43, min: 0, max: 1, step: 0.01 },
-          fade: { value: 150, min: 50, max: 500, step: 10 },
-          riseSpeed: { value: 3, min: 0, max: 3, step: 0.1 },
-          resetHeight: { value: 15, min: 2, max: 15, step: 0.5 },
-          bounds: { value: [0.1, 3, 1.2], min: 0.1, max: 5, step: 0.1 },
-          color: "#9c9c9c",
-          driftAmount: { value: 0.02, min: 0, max: 0.1, step: 0.001 },
-          puffOffset: { value: 1.5, min: 0.5, max: 3, step: 0.1 },
-          fadeStrength: { value: 0.8, min: 0, max: 1, step: 0.01 },
-          expansion: { value: 1, min: 0.5, max: 3, step: 0.1 },
-          minOpacity: { value: 0.05, min: 0, max: 0.5, step: 0.01 },
+          positionX: { value: -270.0, min: -300, max: 200, step: 0.1 },
+          positionY: { value: 25, min: -5, max: 100, step: 0.1 },
+          positionZ: { value: 149.0, min: -10, max: 200, step: 0.1 },
+          scale: { value: 1.0, min: 0.1, max: 50, step: 0.1 },
+        },
+        { collapsed: false }
+      ),
+      "Emission": folder(
+        {
+          emissionRate: { value: 25.0, min: 1, max: 100, step: 1 },
+          maxParticles: { value: 1000, min: 100, max: 2000, step: 100 },
+          maxLife: { value: 2.5, min: 0.5, max: 10, step: 0.1 },
+          radius: { value: 0.3, min: 0.1, max: 2, step: 0.1 },
         },
         { collapsed: true }
       ),
-      "Position & Scale": folder(
+      "Particle Size": folder(
         {
-          positionX: { value: -302, min: -1000, max: 1000, step: 0.01 },
-          positionY: { value: 50, min: 50, max: 200, step: 0.01 },
-          positionZ: { value: 113, min: -1000, max: 1000, step: 0.01 },
-          scaleMultiplier: { value: 1, min: 1, max: 20, step: 1 },
+          maxSize: { value: 4.0, min: 0.5, max: 20, step: 0.5 },
+          sizeStart: { value: 0.3, min: 0.1, max: 2, step: 0.1 },
+          sizeEnd: { value: 1.2, min: 0.5, max: 5, step: 0.1 },
+        },
+        { collapsed: true }
+      ),
+      "Physics": folder(
+        {
+          velocityY: { value: 2.2, min: 0, max: 5, step: 0.1 },
+          velocityVariation: { value: 0.5, min: 0, max: 2, step: 0.1 },
+          dragStrength: { value: 0.2, min: 0, max: 1, step: 0.05 },
+          turbulence: { value: 0.1, min: 0, max: 0.5, step: 0.01 },
+          rotationRate: { value: 0.02, min: 0, max: 0.1, step: 0.005 },
+        },
+        { collapsed: true }
+      ),
+      "Appearance": folder(
+        {
+          alphaStart: { value: 0.0, min: 0, max: 1, step: 0.1 },
+          alphaMax: { value: 0.6, min: 0, max: 1, step: 0.1 },
+          alphaEnd: { value: 0.0, min: 0, max: 1, step: 0.1 },
         },
         { collapsed: true }
       ),
     },
-    { collapsed: true }
+    { collapsed: false }
   );
 
   return {
-    puffCount,
-    segments,
-    volume,
-    opacity,
-    fade,
-    riseSpeed,
-    resetHeight,
-    bounds,
-    color,
+    enabled,
+    emissionRate,
+    maxParticles,
+    maxLife,
+    maxSize,
+    radius,
     positionX,
     positionY,
     positionZ,
-    scaleMultiplier,
-    driftAmount,
-    puffOffset,
-    fadeStrength,
-    expansion,
-    minOpacity,
-    enabled,
+    velocityY,
+    velocityVariation,
+    dragStrength,
+    turbulence,
+    alphaStart,
+    alphaMax,
+    alphaEnd,
+    sizeStart,
+    sizeEnd,
+    rotationRate,
+    scale,
   };
-} 
+}

@@ -350,7 +350,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       <TrainWheel castShadow receiveShadow />
       <TrainSmoke />
       <FactorySmoke />
-      <Clouds />
+      {/* <Clouds /> */}
 
       {debugMode ? (
         // Debug mode: Use regular camera with OrbitControls
@@ -359,7 +359,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
             makeDefault 
             position={cameraPosition} 
             fov={45} 
-            near={10} 
+            near={0.1} 
             far={5000} 
           />
           <OrbitControls target={cameraTarget} />
@@ -367,7 +367,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       ) : (
         // Normal mode: Use Theatre.js camera
         <group ref={cameraRig}>
-          <TheatrePerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={5000} />
+          <TheatrePerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={0.1} far={5000} />
         </group>
       )}
     </>
