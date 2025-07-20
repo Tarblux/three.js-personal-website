@@ -77,6 +77,7 @@ export function FactorySmoke(props) {
   const { camera } = useThree()
   const cloudTexture = useTexture('/textures/cloud.png')
   
+  const controls = useFactorySmokeControls()
   const {
     enabled,
     stackCount,
@@ -102,7 +103,7 @@ export function FactorySmoke(props) {
     alphaEnd,
     colorStart,
     colorEnd,
-  } = useFactorySmokeControls()
+  } = controls
 
   // Create chimney positions based on stackCount and stackSpacing
   // Rotated 90 degrees so stacks are arranged along Z-axis
@@ -204,7 +205,8 @@ export function FactorySmoke(props) {
       // Update particle properties based on life progress
       particle.rotation += particle.rotationRate
       particle.alpha = splines.alphaSpline.getValueAt(t)
-      particle.currentSize = particle.size * splines.sizeSpline.getValueAt(t)
+      // Simplified size calculation - use the size controls directly and apply scale
+      particle.currentSize = maxSize * scale * (sizeStart + t * (sizeEnd - sizeStart))
       particle.color.copy(splines.colorSpline.getValueAt(t))
 
       // Update position
@@ -281,7 +283,6 @@ export function FactorySmoke(props) {
     <group 
       {...props} 
       position={[positionX, positionY, positionZ]}
-      scale={scale}
     >
       {chimneyPositions.map((chimneyPos, index) => (
         <points key={index} position={chimneyPos}>

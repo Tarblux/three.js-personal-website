@@ -31,7 +31,7 @@ export function useSmokeControls() {
           positionX: { value: -270.0, min: -300, max: 200, step: 0.1 },
           positionY: { value: 25, min: -5, max: 100, step: 0.1 },
           positionZ: { value: 149.0, min: -10, max: 200, step: 0.1 },
-          scale: { value: 1.0, min: 0.1, max: 50, step: 0.1 },
+          scale: { value: 25, min: 0.1, max: 50, step: 0.1 },
         },
         { collapsed: false }
       ),
@@ -44,11 +44,11 @@ export function useSmokeControls() {
         },
         { collapsed: true }
       ),
-      "Particle Size": folder(
+              "Particle Size": folder(
         {
-          maxSize: { value: 4.0, min: 0.5, max: 20, step: 0.5 },
-          sizeStart: { value: 0.3, min: 0.1, max: 2, step: 0.1 },
-          sizeEnd: { value: 1.2, min: 0.5, max: 5, step: 0.1 },
+          maxSize: { value: 19, min: 0.5, max: 20, step: 0.5 },
+          sizeStart: { value: 1.2, min: 0.1, max: 2, step: 0.1 },
+          sizeEnd: { value: 3.2, min: 0.5, max: 5, step: 0.1 },
         },
         { collapsed: true }
       ),

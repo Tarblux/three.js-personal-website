@@ -197,7 +197,8 @@ export function TrainSmoke(props) {
       // Update particle properties based on life progress
       particle.rotation += particle.rotationRate
       particle.alpha = splines.alphaSpline.getValueAt(t)
-      particle.currentSize = particle.size * splines.sizeSpline.getValueAt(t)
+      // Simplified size calculation - use the size controls directly and apply scale
+      particle.currentSize = maxSize * scale * (sizeStart + t * (sizeEnd - sizeStart))
       particle.color.copy(splines.colorSpline.getValueAt(t))
 
       // Update position
@@ -266,7 +267,7 @@ export function TrainSmoke(props) {
   if (!enabled) return null
 
   return (
-    <points {...props} scale={scale}>
+    <points {...props}>
       <bufferGeometry ref={geometryRef}>
         <bufferAttribute attach="attributes-position" args={[new Float32Array(), 3]} />
         <bufferAttribute attach="attributes-size" args={[new Float32Array(), 1]} />
