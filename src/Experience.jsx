@@ -4,7 +4,7 @@ import { ScrollControls, useScroll, Scroll, OrbitControls, PerspectiveCamera } f
 import { getProject, val } from "@theatre/core"
 import { useControls, folder } from "leva"
 import { Perf } from "r3f-perf"
-import { SheetProvider, PerspectiveCamera as TheatrePerspectiveCamera, useCurrentSheet} from "@theatre/r3f"
+import { SheetProvider, PerspectiveCamera as TheatrePerspectiveCamera, useCurrentSheet, editable as e} from "@theatre/r3f"
 
 import CameraPath from "./Main Frame.theatre-project-state.json"
 import { Landscape } from './components-3d/Landscape.jsx'
@@ -257,7 +257,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
 
         </Scroll>
       </ScrollControls>
-      <Perf position="bottom-right" />
+      <Perf position="bottom-left" />
     </>
   );
 }
@@ -317,7 +317,9 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       }
       
       // Scroll branch: ensure the user cannot scroll back below 30.
-      const minPosition = 30;
+      // const minPosition = 30;
+      // uncomment this to allow scrolling back to 0 for debugging purposes I guess ( find a better way to do this)
+      const minPosition = 0;
       const maxPosition = sequenceLength;
       const newPos = minPosition + scroll.offset * (maxPosition - minPosition);
       sheet.sequence.position = Math.max(newPos, minPosition);
@@ -346,9 +348,11 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       <Downtown castShadow receiveShadow />
       <Recreation castShadow receiveShadow />
       <ContactTower castShadow receiveShadow />
-      <Train castShadow receiveShadow />
-      <TrainWheel castShadow receiveShadow />
-      <TrainSmoke />
+      <e.group theatreKey="TrainSystem">
+        <Train castShadow receiveShadow />
+        <TrainWheel castShadow receiveShadow />
+        <TrainSmoke />
+      </e.group>
       <FactorySmoke />
       {/* <Clouds /> */}
 
@@ -359,7 +363,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
             makeDefault 
             position={cameraPosition} 
             fov={45} 
-            near={0.1} 
+            near={10} 
             far={5000} 
           />
           <OrbitControls target={cameraTarget} />
@@ -367,7 +371,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       ) : (
         // Normal mode: Use Theatre.js camera
         <group ref={cameraRig}>
-          <TheatrePerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={0.1} far={5000} />
+          <TheatrePerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={5000} />
         </group>
       )}
     </>
