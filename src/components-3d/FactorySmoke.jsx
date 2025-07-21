@@ -2,7 +2,7 @@ import React, { useRef, useMemo, useCallback } from 'react'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
-import { useSmokeControls } from '../hooks/useSmokeControls.js'
+import { useFactorySmokeControls } from "../hooks/useFactorySmokeControls.js"
 
 // Vertex shader for particles
 const vertexShader = `
@@ -73,45 +73,53 @@ function createLinearSpline(lerp) {
   return { addPoint, getValueAt }
 }
 
-export function TrainSmoke(props) {
+export function FactorySmoke(props) {
   const { camera } = useThree()
   const cloudTexture = useTexture('/textures/cloud.png')
   
-  // Debug controls
+  const controls = useFactorySmokeControls()
   const {
     enabled,
-    emissionRate,
-    maxParticles,
-    maxLife,
-    maxSize,
-    radius,
+    stackCount,
+    stackSpacing,
     positionX,
     positionY,
     positionZ,
+    scale,
+    emissionRate,
+    maxParticles,
+    maxLife,
+    radius,
+    maxSize,
+    sizeStart,
+    sizeEnd,
     velocityY,
     velocityVariation,
     dragStrength,
     turbulence,
+    rotationRate,
     alphaStart,
     alphaMax,
     alphaEnd,
-    sizeStart,
-    sizeEnd,
     colorStart,
     colorEnd,
-    rotationRate,
-    scale,
-  } = useSmokeControls()
-  
-  // Train chimney position (controllable via debug)
-  const emitterPosition = new THREE.Vector3(positionX, positionY, positionZ)
-  
-  // Refs for particle data
-  const particlesRef = useRef([])
-  const geometryRef = useRef()
-  const materialRef = useRef()
-  const accumulatorRef = useRef(0)
-  
+  } = controls
+
+  // Create chimney positions based on stackCount and stackSpacing
+  // Rotated 90 degrees so stacks are arranged along Z-axis
+  const chimneyPositions = useMemo(() => {
+    return Array(stackCount).fill(null).map((_, stackIndex) => {
+      const stackOffset = (stackIndex - (stackCount - 1) / 2) * stackSpacing
+      return new THREE.Vector3(0, 0, stackOffset)
+    })
+  }, [stackCount, stackSpacing])
+
+  // Refs for particle data for each chimney
+  const particlesRefs = useRef(chimneyPositions.map(() => []))
+  const geometryRefs = useRef(chimneyPositions.map(() => React.createRef()))
+  const materialRefs = useRef(chimneyPositions.map(() => React.createRef()))
+  const accumulatorRefs = useRef(chimneyPositions.map(() => 0))
+
   // Create splines for particle animation
   const splines = useMemo(() => {
     // Alpha spline - controls opacity over particle lifetime
@@ -147,23 +155,23 @@ export function TrainSmoke(props) {
     }
   }), [cloudTexture])
 
-  // Add new particles
-  const addParticles = useCallback((timeElapsed) => {
-    accumulatorRef.current += timeElapsed
-    const n = Math.floor(accumulatorRef.current * emissionRate)
-    accumulatorRef.current -= n / emissionRate
+  // Add new particles for a specific chimney
+  const addParticles = useCallback((chimneyIndex, timeElapsed, emitterPos) => {
+    accumulatorRefs.current[chimneyIndex] += timeElapsed
+    const n = Math.floor(accumulatorRefs.current[chimneyIndex] * emissionRate)
+    accumulatorRefs.current[chimneyIndex] -= n / emissionRate
 
     for (let i = 0; i < n; i++) {
-      if (particlesRef.current.length >= maxParticles) break
+      if (particlesRefs.current[chimneyIndex].length >= maxParticles / stackCount) break
 
-      const life = (Math.random() * 0.5 + 0.75) * maxLife
+      const life = (Math.random() * 0.4 + 0.8) * maxLife
       const particle = {
         position: new THREE.Vector3(
           (Math.random() * 2 - 1) * radius,
-          (Math.random() * 2 - 1) * radius * 0.5,
+          (Math.random() * 2 - 1) * radius * 0.3,
           (Math.random() * 2 - 1) * radius
-        ).add(emitterPosition),
-        size: (Math.random() * 0.4 + 0.8) * maxSize,
+        ).add(emitterPos),
+        size: (Math.random() * 0.3 + 0.9) * maxSize,
         color: new THREE.Color(),
         alpha: 1.0,
         life: life,
@@ -171,27 +179,27 @@ export function TrainSmoke(props) {
         rotation: Math.random() * 2.0 * Math.PI,
         rotationRate: (Math.random() - 0.5) * rotationRate,
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * velocityVariation,  // Small horizontal drift
-          velocityY + Math.random() * velocityVariation,    // Upward movement
-          (Math.random() - 0.5) * velocityVariation * 0.6   // Small depth variation
+          (Math.random() - 0.5) * velocityVariation,
+          velocityY + Math.random() * velocityVariation,
+          (Math.random() - 0.5) * velocityVariation * 0.6
         ),
         currentSize: 0
       }
       
-      particlesRef.current.push(particle)
+      particlesRefs.current[chimneyIndex].push(particle)
     }
-  }, [emitterPosition, maxLife, maxSize, radius, emissionRate, maxParticles])
+  }, [emissionRate, maxParticles, stackCount, maxLife, radius, maxSize, velocityY, velocityVariation, rotationRate])
 
-  // Update particle properties
-  const updateParticles = useCallback((timeElapsed) => {
+  // Update particle properties for a specific chimney
+  const updateParticles = useCallback((chimneyIndex, timeElapsed) => {
     // Update particle life and remove dead particles
-    particlesRef.current = particlesRef.current.filter(p => {
+    particlesRefs.current[chimneyIndex] = particlesRefs.current[chimneyIndex].filter(p => {
       p.life -= timeElapsed
       return p.life > 0.0
     })
 
     // Update living particles
-    for (let particle of particlesRef.current) {
+    for (let particle of particlesRefs.current[chimneyIndex]) {
       const t = 1.0 - particle.life / particle.maxLife
       
       // Update particle properties based on life progress
@@ -221,70 +229,82 @@ export function TrainSmoke(props) {
     }
 
     // Sort particles by distance to camera for proper alpha blending
-    particlesRef.current.sort((a, b) => {
+    particlesRefs.current[chimneyIndex].sort((a, b) => {
       const d1 = camera.position.distanceTo(a.position)
       const d2 = camera.position.distanceTo(b.position)
       return d2 - d1  // Far to near
     })
-  }, [camera, splines])
+  }, [camera, splines, turbulence, dragStrength])
 
-  // Update geometry with current particle data
-  const updateGeometry = useCallback(() => {
-    if (!geometryRef.current) return
+  // Update geometry with current particle data for a specific chimney
+  const updateGeometry = useCallback((chimneyIndex) => {
+    const geometry = geometryRefs.current[chimneyIndex]?.current
+    if (!geometry) return
 
     const positions = []
     const sizes = []
     const colors = []
     const angles = []
 
-    for (let particle of particlesRef.current) {
+    for (let particle of particlesRefs.current[chimneyIndex]) {
       positions.push(particle.position.x, particle.position.y, particle.position.z)
       colors.push(particle.color.r, particle.color.g, particle.color.b, particle.alpha)
       sizes.push(particle.currentSize)
       angles.push(particle.rotation)
     }
 
-    geometryRef.current.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
-    geometryRef.current.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1))
-    geometryRef.current.setAttribute('aColor', new THREE.Float32BufferAttribute(colors, 4))
-    geometryRef.current.setAttribute('angle', new THREE.Float32BufferAttribute(angles, 1))
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
+    geometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1))
+    geometry.setAttribute('aColor', new THREE.Float32BufferAttribute(colors, 4))
+    geometry.setAttribute('angle', new THREE.Float32BufferAttribute(angles, 1))
 
-    geometryRef.current.attributes.position.needsUpdate = true
-    geometryRef.current.attributes.size.needsUpdate = true
-    geometryRef.current.attributes.aColor.needsUpdate = true
-    geometryRef.current.attributes.angle.needsUpdate = true
+    geometry.attributes.position.needsUpdate = true
+    geometry.attributes.size.needsUpdate = true
+    geometry.attributes.aColor.needsUpdate = true
+    geometry.attributes.angle.needsUpdate = true
   }, [])
 
   // Main animation loop
   useFrame((state, delta) => {
     if (!enabled) return
-    addParticles(delta)
-    updateParticles(delta)
-    updateGeometry()
+    
+    chimneyPositions.forEach((chimneyPos, index) => {
+      const worldPos = chimneyPos.clone().add(new THREE.Vector3(positionX, positionY, positionZ))
+      addParticles(index, delta, worldPos)
+      updateParticles(index, delta)
+      updateGeometry(index)
+    })
   })
 
   // Don't render anything if disabled
   if (!enabled) return null
 
   return (
-    <points {...props}>
-      <bufferGeometry ref={geometryRef}>
-        <bufferAttribute attach="attributes-position" args={[new Float32Array(), 3]} />
-        <bufferAttribute attach="attributes-size" args={[new Float32Array(), 1]} />
-        <bufferAttribute attach="attributes-aColor" args={[new Float32Array(), 4]} />
-        <bufferAttribute attach="attributes-angle" args={[new Float32Array(), 1]} />
-      </bufferGeometry>
-      <shaderMaterial
-        ref={materialRef}
-        uniforms={uniforms}
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-        blending={THREE.NormalBlending}
-        depthTest={true}
-        depthWrite={false}
-        transparent={true}
-        vertexColors={true}
-      />
-    </points>
+    <group 
+      {...props} 
+      position={[positionX, positionY, positionZ]}
+    >
+      {chimneyPositions.map((chimneyPos, index) => (
+        <points key={index} position={chimneyPos}>
+          <bufferGeometry ref={geometryRefs.current[index]}>
+            <bufferAttribute attach="attributes-position" args={[new Float32Array(), 3]} />
+            <bufferAttribute attach="attributes-size" args={[new Float32Array(), 1]} />
+            <bufferAttribute attach="attributes-aColor" args={[new Float32Array(), 4]} />
+            <bufferAttribute attach="attributes-angle" args={[new Float32Array(), 1]} />
+          </bufferGeometry>
+          <shaderMaterial
+            ref={materialRefs.current[index]}
+            uniforms={uniforms}
+            vertexShader={vertexShader}
+            fragmentShader={fragmentShader}
+            blending={THREE.NormalBlending}
+            depthTest={true}
+            depthWrite={false}
+            transparent={true}
+            vertexColors={true}
+          />
+        </points>
+      ))}
+    </group>
   )
-}
+} 

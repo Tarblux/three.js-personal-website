@@ -1,4 +1,4 @@
-import { useControls } from "leva";
+import { useControls, folder } from "leva";
 
 export function useSkyControls() {
 
@@ -10,50 +10,64 @@ export function useSkyControls() {
     inclination,
     azimuth,
     distance,
-  } = useControls("Sky", {
-    turbidity: {
-      value: 2.0,
-      min: 0,
-      max: 20,
-      step: 0.1,
+  } = useControls(
+    "Sky",
+    {
+      "Atmosphere Properties": folder(
+        {
+          turbidity: {
+            value: 18,
+            min: 0,
+            max: 20,
+            step: 0.1,
+          },
+          rayleigh: {
+            value: 1,
+            min: 0,
+            max: 10,
+            step: 0.1,
+          },
+          mieCoefficient: {
+            value: 0.005,
+            min: 0,
+            max: 0.1,
+            step: 0.001,
+          },
+          mieDirectionalG: {
+            value: 0.8,
+            min: 0,
+            max: 1,
+            step: 0.01,
+          },
+        },
+        { collapsed: true }
+      ),
+      "Sun Position": folder(
+        {
+          inclination: {
+            value: 0.6,
+            min: 0,
+            max: 1,
+            step: 0.01,
+          },
+          azimuth: {
+            value: 0.68,
+            min: 0,
+            max: 1,
+            step: 0.01,
+          },
+          distance: {
+            value: 2000,
+            min: 1,
+            max: 10000,
+            step: 1,
+          },
+        },
+        { collapsed: true }
+      ),
     },
-    rayleigh: {
-      value: 1,
-      min: 0,
-      max: 10,
-      step: 0.1,
-    },
-    mieCoefficient: {
-      value: 0.005,
-      min: 0,
-      max: 0.1,
-      step: 0.001,
-    },
-    mieDirectionalG: {
-      value: 0.8,
-      min: 0,
-      max: 1,
-      step: 0.01,
-    },
-    inclination: {
-      value: 0.6,
-      min: 0,
-      max: 1,
-      step: 0.01,
-    },
-    azimuth: {
-      value: 0,
-      min: 0,
-      max: 1,
-      step: 0.01,
-    },
-    distance: {
-      value: 2000,
-      min: 1,
-      max: 10000,
-      step: 1,
-    },
-  });
+    { collapsed: true }
+  );
 
   // Calculate sunPosition from inclination & azimuth
   function calcSunPosition(inclination, azimuth, distance) {
