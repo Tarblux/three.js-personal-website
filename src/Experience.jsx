@@ -268,6 +268,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   const scroll = useScroll();
   const cameraRig = useRef();
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const smokeEmitterRef = useRef(null);
 
   // Add debug controls
   const { debugMode, cameraPosition, cameraTarget } = useControls("Debug", {
@@ -351,8 +352,9 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       <e.group theatreKey="TrainSystem">
         <Train castShadow receiveShadow />
         <TrainWheel castShadow receiveShadow />
-        <TrainSmoke />
       </e.group>
+      <e.group theatreKey="TrainSmokeEmitter" ref={smokeEmitterRef} />
+      <TrainSmoke emitterRef={smokeEmitterRef} />
       <FactorySmoke />
       {/* <Clouds /> */}
 

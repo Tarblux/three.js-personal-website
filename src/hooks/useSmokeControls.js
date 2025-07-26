@@ -22,10 +22,22 @@ export function useSmokeControls() {
     sizeEnd,
     rotationRate,
     scale,
+    // Debug controls
+    showDebugInfo,
+    logEmitterPosition,
+    logParticleCount,
   } = useControls(
     "Train Smoke",
     {
       enabled: { value: true },
+      "Debug": folder(
+        {
+          showDebugInfo: { value: false, label: "Show Debug Info" },
+          logEmitterPosition: { value: false, label: "Log Emitter Position" },
+          logParticleCount: { value: false, label: "Log Particle Count" },
+        },
+        { collapsed: true }
+      ),
       "Position": folder(
         {
           positionX: { value: -270.0, min: -300, max: 200, step: 0.1 },
@@ -37,14 +49,14 @@ export function useSmokeControls() {
       ),
       "Emission": folder(
         {
-          emissionRate: { value: 25.0, min: 1, max: 100, step: 1 },
+          emissionRate: { value: 55.0, min: 1, max: 100, step: 1 },
           maxParticles: { value: 1000, min: 100, max: 2000, step: 100 },
-          maxLife: { value: 2.5, min: 0.5, max: 10, step: 0.1 },
+          maxLife: { value: 4.5, min: 0.5, max: 10, step: 0.1 },
           radius: { value: 0.3, min: 0.1, max: 2, step: 0.1 },
         },
         { collapsed: true }
       ),
-              "Particle Size": folder(
+        "Particle Size": folder(
         {
           maxSize: { value: 19, min: 0.5, max: 20, step: 0.5 },
           sizeStart: { value: 1.2, min: 0.1, max: 2, step: 0.1 },
@@ -54,7 +66,7 @@ export function useSmokeControls() {
       ),
       "Physics": folder(
         {
-          velocityY: { value: 2.2, min: 0, max: 5, step: 0.1 },
+          velocityY: { value: 3.9, min: 0, max: 10, step: 0.1 },
           velocityVariation: { value: 0.5, min: 0, max: 2, step: 0.1 },
           dragStrength: { value: 0.2, min: 0, max: 1, step: 0.05 },
           turbulence: { value: 0.1, min: 0, max: 0.5, step: 0.01 },
@@ -95,5 +107,9 @@ export function useSmokeControls() {
     sizeEnd,
     rotationRate,
     scale,
+    // Debug controls
+    showDebugInfo,
+    logEmitterPosition,
+    logParticleCount,
   };
 }

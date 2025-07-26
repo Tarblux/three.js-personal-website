@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback } from 'react'
+import React, { useRef, useMemo, useCallback, useEffect } from 'react'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
@@ -73,8 +73,8 @@ function createLinearSpline(lerp) {
   return { addPoint, getValueAt }
 }
 
-export function TrainSmoke(props) {
-  const { camera } = useThree()
+export function TrainSmoke({ emitterRef, ...props }) {
+  const { camera, size } = useThree()
   const cloudTexture = useTexture('/textures/cloud.png')
   
   // Debug controls
@@ -101,16 +101,58 @@ export function TrainSmoke(props) {
     colorEnd,
     rotationRate,
     scale,
+    // Debug controls
+    showDebugInfo,
+    logEmitterPosition,
+    logParticleCount,
   } = useSmokeControls()
   
-  // Train chimney position (controllable via debug)
-  const emitterPosition = new THREE.Vector3(positionX, positionY, positionZ)
+  // Emitter position - initialize with fallback position
+  const emitterPositionRef = useRef(new THREE.Vector3(positionX, positionY, positionZ))
+  const lastEmitterPositionRef = useRef(new THREE.Vector3())
+  const emitterHasMovedRef = useRef(false)
+
+  // Update emitter position each frame from the group ref
+  useFrame(() => {
+    if (emitterRef?.current) {
+      const newPosition = new THREE.Vector3()
+      emitterRef.current.getWorldPosition(newPosition)
+      
+      // Check if emitter has moved significantly
+      const distance = newPosition.distanceTo(lastEmitterPositionRef.current)
+      emitterHasMovedRef.current = distance > 0.1
+      
+      lastEmitterPositionRef.current.copy(emitterPositionRef.current)
+      emitterPositionRef.current.copy(newPosition)
+    } else {
+      // Fallback to debug controls if no ref
+      emitterPositionRef.current.set(positionX, positionY, positionZ)
+    }
+  })
   
   // Refs for particle data
   const particlesRef = useRef([])
   const geometryRef = useRef()
   const materialRef = useRef()
   const accumulatorRef = useRef(0)
+  
+  // Pre-allocate buffer arrays to avoid constant reallocation
+  const bufferArraysRef = useRef({
+    positions: new Float32Array(maxParticles * 3),
+    sizes: new Float32Array(maxParticles),
+    colors: new Float32Array(maxParticles * 4),
+    angles: new Float32Array(maxParticles)
+  })
+
+  // Update buffer arrays when maxParticles changes
+  useEffect(() => {
+    bufferArraysRef.current = {
+      positions: new Float32Array(maxParticles * 3),
+      sizes: new Float32Array(maxParticles),
+      colors: new Float32Array(maxParticles * 4),
+      angles: new Float32Array(maxParticles)
+    }
+  }, [maxParticles])
   
   // Create splines for particle animation
   const splines = useMemo(() => {
@@ -139,13 +181,13 @@ export function TrainSmoke(props) {
     return { alphaSpline, colorSpline, sizeSpline }
   }, [alphaStart, alphaMax, alphaEnd, sizeStart, sizeEnd])
 
-  // Shader material uniforms
+  // Shader material uniforms - update pointMultiplier when camera changes
   const uniforms = useMemo(() => ({
     diffuseTexture: { value: cloudTexture },
     pointMultiplier: { 
-      value: window.innerHeight / (2.0 * Math.tan(30.0 * Math.PI / 180.0))
+      value: size.height / (2.0 * Math.tan((camera.fov * Math.PI / 180) / 2.0))
     }
-  }), [cloudTexture])
+  }), [cloudTexture, size.height, camera.fov])
 
   // Add new particles
   const addParticles = useCallback((timeElapsed) => {
@@ -162,7 +204,7 @@ export function TrainSmoke(props) {
           (Math.random() * 2 - 1) * radius,
           (Math.random() * 2 - 1) * radius * 0.5,
           (Math.random() * 2 - 1) * radius
-        ).add(emitterPosition),
+        ).add(emitterPositionRef.current),
         size: (Math.random() * 0.4 + 0.8) * maxSize,
         color: new THREE.Color(),
         alpha: 1.0,
@@ -180,7 +222,7 @@ export function TrainSmoke(props) {
       
       particlesRef.current.push(particle)
     }
-  }, [emitterPosition, maxLife, maxSize, radius, emissionRate, maxParticles])
+  }, [emitterPositionRef, maxLife, maxSize, radius, emissionRate, maxParticles, velocityY, velocityVariation, rotationRate])
 
   // Update particle properties
   const updateParticles = useCallback((timeElapsed) => {
@@ -195,7 +237,7 @@ export function TrainSmoke(props) {
       const t = 1.0 - particle.life / particle.maxLife
       
       // Update particle properties based on life progress
-      particle.rotation += particle.rotationRate
+      particle.rotation += particle.rotationRate * timeElapsed
       particle.alpha = splines.alphaSpline.getValueAt(t)
       // Simplified size calculation - use the size controls directly and apply scale
       particle.currentSize = maxSize * scale * (sizeStart + t * (sizeEnd - sizeStart))
@@ -220,34 +262,59 @@ export function TrainSmoke(props) {
       particle.velocity.z += (Math.random() - 0.5) * turbulence * timeElapsed
     }
 
-    // Sort particles by distance to camera for proper alpha blending
-    particlesRef.current.sort((a, b) => {
-      const d1 = camera.position.distanceTo(a.position)
-      const d2 = camera.position.distanceTo(b.position)
-      return d2 - d1  // Far to near
-    })
-  }, [camera, splines])
+    // Only sort particles occasionally to improve performance (every 10 frames)
+    // and only when camera has moved significantly or emitter has moved
+    if (particlesRef.current.frameCounter === undefined) {
+      particlesRef.current.frameCounter = 0
+    }
+    particlesRef.current.frameCounter++
+    
+    if (particlesRef.current.frameCounter % 10 === 0 || emitterHasMovedRef.current) {
+      particlesRef.current.sort((a, b) => {
+        const d1 = camera.position.distanceTo(a.position)
+        const d2 = camera.position.distanceTo(b.position)
+        return d2 - d1  // Far to near
+      })
+    }
+  }, [camera, splines, maxSize, scale, sizeStart, sizeEnd, dragStrength, turbulence])
 
   // Update geometry with current particle data
   const updateGeometry = useCallback(() => {
     if (!geometryRef.current) return
 
-    const positions = []
-    const sizes = []
-    const colors = []
-    const angles = []
-
-    for (let particle of particlesRef.current) {
-      positions.push(particle.position.x, particle.position.y, particle.position.z)
-      colors.push(particle.color.r, particle.color.g, particle.color.b, particle.alpha)
-      sizes.push(particle.currentSize)
-      angles.push(particle.rotation)
+    const particleCount = particlesRef.current.length
+    const buffers = bufferArraysRef.current
+    
+    // Fill buffer arrays with particle data
+    for (let i = 0; i < particleCount; i++) {
+      const particle = particlesRef.current[i]
+      const i3 = i * 3
+      const i4 = i * 4
+      
+      // Position
+      buffers.positions[i3] = particle.position.x
+      buffers.positions[i3 + 1] = particle.position.y
+      buffers.positions[i3 + 2] = particle.position.z
+      
+      // Color with alpha
+      buffers.colors[i4] = particle.color.r
+      buffers.colors[i4 + 1] = particle.color.g
+      buffers.colors[i4 + 2] = particle.color.b
+      buffers.colors[i4 + 3] = particle.alpha
+      
+      // Size and angle
+      buffers.sizes[i] = particle.currentSize
+      buffers.angles[i] = particle.rotation
     }
 
-    geometryRef.current.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
-    geometryRef.current.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1))
-    geometryRef.current.setAttribute('aColor', new THREE.Float32BufferAttribute(colors, 4))
-    geometryRef.current.setAttribute('angle', new THREE.Float32BufferAttribute(angles, 1))
+    // Update geometry attributes with proper count
+    geometryRef.current.setAttribute('position', new THREE.BufferAttribute(buffers.positions, 3))
+    geometryRef.current.setAttribute('size', new THREE.BufferAttribute(buffers.sizes, 1))
+    geometryRef.current.setAttribute('aColor', new THREE.BufferAttribute(buffers.colors, 4))
+    geometryRef.current.setAttribute('angle', new THREE.BufferAttribute(buffers.angles, 1))
+
+    // Set the draw range to only render active particles
+    geometryRef.current.setDrawRange(0, particleCount)
 
     geometryRef.current.attributes.position.needsUpdate = true
     geometryRef.current.attributes.size.needsUpdate = true
@@ -255,12 +322,39 @@ export function TrainSmoke(props) {
     geometryRef.current.attributes.angle.needsUpdate = true
   }, [])
 
+  // Clear particles when disabled
+  useEffect(() => {
+    if (!enabled) {
+      particlesRef.current = []
+      accumulatorRef.current = 0
+    }
+  }, [enabled])
+
   // Main animation loop
   useFrame((state, delta) => {
     if (!enabled) return
+    
     addParticles(delta)
     updateParticles(delta)
     updateGeometry()
+    
+    // Debug logging
+    if (logEmitterPosition && state.clock.elapsedTime % 1 < delta) {
+      console.log('Emitter Position:', emitterPositionRef.current.toArray())
+    }
+    
+    if (logParticleCount && state.clock.elapsedTime % 1 < delta) {
+      console.log('Particle Count:', particlesRef.current.length, '/ Max:', maxParticles)
+    }
+    
+    if (showDebugInfo && state.clock.elapsedTime % 2 < delta) {
+      console.log('Smoke Debug:', {
+        particleCount: particlesRef.current.length,
+        emitterPosition: emitterPositionRef.current.toArray(),
+        accumulator: accumulatorRef.current,
+        enabled: enabled
+      })
+    }
   })
 
   // Don't render anything if disabled
@@ -269,10 +363,10 @@ export function TrainSmoke(props) {
   return (
     <points {...props}>
       <bufferGeometry ref={geometryRef}>
-        <bufferAttribute attach="attributes-position" args={[new Float32Array(), 3]} />
-        <bufferAttribute attach="attributes-size" args={[new Float32Array(), 1]} />
-        <bufferAttribute attach="attributes-aColor" args={[new Float32Array(), 4]} />
-        <bufferAttribute attach="attributes-angle" args={[new Float32Array(), 1]} />
+        <bufferAttribute attach="attributes-position" args={[bufferArraysRef.current.positions, 3]} />
+        <bufferAttribute attach="attributes-size" args={[bufferArraysRef.current.sizes, 1]} />
+        <bufferAttribute attach="attributes-aColor" args={[bufferArraysRef.current.colors, 4]} />
+        <bufferAttribute attach="attributes-angle" args={[bufferArraysRef.current.angles, 1]} />
       </bufferGeometry>
       <shaderMaterial
         ref={materialRef}
