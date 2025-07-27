@@ -109,7 +109,7 @@ export function useSmokeControls() {
         { collapsed: true }
       ),
     },
-    { collapsed: false }
+    { collapsed: true }
   );
 
   return {

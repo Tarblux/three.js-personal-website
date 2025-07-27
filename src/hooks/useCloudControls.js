@@ -2,6 +2,7 @@ import { useControls, folder } from "leva";
 
 export function useCloudControls() {
   const {
+    enabled,
     seed,
     segments,
     volume,
@@ -22,6 +23,7 @@ export function useCloudControls() {
   } = useControls(
     "Clouds",
     {
+      enabled: { value: true },
       "Cloud Properties": folder(
         {
           seed: { value: 1, min: 1, max: 100, step: 1 },
@@ -59,6 +61,7 @@ export function useCloudControls() {
   );
 
   return {
+    enabled,
     seed,
     segments,
     volume,

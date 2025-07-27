@@ -80,7 +80,7 @@ export function useFactorySmokeControls() {
         { collapsed: true }
       ),
     },
-    { collapsed: false }
+    { collapsed: true }
   );
 
   return {

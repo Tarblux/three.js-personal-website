@@ -80,12 +80,12 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             fadeOutEnd={20}
           >
             <div className="flex justify-center items-center h-screen">
-              {/* <WelcomeMessage showMessage={showWelcome} /> */}
+              <WelcomeMessage showMessage={showWelcome} />
             </div>
           </Section>
           
           <Section 
-            top="-20vh"
+            top="80vh"
             fadeInStart={35}
             fadeInEnd={45}
             fadeOutStart={65}
@@ -95,7 +95,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="60vh"
+            top="160vh"
             fadeInStart={135}
             fadeInEnd={145}
             fadeOutStart={155}
@@ -105,7 +105,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="230vh"
+            top="330vh"
             fadeInStart={300}
             fadeInEnd={310}
             fadeOutStart={320}
@@ -115,7 +115,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="300vh"
+            top="390vh"
             fadeInStart={380}
             fadeInEnd={390}
             fadeOutStart={400}
@@ -125,7 +125,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="360vh"
+            top="450vh"
             fadeInStart={445}
             fadeInEnd={465}
             fadeOutStart={480}
@@ -136,7 +136,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
 
 
           <Section 
-            top="480vh"
+            top="570vh"
             fadeInStart={565}
             fadeInEnd={585}
             fadeOutStart={590}
@@ -146,7 +146,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="520vh"
+            top="610vh"
             fadeInStart={605}
             fadeInEnd={615}
             fadeOutStart={625}
@@ -156,7 +156,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="540vh"
+            top="670vh"
             fadeInStart={640}
             fadeInEnd={650}
             fadeOutStart={660}
@@ -166,7 +166,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
           
           <Section 
-            top="600vh"
+            top="730vh"
             fadeInStart={700}
             fadeInEnd={710}
             fadeOutStart={720}
@@ -176,7 +176,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="660vh"
+            top="790vh"
             fadeInStart={760}
             fadeInEnd={770}
             fadeOutStart={780}
@@ -186,7 +186,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="720vh"
+            top="850vh"
             fadeInStart={815}
             fadeInEnd={825}
             fadeOutStart={845}
@@ -196,7 +196,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="760vh"
+            top="860vh"
             fadeInStart={870}
             fadeInEnd={880}
             fadeOutStart={890}
@@ -206,7 +206,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="820vh"
+            top="920vh"
             fadeInStart={925}
             fadeInEnd={945}
             fadeOutStart={965}
@@ -216,7 +216,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="940vh"
+            top="980vh"
             fadeInStart={1050}
             fadeInEnd={1065}
             fadeOutStart={1080}
@@ -226,7 +226,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="1000vh"
+            top="1040vh"
             fadeInStart={1115}
             fadeInEnd={1135}
             fadeOutStart={1155}
@@ -236,7 +236,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="1060vh"
+            top="1100vh"
             fadeInStart={1210}
             fadeInEnd={1220}
             fadeOutStart={1230}
@@ -246,7 +246,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="1200vh"
+            top="1160vh"
             fadeInStart={1345}
             fadeInEnd={1350}
             fadeOutStart={1362}
@@ -359,7 +359,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
         autoPlay={autoPlay}
       />
       <FactorySmoke />
-      {/* <Clouds /> */}
+      <Clouds />
 
       {debugMode ? (
         // Debug mode: Use regular camera with OrbitControls
