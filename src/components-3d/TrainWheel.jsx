@@ -21,7 +21,7 @@ export function TrainWheel(props) {
       if (firstAction) {
         firstAction.reset().play()
         firstAction.setLoop(THREE.LoopRepeat, Infinity)
-        firstAction.timeScale = 3 // Increase speed to 3x
+        firstAction.timeScale = 5 // Increase speed to 3x
       }
     }
   }, [actions])

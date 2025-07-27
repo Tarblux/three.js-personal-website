@@ -318,9 +318,9 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       }
       
       // Scroll branch: ensure the user cannot scroll back below 30.
-      // const minPosition = 30;
+      const minPosition = 30;
       // uncomment this to allow scrolling back to 0 for debugging purposes I guess ( find a better way to do this)
-      const minPosition = 0;
+      // const minPosition = 0;
       const maxPosition = sequenceLength;
       const newPos = minPosition + scroll.offset * (maxPosition - minPosition);
       sheet.sequence.position = Math.max(newPos, minPosition);
@@ -354,7 +354,10 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
         <TrainWheel castShadow receiveShadow />
       </e.group>
       <e.group theatreKey="TrainSmokeEmitter" ref={smokeEmitterRef} />
-      <TrainSmoke emitterRef={smokeEmitterRef} />
+      <TrainSmoke 
+        emitterRef={smokeEmitterRef} 
+        autoPlay={autoPlay}
+      />
       <FactorySmoke />
       {/* <Clouds /> */}
 

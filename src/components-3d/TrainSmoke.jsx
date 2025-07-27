@@ -73,13 +73,20 @@ function createLinearSpline(lerp) {
   return { addPoint, getValueAt }
 }
 
-export function TrainSmoke({ emitterRef, ...props }) {
+export function TrainSmoke({ emitterRef, autoPlay, ...props }) {
   const { camera, size } = useThree()
   const cloudTexture = useTexture('/textures/cloud.png')
+  
+  // Track elapsed time since autoplay started for reliable timing
+  const autoPlayStartTimeRef = useRef(null)
+  const elapsedTimeRef = useRef(0)
+  const autoPlayCompletedRef = useRef(false)
+  const manualOverrideLoggedRef = useRef(false)
   
   // Debug controls
   const {
     enabled,
+    manualOverride,
     emissionRate,
     maxParticles,
     maxLife,
@@ -97,15 +104,106 @@ export function TrainSmoke({ emitterRef, ...props }) {
     alphaEnd,
     sizeStart,
     sizeEnd,
-    colorStart,
-    colorEnd,
     rotationRate,
     scale,
+    // Color controls
+    colorStart,
+    colorEnd,
     // Debug controls
     showDebugInfo,
     logEmitterPosition,
     logParticleCount,
+    showTimingInfo,
+    // Timing controls
+    startTime,
+    endTime,
+    residualEmission,
   } = useSmokeControls()
+
+  // Initialize autoplay start time when autoPlay begins
+  useEffect(() => {
+    if (autoPlay && autoPlayStartTimeRef.current === null) {
+      autoPlayStartTimeRef.current = Date.now() / 1000 // Convert to seconds
+      elapsedTimeRef.current = 0
+      autoPlayCompletedRef.current = false
+      console.log('TrainSmoke: AutoPlay started, timing initialized')
+    } else if (!autoPlay && autoPlayStartTimeRef.current !== null) {
+      // AutoPlay has ended - mark as completed
+      autoPlayCompletedRef.current = true
+      autoPlayStartTimeRef.current = null
+      elapsedTimeRef.current = 0
+      console.log('TrainSmoke: AutoPlay ended, emission disabled')
+    }
+  }, [autoPlay])
+
+  // Calculate time-based emission rate 
+  const getEffectiveEmissionRate = useCallback((currentElapsedTime) => {
+    if (!enabled) return 0
+    
+    // If autoplay has completed, disable emission unless manually overridden
+    if (autoPlayCompletedRef.current && !autoPlay && !manualOverride) {
+      return 0
+    }
+    
+    // Log when manual override is being used
+    if (autoPlayCompletedRef.current && !autoPlay && manualOverride) {
+      // Only log once when override is first enabled
+      if (!manualOverrideLoggedRef.current) {
+        console.log('TrainSmoke: Manual override enabled, re-starting emission')
+        manualOverrideLoggedRef.current = true
+      }
+    } else if (!manualOverride) {
+      // Reset the log flag when override is disabled
+      manualOverrideLoggedRef.current = false
+    }
+    
+    // During autoplay, control emission based on elapsed time since autoplay started
+    if (autoPlay && autoPlayStartTimeRef.current !== null) {
+      
+      // Log timing details every second for debugging
+      if (Math.floor(currentElapsedTime) !== Math.floor(elapsedTimeRef.current)) {
+        console.log('Smoke Timing Debug:', {
+          elapsedTime: currentElapsedTime.toFixed(2),
+          startTime: startTime,
+          endTime: endTime,
+          shouldEmit: currentElapsedTime >= startTime,
+          emissionPhase: currentElapsedTime < startTime ? 'waiting' : 
+                        currentElapsedTime <= endTime ? 'active' : 'residual'
+        })
+      }
+      
+      // No emission before start time
+      if (currentElapsedTime < startTime) {
+        return 0
+      }
+      
+      // Gradual reduction from start time to end time
+      if (currentElapsedTime >= startTime && currentElapsedTime <= endTime) {
+        const progress = (currentElapsedTime - startTime) / (endTime - startTime) // 0 to 1 over duration
+        const emissionMultiplier = 1 - progress // Start at 1, end at 0
+        const effectiveRate = emissionRate * emissionMultiplier
+        
+        // Log emission start
+        if (currentElapsedTime >= startTime && elapsedTimeRef.current < startTime) {
+          console.log('TrainSmoke: EMISSION STARTED at', currentElapsedTime.toFixed(2), 'seconds')
+        }
+        
+        return effectiveRate
+      }
+      
+      // After end time, minimal emission for realism
+      if (currentElapsedTime > endTime) {
+        // Log transition to residual
+        if (currentElapsedTime > endTime && elapsedTimeRef.current <= endTime) {
+          console.log('TrainSmoke: Switching to residual emission at', currentElapsedTime.toFixed(2), 'seconds')
+        }
+        return emissionRate * residualEmission
+      }
+    }
+    
+    // When not in autoplay mode and autoplay hasn't completed yet, use full emission rate from controls
+    return emissionRate
+  }, [enabled, autoPlay, manualOverride, emissionRate, startTime, endTime, residualEmission])
   
   // Emitter position - initialize with fallback position
   const emitterPositionRef = useRef(new THREE.Vector3(positionX, positionY, positionZ))
@@ -163,14 +261,14 @@ export function TrainSmoke({ emitterRef, ...props }) {
     alphaSpline.addPoint(0.7, alphaMax * 0.75)
     alphaSpline.addPoint(1.0, alphaEnd)
 
-    // Color spline - preserve more of the cloud texture's natural appearance
+    // Color spline - use user-defined colors while preserving cloud texture
     const colorSpline = createLinearSpline((t, a, b) => {
       const c = a.clone()
       return c.lerp(b, t)
     })
-    // Use more subtle color changes to preserve cloud texture
-    colorSpline.addPoint(0.0, new THREE.Color(0xffffff)) // Pure white to preserve texture
-    colorSpline.addPoint(1.0, new THREE.Color(0xf0f0f0)) // Very subtle darkening
+    // Use customizable color changes from controls
+    colorSpline.addPoint(0.0, new THREE.Color(colorStart))
+    colorSpline.addPoint(1.0, new THREE.Color(colorEnd))
 
     // Size spline - controls particle size over lifetime
     const sizeSpline = createLinearSpline((t, a, b) => a + t * (b - a))
@@ -179,7 +277,7 @@ export function TrainSmoke({ emitterRef, ...props }) {
     sizeSpline.addPoint(1.0, sizeEnd)
 
     return { alphaSpline, colorSpline, sizeSpline }
-  }, [alphaStart, alphaMax, alphaEnd, sizeStart, sizeEnd])
+  }, [alphaStart, alphaMax, alphaEnd, sizeStart, sizeEnd, colorStart, colorEnd])
 
   // Shader material uniforms - update pointMultiplier when camera changes
   const uniforms = useMemo(() => ({
@@ -191,9 +289,17 @@ export function TrainSmoke({ emitterRef, ...props }) {
 
   // Add new particles
   const addParticles = useCallback((timeElapsed) => {
+    const effectiveRate = getEffectiveEmissionRate(elapsedTimeRef.current)
+    
+    // Skip particle creation if emission rate is zero
+    if (effectiveRate <= 0) {
+      accumulatorRef.current = 0
+      return
+    }
+    
     accumulatorRef.current += timeElapsed
-    const n = Math.floor(accumulatorRef.current * emissionRate)
-    accumulatorRef.current -= n / emissionRate
+    const n = Math.floor(accumulatorRef.current * effectiveRate)
+    accumulatorRef.current -= n / effectiveRate
 
     for (let i = 0; i < n; i++) {
       if (particlesRef.current.length >= maxParticles) break
@@ -222,7 +328,7 @@ export function TrainSmoke({ emitterRef, ...props }) {
       
       particlesRef.current.push(particle)
     }
-  }, [emitterPositionRef, maxLife, maxSize, radius, emissionRate, maxParticles, velocityY, velocityVariation, rotationRate])
+  }, [emitterPositionRef, maxLife, maxSize, radius, getEffectiveEmissionRate, maxParticles, velocityY, velocityVariation, rotationRate])
 
   // Update particle properties
   const updateParticles = useCallback((timeElapsed) => {
@@ -334,6 +440,11 @@ export function TrainSmoke({ emitterRef, ...props }) {
   useFrame((state, delta) => {
     if (!enabled) return
     
+    // Track elapsed time since autoplay started
+    if (autoPlay && autoPlayStartTimeRef.current !== null) {
+      elapsedTimeRef.current += delta
+    }
+    
     addParticles(delta)
     updateParticles(delta)
     updateGeometry()
@@ -347,12 +458,29 @@ export function TrainSmoke({ emitterRef, ...props }) {
       console.log('Particle Count:', particlesRef.current.length, '/ Max:', maxParticles)
     }
     
+    if (showTimingInfo && state.clock.elapsedTime % 1 < delta) {
+      console.log('🕒 Timing Info:', {
+        elapsedTime: elapsedTimeRef.current.toFixed(2) + 's',
+        autoPlay: autoPlay,
+        startTime: startTime + 's',
+        endTime: endTime + 's',
+        shouldEmit: elapsedTimeRef.current >= startTime,
+        status: elapsedTimeRef.current < startTime ? '⏳ waiting' : 
+               elapsedTimeRef.current <= endTime ? '💨 emitting' : '🌫️ residual'
+      })
+    }
+    
     if (showDebugInfo && state.clock.elapsedTime % 2 < delta) {
+      const effectiveRate = getEffectiveEmissionRate(elapsedTimeRef.current)
       console.log('Smoke Debug:', {
         particleCount: particlesRef.current.length,
         emitterPosition: emitterPositionRef.current.toArray(),
         accumulator: accumulatorRef.current,
-        enabled: enabled
+        enabled: enabled,
+        autoPlay: autoPlay,
+        elapsedTime: elapsedTimeRef.current.toFixed(2),
+        baseEmissionRate: emissionRate,
+        effectiveEmissionRate: effectiveRate.toFixed(2)
       })
     }
   })
