@@ -43,7 +43,7 @@ export function useSmokeControls() {
       "Debug": folder(
         {
           showDebugInfo: { value: false, label: "Show Debug Info" },
-          showTimingInfo: { value: true, label: "Show Timing Info" },
+          showTimingInfo: { value: false, label: "Show Timing Info" },
           logEmitterPosition: { value: false, label: "Log Emitter Position" },
           logParticleCount: { value: false, label: "Log Particle Count" },
         },

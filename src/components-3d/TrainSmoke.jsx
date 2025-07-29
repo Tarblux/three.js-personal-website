@@ -459,14 +459,14 @@ export function TrainSmoke({ emitterRef, autoPlay, ...props }) {
     }
     
     if (showTimingInfo && state.clock.elapsedTime % 1 < delta) {
-      console.log('🕒 Timing Info:', {
+      console.log('Timing Info:', {
         elapsedTime: elapsedTimeRef.current.toFixed(2) + 's',
         autoPlay: autoPlay,
         startTime: startTime + 's',
         endTime: endTime + 's',
         shouldEmit: elapsedTimeRef.current >= startTime,
-        status: elapsedTimeRef.current < startTime ? '⏳ waiting' : 
-               elapsedTimeRef.current <= endTime ? '💨 emitting' : '🌫️ residual'
+        status: elapsedTimeRef.current < startTime ? 'waiting' : 
+               elapsedTimeRef.current <= endTime ? 'emitting' : 'residual'
       })
     }
     
