@@ -126,13 +126,13 @@ export function TrainSmoke({ emitterRef, autoPlay, ...props }) {
       autoPlayStartTimeRef.current = Date.now() / 1000 // Convert to seconds
       elapsedTimeRef.current = 0
       autoPlayCompletedRef.current = false
-      console.log('TrainSmoke: AutoPlay started, timing initialized')
+      // console.log('TrainSmoke: AutoPlay started, timing initialized')
     } else if (!autoPlay && autoPlayStartTimeRef.current !== null) {
       // AutoPlay has ended - mark as completed
       autoPlayCompletedRef.current = true
       autoPlayStartTimeRef.current = null
       elapsedTimeRef.current = 0
-      console.log('TrainSmoke: AutoPlay ended, emission disabled')
+      // console.log('TrainSmoke: AutoPlay ended, emission disabled')
     }
   }, [autoPlay])
 

@@ -63,7 +63,7 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
           listener = new AudioListener()
           camera.add(listener)
           listenerRef.current = listener
-          console.log('DeferredFactoryAudio: Added AudioListener to camera')
+          // console.log('DeferredFactoryAudio: Added AudioListener to camera')
         }
 
         // Create PositionalAudio manually using Three.js (more control)
@@ -92,7 +92,7 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
             positionalAudio.play()
             
             setAudioReady(true)
-            console.log('DeferredFactoryAudio: PositionalAudio loaded and playing at position:', position)
+            // console.log('DeferredFactoryAudio: PositionalAudio loaded and playing at position:', position)
           },
           (progress) => {
             if (debugLogging) {

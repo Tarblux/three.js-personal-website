@@ -12,6 +12,7 @@ import { ProjectLabs } from './components-3d/ProjectLabs.jsx'
 import { LandscapeProps} from './components-3d/LandscapeProps.jsx'
 import { Campus } from './components-3d/Campus.jsx'
 import { LanguageInstitute } from "./components-3d/LanguageInstitute.jsx"
+import { Flags } from "./components-3d/Flags.jsx"
 import { Downtown } from "./components-3d/Downtown.jsx"
 import { Recreation } from "./components-3d/Recreation.jsx"
 import { ContactTower} from "./components-3d/ContactTower.jsx"
@@ -352,6 +353,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       <LandscapeProps castShadow receiveShadow />
       <Campus castShadow receiveShadow />
       <LanguageInstitute castShadow receiveShadow />
+      <Flags castShadow receiveShadow />
       <Downtown castShadow receiveShadow />
       <Recreation castShadow receiveShadow />
       <ContactTower castShadow receiveShadow />
