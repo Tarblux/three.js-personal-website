@@ -27,9 +27,9 @@ export function useCloudControls() {
       "Cloud Properties": folder(
         {
           seed: { value: 35, min: 1, max: 100, step: 1 },
-          segments: { value: 80, min: 1, max: 200, step: 1 },
+          segments: { value: 59, min: 1, max: 200, step: 1 },
           volume: { value: 12, min: 0, max: 100, step: 0.1 },
-          opacity: { value: 1, min: 0, max: 1, step: 0.01 },
+          opacity: { value: 0.7, min: 0, max: 1, step: 0.01 },
           fade: { value: 232, min: 0, max: 400, step: 1 },
           growth: { value: 20, min: 0, max: 20, step: 1 },
           speed: { value: 0.01, min: 0, max: 1, step: 0.01 },
@@ -39,7 +39,7 @@ export function useCloudControls() {
       ),
       "Cloud Distribution": folder(
         {
-          x: { value: 81, min: 0, max: 500, step: 1 },
+          x: { value: 160, min: 0, max: 500, step: 1 },
           y: { value: 6, min: 0, max: 100, step: 1 },
           z: { value: 147, min: 0, max: 500, step: 1 },
           range: { value: 440, min: 50, max: 1000, step: 10 },

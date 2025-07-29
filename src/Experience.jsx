@@ -20,6 +20,7 @@ import { TrainWheel } from "./components-3d/TrainWheel.jsx"
 import { Clouds } from './components-3d/Clouds.jsx'
 import { TrainSmoke } from "./components-3d/TrainSmoke.jsx"
 import { FactorySmoke } from "./components-3d/FactorySmoke.jsx"
+import { DeferredFactoryAudio } from "./components-3d/DeferredFactoryAudio.jsx"
 import { Sky } from './components-3d/Sky.jsx'
 
 import Section from "./helpers/Section.jsx"
@@ -42,7 +43,7 @@ import Kombucha from "./components/Hobbies/Kombucha.jsx"
 import Contact from "./components/Contact/Contact.jsx"
 import WelcomeMessage from "./components/UI/WelcomeMessage.jsx"
 
-export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress }) {
+export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress, onAudioDebugUpdate }) {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
   const [showWelcome, setShowWelcome] = useState(false)
 
@@ -70,6 +71,11 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             onScrollProgress = {onScrollProgress}
           />
         </SheetProvider>
+        {/* Add DeferredFactoryAudio outside of SheetProvider to avoid cloning issues */}
+        <DeferredFactoryAudio 
+          theatreSequence={sheet.sequence} 
+          onDebugUpdate={onAudioDebugUpdate}
+        />
         <Scroll html style={{ width: "100vw", height: "100vh" }}>
 
           <Section 
