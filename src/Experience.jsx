@@ -239,7 +239,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             fadeOutStart={1155}
             fadeOutEnd={1165}
           >
-            {/* <ChessDashboard /> */}
+            <ChessDashboard />
           </Section>
 
           <Section 

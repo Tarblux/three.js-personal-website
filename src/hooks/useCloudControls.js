@@ -19,6 +19,7 @@ export function useCloudControls() {
     positionY,
     positionZ,
     scaleMultiplier,
+    minScale,
     rotationSpeed,
   } = useControls(
     "Clouds",
@@ -51,7 +52,8 @@ export function useCloudControls() {
           positionX: { value: -306, min: -500, max: 500, step: 1 },
           positionY: { value: 400, min: -100, max: 500, step: 1 },
           positionZ: { value: -1220, min: -2000, max: 2000, step: 1 },
-          scaleMultiplier: { value: 15, min: 1, max: 50, step: 0.1 },
+          scaleMultiplier: { value: 15, min: 0.1, max: 50, step: 0.1 },
+          minScale: { value: 9, min: 0.1, max: 20, step: 0.1 },
           rotationSpeed: { value: 0.11, min: 0, max: 5, step: 0.01 },
         },
         { collapsed: true }
@@ -59,6 +61,9 @@ export function useCloudControls() {
     },
     { collapsed: true }
   );
+
+  // Calculate effective scale, ensuring it never goes below minimum
+  const effectiveScale = Math.max(scaleMultiplier, minScale);
 
   return {
     enabled,
@@ -77,7 +82,8 @@ export function useCloudControls() {
     positionX,
     positionY,
     positionZ,
-    scaleMultiplier,
+    scaleMultiplier: effectiveScale,
+    minScale,
     rotationSpeed,
   };
 } 

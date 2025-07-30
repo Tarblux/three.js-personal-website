@@ -322,6 +322,7 @@ const ChessStats = ({ isMobile }) => {
           ) : (
             <>
               <LineChart
+                width={isMobile ? 350 : 600}
                 xAxis={[{
                   data: xAxisData,
                   scaleType: 'point',

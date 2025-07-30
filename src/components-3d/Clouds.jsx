@@ -26,6 +26,7 @@ export function Clouds(props) {
     positionY,
     positionZ,
     scaleMultiplier,
+    minScale,
     rotationSpeed,
   } = useCloudControls()
 
