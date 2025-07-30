@@ -13,6 +13,7 @@ export function Clouds(props) {
     seed,
     segments,
     volume,
+    minVolume,
     opacity,
     fade,
     growth,
@@ -26,7 +27,6 @@ export function Clouds(props) {
     positionY,
     positionZ,
     scaleMultiplier,
-    minScale,
     rotationSpeed,
   } = useCloudControls()
 

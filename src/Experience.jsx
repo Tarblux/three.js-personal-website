@@ -309,23 +309,23 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
     const sequenceLength = val(sheet.sequence.pointer.length);
 
     if (autoPlay) {
-      // Auto-play branch: increment sequence position over 30 seconds.
+      // Auto-play branch: increment sequence position over 25 seconds.
       sheet.sequence.position += delta;
-      if (sheet.sequence.position >= 30) {
-        sheet.sequence.position = 30;
+      if (sheet.sequence.position >= 25) {
+        sheet.sequence.position = 25;
         // Auto-play is complete—enable scrolling.
         setAutoPlay(false);
         setDisableScroll(false);
       }
     } else if (!autoPlay && !disableScroll) {
       // When autoPlay becomes false (either from completion or skip),
-      // ensure we're at position 30
-      if (sheet.sequence.position < 30) {
-        sheet.sequence.position = 30;
+      // ensure we're at position 25
+      if (sheet.sequence.position < 25) {
+        sheet.sequence.position = 25;
       }
       
-      // Scroll branch: ensure the user cannot scroll back below 30.
-      const minPosition = 30;
+      // Scroll branch: ensure the user cannot scroll back below 25.
+      const minPosition = 25;
       // uncomment this to allow scrolling back to 0 for debugging purposes I guess ( find a better way to do this)
       // const minPosition = 0;
       const maxPosition = sequenceLength;
@@ -359,7 +359,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       <ContactTower castShadow receiveShadow />
       <e.group theatreKey="TrainSystem">
         <Train castShadow receiveShadow />
-        <TrainWheel castShadow receiveShadow />
+        <TrainWheel castShadow receiveShadow autoPlay={autoPlay} />
       </e.group>
       <e.group theatreKey="TrainSmokeEmitter" ref={smokeEmitterRef} />
       <TrainSmoke 

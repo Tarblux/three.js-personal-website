@@ -6,6 +6,7 @@ export function useCloudControls() {
     seed,
     segments,
     volume,
+    minVolume,
     opacity,
     fade,
     growth,
@@ -19,7 +20,6 @@ export function useCloudControls() {
     positionY,
     positionZ,
     scaleMultiplier,
-    minScale,
     rotationSpeed,
   } = useControls(
     "Clouds",
@@ -29,7 +29,8 @@ export function useCloudControls() {
         {
           seed: { value: 35, min: 1, max: 100, step: 1 },
           segments: { value: 59, min: 1, max: 200, step: 1 },
-          volume: { value: 12, min: 0, max: 100, step: 0.1 },
+          volume: { value: 15, min: 0, max: 100, step: 0.1 },
+          minVolume: { value: 9, min: 0.1, max: 50, step: 0.1 },
           opacity: { value: 0.7, min: 0, max: 1, step: 0.01 },
           fade: { value: 232, min: 0, max: 400, step: 1 },
           growth: { value: 20, min: 0, max: 20, step: 1 },
@@ -53,7 +54,6 @@ export function useCloudControls() {
           positionY: { value: 400, min: -100, max: 500, step: 1 },
           positionZ: { value: -1220, min: -2000, max: 2000, step: 1 },
           scaleMultiplier: { value: 15, min: 0.1, max: 50, step: 0.1 },
-          minScale: { value: 9, min: 0.1, max: 20, step: 0.1 },
           rotationSpeed: { value: 0.11, min: 0, max: 5, step: 0.01 },
         },
         { collapsed: true }
@@ -62,14 +62,15 @@ export function useCloudControls() {
     { collapsed: true }
   );
 
-  // Calculate effective scale, ensuring it never goes below minimum
-  const effectiveScale = Math.max(scaleMultiplier, minScale);
+  // Calculate effective volume, ensuring it never goes below minimum
+  const effectiveVolume = Math.max(volume, minVolume);
 
   return {
     enabled,
     seed,
     segments,
-    volume,
+    volume: effectiveVolume,
+    minVolume,
     opacity,
     fade,
     growth,
@@ -82,8 +83,7 @@ export function useCloudControls() {
     positionX,
     positionY,
     positionZ,
-    scaleMultiplier: effectiveScale,
-    minScale,
+    scaleMultiplier,
     rotationSpeed,
   };
 } 
