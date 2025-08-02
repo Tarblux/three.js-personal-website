@@ -10,7 +10,7 @@
               "z": 135.1060050738506
             },
             "fov": 45.00000000000009,
-            "far": 60000,
+            "far": 600000,
             "zoom": 1.0000000000000064,
             "near": 9.999999999999835,
             "scale": {
@@ -3656,6 +3656,7 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "xX3NvnOsoMNky1XY",
     "TBvjoPD4MBuMr6dA",
     "CDz8kOKwf2mcuM_3",
     "UGJVrMpmIDXH3VdN",

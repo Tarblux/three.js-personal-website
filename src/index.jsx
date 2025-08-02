@@ -15,6 +15,9 @@ import MiniMap from "./components/UI/MiniMap.jsx"
 import SkipIntroButton from './components/UI/SkipIntroButton.jsx'
 import ScrollDebug from './components/UI/ScrollDebug.jsx'
 import { AudioDebugHUD } from './components/UI/AudioDebugHUD.jsx'
+import KineticTitle from './components/UI/KineticTitle.jsx'
+
+import { sections } from './data/sections.js'
 
 // --- Fun Easter Egg for Curious Developers ---
 
@@ -158,7 +161,8 @@ function App() {
           />
         </Suspense>
       </Canvas>
-      <MiniMap progress={scrollProgress} />
+      <KineticTitle sections={sections} scrollProgress={scrollProgress} />
+      {/* <MiniMap progress={scrollProgress} /> */}
       <ScrollDebug scrollProgress={scrollProgress} />
       {audioDebugData && (
         <AudioDebugHUD 

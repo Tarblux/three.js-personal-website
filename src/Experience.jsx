@@ -87,7 +87,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             fadeOutEnd={20}
           >
             <div className="flex justify-center items-center h-screen">
-              {/* <WelcomeMessage showMessage={showWelcome} /> */}
+              <WelcomeMessage showMessage={showWelcome} />
             </div>
           </Section>
           
