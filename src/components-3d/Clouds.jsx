@@ -9,9 +9,11 @@ export function Clouds(props) {
   const cloud0 = useRef()
   
   const {
+    enabled,
     seed,
     segments,
     volume,
+    minVolume,
     opacity,
     fade,
     growth,
@@ -53,6 +55,11 @@ export function Clouds(props) {
       cloud0.current.rotation.y += delta * rotationSpeed * 0.05
     }
   })
+
+  // Don't render anything if clouds are disabled
+  if (!enabled) {
+    return null
+  }
 
   return (
     <group 

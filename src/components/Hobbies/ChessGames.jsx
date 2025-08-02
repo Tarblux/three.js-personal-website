@@ -33,17 +33,17 @@ const ChessGames = ({ isMobile }) => {
   }, []);
 
   return (
-    <div className="sm:col-span-3 sm:row-span-3 p-3 sm:p-4 flex flex-col">
-      <div className="flex items-center w-full mb-2 sm:mb-2">
+    <div className="sm:col-span-3 sm:row-span-3 p-3 sm:p-2 flex flex-col h-full">
+      <div className="flex items-center w-full mb-2 sm:mb-1">
         <div className="flex-1 border-t border-gray-400" />
         <span className="mx-4 text-sm font-bold text-gray-500 whitespace-nowrap text-center">Recent Games</span>
         <div className="flex-1 border-t border-gray-400" />
       </div>
-      <div className="flex-1 flex flex-col gap-2 max-h-[400px] sm:max-h-none overflow-y-auto sm:overflow-y-visible">
+      <div className="flex-1 flex flex-col gap-1 sm:gap-2 max-h-[400px] sm:max-h-full  ">
         {loading ? (
           Array.from({ length: 5 }).map((_, index) => (
             <div key={index} className="block">
-              <div className="flex items-center bg-white rounded-xl border border-gray-200 px-3 sm:px-4 py-2 shadow-sm">
+              <div className="flex items-center bg-white rounded-xl border border-gray-200 px-3 sm:px-3 py-2 sm:py-1.5 shadow-sm">
                 {/* Icon and time skeleton */}
                 <div className="w-3 h-3 sm:w-4 sm:h-4 mr-1 bg-gray-200 rounded animate-pulse"></div>
                 <div className="w-10 sm:w-12 h-3 sm:h-4 bg-gray-200 rounded animate-pulse mr-2 sm:mr-3"></div>
@@ -90,7 +90,7 @@ const ChessGames = ({ isMobile }) => {
               rel="noopener noreferrer"
               className="block"
             >
-              <div className="flex items-center bg-white rounded-xl border border-gray-200 px-3 sm:px-4 py-2 shadow-sm hover:shadow-md group transition-transform duration-200 hover:scale-105">
+              <div className="flex items-center bg-white rounded-xl border border-gray-200 px-3 sm:px-3 py-2 sm:py-1.5 shadow-sm hover:shadow-md group transition-transform duration-200 hover:scale-105">
                 {/* Icon and time */}
                 <img
                   src={TIME_CONTROL_ICONS[game.time_control] || TIME_CONTROL_ICONS['blitz']}

@@ -12,6 +12,7 @@ import { ProjectLabs } from './components-3d/ProjectLabs.jsx'
 import { LandscapeProps} from './components-3d/LandscapeProps.jsx'
 import { Campus } from './components-3d/Campus.jsx'
 import { LanguageInstitute } from "./components-3d/LanguageInstitute.jsx"
+import { Flags } from "./components-3d/Flags.jsx"
 import { Downtown } from "./components-3d/Downtown.jsx"
 import { Recreation } from "./components-3d/Recreation.jsx"
 import { ContactTower} from "./components-3d/ContactTower.jsx"
@@ -20,6 +21,7 @@ import { TrainWheel } from "./components-3d/TrainWheel.jsx"
 import { Clouds } from './components-3d/Clouds.jsx'
 import { TrainSmoke } from "./components-3d/TrainSmoke.jsx"
 import { FactorySmoke } from "./components-3d/FactorySmoke.jsx"
+import { DeferredFactoryAudio } from "./components-3d/DeferredFactoryAudio.jsx"
 import { Sky } from './components-3d/Sky.jsx'
 
 import Section from "./helpers/Section.jsx"
@@ -42,7 +44,7 @@ import Kombucha from "./components/Hobbies/Kombucha.jsx"
 import Contact from "./components/Contact/Contact.jsx"
 import WelcomeMessage from "./components/UI/WelcomeMessage.jsx"
 
-export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress }) {
+export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress, onAudioDebugUpdate }) {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
   const [showWelcome, setShowWelcome] = useState(false)
 
@@ -70,6 +72,11 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             onScrollProgress = {onScrollProgress}
           />
         </SheetProvider>
+        {/* Add DeferredFactoryAudio outside of SheetProvider to avoid cloning issues */}
+        <DeferredFactoryAudio 
+          theatreSequence={sheet.sequence} 
+          onDebugUpdate={onAudioDebugUpdate}
+        />
         <Scroll html style={{ width: "100vw", height: "100vh" }}>
 
           <Section 
@@ -80,12 +87,12 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             fadeOutEnd={20}
           >
             <div className="flex justify-center items-center h-screen">
-              {/* <WelcomeMessage showMessage={showWelcome} /> */}
+              <WelcomeMessage showMessage={showWelcome} />
             </div>
           </Section>
           
           <Section 
-            top="-20vh"
+            top="80vh"
             fadeInStart={35}
             fadeInEnd={45}
             fadeOutStart={65}
@@ -95,7 +102,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="60vh"
+            top="160vh"
             fadeInStart={135}
             fadeInEnd={145}
             fadeOutStart={155}
@@ -105,7 +112,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="230vh"
+            top="330vh"
             fadeInStart={300}
             fadeInEnd={310}
             fadeOutStart={320}
@@ -115,7 +122,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="300vh"
+            top="390vh"
             fadeInStart={380}
             fadeInEnd={390}
             fadeOutStart={400}
@@ -125,7 +132,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="360vh"
+            top="450vh"
             fadeInStart={445}
             fadeInEnd={465}
             fadeOutStart={480}
@@ -136,7 +143,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
 
 
           <Section 
-            top="480vh"
+            top="570vh"
             fadeInStart={565}
             fadeInEnd={585}
             fadeOutStart={590}
@@ -146,7 +153,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="520vh"
+            top="610vh"
             fadeInStart={605}
             fadeInEnd={615}
             fadeOutStart={625}
@@ -156,7 +163,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="540vh"
+            top="670vh"
             fadeInStart={640}
             fadeInEnd={650}
             fadeOutStart={660}
@@ -166,7 +173,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
           
           <Section 
-            top="600vh"
+            top="730vh"
             fadeInStart={700}
             fadeInEnd={710}
             fadeOutStart={720}
@@ -176,7 +183,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="660vh"
+            top="790vh"
             fadeInStart={760}
             fadeInEnd={770}
             fadeOutStart={780}
@@ -186,7 +193,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="720vh"
+            top="850vh"
             fadeInStart={815}
             fadeInEnd={825}
             fadeOutStart={845}
@@ -196,7 +203,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="760vh"
+            top="860vh"
             fadeInStart={870}
             fadeInEnd={880}
             fadeOutStart={890}
@@ -206,7 +213,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="820vh"
+            top="920vh"
             fadeInStart={925}
             fadeInEnd={945}
             fadeOutStart={965}
@@ -216,7 +223,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="940vh"
+            top="980vh"
             fadeInStart={1050}
             fadeInEnd={1065}
             fadeOutStart={1080}
@@ -226,17 +233,17 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="1000vh"
+            top="1040vh"
             fadeInStart={1115}
             fadeInEnd={1135}
             fadeOutStart={1155}
             fadeOutEnd={1165}
           >
-            {/* <ChessDashboard /> */}
+            <ChessDashboard />
           </Section>
 
           <Section 
-            top="1060vh"
+            top="1100vh"
             fadeInStart={1210}
             fadeInEnd={1220}
             fadeOutStart={1230}
@@ -246,7 +253,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="1200vh"
+            top="1160vh"
             fadeInStart={1345}
             fadeInEnd={1350}
             fadeOutStart={1362}
@@ -268,6 +275,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   const scroll = useScroll();
   const cameraRig = useRef();
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const smokeEmitterRef = useRef(null);
 
   // Add debug controls
   const { debugMode, cameraPosition, cameraTarget } = useControls("Debug", {
@@ -301,25 +309,25 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
     const sequenceLength = val(sheet.sequence.pointer.length);
 
     if (autoPlay) {
-      // Auto-play branch: increment sequence position over 30 seconds.
+      // Auto-play branch: increment sequence position over 25 seconds.
       sheet.sequence.position += delta;
-      if (sheet.sequence.position >= 30) {
-        sheet.sequence.position = 30;
+      if (sheet.sequence.position >= 25) {
+        sheet.sequence.position = 25;
         // Auto-play is complete—enable scrolling.
         setAutoPlay(false);
         setDisableScroll(false);
       }
     } else if (!autoPlay && !disableScroll) {
       // When autoPlay becomes false (either from completion or skip),
-      // ensure we're at position 30
-      if (sheet.sequence.position < 30) {
-        sheet.sequence.position = 30;
+      // ensure we're at position 25
+      if (sheet.sequence.position < 25) {
+        sheet.sequence.position = 25;
       }
       
-      // Scroll branch: ensure the user cannot scroll back below 30.
-      // const minPosition = 30;
+      // Scroll branch: ensure the user cannot scroll back below 25.
+      const minPosition = 25;
       // uncomment this to allow scrolling back to 0 for debugging purposes I guess ( find a better way to do this)
-      const minPosition = 0;
+      // const minPosition = 0;
       const maxPosition = sequenceLength;
       const newPos = minPosition + scroll.offset * (maxPosition - minPosition);
       sheet.sequence.position = Math.max(newPos, minPosition);
@@ -345,16 +353,21 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       <LandscapeProps castShadow receiveShadow />
       <Campus castShadow receiveShadow />
       <LanguageInstitute castShadow receiveShadow />
+      <Flags castShadow receiveShadow />
       <Downtown castShadow receiveShadow />
       <Recreation castShadow receiveShadow />
       <ContactTower castShadow receiveShadow />
       <e.group theatreKey="TrainSystem">
         <Train castShadow receiveShadow />
-        <TrainWheel castShadow receiveShadow />
-        <TrainSmoke />
+        <TrainWheel castShadow receiveShadow autoPlay={autoPlay} />
       </e.group>
+      <e.group theatreKey="TrainSmokeEmitter" ref={smokeEmitterRef} />
+      <TrainSmoke 
+        emitterRef={smokeEmitterRef} 
+        autoPlay={autoPlay}
+      />
       <FactorySmoke />
-      {/* <Clouds /> */}
+      <Clouds />
 
       {debugMode ? (
         // Debug mode: Use regular camera with OrbitControls

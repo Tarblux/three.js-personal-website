@@ -14,6 +14,10 @@ import LoadedButton from './components/UI/LoadedButton.jsx'
 import MiniMap from "./components/UI/MiniMap.jsx"
 import SkipIntroButton from './components/UI/SkipIntroButton.jsx'
 import ScrollDebug from './components/UI/ScrollDebug.jsx'
+import { AudioDebugHUD } from './components/UI/AudioDebugHUD.jsx'
+import KineticTitle from './components/UI/KineticTitle.jsx'
+
+import { sections } from './data/sections.js'
 
 // --- Fun Easter Egg for Curious Developers ---
 
@@ -108,6 +112,7 @@ function App() {
   const [autoPlay, setAutoPlay] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [showSkipButton, setShowSkipButton] = useState(false)
+  const [audioDebugData, setAudioDebugData] = useState(null)
   const audioRef = useRef(null)
 
   const handleBoardingPassClick = () => {
@@ -152,11 +157,19 @@ function App() {
             autoPlay={autoPlay}
             setAutoPlay={setAutoPlay}
             onScrollProgress={setScrollProgress}
+            onAudioDebugUpdate={setAudioDebugData}
           />
         </Suspense>
       </Canvas>
-      <MiniMap progress={scrollProgress} />
+      <KineticTitle sections={sections} scrollProgress={scrollProgress} />
+      {/* <MiniMap progress={scrollProgress} /> */}
       <ScrollDebug scrollProgress={scrollProgress} />
+      {audioDebugData && (
+        <AudioDebugHUD 
+          {...audioDebugData}
+          show={audioDebugData.showDebugHUD}
+        />
+      )}
       <Leva collapsed />
       <SpeedInsights />
       <Analytics />

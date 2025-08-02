@@ -7,7 +7,7 @@ import React, { useRef } from 'react'
 import { useGLTF, useAnimations, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 
-export function TrainWheel(props) {
+export function TrainWheel({ autoPlay, ...props }) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/models/train-wheel.glb')
   const { actions } = useAnimations(animations, group)
@@ -16,15 +16,20 @@ export function TrainWheel(props) {
 
   React.useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
-      // Play the animation
       const firstAction = Object.values(actions)[0]
       if (firstAction) {
-        firstAction.reset().play()
-        firstAction.setLoop(THREE.LoopRepeat, Infinity)
-        firstAction.timeScale = 3 // Increase speed to 3x
+        if (autoPlay) {
+          // Play the animation during autoplay
+          firstAction.reset().play()
+          firstAction.setLoop(THREE.LoopRepeat, Infinity)
+          firstAction.timeScale = 5 // Increase speed to 5x
+        } else {
+          // Stop the animation when autoplay ends
+          firstAction.stop()
+        }
       }
     }
-  }, [actions])
+  }, [actions, autoPlay])
 
   return (
     <group ref={group} {...props} dispose={null} scale={100}>
