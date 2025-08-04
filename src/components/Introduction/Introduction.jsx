@@ -25,7 +25,7 @@ const Introduction = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center z-0 p-4 md:p-0">
-      <div className="flex flex-col items-start w-full max-w-4xl">
+      <div className="flex flex-col items-start w-full max-w-4xl ">
         <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
           Introduction
         </span>

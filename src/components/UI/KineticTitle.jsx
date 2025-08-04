@@ -140,7 +140,6 @@ const KineticTitle = ({ sections, scrollProgress }) => {
     };
   }, [scrollProgress, sections]);
 
-  // Simple vertical positions (no 3D)
   const getSimplePosition = (position) => {
     const positions = {
       top: {
@@ -188,7 +187,7 @@ const KineticTitle = ({ sections, scrollProgress }) => {
 
   return (
     <div 
-      className="fixed top-20 left-1/2 -translate-x-1/2 z-50 transition-opacity duration-700 ease-out"
+      className="fixed top-1 left-1/2 -translate-x-1/2 z-50 transition-opacity duration-700 ease-out"
       style={{ 
         opacity: isScrolling ? 1 : 0
       }}

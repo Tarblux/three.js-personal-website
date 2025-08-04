@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import GitActivity from './GitActivity';
 import ProjectArticleViewer from './ProjectArticleViewer';
 
@@ -80,11 +81,11 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
     // Create imageItems array for ProjectArticleViewer
     const imageItems = project.images ? project.images.map(img => ({ type: 'image', src: img })) : [];
 
-    return (
+    const modalContent = (
         <>
             {/* Backdrop with blur effect */}
             <div 
-                className={`fixed inset-0 bg-black/5 backdrop-blur-[2px] transition-opacity duration-500 z-40
+                className={`fixed inset-0 bg-black/5 backdrop-blur-[2px] transition-opacity duration-500 z-[9990]
                     ${isClosing ? 'opacity-0' : 'opacity-100'}`}
                 onClick={handleClose}
             />
@@ -92,7 +93,7 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
             <div 
                 className={`fixed inset-4 md:left-[100px] md:top-[48px] md:right-auto md:bottom-auto 
                     md:w-[600px] md:h-[calc(100vh-100px)] w-auto h-auto bg-white/95 backdrop-blur-sm
-                    rounded-2xl shadow-lg transform-gpu flex flex-col z-50
+                    rounded-2xl shadow-lg transform-gpu flex flex-col z-[9995]
                     ${isClosing ? 'animate-fold' : 'animate-unfold'}`}
                 style={{ transformOrigin: 'center center' }}
             >
@@ -195,7 +196,7 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
             </div>
             {/* Git Activity - Hidden on mobile */}
             {renderGitActivity && (
-                <div className="hidden md:block relative z-[60]">
+                <div className="hidden md:block relative z-[9999]">
                     <GitActivity 
                         isVisible={true} 
                         project={project}
@@ -206,6 +207,9 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
             )}
         </>
     );
+
+    // Render modal content using a portal to escape the drei scroll context
+    return createPortal(modalContent, document.body);
 };
 
 export default ProjectsConstructionDetails; 

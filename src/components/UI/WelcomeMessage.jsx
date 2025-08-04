@@ -42,7 +42,7 @@ const WelcomeMessage = ({ showMessage }) => {
             
             <div className="mt-8 pt-4 border-t border-gray-200">
                 <p className="text-xs sm:text-sm text-gray-500 italic">
-                    🚂 Don't forget your return ticket to the World Wide Web!
+                     Don't forget your return ticket to the World Wide Web!
                 </p>
                 <div className="mt-4 animate-bounce">
                     <svg className="w-5 h-5 sm:w-6 sm:h-6 mx-auto text-gray-600" 

@@ -11,7 +11,6 @@ import { Leva } from 'leva'
 
 import Experience from './Experience.jsx'
 import LoadedButton from './components/UI/LoadedButton.jsx'
-import MiniMap from "./components/UI/MiniMap.jsx"
 import SkipIntroButton from './components/UI/SkipIntroButton.jsx'
 import ScrollDebug from './components/UI/ScrollDebug.jsx'
 import { AudioDebugHUD } from './components/UI/AudioDebugHUD.jsx'
@@ -19,11 +18,11 @@ import KineticTitle from './components/UI/KineticTitle.jsx'
 
 import { sections } from './data/sections.js'
 
-// --- Fun Easter Egg for Curious Developers ---
+// --- Fun Easter Egg for a Sus Developer ---
 
 const easterEgg = {
   header: [
-    'color: #F92626',
+    'color: #ff0000', 
     'background: #333',
     'font-size: 24px',
     'font-weight: bold',
@@ -33,43 +32,41 @@ const easterEgg = {
     'text-shadow: 2px 2px 4px #000000'
   ].join(';'),
   main: [
-    'color: #4CAF50',
+    'color: #00e5e5', 
     'font-size: 14px',
     'line-height: 1.6',
     'font-family: "Courier New", Courier, monospace',
   ].join(';'),
 };
 
-console.log('%cPsst... I see you!', easterEgg.header);
+console.log('%c ALERT: An Imposter Developer is Among Us!', easterEgg.header);
 console.log(
 `%c
-                 _
-    \\_     _     / )
-     \\ \\   / \\   / /
-      \\ \\ /   \\ / /
-       \\ /     \\ /
-       / \\     / \\
-      /   \\   /   \\
-     /     \\ /     \\
-    (_______V_______)
-     |             |
-     |  O       O  |
-     |      <      |
-     |             |
-     |  \\_______/  |
-     |_____________|
-        |       |
-       /         \\
-      /           \\
-     /             \\
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣿⣷⣤⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⠋⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠈⢻⣿⣿⡄⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣸⣿⡏⠀⠀⠀⣠⣶⣾⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣄⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⣿⠁⠀⠀⢰⣿⣿⣯⠁⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⣷⡄⠀
+⠀⠀⣀⣤⣴⣶⣶⣿⡟⠀⠀⠀⢸⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣷⠀
+⠀⢰⣿⡟⠋⠉⣹⣿⡇⠀⠀⠀⠘⣿⣿⣿⣿⣷⣦⣤⣤⣤⣶⣶⣶⣶⣿⣿⣿⠀
+⠀⢸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠀
+⠀⣸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠉⠻⠿⣿⣿⣿⣿⡿⠿⠿⠛⢻⣿⡇⠀⠀
+⠀⠸⣿⣧⡀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠃⠀⠀
+⠀⠀⠛⢿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⣰⣿⣿⣷⣶⣶⣶⣶⠶⠀⢠⣿⣿⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⣽⣿⡏⠁⠀⠀⢸⣿⡇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⢹⣿⡆⠀⠀⠀⣸⣿⠇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢿⣿⣦⣄⣀⣠⣴⣿⣿⠁⠀⠈⠻⣿⣿⣿⣿⡿⠏⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⠛⠻⠿⠿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 
-Well, well, well... you thought you could look at my code undetected?
-Since you're poking around in here, you're clearly curious.
+Hello there, you magnificent console-snooping developer.
+I see you, venting into the source code. That's pretty sus no ?.
 
-The source code is available on my GitHub: https://github.com/Tarblux/three.js-personal-website
-You can also ping me on LinkedIn for questions , or just let me know you found it lol: https://www.linkedin.com/in/tariq-williams12/
+Since you've completed your 'Inspect Element' task, here are your next objectives:
 
-If you found a bug, let's just call it an 'undocumented feature' for now, shall we?
+  - Check the ship's logs (source code) on GitHub: https://github.com/Tarblux/three.js-personal-website
+  - Report your findings (or just say hi) on LinkedIn: https://www.linkedin.com/in/tariq-williams12/
+
+Any bugs you find were definitely planted by the *other* imposter. I swear I was in electrical.
 `, easterEgg.main);
 
 
@@ -97,7 +94,7 @@ function Loader({ onBoardingPassClick }) {
   return (
     <div id="loader">
       <div className="loading-message">Building city...</div>
-      <video src="/videos/city-loading.mp4" autoPlay muted playsInline disablePictureInPicture className="loading-video" />
+      <video src="/videos/city-loading2.mp4" autoPlay muted playsInline disablePictureInPicture className="loading-video" />
       <div className="loading-bar-container">
         <div className="loading-bar" style={{ width: `${progress}%` }}></div>
       </div>
@@ -162,7 +159,6 @@ function App() {
         </Suspense>
       </Canvas>
       <KineticTitle sections={sections} scrollProgress={scrollProgress} />
-      {/* <MiniMap progress={scrollProgress} /> */}
       <ScrollDebug scrollProgress={scrollProgress} />
       {audioDebugData && (
         <AudioDebugHUD 

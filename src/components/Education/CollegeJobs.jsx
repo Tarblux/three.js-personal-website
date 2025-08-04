@@ -29,7 +29,7 @@ const CollegeJobs = () => {
     const volunteeringJobs = collegeJobs.slice(5);
 
     return (
-        <div className="fixed top-8 right-8 z-0">
+        <div className="absolute top-0 right-0 z-0 p-4 md:p-8">
             <div className="flex flex-col items-start">
                 <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
                     College Employment
@@ -65,7 +65,7 @@ const CollegeJobs = () => {
                                         </span>
                                     </div>
                                 </div>
-                                <div className={`transition-all duration-1000 overflow-hidden ${expandedJob === job.id || hoveredJob === job.id ? 'max-h-[200px] mt-3' : 'max-h-0'}`}>
+                                <div className={`transition-all duration-500 overflow-hidden ${expandedJob === job.id || hoveredJob === job.id ? 'max-h-[200px] mt-3' : 'max-h-0'}`}>
                                     <ul className="list-disc pl-5 space-y-1">
                                         {job.bullets && job.bullets.map((bullet, idx) => (
                                             <li key={idx} className="text-gray-700 text-xs">{bullet}</li>
@@ -112,7 +112,7 @@ const CollegeJobs = () => {
                                         </span>
                                     </div>
                                 </div>
-                                <div className={`transition-all duration-1000 overflow-hidden ${expandedJob === job.id || hoveredJob === job.id ? 'max-h-[200px] mt-3' : 'max-h-0'}`}>
+                                <div className={`transition-all duration-500 overflow-hidden ${expandedJob === job.id || hoveredJob === job.id ? 'max-h-[200px] mt-3' : 'max-h-0'}`}>
                                     <ul className="list-disc pl-5 space-y-1">
                                         {job.bullets && job.bullets.map((bullet, idx) => (
                                             <li key={idx} className="text-gray-700 text-xs">{bullet}</li>

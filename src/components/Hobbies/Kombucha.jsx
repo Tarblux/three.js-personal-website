@@ -3,7 +3,7 @@ import './jar.css';
 
 const Kombucha = () => {
     return (
-        <div className="fixed top-4 left-4 right-4 z-10 w-auto max-w-[400px] md:w-[400px] md:right-auto flex flex-col justify-center h-auto">
+        <div className="absolute top-4 left-4 right-4 z-10 w-auto max-w-[400px] md:w-[400px] md:right-auto flex flex-col justify-center h-auto">
             <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
                 Hobbies | Kombucha
             </span>

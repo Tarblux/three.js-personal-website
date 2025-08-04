@@ -25,8 +25,10 @@ import { DeferredFactoryAudio } from "./components-3d/DeferredFactoryAudio.jsx"
 import { Sky } from './components-3d/Sky.jsx'
 
 import Section from "./helpers/Section.jsx"
+import WelcomeMessage from "./components/UI/WelcomeMessage.jsx"
 import Introduction from "./components/Introduction/Introduction.jsx"
-import Career from "./components/Career/Career.jsx"
+import Flextrade from "./components/Career/Flextrade.jsx"
+import EagleMed from "./components/Career/EagleMed.jsx"
 import ProjectsOverview from "./components/Projects/ProjectsOverview.jsx"
 import ProjectsWarehouse from "./components/Projects/ProjectsWarehouse.jsx"
 import ProjectsConstruction from "./components/Projects/ProjectsConstruction.jsx"
@@ -35,14 +37,16 @@ import CollegeJobs from "./components/Education/CollegeJobs.jsx"
 import CollegeClubs from "./components/Education/CollegeClubs.jsx"
 import EducationYonsei from "./components/Education/EducationYonsei.jsx"
 import Languages from "./components/Languages/Languages.jsx"
-import LanguagesMain from "./components/Languages/LanguagesMain.jsx"
-import LanguagesBasic from "./components/Languages/LanguagesBasic.jsx"
 import FootballWatch from "./components/Hobbies/FootballWatch.jsx"
+import FootballMemories from "./components/Hobbies/FootballMemories.jsx"
 import FootballPlay from "./components/Hobbies/FootballPlay.jsx"
+import ChessPlay from "./components/Hobbies/ChessPlay.jsx"
 import ChessDashboard from "./components/Hobbies/ChessDashboard.jsx"
 import Kombucha from "./components/Hobbies/Kombucha.jsx"
+import KombuchaMenu from "./components/Hobbies/KombuchaMenu.jsx"
 import Contact from "./components/Contact/Contact.jsx"
-import WelcomeMessage from "./components/UI/WelcomeMessage.jsx"
+import Credits from "./components/Contact/Credits.jsx"
+
 
 export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress, onAudioDebugUpdate }) {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
@@ -73,18 +77,18 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           />
         </SheetProvider>
         {/* Add DeferredFactoryAudio outside of SheetProvider to avoid cloning issues */}
-        <DeferredFactoryAudio 
+        {/* <DeferredFactoryAudio 
           theatreSequence={sheet.sequence} 
           onDebugUpdate={onAudioDebugUpdate}
-        />
+        /> */}
         <Scroll html style={{ width: "100vw", height: "100vh" }}>
 
           <Section 
-            top="-10vh"
+            top="10vh"
             fadeInStart={-10}
             fadeInEnd={0}
-            fadeOutStart={10}
-            fadeOutEnd={20}
+            fadeOutStart={5}
+            fadeOutEnd={10}
           >
             <div className="flex justify-center items-center h-screen">
               <WelcomeMessage showMessage={showWelcome} />
@@ -92,9 +96,9 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
           
           <Section 
-            top="80vh"
-            fadeInStart={35}
-            fadeInEnd={45}
+            top="40vh"
+            fadeInStart={20}
+            fadeInEnd={30}
             fadeOutStart={65}
             fadeOutEnd={75}
           >
@@ -102,29 +106,39 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="160vh"
-            fadeInStart={135}
-            fadeInEnd={145}
-            fadeOutStart={155}
-            fadeOutEnd={165}
+            top="110vh"
+            fadeInStart={100}
+            fadeInEnd={110}
+            fadeOutStart={125}
+            fadeOutEnd={140}
           >
-            <Career />
+            <Flextrade />
           </Section>
 
           <Section 
-            top="330vh"
-            fadeInStart={300}
-            fadeInEnd={310}
-            fadeOutStart={320}
-            fadeOutEnd={335}
+            top="200vh"
+            fadeInStart={190}
+            fadeInEnd={195}
+            fadeOutStart={220}
+            fadeOutEnd={230}
+          >
+            <EagleMed />
+          </Section>
+
+          <Section 
+            top="280vh"
+            fadeInStart={270}
+            fadeInEnd={280}
+            fadeOutStart={310}
+            fadeOutEnd={315}
           >
             <ProjectsOverview />
           </Section>
 
           <Section 
-            top="390vh"
-            fadeInStart={380}
-            fadeInEnd={390}
+            top="350vh"
+            fadeInStart={350}
+            fadeInEnd={360}
             fadeOutStart={400}
             fadeOutEnd={410}
           >
@@ -132,30 +146,30 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="450vh"
-            fadeInStart={445}
-            fadeInEnd={465}
-            fadeOutStart={480}
-            fadeOutEnd={485}
+            top="430vh"
+            fadeInStart={440}
+            fadeInEnd={450}
+            fadeOutStart={460}
+            fadeOutEnd={470}
           >
             <ProjectsConstruction />
           </Section>
 
 
           <Section 
-            top="570vh"
-            fadeInStart={565}
-            fadeInEnd={585}
-            fadeOutStart={590}
-            fadeOutEnd={600}
+            top="540vh"
+            fadeInStart={550}
+            fadeInEnd={565}
+            fadeOutStart={570}
+            fadeOutEnd={580}
           >
             <Education />
           </Section>
 
           <Section 
-            top="610vh"
-            fadeInStart={605}
-            fadeInEnd={615}
+            top="580vh"
+            fadeInStart={590}
+            fadeInEnd={605}
             fadeOutStart={625}
             fadeOutEnd={635}
           >
@@ -163,108 +177,128 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           </Section>
 
           <Section 
-            top="670vh"
-            fadeInStart={640}
-            fadeInEnd={650}
-            fadeOutStart={660}
-            fadeOutEnd={670}
+            top="620vh"
+            fadeInStart={645}
+            fadeInEnd={655}
+            fadeOutStart={665}
+            fadeOutEnd={675}
           >
             <CollegeClubs />
           </Section>
           
           <Section 
-            top="730vh"
-            fadeInStart={700}
-            fadeInEnd={710}
-            fadeOutStart={720}
-            fadeOutEnd={730}
+            top="680vh"
+            fadeInStart={705}
+            fadeInEnd={715}
+            fadeOutStart={725}
+            fadeOutEnd={735}
           >
             <EducationYonsei />
           </Section>
 
           <Section 
-            top="790vh"
-            fadeInStart={760}
-            fadeInEnd={770}
-            fadeOutStart={780}
-            fadeOutEnd={790}
+            top="780vh"
+            fadeInStart={765}
+            fadeInEnd={775}
+            fadeOutStart={790}
+            fadeOutEnd={800}
           >
             <Languages />
           </Section>
 
           <Section 
-            top="850vh"
+            top="780vh"
             fadeInStart={815}
             fadeInEnd={825}
-            fadeOutStart={845}
-            fadeOutEnd={855}
-          >
-            <LanguagesMain />
-          </Section>
-
-          <Section 
-            top="860vh"
-            fadeInStart={870}
-            fadeInEnd={880}
-            fadeOutStart={890}
-            fadeOutEnd={900}
-          >
-            <LanguagesBasic />
-          </Section>
-
-          <Section 
-            top="920vh"
-            fadeInStart={925}
-            fadeInEnd={945}
-            fadeOutStart={965}
-            fadeOutEnd={975}
+            fadeOutStart={835}
+            fadeOutEnd={845}
           >
             <FootballWatch />
           </Section>
 
           <Section 
-            top="980vh"
-            fadeInStart={1050}
-            fadeInEnd={1065}
-            fadeOutStart={1080}
-            fadeOutEnd={1085}
+            top="925vh"
+            fadeInStart={875}
+            fadeInEnd={880}
+            fadeOutStart={900}
+            fadeOutEnd={910}
+          >
+            <FootballMemories />
+          </Section>
+
+          <Section 
+            top="910vh"
+            fadeInStart={960}
+            fadeInEnd={970}
+            fadeOutStart={980}
+            fadeOutEnd={990}
           >
             <FootballPlay />
           </Section>
 
           <Section 
-            top="1040vh"
-            fadeInStart={1115}
-            fadeInEnd={1135}
-            fadeOutStart={1155}
-            fadeOutEnd={1165}
+            top="985vh"
+            fadeInStart={1040}
+            fadeInEnd={1050}
+            fadeOutStart={1065}
+            fadeOutEnd={1075}
+          >
+            <ChessPlay />
+          </Section>
+
+          <Section 
+            top="1080vh"
+            fadeInStart={1085}
+            fadeInEnd={1095}
+            fadeOutStart={1110}
+            fadeOutEnd={1120}
           >
             <ChessDashboard />
           </Section>
 
           <Section 
-            top="1100vh"
-            fadeInStart={1210}
-            fadeInEnd={1220}
-            fadeOutStart={1230}
-            fadeOutEnd={1240}
+            top="1080vh"
+            fadeInStart={1135}
+            fadeInEnd={1145}
+            fadeOutStart={1160}
+            fadeOutEnd={1170}
           >
             <Kombucha />
           </Section>
 
           <Section 
-            top="1160vh"
-            fadeInStart={1345}
-            fadeInEnd={1350}
-            fadeOutStart={1362}
-            fadeOutEnd={1370}
+            top="1130vh"
+            fadeInStart={1190}
+            fadeInEnd={1200}
+            fadeOutStart={1220}
+            fadeOutEnd={1230}
+          >
+            <KombuchaMenu />
+          </Section>
+
+          <Section 
+            top="1200vh"
+            fadeInStart={1260}
+            fadeInEnd={1270}
+            fadeOutStart={1280}
+            fadeOutEnd={1290}
           >
             <Contact />
           </Section>
 
+          <Section 
+            top="1215vh"
+            fadeInStart={1290}
+            fadeInEnd={1300}
+            fadeOutStart={1310}
+            fadeOutEnd={1320}
+          >
+            <Credits />
+          </Section>
+
         </Scroll>
       </ScrollControls>
-      <Perf position="bottom-left" />
+      {/* <Perf position="bottom-left" /> */}
     </>
   );
 }

@@ -6,7 +6,7 @@ const FootballPlay = () => {
     const [highlightVideoSrc, setHighlightVideoSrc] = useState(null);
 
     return (
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 sm:left-4 sm:transform-none sm:translate-x-0 z-10 w-[300px] sm:w-[340px] flex flex-col justify-center h-auto">
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 sm:left-4 sm:transform-none sm:translate-x-0 z-10 w-[300px] sm:w-[340px] flex flex-col justify-center h-auto">
             <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
                 Hobbies | Football
             </span>

@@ -16,7 +16,7 @@ const CreditsSection = ({ section }) => (
 
 const Credits = () => {
   return (
-    <div className="fixed md:inset-0 inset-0 z-0 flex items-center justify-center p-2 md:p-0 min-h-screen max-h-screen overflow-y-auto">
+    <div className="absolute md:inset-0 inset-0 z-0 flex items-center justify-center p-2 md:p-0 min-h-screen max-h-screen overflow-y-auto">
       <div className="flex flex-col items-start w-full max-w-5xl mx-auto min-h-[80vh] max-h-[90vh] overflow-y-auto md:min-h-0 md:max-h-none md:overflow-visible">
         <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
           Credits & Acknowledgements

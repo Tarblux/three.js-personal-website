@@ -27,7 +27,7 @@ const FootballWatch = () => {
     };
 
     return (
-        <div className="fixed top-8 left-8 z-10 w-[340px] flex flex-col justify-center h-auto ">
+        <div className="absolute top-8 left-8 z-10 w-[340px] flex flex-col justify-center h-auto ">
             <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
                 Hobbies | Football
             </span>

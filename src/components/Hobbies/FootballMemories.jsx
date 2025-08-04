@@ -27,7 +27,7 @@ const FootballMemories = () => {
     };
 
     return (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-10 w-full max-w-4xl px-4">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 w-full max-w-4xl px-4">
             <span className="mb-2 bg-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow text-gray-500 text-xs select-none inline-block border border-white/30">
                 Favorite Moments
             </span>

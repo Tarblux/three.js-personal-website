@@ -53,7 +53,7 @@ const ProjectsDna = () => {
 
     const renderMainStrand = () => (
         <div
-            className="strand-section bg-white rounded-lg p-2 sm:p-4 transform transition-transform duration-300 hover:scale-105 w-full"
+            className="strand-section bg-white rounded-lg p-2 sm:p-4 transform transition-transform duration-300 hover:scale-[1.03] w-full"
             onMouseEnter={() => setHoveredStrand("main")}
             onMouseLeave={() => {
                 setHoveredStrand(null);
@@ -63,7 +63,7 @@ const ProjectsDna = () => {
         >
             <h4 className="text-sm sm:text-lg font-semibold mb-1">Main Strand</h4>
             <p className="text-gray-600 text-xs mb-2 sm:mb-4">
-                Languages I use the most in my projects—comfortable enough with these to get by without constantly googling.
+                Languages I use the most in my projects. I'm comfortable enough with these to get by without constantly googling.
             </p>
             <div className="flex items-center justify-center w-full overflow-visible">
                 <div className="flex items-center gap-2 sm:gap-4 overflow-visible">
@@ -104,7 +104,7 @@ const ProjectsDna = () => {
 
     const renderSecondaryStrand = () => (
         <div
-            className="strand-section bg-white rounded-lg p-2 sm:p-4 transform transition-transform duration-300 hover:scale-105"
+            className="strand-section bg-white rounded-lg p-2 sm:p-4 transform transition-transform duration-300 hover:scale-[1.03]"
             onMouseEnter={() => setHoveredStrand("secondary")}
             onMouseLeave={() => {
                 setHoveredStrand(null);

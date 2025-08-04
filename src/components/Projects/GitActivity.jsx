@@ -23,7 +23,7 @@ const extractRepoNameFromGithubUrl = (githubUrl) => {
 
 // Custom component for the gradient line
 const GradientLine = (props) => {
-  const { d, ...other } = props;
+  const { d, skipAnimation, ownerState, ...other } = props;
   return (
     <>
       <defs>
@@ -39,7 +39,7 @@ const GradientLine = (props) => {
 
 // Custom component for the gradient area
 const GradientArea = (props) => {
-  const { d, ...other } = props;
+  const { d, skipAnimation, ownerState, ...other } = props;
   return (
     <>
       <defs>
@@ -64,31 +64,19 @@ const GitActivity = ({
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Early return if not visible , not sure if this even improves performance
-    if (!isVisible) return null;
 
-    
     const repoName = project?.github 
         ? extractRepoNameFromGithubUrl(project.github) 
         : repo || "three.js-personal-website";
     
-    
-    if (project && !project.github) {
-        return null;
-    }
-
-    // If no repo name could be determined, don't show the component
-    if (!repoName) {
-        return null;
-    }
-      
     const API_BASE_URL = process.env.NODE_ENV === 'development' 
         ? 'http://localhost:3000' 
         : 'https://threejs-backend.tariqwill.com';
 
     useEffect(() => {
         const fetchGitData = async () => {
-            if (!repoName) {
+            // Don't fetch if no repo name or if project has no github
+            if (!repoName || (project && !project.github)) {
                 setLoading(false);
                 return;
             }
@@ -111,11 +99,22 @@ const GitActivity = ({
         };
 
         fetchGitData();
-    }, [API_BASE_URL, repoName]);
+    }, [API_BASE_URL, repoName, project?.github]);
 
     const getFallbackData = (repoName) => {
         return GIT_FALLBACK_DATA[repoName] || GIT_FALLBACK_DATA["three.js-personal-website"];
     };
+
+    if (!isVisible) return null;
+    
+    if (project && !project.github) {
+        return null;
+    }
+
+    // If no repo name could be determined, don't show the component
+    if (!repoName) {
+        return null;
+    }
 
     // Use real data if available, otherwise fallback
     const currentData = gitData || getFallbackData(repoName);
@@ -232,8 +231,8 @@ const GitActivity = ({
                                     </div>
                                 ))
                             ) : (
-                                recentCommits.slice(0, 3).map((commit) => (
-                                    <div key={commit.sha} className="flex items-start gap-2.5 relative">
+                                recentCommits.slice(0, 3).map((commit, index) => (
+                                    <div key={commit.sha || `commit-${index}`} className="flex items-start gap-2.5 relative">
                                         {/* Bullet point - sits on top of the line */}
                                         <div className="w-[8px] h-[8px] bg-gray-500 rounded-[40%] flex-shrink-0 mt-1 z-10"></div>
                                         
@@ -265,7 +264,7 @@ const GitActivity = ({
                             <div className="flex h-2 bg-gray-200 rounded-full overflow-hidden">
                                 {languages.map((language, index) => (
                                     <div
-                                        key={index}
+                                        key={`${language.name}-${index}`}
                                         className="h-full transition-all duration-500 ease-out"
                                         style={{
                                             width: `${language.percentage}%`,
@@ -290,7 +289,7 @@ const GitActivity = ({
                             ))
                         ) : (
                             languages.map((language, index) => (
-                                <div key={index} className="flex items-center gap-2">
+                                <div key={`${language.name}-list-${index}`} className="flex items-center gap-2">
                                     <div
                                         className="w-[5px] h-[5px] rounded-full flex-shrink-0"
                                         style={{ backgroundColor: language.color }}
