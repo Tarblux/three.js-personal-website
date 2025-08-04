@@ -159,7 +159,7 @@ function App() {
         </Suspense>
       </Canvas>
       <KineticTitle sections={sections} scrollProgress={scrollProgress} />
-      <ScrollDebug scrollProgress={scrollProgress} />
+      {/* <ScrollDebug scrollProgress={scrollProgress} /> */}
       {audioDebugData && (
         <AudioDebugHUD 
           {...audioDebugData}

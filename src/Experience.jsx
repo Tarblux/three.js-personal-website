@@ -77,14 +77,14 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           />
         </SheetProvider>
         {/* Add DeferredFactoryAudio outside of SheetProvider to avoid cloning issues */}
-        {/* <DeferredFactoryAudio 
+        <DeferredFactoryAudio 
           theatreSequence={sheet.sequence} 
           onDebugUpdate={onAudioDebugUpdate}
-        /> */}
+        />
         <Scroll html style={{ width: "100vw", height: "100vh" }}>
 
           <Section 
-            top="10vh"
+            top="5vh"
             fadeInStart={-10}
             fadeInEnd={0}
             fadeOutStart={5}
@@ -298,7 +298,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
 
         </Scroll>
       </ScrollControls>
-      {/* <Perf position="bottom-left" /> */}
+      <Perf position="bottom-left" />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import './Photodeck.css';
 
 const deckImages = [
@@ -47,6 +48,19 @@ const Photodeck = () => {
     }, 300);
   };
 
+  // Modal content
+  const modalContent = selected !== null && (
+    <>
+      <div className="fixed inset-0 z-[999] backdrop-blur-md"></div>
+      <div className="photodeck-modal" onClick={handleCloseModal}>
+        <div className={`photodeck-modal-content no-bg ${isClosing ? 'animate-modalOut' : 'animate-modalIn'}`}>
+          <img src={modalImages[selected].src} alt={`Korea ${selected + 1}`} className="photodeck-modal-img" />
+          <button className="photodeck-modal-close" onClick={handleCloseButton}>&times;</button>
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <>
       <div className="photodeck-container">
@@ -57,17 +71,9 @@ const Photodeck = () => {
           </div>
         ))}
       </div>
-      {selected !== null && (
-        <>
-          <div className="fixed inset-0 z-[999] backdrop-blur-md"></div>
-          <div className="photodeck-modal" onClick={handleCloseModal}>
-            <div className={`photodeck-modal-content no-bg ${isClosing ? 'animate-modalOut' : 'animate-modalIn'}`}>
-              <img src={modalImages[selected].src} alt={`Korea ${selected + 1}`} className="photodeck-modal-img" />
-              <button className="photodeck-modal-close" onClick={handleCloseButton}>&times;</button>
-            </div>
-          </div>
-        </>
-      )}
+      
+      {/* Render modal using portal to escape scroll container constraints */}
+      {modalContent && createPortal(modalContent, document.body)}
     </>
   );
 };
