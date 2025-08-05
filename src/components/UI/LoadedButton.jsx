@@ -54,11 +54,6 @@ const LoadedButton = ({ onBoardingPassClick }) => {
           onClick={handleBoardingPassClick}
           className={`boarding-pass ${isPrinting ? "printing" : ""} ${!printingComplete ? "pointer-events-none" : "cursor-pointer"}`}
         />
-        {printingComplete && (
-          <div className={`text-white text-lg opacity-100 text-center message ${printingComplete ? "printing" : ""}`}>
-            Headphones recommended 🎧<br />
-          </div>
-        )}
       </div>
     </div>
   );

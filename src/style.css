@@ -182,23 +182,11 @@ body,
   opacity: 0;
   font-size: 19px;
   font-weight: bold;
+  display: none;
 }
 
 .message.printing {
-  animation: messageAppear 1s ease forwards,
-             glowAndBob 6s ease-in-out 3s infinite alternate;
-  animation-delay: 3s, 4s;
-}
-
-@keyframes messageAppear {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: none;
 }
 
 /* Tabbed Navigation Styles */

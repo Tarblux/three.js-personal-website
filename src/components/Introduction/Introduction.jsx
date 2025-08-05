@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import LocationCard from "./LocationCard";
 import FavoriteBooksCard from "./FavoriteBooksCard";
@@ -6,10 +6,25 @@ import IntroCard from "./IntroCard";
 import EducationCard from "./EducationCard";
 import ResumeCard from "./ResumeCard";
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false); // 768px for md
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isMobile;
+};
+
 const Introduction = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
   const [isBookModalOpen, setIsBookModalOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleImageClick = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -30,11 +45,11 @@ const Introduction = () => {
       className="fixed inset-0 bg-black/75 flex items-center justify-center z-[9999] p-4"
       onClick={handleCloseModal}
     >
-      <div className="relative flex flex-col items-center gap-4 w-full max-w-md" onClick={(e) => e.stopPropagation()}>
+      <div className="relative flex flex-col items-center gap-4 w-full max-w-2xl" onClick={(e) => e.stopPropagation()}>
         <img
           src="/images/Introduction/resume-thumbnail.webp"
           alt="Resume Full"
-          className="max-w-full max-h-[70vh] rounded shadow-lg object-contain"
+          className="rounded shadow-lg object-contain w-[700px] max-h-[90vh]"
         />
         <a
           href="/docs/Tariq-Williams-Resume.pdf"
@@ -71,7 +86,6 @@ const Introduction = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        
         <div className="w-full md:w-1/3 flex-shrink-0 flex items-start justify-center">
           <img
             src={selectedBook.cover}
@@ -103,34 +117,33 @@ const Introduction = () => {
   return (
     <>
       <div className="min-h-screen flex items-center justify-center z-0 p-4 md:p-0">
-        <div className="flex flex-col items-start w-full max-w-4xl ">
+        <div className="flex flex-col items-start w-full max-w-5xl ">
           <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
             Introduction
           </span>
           {/* Glassmorphic Container */}
           <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 w-full border border-white/30">
-            {/* Mobile: Stack cards vertically */}
-            <div className="md:hidden flex flex-col gap-4">
-              <IntroCard />
-              <EducationCard />
-              <ResumeCard onImageClick={handleImageClick} />
-              {/* LocationCard is hidden on mobile */}
-              {/* <LocationCard /> */}
-              <FavoriteBooksCard onBookClick={handleBookClick} />
-            </div>
-            
-            {/* Desktop: Use original grid layout */}
-            <div className="hidden md:grid md:grid-cols-12 gap-3 auto-rows-auto max-h-[600px]">
-              <IntroCard />
-              <LocationCard />
-              <FavoriteBooksCard onBookClick={handleBookClick} />
-              <EducationCard />
-              <ResumeCard onImageClick={handleImageClick} />
-            </div>
+            {isMobile ? (
+              <div className="flex flex-col gap-4">
+                <IntroCard />
+                <EducationCard />
+                <ResumeCard onImageClick={handleImageClick} />
+                {/* LocationCard is hidden on mobile */}
+                {/* <LocationCard /> */}
+                <FavoriteBooksCard onBookClick={handleBookClick} />
+              </div>
+            ) : (
+              <div className="grid grid-cols-12 gap-3 auto-rows-auto max-h-[600px]">
+                <IntroCard />
+                <LocationCard />
+                <FavoriteBooksCard onBookClick={handleBookClick} />
+                <EducationCard />
+                <ResumeCard onImageClick={handleImageClick} />
+              </div>
+            )}
           </div>
         </div>
       </div>
-
       {/* Render modals using portals to escape scroll container constraints */}
       {resumeModalContent && createPortal(resumeModalContent, document.body)}
       {booksModalContent && createPortal(booksModalContent, document.body)}

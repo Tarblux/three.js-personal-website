@@ -9,12 +9,12 @@ const IntroCard = () => {
       {/* This fixes the clipping issues in Safari and Firefox with rounded containers */}
       <div className="absolute top-[calc(0.75rem-52px)] left-[calc(50%-6.5rem)] z-20">
         {/* Gray background square */}
-        <div className="absolute top-[52px] left-3 w-[182px] h-[182px] bg-gray-200 rounded-2xl z-0"></div>
+        <div className="absolute top-[52px] left-3 w-[192px] h-[192px] bg-gray-200 rounded-2xl z-0"></div>
         {/* Profile image */}
         <img
           src="/images/Contact/profile-pic-contact.webp"
           alt="Profile"
-          className="w-[250px] h-[250px] object-cover rounded-2xl z-10 -left-5 relative overflow-visible"
+          className="w-[290px] h-[290px] object-cover rounded-2xl z-10 -left-6 bottom-[29px] relative overflow-visible"
         />
       </div>
 

@@ -66,7 +66,7 @@ const ProjectsDna = () => {
                 Languages I use the most in my projects. I'm comfortable enough with these to get by without constantly googling.
             </p>
             <div className="flex items-center justify-center w-full overflow-visible">
-                <div className="flex items-center gap-2 sm:gap-4 overflow-visible">
+                <div className="flex items-center overflow-visible">
                     <div 
                         className="flex flex-col items-center transition-transform duration-300 overflow-visible"
                         onMouseEnter={() => setHoveredLanguage("python")}
@@ -75,7 +75,7 @@ const ProjectsDna = () => {
                         <img 
                             src="/images/Projects/DNA/Py.webp" 
                             alt="Python" 
-                            className={`w-16 h-16 sm:w-[128px] sm:h-[128px] transition-all duration-300 ${getLanguageOpacityClass('python')} ${getLanguageScaleClass('python')}`} 
+                            className={`w-16 h-16 sm:w-[100px] sm:h-[100px] transition-all duration-300 ${getLanguageOpacityClass('python')} ${getLanguageScaleClass('python')}`} 
                         />
                         <div className="flex items-center mt-1 sm:mt-2">
                             <div className={`language-pattern pattern-python transition-opacity duration-300 ${getLanguageOpacityClass('python')}`}></div>
@@ -90,7 +90,7 @@ const ProjectsDna = () => {
                         <img 
                             src="/images/Projects/DNA/TS.webp" 
                             alt="TypeScript" 
-                            className={`w-24 h-16 sm:w-[190px] sm:h-[128px] transition-all duration-300 ${getLanguageOpacityClass('typescript')} ${getLanguageScaleClass('typescript')}`} 
+                            className={`w-24 h-16 sm:w-[172px] sm:h-[100px] transition-all duration-300 ${getLanguageOpacityClass('typescript')} ${getLanguageScaleClass('typescript')}`} 
                         />
                         <div className="flex items-center mt-1 sm:mt-2">
                             <div className={`language-pattern pattern-typescript transition-opacity duration-300 ${getLanguageOpacityClass('typescript')}`}></div>
@@ -117,7 +117,7 @@ const ProjectsDna = () => {
                 A chaotic mix of things I understand, stuff I'm still learning, and moments where I just nod, smile, and pray no one asks follow-up questions.
             </p>
             <div className="flex items-center justify-center w-full overflow-visible">
-                <div className="flex items-center gap-1 sm:gap-2 overflow-visible">
+                <div className="flex items-center overflow-visible">
                     <div 
                         className="flex flex-col items-center transition-transform duration-300 overflow-visible"
                         onMouseEnter={() => setHoveredLanguage("scala")}
@@ -126,7 +126,7 @@ const ProjectsDna = () => {
                         <img 
                             src="/images/Projects/DNA/Scala.webp" 
                             alt="Scala" 
-                            className={`w-16 h-16 sm:w-[128px] sm:h-[128px] transition-all duration-300 ${getLanguageOpacityClass('scala')} ${getLanguageScaleClass('scala')}`} 
+                            className={`w-16 h-16 sm:w-[100px] sm:h-[100px] transition-all duration-300 ${getLanguageOpacityClass('scala')} ${getLanguageScaleClass('scala')}`} 
                         />
                         <div className="flex items-center mt-1 sm:mt-2">
                             <div className={`language-pattern pattern-scala transition-opacity duration-300 ${getLanguageOpacityClass('scala')}`}></div>
@@ -141,7 +141,7 @@ const ProjectsDna = () => {
                         <img 
                             src="/images/Projects/DNA/Rust.webp" 
                             alt="Rust" 
-                            className={`w-12 h-16 sm:w-[100px] sm:h-[128px] transition-all duration-300 ${getLanguageOpacityClass('rust')} ${getLanguageScaleClass('rust')}`} 
+                            className={`w-12 h-16 sm:w-[100px] sm:h-[100px] transition-all duration-300 ${getLanguageOpacityClass('rust')} ${getLanguageScaleClass('rust')}`} 
                         />
                         <div className="flex items-center mt-1 sm:mt-2">
                             <div className={`language-pattern pattern-rust transition-opacity duration-300 ${getLanguageOpacityClass('rust')}`}></div>
@@ -157,7 +157,7 @@ const ProjectsDna = () => {
                         <img 
                             src="/images/Projects/DNA/C++.webp" 
                             alt="C++" 
-                            className={`w-8 h-16 sm:w-[58px] sm:h-[128px] transition-all duration-300 ${getLanguageOpacityClass('cpp')} ${getLanguageScaleClass('cpp')}`} 
+                            className={`w-8 h-16 sm:w-[58px] sm:h-[100px] transition-all duration-300 ${getLanguageOpacityClass('cpp')} ${getLanguageScaleClass('cpp')}`} 
                         />
                         <div className="flex items-center mt-1 sm:mt-2">
                             <div className={`language-pattern pattern-cpp transition-opacity duration-300 ${getLanguageOpacityClass('cpp')}`}></div>

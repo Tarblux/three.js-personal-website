@@ -12,7 +12,6 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
   const audioRef = useRef(null)
   const listenerRef = useRef(null)
   
-  // Get Leva controls
   const {
     volume,
     refDistance,

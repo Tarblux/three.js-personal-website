@@ -61,7 +61,7 @@ const FootballPlay = () => {
                     {/* Pitch and tags row */}
                     <div className="flex flex-row items-center w-full justify-between sm:items-start sm:justify-start">
                         {/* Pitch image */}
-                        <div className="relative w-[120px] h-[120px] sm:w-[180px] sm:h-[180px] flex items-center justify-start ml-2 sm:ml-6">
+                        <div className="relative w-[120px] h-[120px] sm:w-[120px] sm:h-[130px] flex items-center justify-start ml-2 sm:ml-6">
                             <img
                                 src="/images/Hobbies/hobbies-football-pitch.webp"
                                 alt="Football Pitch"

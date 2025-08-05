@@ -20,9 +20,9 @@ export function useFactoryAudioControls() {
       "Audio Properties": folder(
         {
           volume: {
-            value: 1,
+            value: 2,
             min: 0,
-            max: 2,
+            max: 3,
             step: 0.1,
             label: "Volume",
           },
