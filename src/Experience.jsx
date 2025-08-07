@@ -7,7 +7,7 @@ import { Perf } from "r3f-perf"
 import { SheetProvider, PerspectiveCamera as TheatrePerspectiveCamera, useCurrentSheet, editable as e} from "@theatre/r3f"
 
 import CameraPath from "./Main Frame.theatre-project-state.json"
-import { Landscape } from './components-3d/Landscape.jsx'
+import { NewLandscape } from './components-3d/NewLandscape.jsx'
 import { ProjectLabs } from './components-3d/ProjectLabs.jsx'
 import { LandscapeProps} from './components-3d/LandscapeProps.jsx'
 import { Campus } from './components-3d/Campus.jsx'
@@ -148,7 +148,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   return (
     <>
       <Sky />
-      <Landscape castShadow receiveShadow />
+      <NewLandscape castShadow receiveShadow />
       <ProjectLabs castShadow receiveShadow />
       <LandscapeProps castShadow receiveShadow />
       <Campus castShadow receiveShadow />
