@@ -29,12 +29,16 @@ export default function Section({ top, fadeInStart, fadeInEnd, fadeOutStart, fad
         return 1
     }
 
+    const opacity = calculateOpacity()
+    const isActive = opacity > 0.75 // Threshold for considering section "active"
+
     return (
         <div
             className="absolute left-0 right-0 flex justify-center transition-opacity duration-300"
             style={{
                 top: top,
-                opacity: calculateOpacity()
+                opacity: opacity,
+                pointerEvents: isActive ? 'auto' : 'none'
             }}
         >
             {children}

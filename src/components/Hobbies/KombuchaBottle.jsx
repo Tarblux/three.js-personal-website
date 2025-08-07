@@ -121,10 +121,10 @@ const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidCol
         </div>
         {/* Details Section */}
         <div className="flex flex-col items-start mt-2">
-          <div className="flex items-center mb-1">
-            <span className="font-bold font-fredoka text-black text-md leading-tight mr-1">{title}</span>
-            <span className="font-bold rounded-md px-1 py-1 text-sm ml-2" style={{ fontSize: '0.7rem', background: priceColor, color: '#fff' }}> $ {price} </span>
-          </div>
+                      <div className="flex items-center mb-1">
+              <span className="font-bold font-fredoka text-black text-md leading-tight mr-1" style={{ whiteSpace: 'pre-line' }}>{title}</span>
+              <span className="font-bold rounded-md px-1 py-1 text-sm ml-2" style={{ fontSize: '0.7rem', background: priceColor, color: '#fff' }}> $ {price} </span>
+            </div>
           <div className="mt-2 flex flex-col gap-1">
             {Array.isArray(ingredients) && ingredients.map((ingredient, idx) => (
               <span key={idx} className="flex items-start text-black font-semibold text-sm leading-tight">
