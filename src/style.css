@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@keyframes kineticTextGlow {
+  0% { text-shadow: 0 0 0 rgba(255,255,255,0); }
+  35% { text-shadow: 0 0 2px rgba(255,255,255,0.7), 0 0 6px rgba(255,255,255,0.7), 0 0 12px rgba(255,255,255,0.6); }
+  100% { text-shadow: 0 0 0 rgba(255,255,255,0); }
+}
+
 @font-face {
     font-family: 'Pacifico';
     src: url('../public/fonts/pacifico/Pacifico-Regular.ttf') format('truetype');

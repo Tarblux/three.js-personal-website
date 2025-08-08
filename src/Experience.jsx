@@ -25,6 +25,8 @@ import { DeferredFactoryAudio } from "./components-3d/DeferredFactoryAudio.jsx"
 import { Sky } from './components-3d/Sky.jsx'
 
 import ScrollSections from "./ScrollSections.jsx"
+import FreezeManager from './components/UI/FreezeManager.jsx'
+import { FREEZE_POINTS } from './data/sections.js'
 
 
 export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress, onAudioDebugUpdate }) {
@@ -55,6 +57,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             onScrollProgress = {onScrollProgress}
           />
         </SheetProvider>
+        <FreezeManager points={FREEZE_POINTS} active={!disableScroll && !autoPlay} />
         {/* Add DeferredFactoryAudio outside of SheetProvider to avoid cloning issues */}
         <DeferredFactoryAudio 
           theatreSequence={sheet.sequence} 

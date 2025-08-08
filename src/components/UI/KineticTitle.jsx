@@ -185,9 +185,22 @@ const KineticTitle = ({ sections, scrollProgress }) => {
     return nextIndex < sections.length ? sections[nextIndex] : null;
   };
 
+  // Listen for freeze-lock events to trigger a brief glow
+  const [glow, setGlow] = useState(false);
+  const glowTimeoutRef = useRef(null);
+  useEffect(() => {
+    const onFreeze = () => {
+      setGlow(true);
+      if (glowTimeoutRef.current) clearTimeout(glowTimeoutRef.current);
+      glowTimeoutRef.current = setTimeout(() => setGlow(false), 600);
+    };
+    window.addEventListener('freeze-lock', onFreeze);
+    return () => window.removeEventListener('freeze-lock', onFreeze);
+  }, []);
+
   return (
     <div 
-      className="fixed top-1 left-1/2 -translate-x-1/2 z-50 transition-opacity duration-700 ease-out"
+      className={`fixed top-1 left-1/2 -translate-x-1/2 z-50 transition-opacity duration-700 ease-out`}
       style={{ 
         opacity: isScrolling ? 1 : 0
       }}
@@ -237,7 +250,11 @@ const KineticTitle = ({ sections, scrollProgress }) => {
                   })()
                 }}
               >
-                <span className="font-bold text-5xl">{getCurrentSection().title}</span>
+                <span 
+                  className={`font-bold text-5xl ${glow ? 'animate-[kineticTextGlow_600ms_ease-out]' : ''}`}
+                >
+                  {getCurrentSection().title}
+                </span>
               </div>
             </div>
           </div>
