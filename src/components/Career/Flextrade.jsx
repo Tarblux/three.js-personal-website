@@ -54,24 +54,33 @@ const Flextrade = () => {
                                     <div className="flex items-start gap-2 text-gray-700 text-xs">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
-                                            Develop features for a Python-based calculation service 
-                                            used to deliver risk analytics and financial computations 
-                                            within the Order Management System (OMS)
+                                            Develop features for a <b>Python-based calculation service </b> 
+                                            used to deliver <b>risk analytics</b> and financial computations 
+                                            within the <b>Order Management System (OMS)</b>
                                         </span>
                                     </div>
                                     <div className="flex items-start gap-2 text-gray-700 text-xs">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
-                                            Build and maintain gRPC API routines enabling
+                                            Build and maintain <b>gRPC API</b> routines enabling
                                             seamless integration of calculation results into the
-                                            main OMS backend
+                                            main <b>OMS backend</b>
                                         </span>
                                     </div>
                                     <div className="flex items-start gap-2 text-gray-700 text-xs">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
-                                            Write unit tests for calculation workflows to ensure
+                                            Write <b>unit tests</b> for calculation workflows to ensure
                                             accuracy and reliability of all calculations
+                                        </span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-gray-700 text-xs">
+                                        <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
+                                        <span>
+                                            Optimize <b>calculation service performance</b> by profiling 
+                                            bottlenecks, fine-tuning <b>serialization buffers</b>, 
+                                            and reducing <b>memory footprint</b> to improve <b>throughput </b> 
+                                            and <b>latency</b> of high volume calculations
                                         </span>
                                     </div>
                                 </div>

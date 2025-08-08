@@ -51,6 +51,19 @@ const ProjectsDna = () => {
         return language === hoveredLanguage ? 'scale-110' : '';
     };
 
+    const getRainbowTextClass = () => {
+        if (hoveredLanguage) {
+            return `rainbow-text ${hoveredLanguage}-gradient`;
+        }
+        if (hoveredStrand === "main") {
+            return 'rainbow-text main-strand-gradient';
+        }
+        if (hoveredStrand === "secondary") {
+            return 'rainbow-text secondary-strand-gradient';
+        }
+        return 'rainbow-text';
+    };
+
     const renderMainStrand = () => (
         <div
             className="strand-section bg-white rounded-lg p-2 sm:p-4 transform transition-transform duration-300 hover:scale-[1.03] w-full"
@@ -171,7 +184,9 @@ const ProjectsDna = () => {
 
     const renderDNA = () => (
         <div className="flex flex-col justify-center items-center py-4 sm:py-6">
-            <h3 className="text-white text-xs sm:text-sm font-medium text-center mb-4 sm:mb-6">Projects DNA</h3>
+            <span className="mb-4 sm:mb-6 bg-[#f0f0f0] rounded-lg text-xs sm:text-sm font-semibold px-3 py-0.5 shadow-[inset_0_1px_0_0_#f4f4f4,0_1px_0_0_#efefef,0_2px_0_0_#ececec,0_4px_0_0_#e0e0e0,0_5px_0_0_#dedede,0_6px_0_0_#dcdcdc,0_7px_0_0_#cacaca,0_7px_8px_0_#cecece] inline-block text-center w-fit">
+                <span className={getRainbowTextClass()}>Projects DNA</span>
+            </span>
             <div
                 className="flex items-center justify-center"
                 style={{ 
@@ -204,7 +219,9 @@ const ProjectsDna = () => {
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
                     {/* DNA Animation */}
                     <div className="w-full sm:w-1/3 flex flex-col justify-center">
-                        <h3 className="text-white text-sm sm:text-md font-medium text-center mb-6 sm:mb-12">Projects DNA</h3>
+                        <span className="mb-6 sm:mb-12 ml-7 bg-[#f0f0f0] rounded-lg text-sm sm:text-md font-semibold px-3 py-0.5 shadow-[inset_0_1px_0_0_#f4f4f4,0_1px_0_0_#efefef,0_2px_0_0_#ececec,0_4px_0_0_#e0e0e0,0_5px_0_0_#dedede,0_6px_0_0_#dcdcdc,0_7px_0_0_#cacaca,0_7px_8px_0_#cecece] inline-block text-center w-fit">
+                            <span className={getRainbowTextClass()}>Projects DNA</span>
+                        </span>
                         <div
                             className="flex items-center justify-center"
                             style={{ '--uib-size': '250px', '--uib-speed': '6s' }}

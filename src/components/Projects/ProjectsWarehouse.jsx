@@ -150,8 +150,8 @@ const ProjectsWarehouse = () => {
                                     <button
                                         key={i}
                                         onClick={() => setCurrentPage(i)}
-                                        className={`h-1.5 w-1.5 rounded-full transition-all duration-300 hover:bg-gray-600 cursor-pointer
-                                            ${currentPage === i ? 'bg-blue-800 w-4' : 'bg-gray-300'}`}
+                                        className={`h-2 w-3 rounded-full transition-all duration-300 hover:bg-gray-600 cursor-pointer
+                                            ${currentPage === i ? 'bg-blue-800 w-6' : 'bg-gray-300'}`}
                                     />
                                 ))}
                             </div>

@@ -25,6 +25,23 @@ const FootballAnalyticsArticle = ({ project }) => {
           I've also been discussing it with one of my coworkers, who writes a sports blog, which has made the process more fun and collaborative.
         </p>
       </TextBlock>
+      <TextBlock title="Related Documents" color="red">
+        <a 
+          href="https://docs.google.com/document/d/1EWUXeGCRgpwjbHdOTSlT9PmQ9n8DeUIu0QbsqkjPNGg/edit?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center space-x-2 p-2 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200 hover:border-gray-300"
+        >
+          <img 
+            src="/icons/docx-doc.svg" 
+            alt="PDF Icon" 
+            className="w-6 h-6"
+          />
+          <span className="text-blue-400 hover:text-blue-600 font-medium">
+            Football Aisight Design Document
+          </span>
+        </a>
+      </TextBlock>
     </div>
   );
 };

@@ -217,8 +217,8 @@ const CreoleLinguisticsArticle = () => {
             rel="noopener noreferrer" 
             className="flex items-center space-x-2 p-3 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200 hover:border-gray-300"
           >
-            <img src="/icons/pdf.svg" alt="PDF Icon" className="w-6 h-6" />
-            <span className="text-blue-600 hover:text-blue-800 font-medium text-sm">
+            <img src="/icons/pdf-doc.svg" alt="PDF Icon" className="w-6 h-6" />
+            <span className="text-red-400 hover:text-red-800 font-medium text-sm">
               Tariq Williams - Creole Linguistics Analysis.pdf
             </span>
           </a>
@@ -228,8 +228,8 @@ const CreoleLinguisticsArticle = () => {
             rel="noopener noreferrer" 
             className="flex items-center space-x-2 p-3 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200 hover:border-gray-300"
           >
-            <img src="/icons/pdf.svg" alt="PDF Icon" className="w-6 h-6" />
-            <span className="text-blue-600 hover:text-blue-800 font-medium text-sm">
+            <img src="/icons/pdf-doc.svg" alt="PDF Icon" className="w-6 h-6" />
+            <span className="text-red-400 hover:text-red-800 font-medium text-sm">
               Independent Study Proposal.pdf
             </span>
           </a>
@@ -239,7 +239,7 @@ const CreoleLinguisticsArticle = () => {
             rel="noopener noreferrer" 
             className="flex items-center space-x-2 p-3 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200 hover:border-gray-300"
           >
-            <img src="/icons/excel.svg" alt="Excel Icon" className="w-6 h-6" />
+            <img src="/icons/xls-doc.svg" alt="Excel Icon" className="w-6 h-6" />
             <span className="text-green-600 hover:text-green-800 font-medium text-sm">
               Main_Lyrics_Data.xlsx
             </span>
@@ -250,7 +250,7 @@ const CreoleLinguisticsArticle = () => {
             rel="noopener noreferrer" 
             className="flex items-center space-x-2 p-3 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200 hover:border-gray-300"
           >
-            <img src="/icons/excel.svg" alt="Excel Icon" className="w-6 h-6" />
+            <img src="/icons/xls-doc.svg" alt="Excel Icon" className="w-6 h-6" />
             <span className="text-green-600 hover:text-green-800 font-medium text-sm">
               word_freq_analysis.xlsx
             </span>
@@ -261,7 +261,7 @@ const CreoleLinguisticsArticle = () => {
             rel="noopener noreferrer" 
             className="flex items-center space-x-2 p-3 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200 hover:border-gray-300"
           >
-            <img src="/icons/excel.svg" alt="Excel Icon" className="w-6 h-6" />
+            <img src="/icons/xls-doc.svg" alt="Excel Icon" className="w-6 h-6" />
             <span className="text-green-600 hover:text-green-800 font-medium text-sm">
               word_counts.xlsx
             </span>

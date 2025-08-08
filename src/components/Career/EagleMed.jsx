@@ -39,22 +39,22 @@ const EagleMed = () => {
                                     <div className="flex items-start gap-2 text-gray-700 text-xs">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
-                                            Compiled blood and urine analysis data such as CBC,
-                                            Urinalysis, and metabolic panels in Microsoft Excel
+                                             <b> Compiled blood and urine analysis data</b> such as CBC,
+                                            Urinalysis, and metabolic panels in <b>Microsoft Excel</b>
                                         </span>
                                     </div>
                                     <div className="flex items-start gap-2 text-gray-700 text-xs">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
-                                            Migrated the companies sample inventory database
-                                            from Microsoft access to SQL
+                                            Migrated the companies <b>sample inventory database </b>
+                                            from <b>Microsoft Access</b> to <b>SQL</b>
                                         </span>
                                     </div>
                                     <div className="flex items-start gap-2 text-gray-700 text-xs">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
-                                            Provided weekly reports on trends in data
-                                            using R studio for data visualization
+                                            Provided <b>weekly reports</b> on trends in data
+                                            using <b>R Studio</b> for <b>data visualization</b>
                                         </span>
                                     </div>
                                 </div>

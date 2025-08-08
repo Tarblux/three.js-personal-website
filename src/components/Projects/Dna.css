@@ -597,4 +597,121 @@
   .highlight-cpp:not(.dim-secondary) .slice:nth-child(12)::before {
     background-color: #ff66c4;
   }
+
+  /* Rainbow gradient text for Projects DNA heading */
+  .rainbow-text {
+    background: linear-gradient(
+      90deg,
+      #866ee7,
+      #ea60da,
+      #ed8f57,
+      #DFB600,
+      #2cca91
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: background 0.3s ease;
+    display: inline-block;
+  }
+
+  /* Gradient states for different language hovers */
+  .rainbow-text.python-gradient {
+    background: linear-gradient(
+      90deg,
+      #5e17eb,
+      #7c3aed,
+      #8b5cf6,
+      #a855f7,
+      #c084fc
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .rainbow-text.typescript-gradient {
+    background: linear-gradient(
+      90deg,
+      #004aad,
+      #1e40af,
+      #3b82f6,
+      #60a5fa,
+      #93c5fd
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .rainbow-text.scala-gradient {
+    background: linear-gradient(
+      90deg,
+      #e1160b,
+      #dc2626,
+      #ef4444,
+      #f87171,
+      #fca5a5
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .rainbow-text.rust-gradient {
+    background: linear-gradient(
+      90deg,
+      #ff9f63,
+      #f97316,
+      #ea580c,
+      #c2410c,
+      #9a3412
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .rainbow-text.cpp-gradient {
+    background: linear-gradient(
+      90deg,
+      #ff66c4,
+      #ec4899,
+      #db2777,
+      #be185d,
+      #9d174d
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Strand-level gradients */
+  .rainbow-text.main-strand-gradient {
+    background: linear-gradient(
+      90deg,
+      #5e17eb,
+      #7c3aed,
+      #004aad,
+      #1e40af,
+      #3b82f6
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .rainbow-text.secondary-strand-gradient {
+    background: linear-gradient(
+      90deg,
+      #e1160b,
+      #ff9f63,
+      #ff66c4,
+      #ec4899,
+      #be185d
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
   

@@ -127,10 +127,8 @@ const Introduction = () => {
               <div className="flex flex-col gap-4">
                 <IntroCard />
                 <EducationCard />
-                <ResumeCard onImageClick={handleImageClick} />
-                {/* LocationCard is hidden on mobile */}
-                {/* <LocationCard /> */}
-                <FavoriteBooksCard onBookClick={handleBookClick} />
+                {/* <ResumeCard onImageClick={handleImageClick} /> */}
+                {/* <FavoriteBooksCard onBookClick={handleBookClick} /> */}
               </div>
             ) : (
               <div className="grid grid-cols-12 gap-3 auto-rows-auto max-h-[600px]">
