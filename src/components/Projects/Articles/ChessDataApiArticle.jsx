@@ -39,7 +39,7 @@ const ChessDataApiArticle = () => {
     {
       id: 4,
       name: "Vercel",
-      icon: "/icons/vercel.svg",
+      icon: "/icons/Vercel.svg",
       description: "A cloud platform for static sites and serverless functions.",
       howIUsedIt: "I used Vercel's free hobby plan to automatically build and deploy each route as an individual serverless function.",
       whyIChoseIt: "I chose Vercel for its simple, free deployments. It allowed me to bypass the usual complexities of managing servers, SSH keys, and containers, so I could just focus on building the API and deploying it instantly.",
@@ -99,7 +99,7 @@ const ChessDataApiArticle = () => {
         </p>
         <p>
           Because each endpoint is modular and self-contained, I can easily reuse or update 
-          them across different projects — whether it's for visualizations, analysis, or future tools. 
+          them across different projects, whether it's for visualizations, analysis, or future tools. 
           And with everything deployed serverlessly, there's zero overhead in maintaining the infrastructure.
         </p>
       </TextBlock>

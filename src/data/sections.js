@@ -16,7 +16,7 @@ export const FREEZE_VH = [
   { id: 'FLEXTRADE', vh: 113 },
   { id: 'EAGLE_MED', vh: 212 },
   { id: 'PROJECTS_OVERVIEW', vh: 291 },
-  { id: 'PROJECTS_WAREHOUSE', vh: 367 },
+  { id: 'PROJECTS_WAREHOUSE', vh: 373 },
   { id: 'PROJECTS_CONSTRUCTION', vh: 461 },
   { id: 'EDUCATION', vh: 573 },
   { id: 'COLLEGE_JOBS', vh: 616 },

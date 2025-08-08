@@ -61,6 +61,29 @@ const ProjectsConstruction = () => {
                                 </div>
                             ))}
                         </div>
+                        <div className="px-4 pt-2">
+                            <p className="text-gray-500 text-xs leading-relaxed">
+                                If any of these projects interest you, just drop me a message on{' '}
+                                <a 
+                                    href="https://www.linkedin.com/in/tariq-williams12/" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="text-blue-400 underline hover:text-blue-600 transition-colors"
+                                >
+                                    LinkedIn
+                                </a>
+                                {' '}or open an issue on{' '}
+                                <a 
+                                    href="https://github.com/Tarblux" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="text-blue-400 underline hover:text-blue-600 transition-colors"
+                                >
+                                    GitHub
+                                </a>
+                                . I'm always up for working with new people and building cool stuff together.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

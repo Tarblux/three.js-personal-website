@@ -151,7 +151,7 @@ const ProjectsGit = () => {
     };
 
     return (
-        <div className="p-1 sm:p-3">
+        <div className="p-1 sm:p-3 bg-white/90 backdrop-blur-sm rounded-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-1 gap-1 sm:gap-0">
                 <h3 className="text-xs sm:text-base font-semibold text-black">
                     <span className="text-[#40c463]">{totalContributions}</span> contributions in {selectedYear === new Date().getFullYear() ? 'the last year' : selectedYear}

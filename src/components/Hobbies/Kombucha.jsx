@@ -19,8 +19,8 @@ const Kombucha = () => {
                     Every batch is a little different, shaped by the temperature, timing, and even the mood of the room 
                     (or so I like to think). <span className="font-bold text-black">It's like the drink evolves on its 
                     own terms</span>, and I'm just there to guide it along. There's nothing quite like that first sip after 
-                    two weeks—when the flavors hit just right, <span className="font-bold text-black">it feels less like 
-                    tasting a drink and more like having it speak back to you.</span>
+                    two weeks when the flavors hit just right, <span className="font-bold text-black">it feels less like 
+                    tasting a drink and more like having it speak to you.</span>
                 </p>
             </div>
             {/* Glassmorphic wrapper */}

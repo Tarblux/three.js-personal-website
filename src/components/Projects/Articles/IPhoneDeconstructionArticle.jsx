@@ -25,7 +25,7 @@ const IPhone6DeconstructionArticle = () => {
           <div className="space-y-2">
             <p>
               <strong>Step 1: Teardown</strong><br/>
-              First, I carefully take apart the iPhone. It's a delicate process that requires patience, the right tools, and a steady hand.
+              First, I carefully take apart the iPhone. It's a delicate process that requires patience, the right tools, and a steady...ish hand
             </p>
             <div className="aspect-video w-full">
               <iframe

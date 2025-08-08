@@ -18,7 +18,7 @@ const ProjectsConstructionCard = ({ title, date, image, description, category, t
             case 'media':
                 return 'text-emerald-400';
             default:
-                return 'text-white';
+                return 'text-red-600';
         }
     };
 

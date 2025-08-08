@@ -23,7 +23,7 @@ const Flextrade = () => {
                 <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
                     Career|Flextrade
                 </span>
-                <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-[308px] min-h-[420px] border border-white/30 shadow-lg">
+                <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-[308px] min-h-[420px] border border-white/30 shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
                     <div className="space-y-4">
                         {/* Flextrade Experience */}
                         <div className="bg-white rounded-lg shadow-lg p-3">
@@ -171,4 +171,4 @@ const Flextrade = () => {
     );
 };
 
-export default Flextrade; 
+export default Flextrade;
