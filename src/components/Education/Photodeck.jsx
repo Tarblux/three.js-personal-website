@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import './Photodeck.css';
+import soundManager from '../../utils/soundManager'
 
 const deckImages = [
   { src: '/images/Education/korea-4.webp' },
@@ -21,11 +22,13 @@ const modalImages = [
 const Photodeck = () => {
   const [selected, setSelected] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
-  const audioRef = useRef(new Audio('/sounds/polaroid-print.mp3'));
+
+  useEffect(() => {
+    soundManager.preload('polaroid', ['/sounds/polaroid-print.ogg', '/sounds/polaroid-print.mp3'])
+  }, [])
 
   const handleCardClick = (index) => {
-    audioRef.current.currentTime = 0;
-    audioRef.current.play();
+    soundManager.play('polaroid')
     setSelected(index);
     setIsClosing(false);
   };

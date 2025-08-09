@@ -67,6 +67,12 @@ const WelcomeMessage = ({ showMessage }) => {
                         For full immersion, <span className="font-semibold">put on headphones</span> and listen to the sounds of each space
                     </p>
                 </div>
+                <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-sm text-gray-700">
+                        If you want to mute the city, just press <span className="font-semibold">M</span> or adjust using the volume icon in the top right
+                    </p>
+                </div>
             </div>
         </div>
     );

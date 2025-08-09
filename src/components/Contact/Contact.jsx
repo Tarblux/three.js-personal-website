@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import SendButton from '../UI/SendButton'
 import { useForm, ValidationError } from '@formspree/react';
+import soundManager from '../../utils/soundManager'
 
 const Contact = () => {
     const [isTyping, setIsTyping] = useState(false);
@@ -10,9 +11,12 @@ const Contact = () => {
     const formRef = useRef(null);
     const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_ID);
 
+    useEffect(() => {
+        soundManager.preload('sendSwoosh', ['/sounds/send-swoosh.ogg', '/sounds/send-swoosh.mp3'])
+    }, [])
+
     const playSendSound = () => {
-        const audio = new Audio('/sounds/send-swoosh.mp3');
-        audio.play();
+        soundManager.play('sendSwoosh')
     };
 
     const handleSendClick = (e) => {

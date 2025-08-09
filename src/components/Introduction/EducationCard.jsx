@@ -2,7 +2,7 @@ import React from 'react';
 
 const EducationCard = () => {
   return (
-    <div className="bg-white rounded-lg shadow p-3 md:col-span-7 md:row-span-1 transform transition-transform duration-300 hover:scale-[1.03]">
+    <div className="bg-white rounded-lg shadow p-3 md:col-span-7 md:row-span-1 transform transition-transform duration-300 md:hover:scale-[1.03]">
       <div className="flex items-center mb-2">
         <img
           src="/emojis/emoji-edu.webp"

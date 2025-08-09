@@ -15,6 +15,8 @@ import SkipIntroButton from './components/UI/SkipIntroButton.jsx'
 import ScrollDebug from './components/UI/ScrollDebug.jsx'
 import { AudioDebugHUD } from './components/UI/AudioDebugHUD.jsx'
 import KineticTitle from './components/UI/KineticTitle.jsx'
+import VolumeSlider from './components/UI/VolumeSlider.jsx'
+import soundManager from './utils/soundManager.js'
 
 import { sections } from './data/sections.js'
 
@@ -111,6 +113,14 @@ function App() {
   const [showSkipButton, setShowSkipButton] = useState(false)
   const [audioDebugData, setAudioDebugData] = useState(null)
   const audioRef = useRef(null)
+  const [uiVolume, setUiVolume] = useState(80)
+  const [muted, setMuted] = useState(false)
+
+  // Initialize global audio state via soundManager
+  useEffect(() => {
+    soundManager.setGlobalVolume(uiVolume / 100)
+    soundManager.setMuted(muted)
+  }, [uiVolume, muted])
 
   const handleBoardingPassClick = () => {
     const loader = document.getElementById("loader")
@@ -123,7 +133,16 @@ function App() {
 
     setAutoPlay(true)
     setShowSkipButton(true)
-    audioRef.current = new Audio("sounds/train-sounds.mp3")
+    // Use Howler to ensure global volume/mute apply
+    try {
+      if (audioRef.current && typeof audioRef.current.unload === 'function') {
+        audioRef.current.unload()
+      }
+    } catch {}
+    audioRef.current = soundManager.ensure('trainSounds', [
+      '/sounds/train-sounds.ogg',
+      '/sounds/train-sounds.mp3',
+    ])
     audioRef.current.play()
 
     setTimeout(() => {
@@ -158,8 +177,21 @@ function App() {
           />
         </Suspense>
       </Canvas>
+      <div className="fixed top-[30px] right-3 z-[10000]">
+        <VolumeSlider
+          value={uiVolume}
+          onChange={setUiVolume}
+          className=""
+          ariaLabel="UI Volume"
+          title="UI Volume"
+          autoHide
+          autoHideDelay={2000}
+          muted={muted}
+          onToggleMute={() => setMuted((m) => !m)}
+        />
+      </div>
       <KineticTitle sections={sections} scrollProgress={scrollProgress} />
-      <ScrollDebug scrollProgress={scrollProgress} />
+      {/* <ScrollDebug scrollProgress={scrollProgress} /> */}
       {audioDebugData && (
         <AudioDebugHUD 
           {...audioDebugData}

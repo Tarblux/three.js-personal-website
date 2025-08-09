@@ -67,7 +67,6 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           <ScrollSections showWelcome={showWelcome} />
         </Scroll>
       </ScrollControls>
-      <Perf position="bottom-left" />
     </>
   );
 }
@@ -81,8 +80,14 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   const smokeEmitterRef = useRef(null);
 
   // Add debug controls
-  const { debugMode, cameraPosition, cameraTarget } = useControls("Debug", {
+  const { debugMode, showPerf, perfPosition, cameraPosition, cameraTarget } = useControls("Debug", {
     debugMode: { value: false, label: "Enable Debug Mode" },
+    showPerf: { value: false, label: "Show Performance" },
+    perfPosition: {
+      value: "bottom-left",
+      options: ["top-left", "top-right", "bottom-left", "bottom-right"],
+      label: "Perf Position",
+    },
     "Debug Camera": folder({
       cameraPosition: { value: [-245, 37, 135], label: "Position" },
       cameraTarget: { value: [0, 0, 0], label: "Target" },
@@ -190,6 +195,8 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
           <TheatrePerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={5000} />
         </group>
       )}
+
+      {showPerf && <Perf position={perfPosition} />}
     </>
   );
 }

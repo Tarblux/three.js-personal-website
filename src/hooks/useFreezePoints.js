@@ -39,6 +39,7 @@
  */
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useScroll } from '@react-three/drei'
+import soundManager from '../utils/soundManager'
 
 /**
  * Detects proximity to freeze points, snaps the scroll position, briefly holds it,
@@ -50,7 +51,7 @@ export function useFreezePoints({
   enabled = true,
   holdMs = 1000,
   soundUrl = '/sounds/scroll-stop.mp3',
-  volume = 0.6,
+  volume = 0.8,
   hysteresis = 0.01,
 }) {
   const scroll = useScroll()
@@ -62,16 +63,15 @@ export function useFreezePoints({
   const rearmHighRef = useRef(0)
   const holdActiveRef = useRef(false)
 
-  const audioRef = useRef(null)
   useEffect(() => {
-    audioRef.current = new Audio(soundUrl)
-    audioRef.current.volume = volume
+    const oggFirst = soundUrl.endsWith('.mp3')
+      ? soundUrl.replace('.mp3', '.ogg')
+      : soundUrl
+    const srcs = [oggFirst, soundUrl]
+    soundManager.preload('freezeStop', { src: srcs, volume })
+    soundManager.volume('freezeStop', volume)
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause()
-        audioRef.current.src = ''
-        audioRef.current = null
-      }
+      soundManager.unload('freezeStop')
     }
   }, [soundUrl, volume])
 
@@ -102,13 +102,10 @@ export function useFreezePoints({
       // Snap
       el.scrollTop = targetTop
       // Play sound
-      if (audioRef.current) {
-        try {
-          audioRef.current.currentTime = 0
-          void audioRef.current.play()
-        } catch (_) {
-          // ignore play errors
-        }
+      try {
+        soundManager.play('freezeStop')
+      } catch (_) {
+        // ignore play errors
       }
       // Dispatch a window event for UI feedback (used in src/components/KineticTitle.jsx)
       try {

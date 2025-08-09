@@ -1,6 +1,7 @@
 import React from 'react';
+import soundManager from '../../utils/soundManager';
 
-const ProjectCard = ({ title, date, image, description, category, technologies }) => {
+const ProjectCard = ({ title, date, image, description, category, technologies, onClick }) => {
     const getCategoryColor = (category) => {
         switch(category.toLowerCase()) {
             case 'development':
@@ -40,8 +41,16 @@ const ProjectCard = ({ title, date, image, description, category, technologies }
         }
     };
 
+    const handleClick = () => {
+        const hasSound = soundManager.volume('infoPop') !== undefined;
+        if (hasSound) {
+            soundManager.play('infoPop');
+        }
+        if (typeof onClick === 'function') onClick();
+    };
+
     return (
-        <div className={`
+        <div onClick={handleClick} className={`
             relative bg-white rounded-xl p-1 shadow-md hover:shadow-xl 
             transition-all duration-300 ease-in-out w-[220px] min-h-[300px]
             hover:scale-[1.02] cursor-pointer border-2 border-gray-200

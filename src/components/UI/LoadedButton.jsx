@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react"
+import soundManager from "../../utils/soundManager"
 
 const LoadedButton = ({ onBoardingPassClick }) => {
   const [isPrinting, setIsPrinting] = useState(false)
   const [printingComplete, setPrintingComplete] = useState(false)
 
+  useEffect(() => {
+    // Preload the print SFX
+    soundManager.preload("ticketPrinter", [
+      "sounds/ticket-printer.ogg",
+      "sounds/ticket-printer.mp3",
+    ])
+  }, [])
+
   const handlePrintClick = () => {
-    const printAudio = new Audio("sounds/ticket-printer.mp3")
-    printAudio.play()
+    soundManager.play("ticketPrinter")
     setIsPrinting(true)
     setPrintingComplete(true)
   };

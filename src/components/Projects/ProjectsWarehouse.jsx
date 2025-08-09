@@ -3,12 +3,26 @@ import ProjectCard from './ProjectCard';
 import ProjectFilter from '../UI/ProjectFilter';
 import ProjectDetails from './ProjectDetails';
 import { projects } from '../../data/projects';
+import soundManager from '../../utils/soundManager';
 
 const ProjectsWarehouse = () => {
     const [filter, setFilter] = useState('all');
     const [selectedProject, setSelectedProject] = useState(null);
     const [currentPage, setCurrentPage] = useState(0);
     const containerRef = useRef(null);
+
+    useEffect(() => {
+        soundManager.preload('infoPop', [
+            '/sounds/infographic-pop-1.ogg',
+            '/sounds/infographic-pop-1.mp3',
+        ]);
+        soundManager.preload('modalClose', [
+            '/sounds/modal-close.ogg',
+            '/sounds/modal-close.mp3',
+        ]);
+        soundManager.volume('infoPop', 0.5);
+        soundManager.volume('modalClose', 0.7);
+    }, []);
 
     const calculateDuration = (startDate, endDate = null) => {
         const start = new Date(startDate);
@@ -93,8 +107,9 @@ const ProjectsWarehouse = () => {
                                 const duration = calculateDuration(project.startDate, project.endDate);
                                 
                                 return (
-                                    <div key={index} onClick={() => handleProjectClick(project)}>
+                                    <div key={index}>
                                         <ProjectCard
+                                            onClick={() => handleProjectClick(project)}
                                             title={project.title}
                                             date={`${startDate} - ${endDate} · ${duration}`}
                                             image={project.thumbnail}

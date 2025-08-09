@@ -3,7 +3,7 @@ import React from 'react';
 const IntroCard = () => {
   return (
     // ROOT_CARD_CONTAINER: This is the main positioning context for the absolute image and the card content
-    <div className="relative bg-white rounded-lg shadow p-3 pb-4 md:col-span-3 md:row-span-2 flex flex-col items-center transform transition-transform duration-300 hover:scale-105">
+    <div className="relative bg-white rounded-lg shadow p-3 pb-4 md:col-span-3 md:row-span-2 flex flex-col items-center transform transition-transform duration-300 md:hover:scale-105">
       
       {/* OVERFLOWING_IMAGE HACK: Positioned absolutely relative to ROOT_CARD_CONTAINER */}
       {/* This fixes the clipping issues in Safari and Firefox with rounded containers */}

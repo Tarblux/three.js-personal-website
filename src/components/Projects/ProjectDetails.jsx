@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import GitActivity from './GitActivity';
 import ProjectArticleViewer from './ProjectArticleViewer';
+import soundManager from '../../utils/soundManager';
 
 const ProjectDetails = ({ project, isVisible, onClose }) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
@@ -35,6 +36,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
     }, [isVisible]);
 
     const handleClose = () => {
+        soundManager.play('modalClose');
         setIsClosing(true);
         setShowGitActivity(false);
         setTimeout(() => {

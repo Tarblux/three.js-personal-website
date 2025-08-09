@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import GitActivity from './GitActivity';
 import ProjectArticleViewer from './ProjectArticleViewer';
+import soundManager from '../../utils/soundManager';
 
 const phaseColors = [
     'bg-red-400',     // Plan
@@ -45,6 +46,7 @@ const ProjectsConstructionDetails = ({ project, isVisible, onClose }) => {
     }, [isVisible, project]);
 
     const handleClose = () => {
+        soundManager.play('modalClose');
         setIsClosing(true);
         setShowGitActivity(false);
         setTimeout(() => {

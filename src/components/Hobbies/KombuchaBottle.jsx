@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './bottle.css';
+import soundManager from '../../utils/soundManager'
 
 const DropIcon = ({ color }) => (
   <svg width="22" height="22" viewBox="0 0 405.047 405.047" fill={color} xmlns="http://www.w3.org/2000/svg" className="inline-block align-middle mr-2">
@@ -16,17 +17,18 @@ const DropIcon = ({ color }) => (
 );
 
 const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidColor, priceColor, hoverImage, isPlaying, onPlay, onStop, onHoverImage, onHoverEnd }) => {
-  const audioRef = useRef(null);
   const [isMobileImageShowing, setIsMobileImageShowing] = useState(false);
 
-  React.useEffect(() => {
-    if (!isPlaying && audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
-    if (isPlaying && audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
+  useEffect(() => {
+    soundManager.preload('bottleSfx', ['/sounds/bottle-sfx.ogg', '/sounds/bottle-sfx.mp3'])
+    soundManager.volume('bottleSfx', 0.9)
+  }, [])
+
+  useEffect(() => {
+    if (isPlaying) {
+      soundManager.play('bottleSfx')
+    } else {
+      soundManager.stop('bottleSfx')
     }
   }, [isPlaying]);
 
@@ -36,10 +38,7 @@ const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidCol
 
   const handleMouseLeave = () => {
     if (onStop) onStop();
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
+    soundManager.stop('bottleSfx')
   };
 
   // Mobile click handlers
@@ -73,7 +72,7 @@ const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidCol
   return (
     <div className="kombucha-bottle-outer scale-[0.90] relative">
       <div className="flex flex-row items-start gap-8 ">
-        <audio ref={audioRef} src="/sounds/bottle-sfx.mp3" preload="auto" />
+        {/* Audio handled via soundManager */}
         <div className="bottle-wrapper -ml-[80px] -mr-[100px] relative">
           <button
             type="button"

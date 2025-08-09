@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
 import { AudioListener, PositionalAudio as ThreePositionalAudio, AudioLoader } from 'three'
 import { getBestAudioFormat } from '../utils/formatUtils'
+import soundManager from '../utils/soundManager'
 import { useFactoryAudioControls } from '../hooks/useFactoryAudioControls'
 
 export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props }) {
@@ -11,6 +12,31 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
   const { camera, scene } = useThree()
   const audioRef = useRef(null)
   const listenerRef = useRef(null)
+  const unsubscribeRef = useRef(null)
+  const [globalAudio, setGlobalAudio] = useState(() => {
+    try { return soundManager.getState() } catch { return { volume: 1, muted: false } }
+  })
+
+  // Smoothly ramp volume to avoid pops and pauses
+  const applyVolume = (targetVolume, rampSeconds = 0.05) => {
+    if (!audioRef.current) return
+    const audio = audioRef.current
+    const v = Math.max(0, Math.min(1, targetVolume))
+    const ctx = audio.context
+    const gainParam = audio.gain && audio.gain.gain
+    if (gainParam && ctx) {
+      try {
+        const now = ctx.currentTime
+        gainParam.cancelScheduledValues(now)
+        // Start from current value and ramp to target
+        gainParam.setValueAtTime(gainParam.value, now)
+        gainParam.linearRampToValueAtTime(v, now + rampSeconds)
+        return
+      } catch {}
+    }
+    // Fallback to old method
+    audio.setVolume(v)
+  }
   
   const {
     volume,
@@ -49,6 +75,7 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
   }, [])
 
   // Step 2: Setup AudioListener and PositionalAudio after Theatre.js stabilizes
+  // TODO: This is a hack to get the audio to work, it's not the best way to do it
   useEffect(() => {
     if (!userInteracted || !camera) return
 
@@ -78,7 +105,7 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
             positionalAudio.setMaxDistance(maxDistance)
             positionalAudio.setRolloffFactor(rolloffFactor)
             positionalAudio.setLoop(true)
-            positionalAudio.setVolume(volume)
+            positionalAudio.setVolume(globalAudio.muted ? 0 : volume * (globalAudio.volume ?? 1))
             
             // Position the audio
             positionalAudio.position.set(...position)
@@ -128,7 +155,9 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
   // Update audio properties when controls change
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.setVolume(volume)
+      // Combine local control with global state
+      const effective = globalAudio.muted ? 0 : volume * (globalAudio.volume ?? 1)
+      applyVolume(effective, 0.05)
       audioRef.current.setRefDistance(refDistance)
       audioRef.current.setMaxDistance(maxDistance)
       audioRef.current.setRolloffFactor(rolloffFactor)
@@ -136,7 +165,7 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
       
       if (debugLogging) {
         console.log('DeferredFactoryAudio: Updated properties:', {
-          volume,
+          volume: effective,
           refDistance,
           maxDistance,
           rolloffFactor,
@@ -144,7 +173,19 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
         })
       }
     }
-  }, [volume, refDistance, maxDistance, rolloffFactor, position, debugLogging])
+  }, [volume, refDistance, maxDistance, rolloffFactor, position, debugLogging, globalAudio.volume, globalAudio.muted])
+
+  // Subscribe to global sound manager changes
+  useEffect(() => {
+    if (!soundManager || typeof soundManager.subscribe !== 'function') return
+    unsubscribeRef.current = soundManager.subscribe((state) => setGlobalAudio(state))
+    return () => {
+      if (unsubscribeRef.current) {
+        try { unsubscribeRef.current() } catch {}
+        unsubscribeRef.current = null
+      }
+    }
+  }, [])
 
   // Calculate distance to camera for debugging
   useFrame(() => {
@@ -173,9 +214,10 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
         console.log(`Distance to factory audio: ${distance.toFixed(2)} units`)
         
         // Audio volume calculations for debugging
-        const effectiveVolume = distance <= refDistance 
+        const base = distance <= refDistance 
           ? volume 
           : volume * (refDistance / (refDistance + rolloffFactor * (distance - refDistance)))
+        const effectiveVolume = (globalAudio.muted ? 0 : base * (globalAudio.volume ?? 1))
         
         console.log(`Effective audio volume: ${(effectiveVolume * 100).toFixed(1)}%`)
       }
