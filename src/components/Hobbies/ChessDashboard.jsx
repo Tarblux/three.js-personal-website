@@ -54,4 +54,4 @@ const ChessDashboard = () => {
     );
 };
 
-export default ChessDashboard;
+export default React.memo(ChessDashboard);

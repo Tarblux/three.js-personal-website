@@ -111,4 +111,4 @@ const ProjectsConstruction = () => {
     );
 };
 
-export default ProjectsConstruction;
+export default React.memo(ProjectsConstruction);

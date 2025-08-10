@@ -176,4 +176,4 @@ const FootballPlay = () => {
     );
 };
 
-export default FootballPlay
+export default React.memo(FootballPlay)

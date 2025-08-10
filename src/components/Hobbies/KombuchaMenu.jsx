@@ -176,4 +176,4 @@ const KombuchaMenu = () => {
   );
 };
 
-export default KombuchaMenu; 
+export default React.memo(KombuchaMenu);  

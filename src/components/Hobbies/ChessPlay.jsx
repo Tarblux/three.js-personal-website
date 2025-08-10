@@ -224,4 +224,4 @@ const ChessPlay = () => {
     );
 };
 
-export default ChessPlay; 
+export default React.memo(ChessPlay);  

@@ -119,4 +119,4 @@ const EagleMed = () => {
     );
 };
 
-export default EagleMed;
+export default React.memo(EagleMed);

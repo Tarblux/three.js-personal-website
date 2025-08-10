@@ -128,4 +128,4 @@ const CollegeJobs = () => {
     );
 };
 
-export default CollegeJobs
+export default React.memo(CollegeJobs)

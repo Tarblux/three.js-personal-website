@@ -31,4 +31,4 @@ const EducationYonsei = () => {
     );
 };
 
-export default EducationYonsei
+export default React.memo(EducationYonsei)

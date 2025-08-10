@@ -187,4 +187,4 @@ const ProjectsWarehouse = () => {
     );
 };
 
-export default ProjectsWarehouse;
+export default React.memo(ProjectsWarehouse);

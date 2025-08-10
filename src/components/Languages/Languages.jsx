@@ -95,4 +95,4 @@ const Languages = () => {
   );
 };
 
-export default Languages;
+export default React.memo(Languages);

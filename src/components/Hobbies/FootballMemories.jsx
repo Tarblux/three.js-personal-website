@@ -75,4 +75,4 @@ const FootballMemories = () => {
     );
 };
 
-export default FootballMemories 
+export default React.memo(FootballMemories)  

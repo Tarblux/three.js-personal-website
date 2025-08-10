@@ -144,4 +144,4 @@ const ChessGames = ({ isMobile }) => {
   );
 };
 
-export default ChessGames; 
+export default React.memo(ChessGames);

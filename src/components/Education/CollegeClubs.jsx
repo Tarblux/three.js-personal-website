@@ -76,4 +76,4 @@ const CollegeClubs = () => {
     );
 };
 
-export default CollegeClubs
+export default React.memo(CollegeClubs)

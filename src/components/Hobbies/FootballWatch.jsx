@@ -113,4 +113,4 @@ const FootballWatch = () => {
     );
 };
 
-export default FootballWatch
+export default React.memo(FootballWatch)

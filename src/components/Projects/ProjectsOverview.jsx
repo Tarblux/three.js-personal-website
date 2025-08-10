@@ -27,4 +27,4 @@ const ProjectsOverview = () => {
     );
 };
 
-export default ProjectsOverview;
+export default React.memo(ProjectsOverview);

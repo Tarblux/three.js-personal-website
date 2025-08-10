@@ -78,4 +78,4 @@ const WelcomeMessage = ({ showMessage }) => {
     );
 };
 
-export default WelcomeMessage
+export default React.memo(WelcomeMessage)

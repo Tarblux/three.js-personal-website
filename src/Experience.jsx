@@ -57,7 +57,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             onScrollProgress = {onScrollProgress}
           />
         </SheetProvider>
-        <FreezeManager points={FREEZE_POINTS} active={!disableScroll && !autoPlay} />
+        {/* <FreezeManager points={FREEZE_POINTS} active={!disableScroll && !autoPlay} /> */}
         {/* Add DeferredFactoryAudio outside of SheetProvider to avoid cloning issues */}
         <DeferredFactoryAudio 
           theatreSequence={sheet.sequence} 

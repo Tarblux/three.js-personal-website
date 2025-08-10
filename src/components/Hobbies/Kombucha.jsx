@@ -62,4 +62,4 @@ const Kombucha = () => {
     );
 };
 
-export default Kombucha
+export default React.memo(Kombucha)

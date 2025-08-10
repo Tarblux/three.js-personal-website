@@ -180,4 +180,4 @@ const Flextrade = () => {
     );
 };
 
-export default Flextrade;
+export default React.memo(Flextrade);
