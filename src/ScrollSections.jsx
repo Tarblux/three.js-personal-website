@@ -32,7 +32,7 @@ export default function ScrollSections({ showWelcome }) {
         fadeOutEnd={10}
       >
         <div className="flex justify-center items-center h-screen">
-          <WelcomeMessage showMessage={showWelcome} />
+          {/* <WelcomeMessage showMessage={showWelcome} /> */}
         </div>
       </Section>
       

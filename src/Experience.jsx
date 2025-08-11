@@ -7,17 +7,23 @@ import { Perf } from "r3f-perf"
 import { SheetProvider, PerspectiveCamera as TheatrePerspectiveCamera, useCurrentSheet, editable as e} from "@theatre/r3f"
 
 import CameraPath from "./Main Frame.theatre-project-state.json"
-import { NewLandscape } from './components-3d/NewLandscape.jsx'
+import { Landscape } from './components-3d/Landscape.jsx'
 import { ProjectLabs } from './components-3d/ProjectLabs.jsx'
-import { LandscapeProps} from './components-3d/LandscapeProps.jsx'
 import { Campus } from './components-3d/Campus.jsx'
 import { LanguageInstitute } from "./components-3d/LanguageInstitute.jsx"
 import { Flags } from "./components-3d/Flags.jsx"
 import { Downtown } from "./components-3d/Downtown.jsx"
-import { Recreation } from "./components-3d/Recreation.jsx"
 import { ContactTower} from "./components-3d/ContactTower.jsx"
+import { Field } from "./components-3d/Field.jsx"
+import { RailTrack } from "./components-3d/RailTrack.jsx"
+import { Streetlights } from "./components-3d/Streetlights.jsx"
+import { ChessPark } from "./components-3d/ChessPark.jsx"
+import { Stadium } from "./components-3d/Stadium.jsx"
+import { Booch } from "./components-3d/Booch.jsx"
 import { Train } from "./components-3d/Train.jsx"
 import { TrainWheel } from "./components-3d/TrainWheel.jsx"
+import { Trees } from "./components-3d/Trees.jsx"
+import { Fences } from "./components-3d/Fences.jsx"
 import { Clouds } from './components-3d/Clouds.jsx'
 import { TrainSmoke } from "./components-3d/TrainSmoke.jsx"
 import { FactorySmoke } from "./components-3d/FactorySmoke.jsx"
@@ -57,8 +63,8 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             onScrollProgress = {onScrollProgress}
           />
         </SheetProvider>
-        {/* <FreezeManager points={FREEZE_POINTS} active={!disableScroll && !autoPlay} /> */}
-        {/* Add DeferredFactoryAudio outside of SheetProvider to avoid cloning issues */}
+        <FreezeManager points={FREEZE_POINTS} active={!disableScroll && !autoPlay} />
+
         <DeferredFactoryAudio 
           theatreSequence={sheet.sequence} 
           onDebugUpdate={onAudioDebugUpdate}
@@ -156,18 +162,25 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   return (
     <>
       <Sky />
-      <NewLandscape castShadow receiveShadow />
-      <ProjectLabs castShadow receiveShadow />
-      <LandscapeProps castShadow receiveShadow />
-      <Campus castShadow receiveShadow />
-      <LanguageInstitute castShadow receiveShadow />
-      <Flags castShadow receiveShadow />
-      <Downtown castShadow receiveShadow />
-      <Recreation castShadow receiveShadow />
-      <ContactTower castShadow receiveShadow />
+      <Clouds />
+      <Landscape />
+      <Field />
+      <RailTrack />
+      <Streetlights />
+      <ChessPark />
+      <Stadium />
+      <Booch />
+      <Trees />
+      <Fences />
+      <ProjectLabs />
+      <Campus />
+      <LanguageInstitute />
+      <Flags />
+      <Downtown />
+      <ContactTower />
       <e.group theatreKey="TrainSystem">
-        <Train castShadow receiveShadow />
-        <TrainWheel castShadow receiveShadow autoPlay={autoPlay} />
+        <Train />
+        <TrainWheel autoPlay={autoPlay} />
       </e.group>
       <e.group theatreKey="TrainSmokeEmitter" ref={smokeEmitterRef} />
       <TrainSmoke 
@@ -175,7 +188,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
         autoPlay={autoPlay}
       />
       <FactorySmoke />
-      <Clouds />
+      
 
       {debugMode ? (
         // Debug mode: Use regular camera with OrbitControls

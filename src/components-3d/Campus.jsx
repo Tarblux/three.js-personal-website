@@ -3,7 +3,7 @@ import { useGLTF, useTexture} from '@react-three/drei'
 
 export function Campus(props) {
   const { nodes } = useGLTF('/models/campus.glb')
-  const bakedTexture = useTexture('/textures/campus.jpg')
+  const bakedTexture = useTexture('/textures/campus.webp')
   bakedTexture.flipY = false
 
   return (
@@ -12,6 +12,7 @@ export function Campus(props) {
           castShadow
           receiveShadow
           geometry={nodes.campus.geometry}
+          position={[-4.377, 0.212, 0.682]}
         >
           <meshBasicMaterial map={bakedTexture} />
         </mesh>
