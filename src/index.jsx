@@ -198,7 +198,7 @@ function App() {
           show={audioDebugData.showDebugHUD}
         />
       )}
-      <Leva collapsed />
+      {import.meta.env.DEV && <Leva collapsed />}
       <SpeedInsights />
       <Analytics />
     </>

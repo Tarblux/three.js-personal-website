@@ -21,7 +21,16 @@ export function TradingAudio({ theatreSequence, onDebugUpdate, ...props }) {
   const applyVolume = (targetVolume, rampSeconds = 0.05) => {
     if (!audioRef.current) return
     const audio = audioRef.current
-    const v = Math.max(0, Math.min(1, targetVolume))
+    
+    // Get current distance to determine if we should be silent
+    const distance = camera.position.distanceTo({
+      x: position[0],
+      y: position[1],
+      z: position[2],
+    })
+    
+    // Force volume to 0 if beyond max distance
+    const v = distance >= maxDistance ? 0 : Math.max(0, Math.min(1, targetVolume))
     const ctx = audio.context
     const gainParam = audio.gain && audio.gain.gain
     if (gainParam && ctx) {
@@ -211,9 +220,12 @@ export function TradingAudio({ theatreSequence, onDebugUpdate, ...props }) {
         console.log(`Distance to trading audio: ${distance.toFixed(2)} units`)
         
         // Audio volume calculations for debugging
-        const base = distance <= refDistance 
-          ? volume 
-          : volume * (refDistance / (refDistance + rolloffFactor * (distance - refDistance)))
+        // Calculate base volume with explicit max distance cutoff
+        const base = distance >= maxDistance 
+          ? 0 
+          : distance <= refDistance 
+            ? volume 
+            : volume * (refDistance / (refDistance + rolloffFactor * (distance - refDistance)))
         const effectiveVolume = (globalAudio.muted ? 0 : base * (globalAudio.volume ?? 1))
         
         console.log(`Effective audio volume: ${(effectiveVolume * 100).toFixed(1)}%`)

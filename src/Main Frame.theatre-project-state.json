@@ -112,7 +112,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": -347.1968859019721
+                    "value": -357.1968859019721
                   },
                   {
                     "id": "ZSerITDqXL",
@@ -580,7 +580,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": -305.29311516142275
+                    "value": -306.29311516142275
                   },
                   {
                     "id": "qcQl5Ap_qk",
@@ -593,7 +593,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": -305.29311516142275
+                    "value": -306.29311516142275
                   },
                   {
                     "id": "6YxHEIU8Bz",
@@ -606,7 +606,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": 34.473396278031494
+                    "value": 3.473396278031494
                   },
                   {
                     "id": "Yju-DIy2i4",
@@ -1158,7 +1158,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": 24.908917879678267
+                    "value": 20.908917879678267
                   },
                   {
                     "id": "CK_UdHhzn2",
@@ -1171,7 +1171,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": 24.908917879678267
+                    "value": 20.908917879678267
                   },
                   {
                     "id": "GoN1XNVRnP",
@@ -1184,7 +1184,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": 109.89852718214064
+                    "value": 95.89852718214064
                   },
                   {
                     "id": "rkxt2Bx7Sn",
@@ -1268,7 +1268,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": 185.3386564605484
+                    "value": 170.3386564605484
                   },
                   {
                     "id": "xkYoUB7l1O",
@@ -3266,6 +3266,8 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "q9Op4qBGHp9Bxu06",
+    "N_RoouvOsMu_LETR",
     "n84O4CdYvU3MEPye",
     "xX3NvnOsoMNky1XY",
     "TBvjoPD4MBuMr6dA",

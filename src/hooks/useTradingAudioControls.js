@@ -20,30 +20,30 @@ export function useTradingAudioControls() {
       "Audio Properties": folder(
         {
           volume: {
-            value: 1.5,
+            value: 2.0,
             min: 0,
             max: 3,
             step: 0.1,
             label: "Volume",
           },
           refDistance: {
-            value: 10,
+            value: 20,
             min: 1,
             max: 100,
             step: 1,
             label: "Reference Distance",
           },
           maxDistance: {
-            value: 25,
+            value: 55,
             min: 10,
             max: 200,
             step: 5,
             label: "Max Distance",
           },
           rolloffFactor: {
-            value: 5,
+            value: 20,
             min: 0.1,
-            max: 5,
+            max: 40,
             step: 0.1,
             label: "Rolloff Factor",
           },
@@ -53,21 +53,21 @@ export function useTradingAudioControls() {
       "Position": folder(
         {
           positionX: {
-            value: -346.9,
+            value: -345,
             min: -500,
             max: 500,
             step: 0.1,
             label: "X Position",
           },
           positionY: {
-            value: 39,
+            value: 52,
             min: -100,
             max: 100,
             step: 0.1,
             label: "Y Position",
           },
           positionZ: {
-            value: 180,
+            value: 139.5,
             min: -500,
             max: 500,
             step: 0.1,
