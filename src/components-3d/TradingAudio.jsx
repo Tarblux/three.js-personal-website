@@ -3,9 +3,9 @@ import { useThree, useFrame } from '@react-three/fiber'
 import { AudioListener, PositionalAudio as ThreePositionalAudio, AudioLoader } from 'three'
 import { getBestAudioFormat } from '../utils/formatUtils'
 import soundManager from '../utils/soundManager'
-import { useFactoryAudioControls } from '../hooks/useFactoryAudioControls'
+import { useTradingAudioControls } from '../hooks/useTradingAudioControls'
 
-export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props }) {
+export function TradingAudio({ theatreSequence, onDebugUpdate, ...props }) {
   const [audioReady, setAudioReady] = useState(false)
   const [userInteracted, setUserInteracted] = useState(false)
   const [distanceToCamera, setDistanceToCamera] = useState(0)
@@ -49,10 +49,10 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
     influenceOpacity,
     debugLogging,
     showDebugHUD,
-  } = useFactoryAudioControls()
+  } = useTradingAudioControls()
   
   // Get the best supported audio format
-  const audioUrl = getBestAudioFormat('/sounds/factory')
+  const audioUrl = getBestAudioFormat('/sounds/trading-office')
 
   // Step 1: Wait for user interaction (Browser requirement)
   useEffect(() => {
@@ -75,7 +75,6 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
   }, [])
 
   // Step 2: Setup AudioListener and PositionalAudio after Theatre.js stabilizes
-  // TODO: This is a hack to get the audio to work, it's not the best way to do it
   useEffect(() => {
     if (!userInteracted || !camera) return
 
@@ -89,7 +88,6 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
           listener = new AudioListener()
           camera.add(listener)
           listenerRef.current = listener
-          // console.log('DeferredFactoryAudio: Added AudioListener to camera')
         }
 
         // Create PositionalAudio manually using Three.js (more control)
@@ -118,20 +116,19 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
             positionalAudio.play()
             
             setAudioReady(true)
-            // console.log('DeferredFactoryAudio: PositionalAudio loaded and playing at position:', position)
           },
           (progress) => {
             if (debugLogging) {
-              console.log('DeferredFactoryAudio: Loading progress:', progress)
+              console.log('DeferredTradingAudio: Loading progress:', progress)
             }
           },
           (error) => {
-            console.error('DeferredFactoryAudio: Error loading audio:', error)
+            console.error('DeferredTradingAudio: Error loading audio:', error)
           }
         )
 
       } catch (error) {
-        console.error('DeferredFactoryAudio: Setup error:', error)
+        console.error('DeferredTradingAudio: Setup error:', error)
       }
     }, 2000) // 2 second delay to ensure Theatre.js is stable
 
@@ -164,7 +161,7 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
       audioRef.current.position.set(...position)
       
       if (debugLogging) {
-        console.log('DeferredFactoryAudio: Updated properties:', {
+        console.log('DeferredTradingAudio: Updated properties:', {
           volume: effective,
           refDistance,
           maxDistance,
@@ -211,7 +208,7 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
       }
       
       if (debugLogging && Math.floor(distance) !== Math.floor(distanceToCamera)) {
-        console.log(`Distance to factory audio: ${distance.toFixed(2)} units`)
+        console.log(`Distance to trading audio: ${distance.toFixed(2)} units`)
         
         // Audio volume calculations for debugging
         const base = distance <= refDistance 
@@ -265,7 +262,6 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
         {/* Distance indicator text (you can remove this if not needed) */}
         {debugLogging && (
           <group position={[position[0], position[1] + 5, position[2]]}>
-            {/* This would need a text library like troika-three-text for actual text rendering */}
             <mesh scale={[0.2, 0.2, 0.2]}>
               <sphereGeometry args={[1, 8, 8]} />
               <meshBasicMaterial color="white" />
@@ -289,4 +285,4 @@ export function DeferredFactoryAudio({ theatreSequence, onDebugUpdate, ...props 
   }
 
   return null
-} 
+}

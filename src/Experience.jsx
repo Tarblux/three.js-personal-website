@@ -27,7 +27,8 @@ import { Fences } from "./components-3d/Fences.jsx"
 import { Clouds } from './components-3d/Clouds.jsx'
 import { TrainSmoke } from "./components-3d/TrainSmoke.jsx"
 import { FactorySmoke } from "./components-3d/FactorySmoke.jsx"
-import { DeferredFactoryAudio } from "./components-3d/DeferredFactoryAudio.jsx"
+import { FactoryAudio } from "./components-3d/FactoryAudio.jsx"
+import { TradingAudio } from "./components-3d/TradingAudio.jsx"
 import { Sky } from './components-3d/Sky.jsx'
 
 import ScrollSections from "./ScrollSections.jsx"
@@ -65,7 +66,11 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
         </SheetProvider>
         <FreezeManager points={FREEZE_POINTS} active={!disableScroll && !autoPlay} />
 
-        <DeferredFactoryAudio 
+        <FactoryAudio 
+          theatreSequence={sheet.sequence} 
+          onDebugUpdate={onAudioDebugUpdate}
+        />
+        <TradingAudio 
           theatreSequence={sheet.sequence} 
           onDebugUpdate={onAudioDebugUpdate}
         />
