@@ -3,7 +3,7 @@ import './jar.css';
 
 const Kombucha = () => {
     return (
-        <div className="fixed top-4 left-4 right-4 z-10 w-auto max-w-[400px] md:w-[400px] md:right-auto flex flex-col justify-center h-auto">
+        <div className="absolute top-4 left-4 right-4 z-10 w-auto max-w-[400px] md:w-[400px] md:right-auto flex flex-col justify-center h-auto">
             <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
                 Hobbies | Kombucha
             </span>
@@ -19,8 +19,8 @@ const Kombucha = () => {
                     Every batch is a little different, shaped by the temperature, timing, and even the mood of the room 
                     (or so I like to think). <span className="font-bold text-black">It's like the drink evolves on its 
                     own terms</span>, and I'm just there to guide it along. There's nothing quite like that first sip after 
-                    two weeks—when the flavors hit just right, <span className="font-bold text-black">it feels less like 
-                    tasting a drink and more like having it speak back to you.</span>
+                    two weeks when the flavors hit just right, <span className="font-bold text-black">it feels less like 
+                    tasting a drink and more like having it speak to you.</span>
                 </p>
             </div>
             {/* Glassmorphic wrapper */}
@@ -62,4 +62,4 @@ const Kombucha = () => {
     );
 };
 
-export default Kombucha
+export default React.memo(Kombucha)

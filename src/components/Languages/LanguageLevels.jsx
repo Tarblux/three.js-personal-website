@@ -122,7 +122,7 @@ const LanguageLevels = ({ languageLevelsData, setHighlightedLanguage, hoverTimeo
 
   return (
     <div
-      className="relative bg-white/90 rounded-lg shadow-lg p-6 col-span-1 row-span-3 md:col-span-1 md:row-span-3 flex flex-col gap-3 justify-between transition-transform duration-300 ease-in-out hover:scale-[1.02]"
+      className="relative bg-white/90 rounded-lg shadow-lg p-4 col-span-1 row-span-3 md:col-span-2 md:row-span-3 flex flex-col gap-2 justify-between transition-transform duration-300 ease-in-out hover:scale-[1.02]"
       onMouseLeave={handleMouseLeaveCard}
     >
       {/* Original Content Wrapper */}
@@ -131,11 +131,11 @@ const LanguageLevels = ({ languageLevelsData, setHighlightedLanguage, hoverTimeo
           ${showExplanation ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}
       >
         {/* Header with icon */}
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <img src="/images/Languages/language-filled-svgrepo-com.svg" alt="Language Icon" className="w-7 h-7" />
-          <span className="text-xl font-bold">Language Levels</span>
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <img src="/images/Languages/language-filled-svgrepo-com.svg" alt="Language Icon" className="w-6 h-6" />
+          <span className="text-lg font-bold">Language Levels</span>
         </div>
-        <div className="flex flex-col gap-3 flex-1">
+        <div className="flex flex-col gap-2 flex-1">
           {languageLevelsData.map((lang) => (
             <div
               key={lang.name}

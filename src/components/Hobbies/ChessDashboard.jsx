@@ -24,7 +24,7 @@ const ChessDashboard = () => {
     const isMobile = useIsMobile();
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center z-0 p-4 sm:p-0">
+        <div className="absolute inset-0 flex items-center justify-center z-0 p-4 sm:p-0">
             <div className="flex flex-col items-start w-full max-w-7xl">
                 <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
                     Chess Dashboard
@@ -54,4 +54,4 @@ const ChessDashboard = () => {
     );
 };
 
-export default ChessDashboard;
+export default React.memo(ChessDashboard);

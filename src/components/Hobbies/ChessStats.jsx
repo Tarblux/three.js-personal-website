@@ -378,4 +378,4 @@ const ChessStats = ({ isMobile }) => {
   );
 };
 
-export default ChessStats; 
+export default React.memo(ChessStats);

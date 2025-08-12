@@ -6,7 +6,7 @@ const FootballPlay = () => {
     const [highlightVideoSrc, setHighlightVideoSrc] = useState(null);
 
     return (
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 sm:left-4 sm:transform-none sm:translate-x-0 z-10 w-[300px] sm:w-[340px] flex flex-col justify-center h-auto">
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 sm:left-4 sm:transform-none sm:translate-x-0 z-10 w-[300px] sm:w-[340px] flex flex-col justify-center h-auto">
             <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
                 Hobbies | Football
             </span>
@@ -61,7 +61,7 @@ const FootballPlay = () => {
                     {/* Pitch and tags row */}
                     <div className="flex flex-row items-center w-full justify-between sm:items-start sm:justify-start">
                         {/* Pitch image */}
-                        <div className="relative w-[120px] h-[120px] sm:w-[180px] sm:h-[180px] flex items-center justify-start ml-2 sm:ml-6">
+                        <div className="relative w-[120px] h-[120px] sm:w-[120px] sm:h-[130px] flex items-center justify-start ml-2 sm:ml-6">
                             <img
                                 src="/images/Hobbies/hobbies-football-pitch.webp"
                                 alt="Football Pitch"
@@ -176,4 +176,4 @@ const FootballPlay = () => {
     );
 };
 
-export default FootballPlay
+export default React.memo(FootballPlay)

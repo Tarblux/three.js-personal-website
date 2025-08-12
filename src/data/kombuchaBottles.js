@@ -1,10 +1,6 @@
 export const kombuchaBottles = [
   {
-    title: (
-      <>
-        LA NIÑA<br />BONITA
-      </>
-    ),
+    title: "LA NIÑA\nBONITA",
     price: '3.00',
     ingredients: [
       { iconType: 'color', icon: '#FACC15', name: 'Fermented Tea', amount: '300 ml' },
@@ -17,11 +13,7 @@ export const kombuchaBottles = [
     priceColor: '#A21CAF', 
   },
   {
-    title: (
-      <>
-        D'MANGO<br />UNCHAINED
-      </>
-    ),
+    title: "D'MANGO\nUNCHAINED",
     price: '3.00',
     ingredients: [
       { iconType: 'color', icon: '#FACC15', name: 'Fermented Tea', amount: '300 ml' },
@@ -29,16 +21,12 @@ export const kombuchaBottles = [
       { iconType: 'color', icon: '#FDE68A', name: 'Pinapple Juice', amount: '250 ml' },
       { iconType: 'img', icon: '/images/Hobbies/ginger.svg', name: 'Ginger', amount: '50 ml' },
     ],
-    personality: `This isn’t a drink, it’s a screenplay in a bottle. Bold leads, no filler, and a twist courtesy of ginger.`,
+    personality: `This isn't a drink, it's a screenplay in a bottle. Bold leads, no filler, and a twist courtesy of ginger.`,
     liquidColor: '#FBBF24', 
     priceColor: '#F59E42', 
   },
   {
-    title: (
-      <>
-        SORREL<br />SUNSENT
-      </>
-    ),
+    title: "SORREL\nSUNSENT",
     price: '2.50',
     ingredients: [
       { iconType: 'color', icon: '#FACC15', name: 'Fermented Tea', amount: '300 ml' },

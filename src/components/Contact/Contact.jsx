@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import SendButton from '../UI/SendButton'
 import { useForm, ValidationError } from '@formspree/react';
+import soundManager from '../../utils/soundManager'
 
 const Contact = () => {
     const [isTyping, setIsTyping] = useState(false);
@@ -10,9 +11,12 @@ const Contact = () => {
     const formRef = useRef(null);
     const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_ID);
 
+    useEffect(() => {
+        soundManager.preload('sendSwoosh', ['/sounds/send-swoosh.ogg', '/sounds/send-swoosh.mp3'])
+    }, [])
+
     const playSendSound = () => {
-        const audio = new Audio('/sounds/send-swoosh.mp3');
-        audio.play();
+        soundManager.play('sendSwoosh')
     };
 
     const handleSendClick = (e) => {
@@ -29,7 +33,7 @@ const Contact = () => {
 
     return (
         // CONTACT_ROOT: This is the main positioning context for the absolute image and the card , so they can be positioned relative to each other
-        <div className="fixed md:top-8 md:right-8 md:w-[400px] w-full max-w-[95vw] left-1/2 md:left-auto top-0 right-0 z-10 flex flex-col justify-center h-auto p-2 md:p-0 -translate-x-1/2 md:translate-x-0">
+        <div className="absolute md:top-8 md:right-8 md:w-[400px] w-full max-w-[95vw] left-1/2 md:left-auto top-0 right-0 z-10 flex flex-col justify-center h-auto p-2 md:p-0 -translate-x-1/2 md:translate-x-0">
             {/* OVERFLOWING_IMAGE HACK: This is a hack to get the image to overflow the card  , because safari and chrome have different default styles for images :( */}
             {/* The image needs to be positioned to align with where it would appear in the card */}
             {/* Accounting for: Contact label (mb-2), glassmorphic wrapper (p-2), main card (p-4) */}
@@ -151,4 +155,4 @@ const Contact = () => {
     );
 };
 
-export default Contact
+export default React.memo(Contact)

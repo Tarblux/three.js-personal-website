@@ -17,18 +17,18 @@ const EducationYonsei = () => {
                 </div>
             </div>
             
-            {/* Desktop: Absolute positioning */}
-            <div className="hidden md:block">
+            {/* Desktop: Grid layout for proper positioning */}
+            <div className="hidden md:block relative w-full h-screen">
                 <div className="absolute left-7 top-0 flex flex-col items-start gap-8 p-8" style={{ zIndex: 10 }}>
                     <StudentIDCard school={yonseiSchool} />
+                    <div className="mt-64">
+                        <Photodeck />
+                    </div>
                 </div>
                 <YonseiDetails />
-                <div className="absolute left-9 bottom-20 p-8" style={{ zIndex: 10 }}>
-                    <Photodeck />
-                </div>
             </div>
         </>
     );
 };
 
-export default EducationYonsei
+export default React.memo(EducationYonsei)

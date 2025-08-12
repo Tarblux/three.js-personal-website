@@ -3,12 +3,12 @@ import { Chessboard } from 'react-chessboard';
 
 const ChessPlay = () => {
     return (
-      <div className="fixed top-8 left-8 z-10 w-[380px] sm:w-[380px] md:w-[380px] lg:w-[380px] xl:w-[380px] max-w-[calc(100vw-4rem)] flex flex-col justify-center h-auto">
+      <div className="absolute top-8 left-8 z-10 w-[380px] sm:w-[380px] md:w-[380px] lg:w-[380px] xl:w-[380px] max-w-[calc(100vw-4rem)] flex flex-col justify-center h-auto">
         <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block self-start">
           Hobbies | Chess
         </span>
         {/* Top Info Card */}
-        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 sm:p-6 border border-white/30 shadow-lg transition-transform duration-300 hover:scale-[1.02] mb-4">
+        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 sm:p-6 border border-white/30 shadow-lg transition-transform duration-300 hover:scale-[1.02] mb-2">
           <p className="text-[11px] sm:text-[13px] leading-snug text-gray-800">
             I was{" "}
             <span className="font-bold text-blue-600">
@@ -28,13 +28,11 @@ const ChessPlay = () => {
               I picked it back up, and now I can't imagine not having it in my
               life
             </span>
-            , and it's easily one of my favorite ways to unwind and challenge
-            myself.
           </p>
         </div>
         {/* Main Card Stack */}
-        <div className="flex flex-col gap-2">
-          <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 sm:p-2.5 flex flex-col gap-2 border border-white/30 shadow-lg">
+        <div className="flex flex-col ">
+          <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 sm:p-2.5 flex flex-col gap-1 border border-white/30 shadow-lg">
             {/* Placeholder Card 1 */}
             <a
               href="https://www.chess.com/analysis/game/live/137609920378?tab=explore&move=67"
@@ -216,8 +214,7 @@ const ChessPlay = () => {
                 <div className="text-gray-500 text-[11px] sm:text-[13px] mt-1 leading-snug ml-1">
                   I give up a central pawn early to shake up the structure and open things up fast. 
                   It lets me develop quickly and skip all the deep opening theory. I like the dynamic, 
-                  messy positions that come out of it which is great for grabbing the initiative and keeping 
-                  my opponent on the back foot.
+                  messy positions that come out of it.
                 </div>
               </div>
             </a>
@@ -227,4 +224,4 @@ const ChessPlay = () => {
     );
 };
 
-export default ChessPlay; 
+export default React.memo(ChessPlay);  

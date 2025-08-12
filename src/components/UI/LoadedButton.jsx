@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react"
+import soundManager from "../../utils/soundManager"
 
 const LoadedButton = ({ onBoardingPassClick }) => {
   const [isPrinting, setIsPrinting] = useState(false)
   const [printingComplete, setPrintingComplete] = useState(false)
 
+  useEffect(() => {
+    // Preload the print SFX
+    soundManager.preload("ticketPrinter", [
+      "sounds/ticket-printer.ogg",
+      "sounds/ticket-printer.mp3",
+    ])
+  }, [])
+
   const handlePrintClick = () => {
-    const printAudio = new Audio("sounds/ticket-printer.mp3")
-    printAudio.play()
+    soundManager.play("ticketPrinter")
     setIsPrinting(true)
     setPrintingComplete(true)
   };
@@ -49,16 +57,11 @@ const LoadedButton = ({ onBoardingPassClick }) => {
       {/* Boarding Pass */}
       <div className="boarding-pass-container">
         <img
-          src="/images/UI/portfolio-boardingpass.svg"
+          src="/images/UI/portfolio-boardingpass.webp"
           alt="Boarding Pass"
           onClick={handleBoardingPassClick}
           className={`boarding-pass ${isPrinting ? "printing" : ""} ${!printingComplete ? "pointer-events-none" : "cursor-pointer"}`}
         />
-        {printingComplete && (
-          <div className={`text-white text-lg opacity-100 text-center message ${printingComplete ? "printing" : ""}`}>
-            Headphones recommended 🎧<br />
-          </div>
-        )}
       </div>
     </div>
   );

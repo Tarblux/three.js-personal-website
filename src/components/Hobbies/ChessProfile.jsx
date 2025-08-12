@@ -132,4 +132,4 @@ const ChessProfile = ({ isMobile }) => {
   );
 };
 
-export default ChessProfile; 
+export default React.memo(ChessProfile);

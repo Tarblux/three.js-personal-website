@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import GitActivity from './GitActivity';
 import ProjectArticleViewer from './ProjectArticleViewer';
+import soundManager from '../../utils/soundManager';
 
 const ProjectDetails = ({ project, isVisible, onClose }) => {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
@@ -34,6 +36,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
     }, [isVisible]);
 
     const handleClose = () => {
+        soundManager.play('modalClose');
         setIsClosing(true);
         setShowGitActivity(false);
         setTimeout(() => {
@@ -136,8 +139,42 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
         }
     };
 
-    // Early return after all hooks , for some reason this is needed to prevent the project details from being rendered before the project is loaded
-    if (!isVisible || !project) return null;
+    /*
+     * IMPORTANT: React Portal Implementation for Modal Rendering
+     * 
+     * This component uses createPortal() to render the modal content directly into document.body
+     * instead of within the component tree. This is necessary because:
+     * 
+     * 1. @react-three/drei ScrollControls Issue:
+     *    - The ProjectsWarehouse component is rendered inside <Scroll html> from @react-three/drei
+     *    - This creates a special rendering context that constrains child elements
+     *    - Even with high z-index values (z-[9999]), modals remain trapped within the scroll container
+     * 
+     * 2. Storybook vs Main App Difference:
+     *    - Storybook renders components in isolation without the drei scroll context
+     *    - Main app renders within ScrollControls/Scroll wrapper, causing modal visibility issues
+     * 
+     * 3. Portal Solution:
+     *    - createPortal(modalContent, document.body) renders the modal at the root DOM level
+     *    - This completely bypasses the drei scroll container constraints
+     *    - Allows the modal to appear above all other content with proper z-index stacking
+     * 
+     * Alternative approaches that were tried but failed:
+     *    - Increasing z-index values (z-[9990], z-[9995], z-[9999])
+     *    - Using different positioning strategies (absolute, fixed)
+     *    - Modifying the drei scroll container styles
+     * 
+     * The portal approach works because it bypasses the drei scroll container constraints and renders the modal at the root DOM level.
+     * This allows the modal to appear above all other content with proper z-index stacking.
+     * 
+     * This is a workaround to fix the issue with the modal not appearing above the drei scroll container.
+     * 
+     */
+
+    // Early return after all hooks - prevents rendering before project is loaded
+    if (!isVisible || !project) {
+        return null;
+    }
 
     // Safety check for currentMediaIndex
     const safeMediaIndex = Math.min(currentMediaIndex, mediaItems.length - 1);
@@ -145,11 +182,11 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
 
     if (!currentMedia) return null;
 
-    return (
+    const modalContent = (
         <>
             {/* Backdrop with blur effect */}
             <div 
-                className={`fixed inset-0 bg-black/5 backdrop-blur-[2px] transition-opacity duration-500 z-40
+                className={`fixed inset-0 bg-black/5 backdrop-blur-[2px] transition-opacity duration-500 z-[9990]
                     ${isClosing ? 'opacity-0' : 'opacity-100'}`}
                 onClick={handleClose}
             />
@@ -158,7 +195,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             <div 
                 className={`fixed inset-4 md:right-[300px] md:top-[20px] md:left-auto md:bottom-auto 
                     md:w-[750px] md:h-[calc(100vh-50px)] w-auto h-auto bg-white/95 backdrop-blur-sm
-                    rounded-2xl shadow-lg transform-gpu flex flex-col z-50
+                    rounded-2xl shadow-lg transform-gpu flex flex-col z-[9995]
                     ${isClosing ? 'animate-fold' : 'animate-unfold'}`}
                 style={{
                     transformOrigin: 'center center'
@@ -257,7 +294,7 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             
             {/* Git Activity - Hidden on mobile */}
             {renderGitActivity && (
-                <div className="hidden md:block relative z-[60]">
+                <div className="hidden md:block relative z-[9999]">
                     <GitActivity 
                         isVisible={true} 
                         project={project} 
@@ -268,6 +305,9 @@ const ProjectDetails = ({ project, isVisible, onClose }) => {
             )}
         </>
     );
+
+    // Render modal content using a portal to escape the drei scroll context
+    return createPortal(modalContent, document.body);
 };
 
 export default ProjectDetails; 

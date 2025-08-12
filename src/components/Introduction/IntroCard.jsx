@@ -3,18 +3,18 @@ import React from 'react';
 const IntroCard = () => {
   return (
     // ROOT_CARD_CONTAINER: This is the main positioning context for the absolute image and the card content
-    <div className="relative bg-white rounded-lg shadow p-3 pb-4 md:col-span-3 md:row-span-2 flex flex-col items-center transform transition-transform duration-300 hover:scale-105">
+    <div className="relative bg-white rounded-lg shadow p-3 pb-4 md:col-span-3 md:row-span-2 flex flex-col items-center transform transition-transform duration-300 md:hover:scale-105">
       
       {/* OVERFLOWING_IMAGE HACK: Positioned absolutely relative to ROOT_CARD_CONTAINER */}
       {/* This fixes the clipping issues in Safari and Firefox with rounded containers */}
       <div className="absolute top-[calc(0.75rem-52px)] left-[calc(50%-6.5rem)] z-20">
         {/* Gray background square */}
-        <div className="absolute top-[52px] left-3 w-[182px] h-[182px] bg-gray-200 rounded-2xl z-0"></div>
+        <div className="absolute top-[52px] left-3 w-[192px] h-[192px] bg-gray-200 rounded-2xl z-0"></div>
         {/* Profile image */}
         <img
           src="/images/Contact/profile-pic-contact.webp"
           alt="Profile"
-          className="w-[250px] h-[250px] object-cover rounded-2xl z-10 -left-5 relative overflow-visible"
+          className="w-[290px] h-[290px] object-cover rounded-2xl z-10 -left-6 bottom-[29px] relative overflow-visible"
         />
       </div>
 

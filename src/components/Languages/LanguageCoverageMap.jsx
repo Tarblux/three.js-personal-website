@@ -23,7 +23,7 @@ const LanguageCoverageMap = ({ mapData, features, languageColors, languageList }
   }, [highlightedLanguage]);
 
   return (
-    <div className="bg-white/90 rounded-lg shadow-lg p-2 col-span-1 row-span-2 md:col-span-2 md:row-span-2 flex flex-col transition-transform duration-300 ease-in-out hover:scale-[1.02]">
+    <div className="bg-white/90 rounded-lg shadow-lg p-2 col-span-1 row-span-2 md:col-span-3 md:row-span-2 flex flex-col transition-transform duration-300 ease-in-out hover:scale-[1.02]">
       <div className="flex items-center gap-2 mb-2 ml-2">
         <img src="/images/Languages/map-location-pin-svgrepo-com.svg" alt="Map Pin" className="w-6 h-6" />
         <h2 className="text-xl font-bold">Languages Coverage Map</h2>

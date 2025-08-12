@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { kombuchaBottles } from '../../data/kombuchaBottles';
 import KombuchaBottle from './KombuchaBottle';
 
@@ -6,27 +7,50 @@ const KombuchaMenu = () => {
   const [playingIdx, setPlayingIdx] = useState(null);
   const [hoveredImage, setHoveredImage] = useState(null);
   
+  /*
+   * IMPORTANT: React Portal Implementation for Hover Image Modal
+   * 
+   * This component uses createPortal() to render the hover image modal directly into document.body
+   * instead of within the component tree. This is necessary because:
+   * 
+   * 1. @react-three/drei ScrollControls Issue:
+   *    - The KombuchaMenu component is rendered inside <Scroll html> from @react-three/drei
+   *    - This creates a special rendering context that constrains child elements
+   *    - Even with high z-index values (z-[9999]), modals remain trapped within the scroll container
+   * 
+   * 2. Portal Solution:
+   *    - createPortal(modalContent, document.body) renders the modal at the root DOM level
+   *    - This completely bypasses the drei scroll container constraints
+   *    - Allows the modal to appear above all other content with proper z-index stacking
+   * 
+   * This follows the same pattern used in ProjectDetails.jsx to fix modal rendering issues.
+   */
+
+  const hoverImageModal = hoveredImage && (
+    <>
+      {/* Mobile overlay background */}
+      <div 
+        className="fixed inset-0 bg-black/50 z-[9990] md:hidden"
+        onClick={() => setHoveredImage(null)}
+      />
+      
+      {/* Image container */}
+      <div className="fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[9995] md:left-[200px] md:transform md:-translate-y-1/2 md:translate-x-0">
+        <img 
+          src={hoveredImage} 
+          alt="Hover Image" 
+          className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] object-cover rounded-lg shadow-2xl border-4 border-white"
+        />
+      </div>
+    </>
+  );
+
   return (
-    <div className="flex justify-end w-full">
-      {/* Hover image - responsive positioning */}
-      {hoveredImage && (
-        <>
-          {/* Mobile overlay background */}
-          <div 
-            className="fixed inset-0 bg-black/50 z-40 md:hidden"
-            onClick={() => setHoveredImage(null)}
-          />
-          
-          {/* Image container */}
-          <div className="fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 md:left-[200px] md:transform md:-translate-y-1/2 md:translate-x-0">
-            <img 
-              src={hoveredImage} 
-              alt="Hover Image" 
-              className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] object-cover rounded-lg shadow-2xl border-4 border-white"
-            />
-          </div>
-        </>
-      )}
+    <>
+      {/* Render hover image modal using portal to escape drei scroll context */}
+      {hoverImageModal && createPortal(hoverImageModal, document.body)}
+      
+      <div className="flex justify-end w-full">
       
       <div className="relative bg-white rounded-3xl shadow-2xl p-3 md:p-6 w-full max-w-[730px] h-[90vh] md:h-[800px] mr-2 md:mr-8 mt-4 flex flex-col">
         {/* Header */}
@@ -147,8 +171,9 @@ const KombuchaMenu = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
-export default KombuchaMenu; 
+export default React.memo(KombuchaMenu);  

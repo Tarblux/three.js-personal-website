@@ -1,3 +1,4 @@
+// Libraries
 import { useRef, useState, useEffect } from "react"
 import { useFrame } from "@react-three/fiber"
 import { ScrollControls, useScroll, Scroll, OrbitControls, PerspectiveCamera } from "@react-three/drei"
@@ -6,50 +7,60 @@ import { useControls, folder } from "leva"
 import { Perf } from "r3f-perf"
 import { SheetProvider, PerspectiveCamera as TheatrePerspectiveCamera, useCurrentSheet, editable as e} from "@theatre/r3f"
 
+// Three.js Components
 import CameraPath from "./Main Frame.theatre-project-state.json"
 import { Landscape } from './components-3d/Landscape.jsx'
 import { ProjectLabs } from './components-3d/ProjectLabs.jsx'
-import { LandscapeProps} from './components-3d/LandscapeProps.jsx'
 import { Campus } from './components-3d/Campus.jsx'
 import { LanguageInstitute } from "./components-3d/LanguageInstitute.jsx"
 import { Flags } from "./components-3d/Flags.jsx"
 import { Downtown } from "./components-3d/Downtown.jsx"
-import { Recreation } from "./components-3d/Recreation.jsx"
 import { ContactTower} from "./components-3d/ContactTower.jsx"
+import { Field } from "./components-3d/Field.jsx"
+import { RailTrack } from "./components-3d/RailTrack.jsx"
+import { Streetlights } from "./components-3d/Streetlights.jsx"
+import { ChessPark } from "./components-3d/ChessPark.jsx"
+import { Stadium } from "./components-3d/Stadium.jsx"
+import { Booch } from "./components-3d/Booch.jsx"
 import { Train } from "./components-3d/Train.jsx"
 import { TrainWheel } from "./components-3d/TrainWheel.jsx"
+import { Trees } from "./components-3d/Trees.jsx"
+import { Fences } from "./components-3d/Fences.jsx"
 import { Clouds } from './components-3d/Clouds.jsx'
 import { TrainSmoke } from "./components-3d/TrainSmoke.jsx"
 import { FactorySmoke } from "./components-3d/FactorySmoke.jsx"
-import { DeferredFactoryAudio } from "./components-3d/DeferredFactoryAudio.jsx"
+import { FactoryAudio } from "./components-3d/FactoryAudio.jsx"
+import { TradingAudio } from "./components-3d/TradingAudio.jsx"
 import { Sky } from './components-3d/Sky.jsx'
+import VideoPreloader from './components-3d/VideoPreloader.jsx'
 
-import Section from "./helpers/Section.jsx"
-import Introduction from "./components/Introduction/Introduction.jsx"
-import Career from "./components/Career/Career.jsx"
-import ProjectsOverview from "./components/Projects/ProjectsOverview.jsx"
-import ProjectsWarehouse from "./components/Projects/ProjectsWarehouse.jsx"
-import ProjectsConstruction from "./components/Projects/ProjectsConstruction.jsx"
-import Education from "./components/Education/EducationKzoo.jsx"
-import CollegeJobs from "./components/Education/CollegeJobs.jsx"
-import CollegeClubs from "./components/Education/CollegeClubs.jsx"
-import EducationYonsei from "./components/Education/EducationYonsei.jsx"
-import Languages from "./components/Languages/Languages.jsx"
-import LanguagesMain from "./components/Languages/LanguagesMain.jsx"
-import LanguagesBasic from "./components/Languages/LanguagesBasic.jsx"
-import FootballWatch from "./components/Hobbies/FootballWatch.jsx"
-import FootballPlay from "./components/Hobbies/FootballPlay.jsx"
-import ChessDashboard from "./components/Hobbies/ChessDashboard.jsx"
-import Kombucha from "./components/Hobbies/Kombucha.jsx"
-import Contact from "./components/Contact/Contact.jsx"
-import WelcomeMessage from "./components/UI/WelcomeMessage.jsx"
+// UI Components
+import ScrollSections from "./ScrollSections.jsx"
+import { footballMoments } from './data/footballMoments.js'
+import FreezeManager from './components/UI/FreezeManager.jsx'
+import { FREEZE_POINTS } from './data/sections.js'
+
 
 export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress, onAudioDebugUpdate }) {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
   const [showWelcome, setShowWelcome] = useState(false)
+  const [currentVideo, setCurrentVideo] = useState(footballMoments?.[2]?.videoUrl || '/videos/reiss.mp4')
+  const [watchActive, setWatchActive] = useState(false)
+  const [memoriesActive, setMemoriesActive] = useState(false)
+  const [videoChangeKey, setVideoChangeKey] = useState(0) // Force restart on same video selection
 
-  // Show welcome message when autoplay is complete or skipped
+  const handleVideoSelection = (videoUrl) => {
+    if (videoUrl === currentVideo) {
+      // Same video selected, increment key to force restart
+      setVideoChangeKey(prev => prev + 1)
+    } else {
+      // Different video, update URL
+      setCurrentVideo(videoUrl)
+    }
+  }
+  
   useEffect(() => {
+    // Show welcome message only after auto-play sequence completes
     if (!autoPlay && !disableScroll) {
       setShowWelcome(true)
     }
@@ -70,206 +81,43 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             autoPlay={autoPlay}
             setAutoPlay={setAutoPlay}
             onScrollProgress = {onScrollProgress}
+            videoUrl={currentVideo}
+            audioActive={memoriesActive}
+            videoChangeKey={videoChangeKey}
           />
         </SheetProvider>
-        {/* Add DeferredFactoryAudio outside of SheetProvider to avoid cloning issues */}
-        <DeferredFactoryAudio 
+        <FreezeManager points={FREEZE_POINTS} active={!disableScroll && !autoPlay} />
+
+        <FactoryAudio 
+          theatreSequence={sheet.sequence} 
+          onDebugUpdate={onAudioDebugUpdate}
+        />
+        <TradingAudio 
           theatreSequence={sheet.sequence} 
           onDebugUpdate={onAudioDebugUpdate}
         />
         <Scroll html style={{ width: "100vw", height: "100vh" }}>
-
-          <Section 
-            top="-10vh"
-            fadeInStart={-10}
-            fadeInEnd={0}
-            fadeOutStart={10}
-            fadeOutEnd={20}
-          >
-            <div className="flex justify-center items-center h-screen">
-              <WelcomeMessage showMessage={showWelcome} />
-            </div>
-          </Section>
-          
-          <Section 
-            top="80vh"
-            fadeInStart={35}
-            fadeInEnd={45}
-            fadeOutStart={65}
-            fadeOutEnd={75}
-          >
-            <Introduction />
-          </Section>
-
-          <Section 
-            top="160vh"
-            fadeInStart={135}
-            fadeInEnd={145}
-            fadeOutStart={155}
-            fadeOutEnd={165}
-          >
-            <Career />
-          </Section>
-
-          <Section 
-            top="330vh"
-            fadeInStart={300}
-            fadeInEnd={310}
-            fadeOutStart={320}
-            fadeOutEnd={335}
-          >
-            <ProjectsOverview />
-          </Section>
-
-          <Section 
-            top="390vh"
-            fadeInStart={380}
-            fadeInEnd={390}
-            fadeOutStart={400}
-            fadeOutEnd={410}
-          >
-            <ProjectsWarehouse />
-          </Section>
-
-          <Section 
-            top="450vh"
-            fadeInStart={445}
-            fadeInEnd={465}
-            fadeOutStart={480}
-            fadeOutEnd={485}
-          >
-            <ProjectsConstruction />
-          </Section>
-
-
-          <Section 
-            top="570vh"
-            fadeInStart={565}
-            fadeInEnd={585}
-            fadeOutStart={590}
-            fadeOutEnd={600}
-          >
-            <Education />
-          </Section>
-
-          <Section 
-            top="610vh"
-            fadeInStart={605}
-            fadeInEnd={615}
-            fadeOutStart={625}
-            fadeOutEnd={635}
-          >
-            <CollegeJobs />
-          </Section>
-
-          <Section 
-            top="670vh"
-            fadeInStart={640}
-            fadeInEnd={650}
-            fadeOutStart={660}
-            fadeOutEnd={670}
-          >
-            <CollegeClubs />
-          </Section>
-          
-          <Section 
-            top="730vh"
-            fadeInStart={700}
-            fadeInEnd={710}
-            fadeOutStart={720}
-            fadeOutEnd={730}
-          >
-            <EducationYonsei />
-          </Section>
-
-          <Section 
-            top="790vh"
-            fadeInStart={760}
-            fadeInEnd={770}
-            fadeOutStart={780}
-            fadeOutEnd={790}
-          >
-            <Languages />
-          </Section>
-
-          <Section 
-            top="850vh"
-            fadeInStart={815}
-            fadeInEnd={825}
-            fadeOutStart={845}
-            fadeOutEnd={855}
-          >
-            <LanguagesMain />
-          </Section>
-
-          <Section 
-            top="860vh"
-            fadeInStart={870}
-            fadeInEnd={880}
-            fadeOutStart={890}
-            fadeOutEnd={900}
-          >
-            <LanguagesBasic />
-          </Section>
-
-          <Section 
-            top="920vh"
-            fadeInStart={925}
-            fadeInEnd={945}
-            fadeOutStart={965}
-            fadeOutEnd={975}
-          >
-            <FootballWatch />
-          </Section>
-
-          <Section 
-            top="980vh"
-            fadeInStart={1050}
-            fadeInEnd={1065}
-            fadeOutStart={1080}
-            fadeOutEnd={1085}
-          >
-            <FootballPlay />
-          </Section>
-
-          <Section 
-            top="1040vh"
-            fadeInStart={1115}
-            fadeInEnd={1135}
-            fadeOutStart={1155}
-            fadeOutEnd={1165}
-          >
-            <ChessDashboard />
-          </Section>
-
-          <Section 
-            top="1100vh"
-            fadeInStart={1210}
-            fadeInEnd={1220}
-            fadeOutStart={1230}
-            fadeOutEnd={1240}
-          >
-            <Kombucha />
-          </Section>
-
-          <Section 
-            top="1160vh"
-            fadeInStart={1345}
-            fadeInEnd={1350}
-            fadeOutStart={1362}
-            fadeOutEnd={1370}
-          >
-            <Contact />
-          </Section>
-
+          <ScrollSections 
+            showWelcome={showWelcome} 
+            onSelectVideo={handleVideoSelection}
+            onWatchActiveChange={setWatchActive}
+            onMemoriesActiveChange={setMemoriesActive}
+          />
         </Scroll>
+        {/* Defer preloading of videos until the FootballWatch section becomes active */}
+        {watchActive && (
+          <VideoPreloader urls={[
+            footballMoments?.[0]?.videoUrl,
+            footballMoments?.[1]?.videoUrl,
+            footballMoments?.[2]?.videoUrl,
+          ].filter(Boolean)} active={true} />
+        )}
       </ScrollControls>
-      <Perf position="bottom-left" />
     </>
   );
 }
 
-function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrollProgress }) {
+function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrollProgress, videoUrl, audioActive, videoChangeKey }) {
 
   const sheet = useCurrentSheet();
   const scroll = useScroll();
@@ -277,12 +125,18 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const smokeEmitterRef = useRef(null);
 
-  // Add debug controls
-  const { debugMode, cameraPosition, cameraTarget } = useControls("Debug", {
+  // Debug Controls
+  const { debugMode, showPerf, perfPosition, cameraPosition, cameraTarget } = useControls("Debug", {
     debugMode: { value: false, label: "Enable Debug Mode" },
+    showPerf: { value: false, label: "Show Performance" },
+    perfPosition: {
+      value: "bottom-left",
+      options: ["top-left", "top-right", "bottom-left", "bottom-right"],
+      label: "Perf Position",
+    },
     "Debug Camera": folder({
-      cameraPosition: { value: [-245, 37, 135], label: "Position" },
-      cameraTarget: { value: [0, 0, 0], label: "Target" },
+      cameraPosition: { value: [-355, 41, 172], label: "Position" },
+      cameraTarget: { value: [0, 0, 3000], label: "Target" },
     }, { collapsed: false })
   }, { collapsed: false });
 
@@ -303,7 +157,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   }, [sheet]);
 
   useFrame((state, delta) => {
-    // Skip theatre updates when in debug mode
+    // Skip theatre updates when in debug mode (for now)
     if (debugMode) return;
 
     const sequenceLength = val(sheet.sequence.pointer.length);
@@ -348,18 +202,25 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   return (
     <>
       <Sky />
-      <Landscape castShadow receiveShadow />
-      <ProjectLabs castShadow receiveShadow />
-      <LandscapeProps castShadow receiveShadow />
-      <Campus castShadow receiveShadow />
-      <LanguageInstitute castShadow receiveShadow />
-      <Flags castShadow receiveShadow />
-      <Downtown castShadow receiveShadow />
-      <Recreation castShadow receiveShadow />
-      <ContactTower castShadow receiveShadow />
+      <Clouds />
+      <Landscape />
+      <Field />
+      <RailTrack />
+      <Streetlights />
+      <ChessPark />
+      <Stadium videoUrl={videoUrl} audioActive={audioActive} videoChangeKey={videoChangeKey} />
+      <Booch />
+      <Trees />
+      <Fences />
+      <ProjectLabs />
+      <Campus />
+      <LanguageInstitute />
+      <Flags />
+      <Downtown />
+      <ContactTower />
       <e.group theatreKey="TrainSystem">
-        <Train castShadow receiveShadow />
-        <TrainWheel castShadow receiveShadow autoPlay={autoPlay} />
+        <Train />
+        <TrainWheel autoPlay={autoPlay} />
       </e.group>
       <e.group theatreKey="TrainSmokeEmitter" ref={smokeEmitterRef} />
       <TrainSmoke 
@@ -367,7 +228,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
         autoPlay={autoPlay}
       />
       <FactorySmoke />
-      <Clouds />
+      
 
       {debugMode ? (
         // Debug mode: Use regular camera with OrbitControls
@@ -387,6 +248,8 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
           <TheatrePerspectiveCamera theatreKey="Camera" makeDefault position={[0, 0, 0]} fov={45} near={10} far={5000} />
         </group>
       )}
+
+      {showPerf && <Perf position={perfPosition} />}
     </>
   );
 }

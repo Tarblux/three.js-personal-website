@@ -16,7 +16,7 @@ const LocationCard = () => {
     };
 
     updateTime();
-    const intervalId = setInterval(updateTime, 60000); // Update every minute
+    const intervalId = setInterval(updateTime, 60000); // Update every minute , TODO: check if this is bad for performance
     return () => clearInterval(intervalId);
   }, []);
 

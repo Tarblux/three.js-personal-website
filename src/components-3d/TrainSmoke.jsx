@@ -4,6 +4,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
 import { useSmokeControls } from '../hooks/useSmokeControls.js'
 
+// TODO: Move shaders to a separate file (had  a issue before so i'm not sure if it's a good idea)
 // Vertex shader for particles
 const vertexShader = `
 uniform float pointMultiplier;
@@ -75,7 +76,7 @@ function createLinearSpline(lerp) {
 
 export function TrainSmoke({ emitterRef, autoPlay, ...props }) {
   const { camera, size } = useThree()
-  const cloudTexture = useTexture('/textures/cloud.png')
+  const cloudTexture = useTexture('/textures/cloud.webp')
   
   // Track elapsed time since autoplay started for reliable timing
   const autoPlayStartTimeRef = useRef(null)
@@ -283,7 +284,10 @@ export function TrainSmoke({ emitterRef, autoPlay, ...props }) {
   const uniforms = useMemo(() => ({
     diffuseTexture: { value: cloudTexture },
     pointMultiplier: { 
-      value: size.height / (2.0 * Math.tan((camera.fov * Math.PI / 180) / 2.0))
+      value: (
+        (size.height / (2.0 * Math.tan((camera.fov * Math.PI / 180) / 2.0)))
+        * window.devicePixelRatio
+      )
     }
   }), [cloudTexture, size.height, camera.fov])
 
@@ -347,6 +351,7 @@ export function TrainSmoke({ emitterRef, autoPlay, ...props }) {
       particle.alpha = splines.alphaSpline.getValueAt(t)
       // Simplified size calculation - use the size controls directly and apply scale
       particle.currentSize = maxSize * scale * (sizeStart + t * (sizeEnd - sizeStart))
+      // console.log(particle.currentSize)
       particle.color.copy(splines.colorSpline.getValueAt(t))
 
       // Update position
@@ -435,6 +440,23 @@ export function TrainSmoke({ emitterRef, autoPlay, ...props }) {
       accumulatorRef.current = 0
     }
   }, [enabled])
+
+  // Update pointMultiplier on resize / device pixel ratio change
+  useEffect(() => {
+    const updatePointMultiplier = () => {
+      if (materialRef.current && camera) {
+        const multiplier = (
+          (size.height / (2.0 * Math.tan((camera.fov * Math.PI / 180) / 2.0)))
+          * window.devicePixelRatio
+        )
+        materialRef.current.uniforms.pointMultiplier.value = multiplier
+      }
+    }
+
+    updatePointMultiplier()
+    window.addEventListener('resize', updatePointMultiplier)
+    return () => window.removeEventListener('resize', updatePointMultiplier)
+  }, [camera, size.height])
 
   // Main animation loop
   useFrame((state, delta) => {

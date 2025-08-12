@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProjectsConstructionCard from './ProjectsConstructionCard';
 import ProjectsConstructionDetails from './ProjectsConstructionDetails';
 import { projectsConstruction } from '../../data/projectsConstruction';
+import soundManager from '../../utils/soundManager';
 
 const calculateDuration = (startDate, endDate = null) => {
     const start = new Date(startDate);
@@ -28,7 +29,21 @@ const formatDate = (date) => {
 const ProjectsConstruction = () => {
     const [selectedProject, setSelectedProject] = useState(null);
 
+    useEffect(() => {
+        soundManager.preload('infoPop', [
+            '/sounds/infographic-pop-1.ogg',
+            '/sounds/infographic-pop-1.mp3',
+        ]);
+        soundManager.preload('modalClose', [
+            '/sounds/modal-close.ogg',
+            '/sounds/modal-close.mp3',
+        ]);
+        soundManager.volume('infoPop', 0.5);
+        soundManager.volume('modalClose', 0.7);
+    }, []);
+
     const handleProjectClick = (project) => {
+        soundManager.play('infoPop');
         const startDate = formatDate(project.startDate);
         const endDate = project.endDate ? formatDate(project.endDate) : 'Present';
         const duration = calculateDuration(project.startDate, project.endDate);
@@ -61,6 +76,29 @@ const ProjectsConstruction = () => {
                                 </div>
                             ))}
                         </div>
+                        <div className="px-4 pt-2">
+                            <p className="text-gray-500 text-xs leading-relaxed">
+                                If any of these projects also interest you, just drop me a message on{' '}
+                                <a 
+                                    href="https://www.linkedin.com/in/tariq-williams12/" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="text-blue-400 underline hover:text-blue-600 transition-colors"
+                                >
+                                    LinkedIn
+                                </a>
+                                {' '}or open an issue on{' '}
+                                <a 
+                                    href="https://github.com/Tarblux" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="text-blue-400 underline hover:text-blue-600 transition-colors"
+                                >
+                                    GitHub
+                                </a>
+                                . I'm always up for working with new people and building cool stuff together.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,4 +111,4 @@ const ProjectsConstruction = () => {
     );
 };
 
-export default ProjectsConstruction;
+export default React.memo(ProjectsConstruction);

@@ -322,7 +322,7 @@ const EplTransferAnalysisArticle = () => {
           className="inline-flex items-center space-x-2 p-2 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200 hover:border-gray-300"
         >
           <img 
-            src="/icons/pdf.svg" 
+            src="/icons/docx-doc.svg" 
             alt="PDF Icon" 
             className="w-6 h-6"
           />

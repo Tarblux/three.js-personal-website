@@ -51,9 +51,22 @@ const ProjectsDna = () => {
         return language === hoveredLanguage ? 'scale-110' : '';
     };
 
+    const getRainbowTextClass = () => {
+        if (hoveredLanguage) {
+            return `rainbow-text ${hoveredLanguage}-gradient`;
+        }
+        if (hoveredStrand === "main") {
+            return 'rainbow-text main-strand-gradient';
+        }
+        if (hoveredStrand === "secondary") {
+            return 'rainbow-text secondary-strand-gradient';
+        }
+        return 'rainbow-text';
+    };
+
     const renderMainStrand = () => (
         <div
-            className="strand-section bg-white rounded-lg p-2 sm:p-4 transform transition-transform duration-300 hover:scale-105 w-full"
+            className="strand-section bg-white rounded-lg p-2 sm:p-4 transform transition-transform duration-300 hover:scale-[1.03] w-full"
             onMouseEnter={() => setHoveredStrand("main")}
             onMouseLeave={() => {
                 setHoveredStrand(null);
@@ -63,10 +76,10 @@ const ProjectsDna = () => {
         >
             <h4 className="text-sm sm:text-lg font-semibold mb-1">Main Strand</h4>
             <p className="text-gray-600 text-xs mb-2 sm:mb-4">
-                Languages I use the most in my projects—comfortable enough with these to get by without constantly googling.
+                Languages I use the most in my projects. I'm comfortable enough with these to get by without constantly googling.
             </p>
             <div className="flex items-center justify-center w-full overflow-visible">
-                <div className="flex items-center gap-2 sm:gap-4 overflow-visible">
+                <div className="flex items-center overflow-visible">
                     <div 
                         className="flex flex-col items-center transition-transform duration-300 overflow-visible"
                         onMouseEnter={() => setHoveredLanguage("python")}
@@ -75,7 +88,7 @@ const ProjectsDna = () => {
                         <img 
                             src="/images/Projects/DNA/Py.webp" 
                             alt="Python" 
-                            className={`w-16 h-16 sm:w-[128px] sm:h-[128px] transition-all duration-300 ${getLanguageOpacityClass('python')} ${getLanguageScaleClass('python')}`} 
+                            className={`w-16 h-16 sm:w-[100px] sm:h-[100px] transition-all duration-300 ${getLanguageOpacityClass('python')} ${getLanguageScaleClass('python')}`} 
                         />
                         <div className="flex items-center mt-1 sm:mt-2">
                             <div className={`language-pattern pattern-python transition-opacity duration-300 ${getLanguageOpacityClass('python')}`}></div>
@@ -90,7 +103,7 @@ const ProjectsDna = () => {
                         <img 
                             src="/images/Projects/DNA/TS.webp" 
                             alt="TypeScript" 
-                            className={`w-24 h-16 sm:w-[190px] sm:h-[128px] transition-all duration-300 ${getLanguageOpacityClass('typescript')} ${getLanguageScaleClass('typescript')}`} 
+                            className={`w-24 h-16 sm:w-[172px] sm:h-[100px] transition-all duration-300 ${getLanguageOpacityClass('typescript')} ${getLanguageScaleClass('typescript')}`} 
                         />
                         <div className="flex items-center mt-1 sm:mt-2">
                             <div className={`language-pattern pattern-typescript transition-opacity duration-300 ${getLanguageOpacityClass('typescript')}`}></div>
@@ -104,7 +117,7 @@ const ProjectsDna = () => {
 
     const renderSecondaryStrand = () => (
         <div
-            className="strand-section bg-white rounded-lg p-2 sm:p-4 transform transition-transform duration-300 hover:scale-105"
+            className="strand-section bg-white rounded-lg p-2 sm:p-4 transform transition-transform duration-300 hover:scale-[1.03]"
             onMouseEnter={() => setHoveredStrand("secondary")}
             onMouseLeave={() => {
                 setHoveredStrand(null);
@@ -117,7 +130,7 @@ const ProjectsDna = () => {
                 A chaotic mix of things I understand, stuff I'm still learning, and moments where I just nod, smile, and pray no one asks follow-up questions.
             </p>
             <div className="flex items-center justify-center w-full overflow-visible">
-                <div className="flex items-center gap-1 sm:gap-2 overflow-visible">
+                <div className="flex items-center overflow-visible">
                     <div 
                         className="flex flex-col items-center transition-transform duration-300 overflow-visible"
                         onMouseEnter={() => setHoveredLanguage("scala")}
@@ -126,7 +139,7 @@ const ProjectsDna = () => {
                         <img 
                             src="/images/Projects/DNA/Scala.webp" 
                             alt="Scala" 
-                            className={`w-16 h-16 sm:w-[128px] sm:h-[128px] transition-all duration-300 ${getLanguageOpacityClass('scala')} ${getLanguageScaleClass('scala')}`} 
+                            className={`w-16 h-16 sm:w-[100px] sm:h-[100px] transition-all duration-300 ${getLanguageOpacityClass('scala')} ${getLanguageScaleClass('scala')}`} 
                         />
                         <div className="flex items-center mt-1 sm:mt-2">
                             <div className={`language-pattern pattern-scala transition-opacity duration-300 ${getLanguageOpacityClass('scala')}`}></div>
@@ -141,7 +154,7 @@ const ProjectsDna = () => {
                         <img 
                             src="/images/Projects/DNA/Rust.webp" 
                             alt="Rust" 
-                            className={`w-12 h-16 sm:w-[100px] sm:h-[128px] transition-all duration-300 ${getLanguageOpacityClass('rust')} ${getLanguageScaleClass('rust')}`} 
+                            className={`w-12 h-16 sm:w-[100px] sm:h-[100px] transition-all duration-300 ${getLanguageOpacityClass('rust')} ${getLanguageScaleClass('rust')}`} 
                         />
                         <div className="flex items-center mt-1 sm:mt-2">
                             <div className={`language-pattern pattern-rust transition-opacity duration-300 ${getLanguageOpacityClass('rust')}`}></div>
@@ -157,7 +170,7 @@ const ProjectsDna = () => {
                         <img 
                             src="/images/Projects/DNA/C++.webp" 
                             alt="C++" 
-                            className={`w-8 h-16 sm:w-[58px] sm:h-[128px] transition-all duration-300 ${getLanguageOpacityClass('cpp')} ${getLanguageScaleClass('cpp')}`} 
+                            className={`w-8 h-16 sm:w-[58px] sm:h-[100px] transition-all duration-300 ${getLanguageOpacityClass('cpp')} ${getLanguageScaleClass('cpp')}`} 
                         />
                         <div className="flex items-center mt-1 sm:mt-2">
                             <div className={`language-pattern pattern-cpp transition-opacity duration-300 ${getLanguageOpacityClass('cpp')}`}></div>
@@ -171,7 +184,9 @@ const ProjectsDna = () => {
 
     const renderDNA = () => (
         <div className="flex flex-col justify-center items-center py-4 sm:py-6">
-            <h3 className="text-white text-xs sm:text-sm font-medium text-center mb-4 sm:mb-6">Projects DNA</h3>
+            <span className="mb-4 sm:mb-6 bg-[#f0f0f0] rounded-lg text-xs sm:text-sm font-semibold px-3 py-0.5 shadow-[inset_0_1px_0_0_#f4f4f4,0_1px_0_0_#efefef,0_2px_0_0_#ececec,0_4px_0_0_#e0e0e0,0_5px_0_0_#dedede,0_6px_0_0_#dcdcdc,0_7px_0_0_#cacaca,0_7px_8px_0_#cecece] inline-block text-center w-fit">
+                <span className={getRainbowTextClass()}>Projects DNA</span>
+            </span>
             <div
                 className="flex items-center justify-center"
                 style={{ 
@@ -204,7 +219,9 @@ const ProjectsDna = () => {
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
                     {/* DNA Animation */}
                     <div className="w-full sm:w-1/3 flex flex-col justify-center">
-                        <h3 className="text-white text-sm sm:text-md font-medium text-center mb-6 sm:mb-12">Projects DNA</h3>
+                        <span className="mb-6 sm:mb-12 ml-7 bg-[#f0f0f0] rounded-lg text-sm sm:text-md font-semibold px-3 py-0.5 shadow-[inset_0_1px_0_0_#f4f4f4,0_1px_0_0_#efefef,0_2px_0_0_#ececec,0_4px_0_0_#e0e0e0,0_5px_0_0_#dedede,0_6px_0_0_#dcdcdc,0_7px_0_0_#cacaca,0_7px_8px_0_#cecece] inline-block text-center w-fit">
+                            <span className={getRainbowTextClass()}>Projects DNA</span>
+                        </span>
                         <div
                             className="flex items-center justify-center"
                             style={{ '--uib-size': '250px', '--uib-speed': '6s' }}

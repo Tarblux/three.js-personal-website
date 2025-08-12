@@ -83,6 +83,7 @@ export const projects = [
                 on-field performance. This Senior Individualized Project (SIP) combined 
                 economic theory with statistical analysis to understand the impact of 
                 transfer spending on team success.`,
+        link: "https://docs.google.com/document/d/1SLtyemHjBCRqvyH8uQpPAc-aWXNgBApf/edit?usp=sharing&ouid=110867662222495258528&rtpof=true&sd=true",
         articleComponent: "EplTransferAnalysisArticle"
     },
     {
@@ -100,7 +101,7 @@ export const projects = [
         technologies: ["Next.js", "Typescript", "Vercel"],
         story: `API for chess data.`,
         github: "https://github.com/Tarblux/chess-data-api",
-        link: "https://chess-data-api.vercel.app/",
+        // link: "https://chess-data-api.vercel.app/",
         articleComponent: "ChessDataApiArticle"
     },
     {
@@ -121,7 +122,7 @@ export const projects = [
                 techniques. The study provided valuable insights into language evolution and 
                 cultural preservation.`,
         github: "https://github.com/Tarblux/Creole-Linguistics-Data-Analytics",
-        link: "https://youtu.be/Ddhjw3gK5gw ",
+        link: "https://drive.google.com/file/d/1VvQIX4hwmuGBb1aWmFO2kVmFVUvFWfvl/view",
         articleComponent: "CreoleLinguisticsArticle"
     },
     {
@@ -130,7 +131,7 @@ export const projects = [
         startDate: "2023-08-01",
         endDate: null,
         images: [
-            "/images/Projects/codingPractice/codingpractice-panel.webp",
+            "/images/Projects/codingPractice/codingPractice-panel.webp",
         ],
         imageScrollPositions: [0.01],
         thumbnail: "/images/Projects/codingPractice/codingPractice-thumbnail.jpg",
@@ -169,7 +170,7 @@ export const projects = [
             "/images/Projects/iphone-deconstruction/iphone8-mock.webp",
         ],
         imageScrollPositions: [0.01],
-        thumbnail: "/images/Projects/iphone-deconstruction/iphones-thumbnail.jpg",
+        thumbnail: "/images/Projects/iphone-deconstruction/iphones-thumbnail.webp",
         description: "A detailed deconstruction of the iPhone 6+ and (RED) editions transformed into wall art pieces",
         category: "media",
         technologies: ["Technical Drawing", "Hardware", "Digital Art"],

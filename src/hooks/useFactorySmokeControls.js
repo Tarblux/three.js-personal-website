@@ -30,7 +30,7 @@ export function useFactorySmokeControls() {
       enabled: { value: true },
       "Stack Configuration": folder(
         {
-          stackCount: { value: 2, min: 1, max: 5, step: 1 },
+          stackCount: { value: 2, min: 1, max: 2, step: 1 },
           stackSpacing: { value: 5, min: 1, max: 20, step: 1 },
         },
         { collapsed: false }

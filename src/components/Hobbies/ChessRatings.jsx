@@ -220,4 +220,4 @@ const ChessRatings = ({ isMobile }) => {
   );
 };
 
-export default ChessRatings; 
+export default React.memo(ChessRatings);

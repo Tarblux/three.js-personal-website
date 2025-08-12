@@ -1,5 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import './Photodeck.css';
+import soundManager from '../../utils/soundManager'
 
 const deckImages = [
   { src: '/images/Education/korea-4.webp' },
@@ -20,11 +22,13 @@ const modalImages = [
 const Photodeck = () => {
   const [selected, setSelected] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
-  const audioRef = useRef(new Audio('/sounds/polaroid-print.mp3'));
+
+  useEffect(() => {
+    soundManager.preload('polaroid', ['/sounds/polaroid-print.ogg', '/sounds/polaroid-print.mp3'])
+  }, [])
 
   const handleCardClick = (index) => {
-    audioRef.current.currentTime = 0;
-    audioRef.current.play();
+    soundManager.play('polaroid')
     setSelected(index);
     setIsClosing(false);
   };
@@ -47,6 +51,19 @@ const Photodeck = () => {
     }, 300);
   };
 
+  // Modal content
+  const modalContent = selected !== null && (
+    <>
+      <div className="fixed inset-0 z-[999] backdrop-blur-md"></div>
+      <div className="photodeck-modal" onClick={handleCloseModal}>
+        <div className={`photodeck-modal-content no-bg ${isClosing ? 'animate-modalOut' : 'animate-modalIn'}`}>
+          <img src={modalImages[selected].src} alt={`Korea ${selected + 1}`} className="photodeck-modal-img" />
+          <button className="photodeck-modal-close" onClick={handleCloseButton}>&times;</button>
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <>
       <div className="photodeck-container">
@@ -57,17 +74,9 @@ const Photodeck = () => {
           </div>
         ))}
       </div>
-      {selected !== null && (
-        <>
-          <div className="fixed inset-0 z-[999] backdrop-blur-md"></div>
-          <div className="photodeck-modal" onClick={handleCloseModal}>
-            <div className={`photodeck-modal-content no-bg ${isClosing ? 'animate-modalOut' : 'animate-modalIn'}`}>
-              <img src={modalImages[selected].src} alt={`Korea ${selected + 1}`} className="photodeck-modal-img" />
-              <button className="photodeck-modal-close" onClick={handleCloseButton}>&times;</button>
-            </div>
-          </div>
-        </>
-      )}
+      
+      {/* Render modal using portal to escape scroll container constraints */}
+      {modalContent && createPortal(modalContent, document.body)}
     </>
   );
 };

@@ -16,11 +16,11 @@ const LanguageJourney = ({ languageJourneyData }) => {
   const [activeTooltip, setActiveTooltip] = useState(null);
 
   return (
-    <div className="bg-white/90 rounded-lg shadow-lg p-6 col-span-1 row-span-1 md:col-span-2 md:row-span-1 flex flex-col transition-transform duration-300 ease-in-out hover:scale-[1.02]">
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-white/90 rounded-lg shadow-lg p-4 col-span-1 row-span-1 md:col-span-3 md:row-span-1 flex flex-col transition-transform duration-300 ease-in-out hover:scale-[1.02]">
+      <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <img src="/images/Languages/student-learn-study-university-life-svgrepo-com.svg" alt="Journey" className="w-7 h-7" />
-          <h2 className="text-xl font-bold">Language Journey</h2>
+          <img src="/images/Languages/student-learn-study-university-life-svgrepo-com.svg" alt="Journey" className="w-6 h-6" />
+          <h2 className="text-lg font-bold">Language Journey</h2>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-xs">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -32,7 +32,7 @@ const LanguageJourney = ({ languageJourneyData }) => {
         </div>
       </div>
 
-      <div className="ml-4 mt-4 relative w-full" style={{ paddingTop: `${(viewBoxHeight / viewBoxWidth) * 100}%` }}>
+      <div className="ml-4 mt-2 relative w-full" style={{ paddingTop: `${(viewBoxHeight / viewBoxWidth) * 100}%` }}>
         <svg
           viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
           preserveAspectRatio="xMidYMid meet"

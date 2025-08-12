@@ -1,17 +1,38 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 
 const HighlightVideoModal = ({ isVisible, onClose, videoSrc }) => {
     if (!isVisible) return null;
-    return (
+    
+    /*
+     * IMPORTANT: React Portal Implementation for Modal Rendering
+     * 
+     * This component uses createPortal() to render the modal content directly into document.body
+     * instead of within the component tree. This is necessary because:
+     * 
+     * 1. @react-three/drei ScrollControls Issue:
+     *    - The FootballPlay component is rendered inside <Scroll html> from @react-three/drei
+     *    - This creates a special rendering context that constrains child elements
+     *    - Even with high z-index values (z-[9999]), modals remain trapped within the scroll container
+     * 
+     * 2. Portal Solution:
+     *    - createPortal(modalContent, document.body) renders the modal at the root DOM level
+     *    - This completely bypasses the drei scroll container constraints
+     *    - Allows the modal to appear above all other content with proper z-index stacking
+     * 
+     * This is the same fix applied to ProjectDetails modal to solve drei scroll container issues.
+     */
+    
+    const modalContent = (
         <>
             {/* Backdrop */}
             <div 
-                className="fixed inset-0 bg-black/30 backdrop-blur-[2px] transition-opacity duration-500 z-40"
+                className="fixed inset-0 bg-black/30 backdrop-blur-[2px] transition-opacity duration-500 z-[9990]"
                 onClick={onClose}
             />
             {/* Modal */}
             <div 
-                className="fixed top-1/2 left-1/2 z-50 w-[350px] h-[600px] bg-white/95 rounded-2xl shadow-2xl transform -translate-x-1/2 -translate-y-1/2 flex flex-col overflow-hidden"
+                className="fixed top-1/2 left-1/2 z-[9995] w-[350px] h-[600px] bg-white/95 rounded-2xl shadow-2xl transform -translate-x-1/2 -translate-y-1/2 flex flex-col overflow-hidden"
             >
                 {/* Close button */}
                 <button 
@@ -34,6 +55,9 @@ const HighlightVideoModal = ({ isVisible, onClose, videoSrc }) => {
             </div>
         </>
     );
+
+    // Render modal content using a portal to escape the drei scroll context
+    return createPortal(modalContent, document.body);
 };
 
 export default HighlightVideoModal; 

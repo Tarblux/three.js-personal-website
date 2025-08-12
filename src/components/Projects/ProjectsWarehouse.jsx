@@ -3,12 +3,26 @@ import ProjectCard from './ProjectCard';
 import ProjectFilter from '../UI/ProjectFilter';
 import ProjectDetails from './ProjectDetails';
 import { projects } from '../../data/projects';
+import soundManager from '../../utils/soundManager';
 
 const ProjectsWarehouse = () => {
     const [filter, setFilter] = useState('all');
     const [selectedProject, setSelectedProject] = useState(null);
     const [currentPage, setCurrentPage] = useState(0);
     const containerRef = useRef(null);
+
+    useEffect(() => {
+        soundManager.preload('infoPop', [
+            '/sounds/infographic-pop-1.ogg',
+            '/sounds/infographic-pop-1.mp3',
+        ]);
+        soundManager.preload('modalClose', [
+            '/sounds/modal-close.ogg',
+            '/sounds/modal-close.mp3',
+        ]);
+        soundManager.volume('infoPop', 0.5);
+        soundManager.volume('modalClose', 0.7);
+    }, []);
 
     const calculateDuration = (startDate, endDate = null) => {
         const start = new Date(startDate);
@@ -93,8 +107,9 @@ const ProjectsWarehouse = () => {
                                 const duration = calculateDuration(project.startDate, project.endDate);
                                 
                                 return (
-                                    <div key={index} onClick={() => handleProjectClick(project)}>
+                                    <div key={index}>
                                         <ProjectCard
+                                            onClick={() => handleProjectClick(project)}
                                             title={project.title}
                                             date={`${startDate} - ${endDate} · ${duration}`}
                                             image={project.thumbnail}
@@ -150,8 +165,8 @@ const ProjectsWarehouse = () => {
                                     <button
                                         key={i}
                                         onClick={() => setCurrentPage(i)}
-                                        className={`h-1.5 w-1.5 rounded-full transition-all duration-300 hover:bg-gray-600 cursor-pointer
-                                            ${currentPage === i ? 'bg-blue-800 w-4' : 'bg-gray-300'}`}
+                                        className={`h-2 w-3 rounded-full transition-all duration-300 hover:bg-gray-600 cursor-pointer
+                                            ${currentPage === i ? 'bg-blue-800 w-6' : 'bg-gray-300'}`}
                                     />
                                 ))}
                             </div>
@@ -172,4 +187,4 @@ const ProjectsWarehouse = () => {
     );
 };
 
-export default ProjectsWarehouse;
+export default React.memo(ProjectsWarehouse);

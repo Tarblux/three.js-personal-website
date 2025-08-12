@@ -27,4 +27,4 @@ const EducationKzoo = () => {
     );
 };
 
-export default EducationKzoo 
+export default React.memo(EducationKzoo)

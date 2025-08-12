@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { favoriteBooks } from '../../data/favoriteBooks';
+import soundManager from '../../utils/soundManager'
 
 const FavoriteBooksCard = ({ onBookClick }) => {
   const [hoveredBook, setHoveredBook] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
 
+  useEffect(() => {
+    soundManager.preload('bookTouch', ['/sounds/book-touch.ogg', '/sounds/book-touch.mp3'])
+    soundManager.volume('bookTouch', 0.3)
+  }, [])
+
   const handleMouseEnter = (bookId) => {
     setHoveredBook(bookId);
+    soundManager.play('bookTouch')
     const timer = setTimeout(() => {
       setShowMessage(true);
     }, 1000);
@@ -19,7 +26,7 @@ const FavoriteBooksCard = ({ onBookClick }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow p-3 md:col-span-4 md:row-span-1 flex flex-col transform transition-transform duration-300 hover:scale-105">
+    <div className="bg-white rounded-lg shadow p-3 md:col-span-4 md:row-span-1 flex flex-col transform transition-transform duration-300 md:hover:scale-105">
       <div className="flex items-center mb-2">
         <img
           src="/emojis/emoji-books.webp"
