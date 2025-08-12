@@ -94,6 +94,25 @@ export default {
         svgScale: {
           '0%': { transform: 'scale(1)' },
           '100%': { transform: 'scale(0)' }
+        },
+        photoJiggle: {
+          '0%, 100%': { transform: 'rotate(0deg) scale(1)' },
+          '25%': { transform: 'rotate(-8deg) scale(1.1)' },
+          '50%': { transform: 'rotate(8deg) scale(1.05)' },
+          '75%': { transform: 'rotate(-4deg) scale(1.15)' }
+        },
+        photoExpand: {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.3)' },
+          '100%': { transform: 'scale(1)' }
+        },
+        photoJiggleExpand: {
+          '0%': { transform: 'rotate(0deg) scale(1)' },
+          '20%': { transform: 'rotate(-10deg) scale(1.2)' },
+          '40%': { transform: 'rotate(10deg) scale(1.4)' },
+          '60%': { transform: 'rotate(-5deg) scale(1.3)' },
+          '80%': { transform: 'rotate(5deg) scale(1.1)' },
+          '100%': { transform: 'rotate(0deg) scale(1)' }
         }
       },
       animation: {
@@ -108,7 +127,10 @@ export default {
         'pulse-dot': 'pulseDot 2s infinite',
         'card-hover': 'cardHover 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
         'card-content-rotate': 'cardContentRotate 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
-        'svg-scale': 'svgScale 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards'
+        'svg-scale': 'svgScale 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+        'photo-jiggle': 'photoJiggle 0.6s ease-in-out',
+        'photo-expand': 'photoExpand 0.8s ease-in-out',
+        'photo-jiggle-expand': 'photoJiggleExpand 1.2s ease-in-out'
       },
       backgroundImage: {
         'id-card-gloss': 'linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0.25) 60%, transparent 80%)',

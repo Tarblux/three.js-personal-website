@@ -25,4 +25,4 @@ export function LanguageInstitute(props) {
   )
 }
 
-useGLTF.preload('/language-institute.glb')
+useGLTF.preload('/models/language-institute.glb')
