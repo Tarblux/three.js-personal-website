@@ -55,6 +55,12 @@ const VolumeSlider = ({
   // Global keyboard shortcut: 'm' to toggle mute
   useEffect(() => {
     const handleKeyDown = (e) => {
+      
+      // Don't intercept 'm' key if user is typing in an input field (fixes issue where 'm' key would toggle mute when typing in an input field)
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.contentEditable === 'true') {
+        return;
+      }
+      
       if (e.key === 'm' || e.key === 'M') {
         e.preventDefault();
         if (onToggleMute) onToggleMute();

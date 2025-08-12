@@ -21,4 +21,4 @@ export function Train(props) {
   )
 }
 
-useGLTF.preload('/train.glb')
+useGLTF.preload('/models/train.glb')

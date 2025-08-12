@@ -19,4 +19,4 @@ export function RailTrack(props) {
   )
 }
 
-useGLTF.preload('/models/rail-track.glb')
+useGLTF.preload('/models/railtrack.glb')

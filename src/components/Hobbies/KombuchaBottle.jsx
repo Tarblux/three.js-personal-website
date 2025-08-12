@@ -18,6 +18,7 @@ const DropIcon = ({ color }) => (
 
 const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidColor, priceColor, hoverImage, isPlaying, onPlay, onStop, onHoverImage, onHoverEnd }) => {
   const [isMobileImageShowing, setIsMobileImageShowing] = useState(false);
+  const [photoAnimation, setPhotoAnimation] = useState('');
 
   useEffect(() => {
     soundManager.preload('bottleSfx', ['/sounds/bottle-sfx.ogg', '/sounds/bottle-sfx.mp3'])
@@ -31,6 +32,38 @@ const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidCol
       soundManager.stop('bottleSfx')
     }
   }, [isPlaying]);
+
+  // Random photo icon animation effect
+  useEffect(() => {
+    const triggerRandomAnimation = () => {
+      const animations = ['photo-icon-jiggle', 'photo-icon-expand', 'photo-icon-jiggle-expand'];
+      const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+      
+      setPhotoAnimation(randomAnimation);
+      
+      // Clear animation class after animation completes
+      const animationDuration = randomAnimation === 'photo-icon-jiggle' ? 600 : 
+                               randomAnimation === 'photo-icon-expand' ? 800 : 1200;
+      
+      setTimeout(() => {
+        setPhotoAnimation('');
+      }, animationDuration);
+    };
+
+    // Random interval between 8-20 seconds
+    const getRandomInterval = () => Math.random() * 12000 + 8000;
+    
+    const intervalId = setInterval(triggerRandomAnimation, getRandomInterval());
+    
+    // Initial random delay before first animation
+    const initialDelay = Math.random() * 5000 + 3000;
+    const initialTimeoutId = setTimeout(triggerRandomAnimation, initialDelay);
+    
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(initialTimeoutId);
+    };
+  }, []);
 
   const handleMouseEnter = () => {
     if (onPlay) onPlay();
@@ -110,7 +143,7 @@ const KombuchaBottle = ({ title, price, ingredients = [], personality, liquidCol
             <img 
               src="/images/Hobbies/photo.svg" 
               alt="Photo" 
-              className="w-6 h-6 cursor-pointer opacity-60 hover:opacity-100 transition-opacity"
+              className={`w-6 h-6 cursor-pointer opacity-60 hover:opacity-100 transition-opacity ${photoAnimation}`}
               onMouseEnter={onHoverImage}
               onMouseLeave={onHoverEnd}
               onClick={handlePhotoClick}

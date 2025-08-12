@@ -146,6 +146,14 @@ body,
   pointer-events: none;
 }
 
+/* Desktop: 25% bigger boarding pass */
+@media (min-width: 1024px) {
+  .boarding-pass-container {
+    width: 406px; /* 325px * 1.25 */
+    height: 812px; /* 650px * 1.25 */
+  }
+}
+
 
 .boarding-pass {
   width: 100%;
