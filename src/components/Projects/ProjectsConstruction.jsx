@@ -78,7 +78,7 @@ const ProjectsConstruction = () => {
                         </div>
                         <div className="px-4 pt-2">
                             <p className="text-gray-500 text-xs leading-relaxed">
-                                If any of these projects interest you, just drop me a message on{' '}
+                                If any of these projects also interest you, just drop me a message on{' '}
                                 <a 
                                     href="https://www.linkedin.com/in/tariq-williams12/" 
                                     target="_blank" 

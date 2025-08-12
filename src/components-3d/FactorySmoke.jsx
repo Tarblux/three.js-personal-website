@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback } from 'react'
+import React, { useRef, useMemo, useCallback, useEffect } from 'react'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
@@ -151,7 +151,10 @@ export function FactorySmoke(props) {
   const uniforms = useMemo(() => ({
     diffuseTexture: { value: cloudTexture },
     pointMultiplier: { 
-      value: window.innerHeight / (2.0 * Math.tan(30.0 * Math.PI / 180.0))
+      value: (
+        (Math.min(window.innerWidth, window.innerHeight) / (2.0 * Math.tan(30.0 * Math.PI / 180.0)))
+        * window.devicePixelRatio
+      )
     }
   }), [cloudTexture])
 
@@ -262,6 +265,27 @@ export function FactorySmoke(props) {
     geometry.attributes.size.needsUpdate = true
     geometry.attributes.aColor.needsUpdate = true
     geometry.attributes.angle.needsUpdate = true
+  }, [])
+
+  // Update pointMultiplier on resize / device pixel ratio change
+  useEffect(() => {
+    const updatePointMultiplier = () => {
+      const multiplier = (
+        (Math.min(window.innerWidth, window.innerHeight) / (2.0 * Math.tan(30.0 * Math.PI / 180.0)))
+        * window.devicePixelRatio
+      )
+      
+      // Update all chimney materials
+      materialRefs.current.forEach(materialRef => {
+        if (materialRef.current) {
+          materialRef.current.uniforms.pointMultiplier.value = multiplier
+        }
+      })
+    }
+
+    updatePointMultiplier()
+    window.addEventListener('resize', updatePointMultiplier)
+    return () => window.removeEventListener('resize', updatePointMultiplier)
   }, [])
 
   // Main animation loop

@@ -51,7 +51,7 @@ export function useFreezePoints({
   enabled = true,
   holdMs = 1000,
   soundUrl = '/sounds/scroll-stop.mp3',
-  volume = 0.8,
+  volume = 0.1,
   hysteresis = 0.01,
 }) {
   const scroll = useScroll()

@@ -60,6 +60,7 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
   }
   
   useEffect(() => {
+    // Show welcome message only after auto-play sequence completes
     if (!autoPlay && !disableScroll) {
       setShowWelcome(true)
     }
