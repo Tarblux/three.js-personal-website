@@ -155,8 +155,8 @@ function Loader({ onBoardingPassClick }) {
       <div className="loading-percentage">{displayProgress}%</div>
       {(priorityStatus.criticalReady || displayProgress >= 100) && <LoadedButton onBoardingPassClick={onBoardingPassClick} />}
       
-      {/* Enhanced loading info */}
-      <div className="fixed bottom-4 left-4 bg-black bg-opacity-50 text-white p-3 text-sm rounded-lg">
+      {/* Loading info */}
+      {/* <div className="fixed bottom-4 left-4 bg-black bg-opacity-50 text-white p-3 text-sm rounded-lg">
         <div className="font-bold mb-2">Loading Status</div>
         <div>Phase: <span className="text-blue-300">{priorityStatus.phase}</span></div>
         <div>Critical: <span className="text-green-300">{priorityStatus.phases.critical.loaded}/{priorityStatus.phases.critical.total}</span></div>
@@ -168,7 +168,7 @@ function Loader({ onBoardingPassClick }) {
           <div>Display: <span className="text-white font-bold">{displayProgress}%</span></div>
           <div>Ready: <span className={priorityStatus.criticalReady ? 'text-green-400' : 'text-red-400'}>{priorityStatus.criticalReady ? 'Yes' : 'No'}</span></div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
@@ -265,7 +265,7 @@ function App() {
           show={audioDebugData.showDebugHUD}
         />
       )}
-      {import.meta.env.DEV && <Leva collapsed />}
+      <Leva collapsed hidden={true} />
       <SpeedInsights />
       <Analytics />
     </>
