@@ -16,13 +16,18 @@ const useIsMobile = () => {
     return isMobile;
 };
 
-const FootballMemories = () => {
+const FootballMemories = ({ onSelectVideo }) => {
     const isMobile = useIsMobile();
 
     const handleImageClick = (moment) => {
-        // Handle video/link opening
+        if (!moment) return;
         if (moment.videoUrl) {
-            window.open(moment.videoUrl, '_blank');
+            if (typeof onSelectVideo === 'function') {
+                onSelectVideo(moment.videoUrl);
+            } else {
+                // Fallback: open in a new tab if no handler is provided
+                window.open(moment.videoUrl, '_blank');
+            }
         }
     };
 
@@ -38,7 +43,7 @@ const FootballMemories = () => {
                             <div key={moment.id} className="group relative w-[270px] flex flex-col">
                                 <div className={`relative aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden ${isMobile ? 'cursor-pointer' : '[perspective:1000px]'} shadow-[0_0_0_5px_rgba(255,255,255,0.5)] transition-all duration-[1000ms] ease-[cubic-bezier(0.175,0.885,0.32,1.275)] hover:shadow-[0_8px_16px_rgba(255,255,255,0.2)]`}
                                     style={isMobile ? { WebkitTapHighlightColor: 'transparent' } : {}}
-                                    onClick={isMobile ? () => handleImageClick(moment) : undefined}
+                                    onClick={() => handleImageClick(moment)}
                                 >
                                     <div className="absolute inset-0 w-full h-full">
                                         <img
@@ -57,7 +62,7 @@ const FootballMemories = () => {
                                                     handleImageClick(moment);
                                                 }}
                                             >
-                                                Watch
+                                                Watch Highlight
                                             </button>
                                         </div>
                                     )}

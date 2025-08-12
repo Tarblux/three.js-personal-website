@@ -4,6 +4,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
 import { useSmokeControls } from '../hooks/useSmokeControls.js'
 
+// TODO: Move shaders to a separate file (had  a issue before so i'm not sure if it's a good idea)
 // Vertex shader for particles
 const vertexShader = `
 uniform float pointMultiplier;

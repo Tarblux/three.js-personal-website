@@ -1,7 +1,10 @@
 import { useScroll } from "@react-three/drei"
 
-export default function Section({ top, fadeInStart, fadeInEnd, fadeOutStart, fadeOutEnd, children }) {
+import { useEffect, useRef } from 'react'
+
+export default function Section({ top, fadeInStart, fadeInEnd, fadeOutStart, fadeOutEnd, children, onActiveChange }) {
     const scroll = useScroll()
+    const lastActiveRef = useRef(false)
     
     const calculateOpacity = () => {
         // scroll.offset is already normalized between 0 and 1
@@ -31,6 +34,14 @@ export default function Section({ top, fadeInStart, fadeInEnd, fadeOutStart, fad
 
     const opacity = calculateOpacity()
     const isActive = opacity > 0.75 // Threshold for considering section "active"
+
+    useEffect(() => {
+        if (!onActiveChange) return;
+        if (lastActiveRef.current !== isActive) {
+            lastActiveRef.current = isActive;
+            try { onActiveChange(isActive); } catch {}
+        }
+    }, [isActive, onActiveChange])
 
     return (
         <div

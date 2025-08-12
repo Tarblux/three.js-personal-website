@@ -21,7 +21,7 @@ import KombuchaMenu from "./components/Hobbies/KombuchaMenu.jsx"
 import Contact from "./components/Contact/Contact.jsx"
 import Credits from "./components/Contact/Credits.jsx"
 
-export default function ScrollSections({ showWelcome }) {
+export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActiveChange, onMemoriesActiveChange }) {
   return (
     <>
       <Section 
@@ -32,7 +32,7 @@ export default function ScrollSections({ showWelcome }) {
         fadeOutEnd={10}
       >
         <div className="flex justify-center items-center h-screen">
-          <WelcomeMessage showMessage={showWelcome} />
+          {/* <WelcomeMessage showMessage={showWelcome} /> */}
         </div>
       </Section>
       
@@ -67,7 +67,7 @@ export default function ScrollSections({ showWelcome }) {
       </Section>
 
       <Section 
-        top="280vh"
+        top="275vh"
         fadeInStart={270}
         fadeInEnd={280}
         fadeOutStart={310}
@@ -153,6 +153,7 @@ export default function ScrollSections({ showWelcome }) {
         fadeInEnd={825}
         fadeOutStart={835}
         fadeOutEnd={845}
+        onActiveChange={onWatchActiveChange}
       >
         <FootballWatch />
       </Section>
@@ -163,8 +164,9 @@ export default function ScrollSections({ showWelcome }) {
         fadeInEnd={880}
         fadeOutStart={900}
         fadeOutEnd={910}
+        onActiveChange={onMemoriesActiveChange}
       >
-        <FootballMemories />
+        <FootballMemories onSelectVideo={onSelectVideo} />
       </Section>
 
       <Section 

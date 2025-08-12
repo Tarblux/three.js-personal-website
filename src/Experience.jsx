@@ -1,3 +1,4 @@
+// Libraries
 import { useRef, useState, useEffect } from "react"
 import { useFrame } from "@react-three/fiber"
 import { ScrollControls, useScroll, Scroll, OrbitControls, PerspectiveCamera } from "@react-three/drei"
@@ -6,6 +7,7 @@ import { useControls, folder } from "leva"
 import { Perf } from "r3f-perf"
 import { SheetProvider, PerspectiveCamera as TheatrePerspectiveCamera, useCurrentSheet, editable as e} from "@theatre/r3f"
 
+// Three.js Components
 import CameraPath from "./Main Frame.theatre-project-state.json"
 import { Landscape } from './components-3d/Landscape.jsx'
 import { ProjectLabs } from './components-3d/ProjectLabs.jsx'
@@ -30,8 +32,11 @@ import { FactorySmoke } from "./components-3d/FactorySmoke.jsx"
 import { FactoryAudio } from "./components-3d/FactoryAudio.jsx"
 import { TradingAudio } from "./components-3d/TradingAudio.jsx"
 import { Sky } from './components-3d/Sky.jsx'
+import VideoPreloader from './components-3d/VideoPreloader.jsx'
 
+// UI Components
 import ScrollSections from "./ScrollSections.jsx"
+import { footballMoments } from './data/footballMoments.js'
 import FreezeManager from './components/UI/FreezeManager.jsx'
 import { FREEZE_POINTS } from './data/sections.js'
 
@@ -39,8 +44,21 @@ import { FREEZE_POINTS } from './data/sections.js'
 export default function Experience({ disableScroll, setDisableScroll, autoPlay, setAutoPlay , onScrollProgress, onAudioDebugUpdate }) {
   const sheet = getProject("Main Frame", { state: CameraPath }).sheet("Scene")
   const [showWelcome, setShowWelcome] = useState(false)
+  const [currentVideo, setCurrentVideo] = useState(footballMoments?.[2]?.videoUrl || '/videos/reiss.mp4')
+  const [watchActive, setWatchActive] = useState(false)
+  const [memoriesActive, setMemoriesActive] = useState(false)
+  const [videoChangeKey, setVideoChangeKey] = useState(0) // Force restart on same video selection
 
-  // Show welcome message when autoplay is complete or skipped
+  const handleVideoSelection = (videoUrl) => {
+    if (videoUrl === currentVideo) {
+      // Same video selected, increment key to force restart
+      setVideoChangeKey(prev => prev + 1)
+    } else {
+      // Different video, update URL
+      setCurrentVideo(videoUrl)
+    }
+  }
+  
   useEffect(() => {
     if (!autoPlay && !disableScroll) {
       setShowWelcome(true)
@@ -62,6 +80,9 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             autoPlay={autoPlay}
             setAutoPlay={setAutoPlay}
             onScrollProgress = {onScrollProgress}
+            videoUrl={currentVideo}
+            audioActive={memoriesActive}
+            videoChangeKey={videoChangeKey}
           />
         </SheetProvider>
         <FreezeManager points={FREEZE_POINTS} active={!disableScroll && !autoPlay} />
@@ -75,14 +96,27 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
           onDebugUpdate={onAudioDebugUpdate}
         />
         <Scroll html style={{ width: "100vw", height: "100vh" }}>
-          <ScrollSections showWelcome={showWelcome} />
+          <ScrollSections 
+            showWelcome={showWelcome} 
+            onSelectVideo={handleVideoSelection}
+            onWatchActiveChange={setWatchActive}
+            onMemoriesActiveChange={setMemoriesActive}
+          />
         </Scroll>
+        {/* Defer preloading of videos until the FootballWatch section becomes active */}
+        {watchActive && (
+          <VideoPreloader urls={[
+            footballMoments?.[0]?.videoUrl,
+            footballMoments?.[1]?.videoUrl,
+            footballMoments?.[2]?.videoUrl,
+          ].filter(Boolean)} active={true} />
+        )}
       </ScrollControls>
     </>
   );
 }
 
-function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrollProgress }) {
+function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrollProgress, videoUrl, audioActive, videoChangeKey }) {
 
   const sheet = useCurrentSheet();
   const scroll = useScroll();
@@ -90,7 +124,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const smokeEmitterRef = useRef(null);
 
-  // Add debug controls
+  // Debug Controls
   const { debugMode, showPerf, perfPosition, cameraPosition, cameraTarget } = useControls("Debug", {
     debugMode: { value: false, label: "Enable Debug Mode" },
     showPerf: { value: false, label: "Show Performance" },
@@ -100,8 +134,8 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       label: "Perf Position",
     },
     "Debug Camera": folder({
-      cameraPosition: { value: [-245, 37, 135], label: "Position" },
-      cameraTarget: { value: [0, 0, 0], label: "Target" },
+      cameraPosition: { value: [-355, 41, 172], label: "Position" },
+      cameraTarget: { value: [0, 0, 3000], label: "Target" },
     }, { collapsed: false })
   }, { collapsed: false });
 
@@ -122,7 +156,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
   }, [sheet]);
 
   useFrame((state, delta) => {
-    // Skip theatre updates when in debug mode
+    // Skip theatre updates when in debug mode (for now)
     if (debugMode) return;
 
     const sequenceLength = val(sheet.sequence.pointer.length);
@@ -173,7 +207,7 @@ function Scene({ disableScroll, setDisableScroll, autoPlay, setAutoPlay, onScrol
       <RailTrack />
       <Streetlights />
       <ChessPark />
-      <Stadium />
+      <Stadium videoUrl={videoUrl} audioActive={audioActive} videoChangeKey={videoChangeKey} />
       <Booch />
       <Trees />
       <Fences />

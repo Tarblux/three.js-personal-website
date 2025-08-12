@@ -48,6 +48,7 @@
 import { Howl, Howler } from 'howler';
 
 const registry = new Map();
+const mediaRegistry = new Map();
 
 const toSources = (srcOrArray) => (Array.isArray(srcOrArray) ? srcOrArray : [srcOrArray]);
 
@@ -148,6 +149,106 @@ const soundManager = {
   unloadAll() {
     registry.forEach((h) => h.unload());
     registry.clear();
+  },
+
+  // VIDEO/HTMLMediaElement integration
+  attachMediaElement(key, mediaElement, options = {}) {
+    if (!mediaElement) return () => {};
+    
+    // First, detach any existing element with this key to prevent overlaps
+    this.detachMediaElement(key);
+    
+    const config = {
+      localVolume: typeof options.localVolume === 'number' ? options.localVolume : 1,
+      active: options.active ?? true,
+    };
+
+    const apply = () => {
+      const effectiveVolume = globalMuted || !config.active ? 0 : (globalVolume * config.localVolume);
+      try {
+        mediaElement.volume = effectiveVolume;
+        mediaElement.muted = effectiveVolume === 0;
+      } catch {}
+    };
+
+    // Initial apply and subscription to global changes
+    apply();
+    const unsubscribe = this.subscribe(apply);
+
+    mediaRegistry.set(key, { element: mediaElement, config, unsubscribe });
+
+    // Return a detach function
+    return () => {
+      this.detachMediaElement(key);
+    };
+  },
+
+  detachMediaElement(key) {
+    const rec = mediaRegistry.get(key);
+    if (rec) {
+      try { 
+        // Stop the media element
+        rec.element.pause();
+        rec.element.currentTime = 0;
+        rec.unsubscribe?.(); 
+      } catch {}
+      mediaRegistry.delete(key);
+    }
+  },
+
+  setMediaLocalVolume(key, localVolume) {
+    const rec = mediaRegistry.get(key);
+    if (!rec) return;
+    rec.config.localVolume = clamp01(localVolume);
+    // Re-apply immediately
+    try {
+      const effectiveVolume = globalMuted || !rec.config.active ? 0 : (globalVolume * rec.config.localVolume);
+      rec.element.volume = effectiveVolume;
+      rec.element.muted = effectiveVolume === 0;
+    } catch {}
+  },
+
+  setMediaActive(key, active) {
+    const rec = mediaRegistry.get(key);
+    if (!rec) return;
+    rec.config.active = !!active;
+    // Re-apply immediately
+    try {
+      const effectiveVolume = globalMuted || !rec.config.active ? 0 : (globalVolume * rec.config.localVolume);
+      rec.element.volume = effectiveVolume;
+      rec.element.muted = effectiveVolume === 0;
+      if (rec.config.active) {
+        // Restart from beginning when becoming active
+        rec.element.currentTime = 0;
+        try { rec.element.play?.(); } catch {}
+      } else {
+        // Pause when becoming inactive
+        try { rec.element.pause?.(); } catch {}
+      }
+    } catch {}
+  },
+
+  // Stop all media elements except the specified key
+  stopAllMediaExcept(exceptKey) {
+    mediaRegistry.forEach((rec, key) => {
+      if (key !== exceptKey) {
+        try {
+          rec.element.pause();
+          rec.element.currentTime = 0;
+        } catch {}
+      }
+    });
+  },
+
+  // Restart a specific media element from the beginning
+  restartMedia(key) {
+    const rec = mediaRegistry.get(key);
+    if (rec) {
+      try {
+        rec.element.currentTime = 0;
+        rec.element.play();
+      } catch {}
+    }
   },
 };
 

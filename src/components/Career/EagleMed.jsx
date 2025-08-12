@@ -8,7 +8,7 @@ const EagleMed = () => {
                 <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
                     Career|Eagle Medical Labs
                 </span>
-                <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-[308px] min-h-[380px] border border-white/30 shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
+                <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-[350px] min-h-[380px] border border-white/30 shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
                     <div className="space-y-4">
                         {/* Eagle Medical Experience */}
                         <div className="bg-white rounded-lg shadow-lg p-3">
@@ -36,21 +36,21 @@ const EagleMed = () => {
 
                             <div>
                                 <div className="space-y-2 mt-4 mb-4">
-                                    <div className="flex items-start gap-2 text-gray-700 text-xs">
+                                    <div className="flex items-start gap-2 text-gray-700 text-[13px]">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
                                              <b> Compiled blood and urine analysis data</b> such as CBC,
                                             Urinalysis, and metabolic panels in <b>Microsoft Excel</b>
                                         </span>
                                     </div>
-                                    <div className="flex items-start gap-2 text-gray-700 text-xs">
+                                    <div className="flex items-start gap-2 text-gray-700 text-[13px]">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
                                             Migrated the companies <b>sample inventory database </b>
                                             from <b>Microsoft Access</b> to <b>SQL</b>
                                         </span>
                                     </div>
-                                    <div className="flex items-start gap-2 text-gray-700 text-xs">
+                                    <div className="flex items-start gap-2 text-gray-700 text-[13px]">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
                                             Provided <b>weekly reports</b> on trends in data

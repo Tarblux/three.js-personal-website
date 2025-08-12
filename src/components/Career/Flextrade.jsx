@@ -21,9 +21,9 @@ const Flextrade = () => {
         <div className="absolute top-0 right-0 z-0 p-4 md:p-8">
             <div className="flex flex-col items-start">
                 <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
-                    Career|Flextrade
+                    Career | Flextrade
                 </span>
-                <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-[308px] min-h-[420px] border border-white/30 shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
+                <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-[350px] min-h-[420px] border border-white/30 shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-md">
                     <div className="space-y-4">
                         {/* Flextrade Experience */}
                         <div className="bg-white rounded-lg shadow-lg p-3">
@@ -51,7 +51,7 @@ const Flextrade = () => {
 
                             <div>
                                 <div className="space-y-2 mb-4">
-                                    <div className="flex items-start gap-2 text-gray-700 text-xs">
+                                    <div className="flex items-start gap-2 text-gray-700 text-[13px]">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
                                             Develop features for a <b>Python-based calculation service </b> 
@@ -59,7 +59,7 @@ const Flextrade = () => {
                                             within the <b>Order Management System (OMS)</b>
                                         </span>
                                     </div>
-                                    <div className="flex items-start gap-2 text-gray-700 text-xs">
+                                    <div className="flex items-start gap-2 text-gray-700 text-[13px]">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
                                             Build and maintain <b>gRPC API</b> routines enabling
@@ -67,14 +67,14 @@ const Flextrade = () => {
                                             main <b>OMS backend</b>
                                         </span>
                                     </div>
-                                    <div className="flex items-start gap-2 text-gray-700 text-xs">
+                                    <div className="flex items-start gap-2 text-gray-700 text-[13px]">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
                                             Write <b>unit tests</b> for calculation workflows to ensure
                                             accuracy and reliability of all calculations
                                         </span>
                                     </div>
-                                    <div className="flex items-start gap-2 text-gray-700 text-xs">
+                                    <div className="flex items-start gap-2 text-gray-700 text-[13px]">
                                         <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" size={12} />
                                         <span>
                                             Optimize <b>calculation service performance</b> by profiling 
