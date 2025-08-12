@@ -11,6 +11,8 @@ import { Leva } from 'leva'
 
 import Experience from './Experience.jsx'
 import LoadedButton from './components/UI/LoadedButton.jsx'
+import { usePriorityLoading } from './hooks/usePriorityLoading.js'
+import { priorityLoadingManager } from './utils/PriorityLoadingManager.js'
 import SkipIntroButton from './components/UI/SkipIntroButton.jsx'
 import ScrollDebug from './components/UI/ScrollDebug.jsx'
 import { AudioDebugHUD } from './components/UI/AudioDebugHUD.jsx'
@@ -81,27 +83,92 @@ const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 function Loader({ onBoardingPassClick }) {
   const { progress } = useProgress()
+  const priorityStatus = usePriorityLoading()
   const [isLoaded, setIsLoaded] = useState(false)
+  const [loadingPhase, setLoadingPhase] = useState('Initializing...')
 
   useEffect(() => {
-    if (progress === 100) {
+    // Start priority loading when component mounts
+    priorityLoadingManager.startLoading()
+  }, [])
+
+  useEffect(() => {
+    // Funny loading messages based on progress
+    const criticalPhase = priorityStatus.phases.critical
+    const progress = criticalPhase.total > 0 ? criticalPhase.loaded / criticalPhase.total : 0
+    
+    if (priorityStatus.criticalReady && !isLoaded) {
+      setLoadingPhase('City construction complete!')
+      setIsLoaded(true)
+      const loadingMessage = document.querySelector('.loading-message')
+      if (loadingMessage) {
+        loadingMessage.classList.add('fade-out-message')
+      }
+    } else if (progress < 0.15) {
+      setLoadingPhase('Terraforming terrain...')
+    } else if (progress < 0.25) {
+      setLoadingPhase('Planting digital trees...')
+    } else if (progress < 0.35) {
+      setLoadingPhase('Installing streetlights...')
+    } else if (progress < 0.45) {
+      setLoadingPhase('Building train tracks...')
+    } else if (progress < 0.55) {
+      setLoadingPhase('Spawning NPCs...')
+    } else if (progress < 0.65) {
+      setLoadingPhase('Training the AI conductor...')
+    } else if (progress < 0.75) {
+      setLoadingPhase('Calibrating chess pieces...')
+    } else if (progress < 0.85) {
+      setLoadingPhase('Rendering skyscrapers...')
+    } else if (progress < 0.95) {
+      setLoadingPhase('Adding the final touches...')
+    } else {
+      setLoadingPhase('City construction complete!')
+    }
+  }, [priorityStatus, isLoaded])
+
+  // Fallback to old progress system if priority loading fails
+  useEffect(() => {
+    if (progress === 100 && !isLoaded) {
       setIsLoaded(true)
       const loadingMessage = document.querySelector('.loading-message')
       if (loadingMessage) {
         loadingMessage.classList.add('fade-out-message')
       }
     }
-  }, [progress])
+  }, [progress, isLoaded])
+
+  // Calculate display progress (critical assets = 100%)
+  const criticalProgress = priorityStatus.phases.critical.total > 0 
+    ? (priorityStatus.phases.critical.loaded / priorityStatus.phases.critical.total) * 100
+    : progress
+
+  const displayProgress = Math.min(100, Math.round(criticalProgress)) // Prevent > 100% and fix rounding
 
   return (
     <div id="loader">
-      <div className="loading-message">Building city...</div>
+      <div className="loading-message">{loadingPhase}</div>
       <video src="/videos/city-loading2.mp4" autoPlay muted playsInline disablePictureInPicture className="loading-video" />
       <div className="loading-bar-container">
-        <div className="loading-bar" style={{ width: `${progress}%` }}></div>
+        <div className="loading-bar" style={{ width: `${displayProgress}%` }}></div>
       </div>
-      <div className="loading-percentage">{Math.round(progress)}%</div>
-      {isLoaded && <LoadedButton onBoardingPassClick={onBoardingPassClick} />}
+      <div className="loading-percentage">{displayProgress}%</div>
+      {(priorityStatus.criticalReady || displayProgress >= 100) && <LoadedButton onBoardingPassClick={onBoardingPassClick} />}
+      
+      {/* Enhanced loading info */}
+      <div className="fixed bottom-4 left-4 bg-black bg-opacity-50 text-white p-3 text-sm rounded-lg">
+        <div className="font-bold mb-2">Loading Status</div>
+        <div>Phase: <span className="text-blue-300">{priorityStatus.phase}</span></div>
+        <div>Critical: <span className="text-green-300">{priorityStatus.phases.critical.loaded}/{priorityStatus.phases.critical.total}</span></div>
+        <div>High: <span className="text-yellow-300">{priorityStatus.phases.high.loaded}/{priorityStatus.phases.high.total}</span></div>
+        <div>Medium: <span className="text-orange-300">{priorityStatus.phases.medium.loaded}/{priorityStatus.phases.medium.total}</span></div>
+        <div>Low: <span className="text-gray-300">{priorityStatus.phases.low.loaded}/{priorityStatus.phases.low.total}</span></div>
+        <div className="mt-2 pt-2 border-t border-gray-600">
+          <div>Total Assets: <span className="text-cyan-300">{Object.values(priorityStatus.phases).reduce((sum, phase) => sum + phase.loaded, 0)}/{Object.values(priorityStatus.phases).reduce((sum, phase) => sum + phase.total, 0)}</span></div>
+          <div>Display: <span className="text-white font-bold">{displayProgress}%</span></div>
+          <div>Ready: <span className={priorityStatus.criticalReady ? 'text-green-400' : 'text-red-400'}>{priorityStatus.criticalReady ? 'Yes' : 'No'}</span></div>
+        </div>
+      </div>
     </div>
   )
 }

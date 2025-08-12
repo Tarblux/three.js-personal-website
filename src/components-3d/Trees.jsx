@@ -12,8 +12,8 @@ export function Trees(props) {
         castShadow
         receiveShadow
         geometry={nodes.trees.geometry}
-        position={[-2.158, 0.199, 1.234]}
-        rotation={[Math.PI / 2, 0, 2.812]}
+        position={[-2.15848, 0.198627, 1.233697]}
+        rotation={[Math.PI / 2, 0, 2.811954]}
       >
         <meshBasicMaterial map={bakedTexture} />
       </mesh>

@@ -170,7 +170,7 @@ export const projects = [
             "/images/Projects/iphone-deconstruction/iphone8-mock.webp",
         ],
         imageScrollPositions: [0.01],
-        thumbnail: "/images/Projects/iphone-deconstruction/iphones-thumbnail.jpg",
+        thumbnail: "/images/Projects/iphone-deconstruction/iphones-thumbnail.webp",
         description: "A detailed deconstruction of the iPhone 6+ and (RED) editions transformed into wall art pieces",
         category: "media",
         technologies: ["Technical Drawing", "Hardware", "Digital Art"],

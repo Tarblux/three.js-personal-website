@@ -76,7 +76,7 @@ function createLinearSpline(lerp) {
 
 export function TrainSmoke({ emitterRef, autoPlay, ...props }) {
   const { camera, size } = useThree()
-  const cloudTexture = useTexture('/textures/cloud.png')
+  const cloudTexture = useTexture('/textures/cloud.webp')
   
   // Track elapsed time since autoplay started for reliable timing
   const autoPlayStartTimeRef = useRef(null)

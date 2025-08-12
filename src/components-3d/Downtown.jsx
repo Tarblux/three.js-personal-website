@@ -15,11 +15,11 @@ export function Downtown(props) {
 
   // Load stock slider textures
   const sliderTextures = useLoader(TextureLoader, [
-    '/textures/stock-slider.jpg',
-    '/textures/stock-slider2.jpg',
-    '/textures/stock-slider3.jpg',
-    '/textures/stock-slider4.jpg',
-    '/textures/stock-slider5.jpg',
+    '/textures/stock-slider.webp',
+    '/textures/stock-slider2.webp',
+    '/textures/stock-slider3.webp',
+    '/textures/stock-slider4.webp',
+    '/textures/stock-slider5.webp',
   ])
 
   // Create shader material for the stock panel

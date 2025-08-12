@@ -75,7 +75,7 @@ function createLinearSpline(lerp) {
 
 export function FactorySmoke(props) {
   const { camera } = useThree()
-  const cloudTexture = useTexture('/textures/cloud.png')
+  const cloudTexture = useTexture('/textures/cloud.webp')
   
   const controls = useFactorySmokeControls()
   const {
