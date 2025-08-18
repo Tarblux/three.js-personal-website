@@ -14,7 +14,7 @@ export const projectsConstruction = [
         category: 'Development',
         technologies: ['Python', 'Flask', 'PostgreSQL'],
         phase: 3,
-        github: 'https://github.com/tariqwill/chess-analysis-server',
+        github: 'https://github.com/Tarblux/chess-analysis-server',
         story: `The goal is to build a full-featured chess analysis server that can process individual games and deliver deep insights. It will identify the best moves, highlight missed opportunities, and point out key momentum shifts during a match. Over time, the system will expand to include full-game aggregation, offering a broader perspective on my playing style and progress.`,
         articleComponent: "ChessAnalysisServerArticle"
     },

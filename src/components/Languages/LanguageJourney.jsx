@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 const viewBoxWidth = 800;
 const viewBoxHeight = 100;
@@ -14,9 +15,25 @@ const dotPositions = [
 
 const LanguageJourney = ({ languageJourneyData }) => {
   const [activeTooltip, setActiveTooltip] = useState(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
+
+  // Calculate tooltip position based on flag position
+  const calculateTooltipPosition = (event, idx) => {
+    const flagRect = event.currentTarget.getBoundingClientRect();
+    
+    // Position tooltip above the flag, centered horizontally
+    const x = (flagRect.left + flagRect.width / 2) + 10;
+    const y = flagRect.top - 45; // 45px above the flag (we have -45 because of the )
+    
+    setTooltipPosition({ x, y });
+  };
 
   return (
-    <div className="bg-white/90 rounded-lg shadow-lg p-4 col-span-1 row-span-1 md:col-span-3 md:row-span-1 flex flex-col transition-transform duration-300 ease-in-out hover:scale-[1.02]">
+    <div 
+      ref={containerRef}
+      className="bg-white/90 rounded-lg shadow-lg p-4 col-span-1 row-span-1 md:col-span-3 md:row-span-1 flex flex-col transition-transform duration-300 ease-in-out hover:scale-[1.02]"
+    >
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <img src="/images/Languages/student-learn-study-university-life-svgrepo-com.svg" alt="Journey" className="w-6 h-6" />
@@ -77,7 +94,10 @@ const LanguageJourney = ({ languageJourneyData }) => {
             >
               <div 
                 className="relative cursor-pointer pointer-events-auto"
-                onMouseEnter={() => setActiveTooltip(idx)}
+                onMouseEnter={(e) => {
+                  calculateTooltipPosition(e, idx);
+                  setActiveTooltip(idx);
+                }}
                 onMouseLeave={() => setActiveTooltip(null)}
               >
                 <img
@@ -91,12 +111,6 @@ const LanguageJourney = ({ languageJourneyData }) => {
                     left: '10px',
                   }}
                 />
-                {activeTooltip === idx && (
-                  <div className="absolute z-[9999] w-64 p-3 bg-white rounded-lg shadow-lg -translate-x-1/2 -translate-y-full -top-16 left-1/2">
-                    <div className="text-sm text-gray-700">{step.story}</div>
-                    <div className="absolute w-2 h-2 bg-white transform rotate-45 -bottom-1 left-1/2 -translate-x-1/2"></div>
-                  </div>
-                )}
               </div>
               <span
                 className="block text-center text-gray-500 text-xs absolute w-full"
@@ -129,6 +143,24 @@ const LanguageJourney = ({ languageJourneyData }) => {
           </div>
         </div>
       </div>
+
+      {/* Render tooltip using portal to avoid clipping */}
+      {activeTooltip !== null && createPortal(
+        <div
+          className="fixed z-[9999] w-64 p-3 bg-white rounded-lg shadow-lg border border-gray-200"
+          style={{
+            left: tooltipPosition.x,
+            top: tooltipPosition.y,
+            transform: 'translateX(-50%) translateY(-100%)',
+          }}
+        >
+          <div className="text-sm text-gray-700">
+            {languageJourneyData[activeTooltip]?.story}
+          </div>
+          <div className="absolute w-2 h-2 bg-white border-r border-b border-gray-200 transform rotate-45 top-full left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        </div>,
+        document.body
+      )}
     </div>
   );
 };
