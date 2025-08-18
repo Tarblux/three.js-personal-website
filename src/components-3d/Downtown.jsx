@@ -1,16 +1,17 @@
 import React, { useMemo } from 'react'
-import { useGLTF, useTexture } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import { useLoader, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { TextureLoader } from 'three'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 import tickerVertex from '../shaders/tickerVertex.glsl?raw'
 import tickerFragment from '../shaders/tickerFragment.glsl?raw'
 
 export function Downtown(props) {
   const { nodes } = useGLTF('/models/downtown.glb')
 
-  // Baked texture for downtown only
-  const bakedTexture = useTexture('/textures/downtown.webp')
+  // Baked texture for downtown using smart texture loading
+  const bakedTexture = useSmartTexture('downtown')
   bakedTexture.flipY = false
 
   // Load stock slider textures

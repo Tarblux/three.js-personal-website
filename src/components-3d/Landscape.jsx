@@ -1,10 +1,12 @@
 import React from 'react'
-import { useGLTF, useTexture } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 
 export function Landscape(props) {
   const { nodes } = useGLTF('/models/landscape.glb')
-  const bakedTexture = useTexture('/textures/landscape.webp')
+  
+  const bakedTexture = useSmartTexture('landscape')
   bakedTexture.flipY = false
 
   return (

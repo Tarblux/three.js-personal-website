@@ -1,9 +1,11 @@
 import React from 'react'
-import { useGLTF, useTexture } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 
 export function ChessPark(props) {
   const { nodes } = useGLTF('/models/chesspark.glb')
-  const bakedTexture = useTexture('/textures/chesspark.webp')
+  
+  const bakedTexture = useSmartTexture('chesspark')
   bakedTexture.flipY = false
 
   return (

@@ -1,9 +1,11 @@
 import React from 'react'
-import { useGLTF, useTexture } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 
 export function Fences(props) {
   const { nodes } = useGLTF('/models/fences.glb')
-  const bakedTexture = useTexture('/textures/fences.webp')
+  
+  const bakedTexture = useSmartTexture('fences')
   bakedTexture.flipY = false
 
   return (

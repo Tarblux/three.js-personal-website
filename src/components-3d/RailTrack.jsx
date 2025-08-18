@@ -1,9 +1,11 @@
 import React from 'react'
-import { useGLTF, useTexture } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 
 export function RailTrack(props) {
   const { nodes } = useGLTF('/models/railtrack.glb')
-  const bakedTexture = useTexture('/textures/railtrack.webp')
+  
+  const bakedTexture = useSmartTexture('railtrack')
   bakedTexture.flipY = false
 
   return (

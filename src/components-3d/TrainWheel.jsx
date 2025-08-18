@@ -4,14 +4,16 @@ Command: npx gltfjsx@6.5.3 public/models/train-wheel.glb -o src/components-3d/Tr
 */
 
 import React, { useRef } from 'react'
-import { useGLTF, useAnimations, useTexture } from '@react-three/drei'
+import { useGLTF, useAnimations } from '@react-three/drei'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 import * as THREE from 'three'
 
 export function TrainWheel({ autoPlay, ...props }) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/models/train-wheel.glb')
   const { actions } = useAnimations(animations, group)
-  const bakedTexture = useTexture('/textures/train-wheel.jpg')
+  
+  const bakedTexture = useSmartTexture('train-wheel')
   bakedTexture.flipY = false
 
   React.useEffect(() => {

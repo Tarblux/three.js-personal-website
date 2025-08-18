@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
-import { useGLTF, useTexture} from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 import { useThree } from '@react-three/fiber'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 
 export function LanguageInstitute(props) {
 
   const { nodes, materials } = useGLTF('/models/language-institute.glb')
   const { gl } = useThree()
 
-  const bakedTexture = useTexture('/textures/language-institute.jpg')
+  const bakedTexture = useSmartTexture('language-institute')
   bakedTexture.flipY = false
 
   return (

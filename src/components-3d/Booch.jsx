@@ -1,9 +1,11 @@
 import React from 'react'
-import { useGLTF, useTexture } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 
 export function Booch(props) {
   const { nodes } = useGLTF('/models/booch.glb')
-  const bakedTexture = useTexture('/textures/booch.webp')
+  
+  const bakedTexture = useSmartTexture('booch')
   bakedTexture.flipY = false
 
   return (
