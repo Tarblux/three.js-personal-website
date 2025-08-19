@@ -21,4 +21,4 @@ export function Field(props) {
   )
 }
 
-useGLTF.preload('/models/field.glb')
+// useGLTF.preload('/models/field.glb')

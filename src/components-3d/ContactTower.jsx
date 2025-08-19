@@ -19,4 +19,4 @@ export function ContactTower(props) {
   )
 }
 
-useGLTF.preload('/models/contact.glb')
+// useGLTF.preload('/models/contact.glb')

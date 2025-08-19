@@ -1,5 +1,15 @@
 import Section from "./helpers/Section.jsx"
 import { usePriorityLoading } from './hooks/usePriorityLoading.js'
+
+// Utility function to calculate mobile positioning
+// Mobile typically needs tighter spacing and earlier start/end points
+const getMobileProps = (desktopTop, desktopFadeInStart, desktopFadeInEnd, desktopFadeOutStart, desktopFadeOutEnd, topOffset = -20, fadeOffset = -5) => ({
+  mobileTop: `${parseInt(desktopTop) + topOffset}vh`,
+  mobileFadeInStart: desktopFadeInStart + fadeOffset,
+  mobileFadeInEnd: desktopFadeInEnd + fadeOffset,
+  mobileFadeOutStart: desktopFadeOutStart + fadeOffset,
+  mobileFadeOutEnd: desktopFadeOutEnd + fadeOffset
+})
 import WelcomeMessage from "./components/UI/WelcomeMessage.jsx"
 import Introduction from "./components/Introduction/Introduction.jsx"
 import Flextrade from "./components/Career/Flextrade.jsx"
@@ -33,6 +43,11 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
         fadeInEnd={0}
         fadeOutStart={5}
         fadeOutEnd={10}
+        mobileTop="-5vh"
+        mobileFadeInStart={-10}
+        mobileFadeInEnd={0}
+        mobileFadeOutStart={5}
+        mobileFadeOutEnd={10}
       >
         <div className="flex justify-center items-center h-screen">
           <WelcomeMessage showMessage={showWelcome} />
@@ -48,6 +63,11 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={30}
             fadeOutStart={65}
             fadeOutEnd={75}
+            mobileTop="29vh"
+            mobileFadeInStart={15}
+            mobileFadeInEnd={25}
+            mobileFadeOutStart={60}
+            mobileFadeOutEnd={70}
           >
             <Introduction />
           </Section>
@@ -58,6 +78,11 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={110}
             fadeOutStart={125}
             fadeOutEnd={140}
+            mobileTop="95vh"
+            mobileFadeInStart={95}
+            mobileFadeInEnd={105}
+            mobileFadeOutStart={120}
+            mobileFadeOutEnd={135}
           >
             <Flextrade />
           </Section>
@@ -68,6 +93,11 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={195}
             fadeOutStart={220}
             fadeOutEnd={230}
+            mobileTop="180vh"
+            mobileFadeInStart={185}
+            mobileFadeInEnd={190}
+            mobileFadeOutStart={215}
+            mobileFadeOutEnd={225}
           >
             <EagleMed />
           </Section>
@@ -78,6 +108,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={280}
             fadeOutStart={310}
             fadeOutEnd={315}
+            {...getMobileProps("260vh", 270, 280, 310, 315)}
           >
             <ProjectsOverview />
           </Section>
@@ -93,6 +124,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={360}
             fadeOutStart={400}
             fadeOutEnd={410}
+            {...getMobileProps("330vh", 350, 360, 400, 410)}
           >
             <ProjectsWarehouse />
           </Section>
@@ -103,6 +135,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={450}
             fadeOutStart={460}
             fadeOutEnd={470}
+            {...getMobileProps("404vh", 430, 440, 460, 470)}
           >
             <ProjectsConstruction />
           </Section>
@@ -113,6 +146,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={565}
             fadeOutStart={580}
             fadeOutEnd={590}
+            {...getMobileProps("510vh", 520, 535, 550, 560)}
           >
             <Education />
           </Section>
@@ -123,6 +157,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={605}
             fadeOutStart={625}
             fadeOutEnd={635}
+            {...getMobileProps("540vh", 570, 585, 605, 615)}
           >
             <CollegeJobs />
           </Section>
@@ -133,6 +168,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={655}
             fadeOutStart={665}
             fadeOutEnd={675}
+            {...getMobileProps("580vh", 605, 615, 635, 645)}
           >
             <CollegeClubs />
           </Section>
@@ -143,6 +179,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={715}
             fadeOutStart={725}
             fadeOutEnd={735}
+            {...getMobileProps("635vh", 670, 685, 705, 715)}
           >
             <EducationYonsei />
           </Section>
@@ -153,11 +190,12 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
       {(priorityStatus.phases.high.completed || priorityStatus.phases.medium.loaded > 0) && (
         <>
           <Section 
-            top="780vh"
+            top="745vh"
             fadeInStart={765}
             fadeInEnd={775}
             fadeOutStart={790}
             fadeOutEnd={800}
+            {...getMobileProps("680vh", 730, 745, 765, 775)}
           >
             <Languages />
           </Section>
@@ -168,6 +206,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={825}
             fadeOutStart={835}
             fadeOutEnd={845}
+            {...getMobileProps("715vh", 770, 785, 805, 815)}
             onActiveChange={onWatchActiveChange}
           >
             <FootballWatch />
@@ -179,6 +218,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={880}
             fadeOutStart={900}
             fadeOutEnd={910}
+            {...getMobileProps("850vh", 820, 830, 840, 850)}
             onActiveChange={onMemoriesActiveChange}
           >
             <FootballMemories onSelectVideo={onSelectVideo} />
@@ -190,6 +230,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={970}
             fadeOutStart={980}
             fadeOutEnd={990}
+            {...getMobileProps("846vh", 915, 925, 935, 945)}
           >
             <FootballPlay />
           </Section>
@@ -200,6 +241,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={1050}
             fadeOutStart={1065}
             fadeOutEnd={1075}
+            {...getMobileProps("909vh", 990, 1000, 1015, 1025)}
           >
             <ChessPlay />
           </Section>
@@ -210,6 +252,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={1095}
             fadeOutStart={1110}
             fadeOutEnd={1120}
+            {...getMobileProps("993vh", 1035, 1045, 1060, 1070)}
           >
             <ChessDashboard />
           </Section>
@@ -220,6 +263,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={1145}
             fadeOutStart={1160}
             fadeOutEnd={1170}
+            {...getMobileProps("995vh", 1080, 1090, 1105, 1115)}
           >
             <Kombucha />
           </Section>
@@ -230,6 +274,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={1200}
             fadeOutStart={1220}
             fadeOutEnd={1230}
+            {...getMobileProps("1050vh", 1130, 1140, 1155, 1165)}
           >
             <KombuchaMenu />
           </Section>
@@ -245,6 +290,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={1270}
             fadeOutStart={1280}
             fadeOutEnd={1290}
+            {...getMobileProps("1110vh", 1200, 1210, 1225, 1235)}
           >
             <Contact />
           </Section>
@@ -255,6 +301,7 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             fadeInEnd={1300}
             fadeOutStart={1310}
             fadeOutEnd={1320}
+            {...getMobileProps("1115vh", 1200, 1210, 1225, 1235)}
           >
             <Credits />
           </Section>

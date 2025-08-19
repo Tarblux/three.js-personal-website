@@ -23,4 +23,4 @@ export const Flags = (props) => {
   )
 }
 
-useGLTF.preload('/models/flags.glb') 
+// useGLTF.preload('/models/flags.glb') 

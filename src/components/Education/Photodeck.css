@@ -194,6 +194,8 @@
 
 .photodeck-carousel-side:hover .photodeck-side-img {
   filter: blur(0px);
+  transform: scale(1.08);
+  opacity: 0.95;
 }
 
 /* Side Image Fade-in Animation */

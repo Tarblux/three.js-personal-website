@@ -210,19 +210,21 @@ export function TrainSmoke({ emitterRef, autoPlay, ...props }) {
   const emitterPositionRef = useRef(new THREE.Vector3(positionX, positionY, positionZ))
   const lastEmitterPositionRef = useRef(new THREE.Vector3())
   const emitterHasMovedRef = useRef(false)
+  
+  // Pre-allocate reusable vector to avoid GC pressure
+  const tempPositionRef = useRef(new THREE.Vector3())
 
   // Update emitter position each frame from the group ref
   useFrame(() => {
     if (emitterRef?.current) {
-      const newPosition = new THREE.Vector3()
-      emitterRef.current.getWorldPosition(newPosition)
+      emitterRef.current.getWorldPosition(tempPositionRef.current)
       
       // Check if emitter has moved significantly
-      const distance = newPosition.distanceTo(lastEmitterPositionRef.current)
+      const distance = tempPositionRef.current.distanceTo(lastEmitterPositionRef.current)
       emitterHasMovedRef.current = distance > 0.1
       
       lastEmitterPositionRef.current.copy(emitterPositionRef.current)
-      emitterPositionRef.current.copy(newPosition)
+      emitterPositionRef.current.copy(tempPositionRef.current)
     } else {
       // Fallback to debug controls if no ref
       emitterPositionRef.current.set(positionX, positionY, positionZ)
