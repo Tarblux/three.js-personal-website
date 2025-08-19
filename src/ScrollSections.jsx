@@ -2,7 +2,6 @@ import Section from "./helpers/Section.jsx"
 import { usePriorityLoading } from './hooks/usePriorityLoading.js'
 
 // Utility function to calculate mobile positioning
-// Mobile typically needs tighter spacing and earlier start/end points
 const getMobileProps = (desktopTop, desktopFadeInStart, desktopFadeInEnd, desktopFadeOutStart, desktopFadeOutEnd, topOffset = -20, fadeOffset = -5) => ({
   mobileTop: `${parseInt(desktopTop) + topOffset}vh`,
   mobileFadeInStart: desktopFadeInStart + fadeOffset,
@@ -133,8 +132,8 @@ export default function ScrollSections({ showWelcome, onSelectVideo, onWatchActi
             top="430vh"
             fadeInStart={440}
             fadeInEnd={450}
-            fadeOutStart={460}
-            fadeOutEnd={470}
+            fadeOutStart={470}
+            fadeOutEnd={480}
             {...getMobileProps("404vh", 430, 440, 460, 470)}
           >
             <ProjectsConstruction />

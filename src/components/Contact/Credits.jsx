@@ -21,8 +21,8 @@ const Credits = () => {
         <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
           Credits & Acknowledgements
         </span>
-        <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-full max-w-6xl mx-auto border border-white/30 transition-all duration-300 ease-in-out hover:shadow-xl cursor-pointer min-h-[60vh] max-h-[80vh] md:min-h-[75vh] md:max-h-[80vh] md:overflow-visible overflow-y-auto">
-          <div className="bg-white rounded-lg p-4 md:p-8 min-h-[50vh] max-h-[75vh] md:min-h-[75vh] md:max-h-[80vh] overflow-y-auto md:overflow-visible">
+        <div className="bg-white/20 backdrop-blur-md rounded-lg p-2 w-full max-w-6xl mx-auto border border-white/30 transition-all duration-300 ease-in-out hover:shadow-xl cursor-pointer min-h-[60vh] max-h-[80vh] md:min-h-[75vh] md:max-h-[80vh] overflow-hidden flex flex-col">
+          <div className="bg-white rounded-lg p-4 md:p-6 flex-1 overflow-y-auto">
             <p className="text-gray-600 mb-8 max-w-3xl text-sm">
               The truth is, a project like this{" "}
               <b>doesn't come together overnight</b>, and it certainly{" "}
@@ -38,7 +38,7 @@ const Credits = () => {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="flex flex-col gap-8 md:col-span-2">
+              <div className="flex flex-col gap-4 md:col-span-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-6">
                   {row1Sections.map((section) => (
                     <CreditsSection key={section.title} section={section} />
