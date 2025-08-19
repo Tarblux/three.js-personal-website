@@ -1,5 +1,6 @@
 import React, { Suspense, useMemo, useEffect } from 'react'
-import { useGLTF, useVideoTexture, useTexture } from '@react-three/drei'
+import { useGLTF, useVideoTexture } from '@react-three/drei'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 import soundManager from '../utils/soundManager.js'
 
 function VideoMaterial({ src, audioActive, mediaKey = 'stadium-video' }) {
@@ -56,7 +57,8 @@ function VideoMaterial({ src, audioActive, mediaKey = 'stadium-video' }) {
 
 export function Stadium({ videoUrl, audioActive = false, videoChangeKey = 0, ...props }) {
   const { nodes } = useGLTF('/models/stadium.glb')
-  const bakedTexture = useTexture('/textures/stadium.webp')
+  
+  const bakedTexture = useSmartTexture('stadium')
   bakedTexture.flipY = false
 
   const safeVideoUrl = useMemo(() => videoUrl || '/videos/reiss.mp4', [videoUrl])

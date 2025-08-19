@@ -1,9 +1,11 @@
 import React from 'react'
-import { useGLTF, useTexture } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 
 export const Flags = (props) => {
   const { nodes } = useGLTF('/models/flags.glb')
-  const bakedTexture = useTexture('/textures/flags.webp')
+  
+  const bakedTexture = useSmartTexture('flags')
   bakedTexture.flipY = false
 
   return (
@@ -21,4 +23,4 @@ export const Flags = (props) => {
   )
 }
 
-useGLTF.preload('/models/flags.glb') 
+// useGLTF.preload('/models/flags.glb') 

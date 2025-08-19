@@ -1,20 +1,42 @@
 import { useScroll } from "@react-three/drei"
+import { useEffect, useRef, useState } from 'react'
+import { isMobile } from '../utils/deviceDetection.js'
+import { getMobileScrollMultiplier, getMobileAdjustedPosition } from '../utils/mobileScrollUtils.js'
 
-import { useEffect, useRef } from 'react'
-
-export default function Section({ top, fadeInStart, fadeInEnd, fadeOutStart, fadeOutEnd, children, onActiveChange }) {
+export default function Section({ 
+    top, 
+    fadeInStart, 
+    fadeInEnd, 
+    fadeOutStart, 
+    fadeOutEnd, 
+    children, 
+    onActiveChange,
+    // Mobile-specific props
+    mobileTop,
+    mobileFadeInStart,
+    mobileFadeInEnd,
+    mobileFadeOutStart,
+    mobileFadeOutEnd
+}) {
     const scroll = useScroll()
     const lastActiveRef = useRef(false)
+    const [isMobileDevice, setIsMobileDevice] = useState(false)
+    
+    useEffect(() => {
+        setIsMobileDevice(isMobile())
+    }, [])
     
     const calculateOpacity = () => {
         // scroll.offset is already normalized between 0 and 1
-        const currentScrollVh = scroll.offset * 1500 // multiply by total pages (15 * 100vh)
+        // Apply mobile scroll multiplier for better mobile handling
+        const scrollMultiplier = isMobileDevice ? getMobileScrollMultiplier() : 1
+        const currentScrollVh = scroll.offset * 1500 * scrollMultiplier // multiply by total pages (15 * 100vh)
 
-        // Convert vh values to the same scale
-        const fadeInStartVh = fadeInStart
-        const fadeInEndVh = fadeInEnd
-        const fadeOutStartVh = fadeOutStart
-        const fadeOutEndVh = fadeOutEnd
+        // Use mobile values if provided and on mobile, otherwise use desktop values
+        const fadeInStartVh = isMobileDevice && mobileFadeInStart !== undefined ? mobileFadeInStart : fadeInStart
+        const fadeInEndVh = isMobileDevice && mobileFadeInEnd !== undefined ? mobileFadeInEnd : fadeInEnd
+        const fadeOutStartVh = isMobileDevice && mobileFadeOutStart !== undefined ? mobileFadeOutStart : fadeOutStart
+        const fadeOutEndVh = isMobileDevice && mobileFadeOutEnd !== undefined ? mobileFadeOutEnd : fadeOutEnd
 
         // Calculate fade in
         if (currentScrollVh >= fadeInStartVh && currentScrollVh <= fadeInEndVh) {
@@ -43,11 +65,19 @@ export default function Section({ top, fadeInStart, fadeInEnd, fadeOutStart, fad
         }
     }, [isActive, onActiveChange])
 
+    // Use mobile top position if provided and on mobile, otherwise use desktop top
+    let topPosition = isMobileDevice && mobileTop !== undefined ? mobileTop : top
+    
+    // Apply mobile position adjustment for better mobile viewport handling
+    if (isMobileDevice) {
+        topPosition = getMobileAdjustedPosition(topPosition)
+    }
+
     return (
         <div
             className="absolute left-0 right-0 flex justify-center transition-opacity duration-300"
             style={{
-                top: top,
+                top: topPosition,
                 opacity: opacity,
                 pointerEvents: isActive ? 'auto' : 'none'
             }}

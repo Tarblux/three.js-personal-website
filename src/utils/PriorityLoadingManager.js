@@ -332,6 +332,7 @@ class PriorityLoadingManager {
     // Load videos
     if (manifest.videos) {
       manifest.videos.forEach(src => {
+  if (this.loadedAssets.has(src)) return
         loadPromises.push(
           this.preloadVideoAsset(src)
             .then(() => this.markAssetLoaded(src, phaseName))
@@ -343,6 +344,7 @@ class PriorityLoadingManager {
     // Load images
     if (manifest.images) {
       manifest.images.forEach(src => {
+  if (this.loadedAssets.has(src)) return
         loadPromises.push(
           this.preloadImageAsset(src)
             .then(() => this.markAssetLoaded(src, phaseName))
@@ -354,6 +356,7 @@ class PriorityLoadingManager {
     // Load sounds
     if (manifest.sounds) {
       manifest.sounds.forEach(src => {
+  if (this.loadedAssets.has(src)) return
         loadPromises.push(
           this.preloadSoundAsset(src)
             .then(() => this.markAssetLoaded(src, phaseName))
@@ -366,6 +369,7 @@ class PriorityLoadingManager {
     // We'll track them when components mount
     if (manifest.models) {
       manifest.models.forEach(src => {
+  if (this.loadedAssets.has(src)) return
         // These will be marked as loaded when the components using them mount
         // For now, we'll preload them using Three.js
         loadPromises.push(
@@ -390,6 +394,7 @@ class PriorityLoadingManager {
     
     if (manifest.textures) {
       manifest.textures.forEach(src => {
+  if (this.loadedAssets.has(src)) return
         loadPromises.push(
           new Promise((resolve, reject) => {
             const loader = src.endsWith('.ktx2') ? new THREE.KTX2Loader() : new THREE.TextureLoader()
@@ -417,6 +422,17 @@ class PriorityLoadingManager {
   async startLoading() {
     // Start with critical assets
     this.currentPhase = 'critical'
+    // 1. Force the loading screen video to load (if not already) BEFORE anything else
+    const loadingVideo = '/videos/city-loading2.mp4'
+    if (!this.loadedAssets.has(loadingVideo)) {
+      try {
+        await this.preloadVideoAsset(loadingVideo)
+        this.markAssetLoaded(loadingVideo, 'critical')
+      } catch (e) {
+        this.markAssetFailed(loadingVideo, 'critical', e)
+      }
+    }
+    // 2. Now preload remaining critical assets (skips already loaded ones)
     await this.preloadPhase('critical')
     
     // Start high priority in background

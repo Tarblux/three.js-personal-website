@@ -31,12 +31,18 @@ const teachers = {
 const libraryCreators = {
   title: 'LIBRARY CREATORS',
   color: 'text-sky-400',
-  items: ['Mr Doob', 'Don Mcurdy', 'Joe Martinez', 'Clariity', 'AriaMinaei'],
+  items: ['Mr Doob', '@0xca0a', 'Joe Martinez', 'Clariity', 'AriaMinaei'],
+};
+
+const mentors = {
+  title: 'MENTORS',
+  color: 'text-green-500',
+  items: ['Fayang Pan', 'Sean Peterkin', 'Tony Nelson', 'Mary Hussey', 'Ian Dalrymple'],
 };
 
 
 export const row1Sections = [friendsAndFamily, communitySupport, inspirationAndIdeas];
-export const row2Sections = [contentCreators, teachers, libraryCreators];
+export const row2Sections = [contentCreators, teachers,  mentors , libraryCreators, ];
 
 export const specialThanks = [
   {

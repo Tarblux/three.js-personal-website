@@ -1,9 +1,11 @@
 import React from 'react'
-import { useGLTF, useTexture} from '@react-three/drei'
+import { useGLTF} from '@react-three/drei'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 
 export function ContactTower(props) {
   const { nodes } = useGLTF('/models/contact.glb')
-  const bakedTexture = useTexture('/textures/contact.webp')
+  
+  const bakedTexture = useSmartTexture('contact')
   bakedTexture.flipY = false
 
   return (
@@ -17,4 +19,4 @@ export function ContactTower(props) {
   )
 }
 
-useGLTF.preload('/models/contact.glb')
+// useGLTF.preload('/models/contact.glb')

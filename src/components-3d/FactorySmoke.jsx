@@ -267,6 +267,10 @@ export function FactorySmoke(props) {
     geometry.attributes.angle.needsUpdate = true
   }, [])
 
+  // Pre-allocate reusable vectors to avoid GC pressure
+  const tempWorldPosRef = useRef(new THREE.Vector3())
+  const tempOffsetRef = useRef(new THREE.Vector3())
+
   // Update pointMultiplier on resize / device pixel ratio change
   useEffect(() => {
     const updatePointMultiplier = () => {
@@ -293,7 +297,7 @@ export function FactorySmoke(props) {
     if (!enabled) return
     
     chimneyPositions.forEach((chimneyPos, index) => {
-      const worldPos = chimneyPos.clone().add(new THREE.Vector3(positionX, positionY, positionZ))
+      const worldPos = tempWorldPosRef.current.copy(chimneyPos).add(tempOffsetRef.current.set(positionX, positionY, positionZ))
       addParticles(index, delta, worldPos)
       updateParticles(index, delta)
       updateGeometry(index)

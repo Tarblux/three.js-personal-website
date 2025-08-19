@@ -5,11 +5,13 @@ Files: public/models/train.glb [83.02KB] > C:\Users\tarbl\Documents\Software Dev
 */
 
 import React from 'react'
-import { useGLTF , useKTX2 } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
+import { useSmartTexture } from '../hooks/useSmartTexture.js'
 
 export function Train(props) {
   const { nodes } = useGLTF('/models/train.glb')
-  const bakedTexture = useKTX2('/textures/train.ktx2')
+  
+  const bakedTexture = useSmartTexture('train')
   bakedTexture.flipY = false
 
   return (

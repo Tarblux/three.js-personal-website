@@ -57,8 +57,8 @@ const Languages = () => {
   }, [highlightedLanguage, languageList]);
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center z-0 p-3">
-      <div className="flex flex-col items-start w-full max-w-[1100px] max-h-[85vh] overflow-y-auto">
+    <div className="relative w-full z-0 p-3">
+      <div className="flex flex-col items-start w-full max-w-7xl mx-auto max-h-[85vh] overflow-y-auto">
         <span className="mb-2 bg-white/30 border border-white/30 backdrop-blur-md rounded-md px-3 py-1 shadow-md text-gray-600 text-xs inline-block">
           Languages
         </span>
