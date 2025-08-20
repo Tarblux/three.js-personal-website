@@ -37,7 +37,7 @@ const libraryCreators = {
 const mentors = {
   title: 'MENTORS',
   color: 'text-green-500',
-  items: ['Fayang Pan', 'Sean Peterkin', 'Tony Nelson', 'Mary Hussey', 'Ian Dalrymple'],
+  items: ['Fayang Pan', 'Dan Snell', 'Sean Peterkin', 'Tony Nelson', 'Mary Hussey', 'Ian Dalrymple'],
 };
 
 

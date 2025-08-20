@@ -283,7 +283,7 @@ function App() {
           show={audioDebugData.showDebugHUD}
         />
       )}
-      <Leva collapsed hidden={true} />
+      <Leva collapsed hidden={false} />
       <SpeedInsights />
       <Analytics />
     </>

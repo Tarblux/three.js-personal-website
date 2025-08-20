@@ -166,7 +166,7 @@ const ThreeJsWebsiteArticle = ({ project, onImageSelect, selectedImageIndex, ima
           Yes, I picked up new frameworks, tools, and UI/UX design skills. But honestly, the biggest lesson was about project management.
         </p>
         <p className="text-gray-600 mb-4">
-          Here's a confession: I thought I could finish this entire project in three months. I even taped a plan to my wall (you'll find it below — feel free to laugh). The problem? I never clearly defined what "done" actually looked like. That led me to keep adding features, expanding the scope, and slowly burying myself under an ever-growing backlog. I nearly gave up more than once.
+          Here's a confession: I thought I could finish this entire project in three months. I even taped a plan to my wall (you'll find it below so feel free to laugh). The problem? I never clearly defined what "done" actually looked like. That led me to keep adding features, expanding the scope, and slowly burying myself under an ever-growing backlog. I nearly gave up more than once.
         </p>
         <div className="mb-4">
           <img 
@@ -177,7 +177,7 @@ const ThreeJsWebsiteArticle = ({ project, onImageSelect, selectedImageIndex, ima
         </div>
         <h4 className="font-semibold text-lg text-gray-800 mb-2">What I'd do differently</h4>
         <p className="text-gray-600 mb-4">
-          Next time, I'd start with a full end-to-end prototype. Something rough but complete , just to outline the vision from the start.
+          Next time, I'd start with a full end-to-end prototype. Something rough but complete, just to outline the vision from the start.
         </p>
         <p className="text-gray-600 mb-4">
           Instead, I kept building in isolated parts, constantly refactoring or fixing things that never made it into the final site. I even wanted to change core features midway through but was already too deep to pivot easily. That cost me time I'll never get back but hey you live and you learn.

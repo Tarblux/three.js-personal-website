@@ -1,7 +1,25 @@
-import React, { Suspense, useMemo, useEffect } from 'react'
+/**
+ * FUTURE ME: This component uses a HYBRID VIDEO APPROACH to solve cross-browser compatibility issues.
+ * 
+ * WHY WE NEEDED THIS:
+ * - Chrome/Desktop: The simplified approach caused "AbortError: play() request interrupted by pause()" 
+ *   and lost the autoplay behavior when users approach the stadium
+ * - Safari/Mobile: The full approach caused constant video remounting, browser freezing, and 
+ *   conflicts with strict autoplay policies
+ * 
+ * THE SOLUTION:
+ * - Safari/Mobile: Use simplified mode - just attach to soundManager, let useVideoTexture handle everything
+ * - Chrome/Desktop: Use full mode - manual video control, autoplay behavior, stopAllMediaExcept logic
+ * 
+ * This gives us the best of both worlds: Safari compatibility + Chrome autoplay functionality.
+ * 
+ * If you're debugging video issues, check which mode is being used in the console logs.
+ */
+import React, { Suspense, useMemo, useEffect, useRef } from 'react'
 import { useGLTF, useVideoTexture } from '@react-three/drei'
 import { useSmartTexture } from '../hooks/useSmartTexture.js'
 import soundManager from '../utils/soundManager.js'
+import { isSafari, isMobile } from '../utils/deviceDetection.js'
 
 function VideoMaterial({ src, audioActive, mediaKey = 'stadium-video' }) {
   const texture = useVideoTexture(src, {
@@ -11,46 +29,72 @@ function VideoMaterial({ src, audioActive, mediaKey = 'stadium-video' }) {
     playsInline: true,
     crossOrigin: 'anonymous',
   })
+  const videoElRef = useRef(null)
 
   // Flip the video using UV scaling
-  texture.repeat.set(1, -1)
-  texture.offset.set(0, 1)
+  useMemo(() => {
+    texture.repeat.set(1, -1)
+    texture.offset.set(0, 1)
+  }, [texture])
 
+  // Store video element reference when texture loads
   useEffect(() => {
-    const videoEl = texture.image; // HTMLVideoElement
-    if (!videoEl) return;
+    if (texture.image) {
+      videoElRef.current = texture.image
+    }
+  }, [texture.image])
 
-    const key = `${mediaKey}`;
+  // Hybrid approach: use simplified method for Safari/mobile, full method for others
+  useEffect(() => {
+    const videoEl = videoElRef.current
+    if (!videoEl) return
 
-    // Stop all other videos before starting this one
-    soundManager.stopAllMediaExcept(key);
+    const key = `${mediaKey}`
+    const useSafariMode = isSafari() || isMobile()
 
-    // Ensure starts muted to satisfy autoplay policies and start playing immediately
-    try {
-      videoEl.muted = true;
-      videoEl.playsInline = true;
-      videoEl.currentTime = 0; // Always start from beginning
-      videoEl.play(); // Start playing immediately (muted)
-    } catch {}
+    if (useSafariMode) {
+      // Simplified Safari/mobile approach
+      const detach = soundManager.attachMediaElement(key, videoEl, {
+        localVolume: 1,
+        active: !!audioActive,
+      })
+      return detach
+    } else {
+      // Full Chrome/desktop approach with autoplay behavior
+      // Stop all other videos before starting this one
+      soundManager.stopAllMediaExcept(key)
 
-    // Attach to global audio control and set initial active state
-    const detach = soundManager.attachMediaElement(key, videoEl, {
-      localVolume: 1,
-      active: !!audioActive,
-    });
+      // Ensure starts muted to satisfy autoplay policies and start playing immediately
+      try {
+        videoEl.muted = true
+        videoEl.playsInline = true
+        videoEl.currentTime = 0 // Always start from beginning
+        videoEl.play() // Start playing immediately (muted)
+      } catch (error) {
+        console.warn('Video play failed:', error)
+      }
 
-    // Also reflect active -> muted directly for immediate effect
-    try {
-      const state = soundManager.getState();
-      const effectiveVolume = state.muted || !audioActive ? 0 : state.volume;
-      videoEl.volume = effectiveVolume;
-      videoEl.muted = effectiveVolume === 0;
-    } catch {}
+      // Attach to global audio control and set initial active state
+      const detach = soundManager.attachMediaElement(key, videoEl, {
+        localVolume: 1,
+        active: !!audioActive,
+      })
 
-    return () => {
-      detach?.();
-    };
-  }, [texture, src, audioActive])
+      // Also reflect active -> muted directly for immediate effect
+      try {
+        const state = soundManager.getState()
+        const effectiveVolume = state.muted || !audioActive ? 0 : state.volume
+        videoEl.volume = effectiveVolume
+        videoEl.muted = effectiveVolume === 0
+      } catch (error) {
+        console.warn('Video volume setup failed:', error)
+      }
+
+      return () => {
+        detach?.()
+      }
+    }
+  }, [src, audioActive, mediaKey]) // Only depend on props, not texture object
 
   return <meshBasicMaterial map={texture} toneMapped={false} />
 }

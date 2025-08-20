@@ -26,6 +26,17 @@ export const isTouchScreen = () => {
 };
 
 /**
+ * Detects Safari browser (including iOS Safari)
+ * @returns {boolean} true if browser is Safari
+ */
+export const isSafari = () => {
+  const userAgent = navigator.userAgent;
+  const isSafariBrowser = userAgent.includes('Safari') && !userAgent.includes('Chrome') && !userAgent.includes('Chromium');
+  const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+  return isSafariBrowser || isIOS;
+};
+
+/**
  * Get device memory in GB (if available)
  * @returns {number} device memory in GB, defaults to 4
  */
