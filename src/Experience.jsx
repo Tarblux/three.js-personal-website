@@ -32,7 +32,7 @@ import { FactorySmoke } from "./components-3d/FactorySmoke.jsx"
 import { FactoryAudio } from "./components-3d/FactoryAudio.jsx"
 import { TradingAudio } from "./components-3d/TradingAudio.jsx"
 import { Sky } from './components-3d/Sky.jsx'
-import VideoPreloader from './components-3d/VideoPreloader.jsx'
+
 
 // UI Components
 import ScrollSections from "./ScrollSections.jsx"
@@ -104,14 +104,6 @@ export default function Experience({ disableScroll, setDisableScroll, autoPlay, 
             onMemoriesActiveChange={setMemoriesActive}
           />
         </Scroll>
-        {/* Defer preloading of videos until the FootballWatch section becomes active */}
-        {watchActive && (
-          <VideoPreloader urls={[
-            footballMoments?.[0]?.videoUrl,
-            footballMoments?.[1]?.videoUrl,
-            footballMoments?.[2]?.videoUrl,
-          ].filter(Boolean)} active={true} />
-        )}
       </ScrollControls>
     </>
   );
