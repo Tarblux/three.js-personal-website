@@ -102,7 +102,7 @@ const ChessGames = ({ isMobile }) => {
                 <div className="flex flex-col items-start mr-2 min-w-[60px] sm:min-w-[80px]">
                   <div className="flex items-center">
                     <span className="font-bold text-black text-xs sm:text-base">BlunderRasta</span>
-                    <span className="fi fi-jm rounded-[4px] border border-white ml-1" style={{ fontSize: '0.6rem', verticalAlign: 'middle' }}></span>
+                    <span className="fi fi-jm rounded-[4px] border border-white ml-1" style={{ fontSize: '0.8rem', verticalAlign: 'middle' }}></span>
                   </div>
                   <div className="flex items-center gap-1 text-xs text-gray-500">
                     <span className="font-semibold text-xs sm:text-sm">{game.my_rating}</span>
@@ -114,7 +114,7 @@ const ChessGames = ({ isMobile }) => {
                   <div className="flex items-center">
                     <span className="font-bold text-black truncate text-xs sm:text-base">{game.opponent_name.length > (isMobile ? 8 : 12) ? game.opponent_name.slice(0, isMobile ? 8 : 12) + '..' : game.opponent_name}</span>
                     {game.opponent_flag && (
-                      <span className={`fi fi-${game.opponent_flag.toLowerCase()} rounded-[4px] border border-white ml-1`} style={{ fontSize: '0.6rem', verticalAlign: 'middle' }}></span>
+                      <span className={`fi fi-${game.opponent_flag.toLowerCase()} rounded-[4px] border border-white ml-1`} style={{ fontSize: '0.8rem', verticalAlign: 'middle' }}></span>
                     )}
                   </div>
                   <div className="flex items-center gap-1 text-xs text-gray-500">
