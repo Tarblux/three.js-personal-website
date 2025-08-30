@@ -13,12 +13,18 @@ const ChessAnalysisServerArticle = ({ project }) => {
       </TextBlock>
       <TextBlock title="Current Progress" color="teal">
         <p className="text-gray-600 leading-relaxed">
-          Right now, I am focused on building the core analysis functionality using a Python Flask server (may change). 
-          My main goal at this stage is to figure out how to analyze a single game from start to finish. 
-          I am exploring what data I can extract, what insights are most valuable, and how that information can be structured for future use.
+          Right now, I am focused on building the core analysis functionality using a Python Flask server (may change). My main goal at this stage is to figure out how to analyze a single game from start to finish. I am exploring what data I can extract, what insights are most valuable, and how that information can be structured for future use.
         </p>
         <p className="text-gray-600 leading-relaxed mt-2">
-          This phase is all about learning what is possible, what matters most, and how it can scale later to support analysis across all my games.
+          As part of this process, I've started mapping out the general architecture for the project. The diagram below shows the main components and how I envision them interacting: a core analysis engine, data sources (like chess game databases , Graph databases and APIs), and a servicees layer for insights and visualizations. Each part is designed to be modular so new features and data sources can be added over time.
+        </p>
+        <img 
+          src="/images/ProjectsConstruction/elombe-diagram.webp" 
+          alt="Chess Analysis Server Architecture Diagram" 
+          className="w-full rounded-lg shadow-md mb-4" 
+        />
+        <p className="text-gray-600 leading-relaxed">
+          This architecture will definitely evolve and change as the project grows, but it represents the general idea of how I want the different systems to interact with each other. The goal is to keep things flexible and scalable, so I can experiment and expand the analysis capabilities as needed.
         </p>
       </TextBlock>
       <TextBlock title="Planned Features" color="purple">
