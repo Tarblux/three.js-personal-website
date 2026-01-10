@@ -83,7 +83,7 @@ export const projects = [
                 on-field performance. This Senior Individualized Project (SIP) combined 
                 economic theory with statistical analysis to understand the impact of 
                 transfer spending on team success.`,
-        link: "https://docs.google.com/document/d/1SLtyemHjBCRqvyH8uQpPAc-aWXNgBApf/edit?usp=sharing&ouid=110867662222495258528&rtpof=true&sd=true",
+        link: "https://cache.kzoo.edu/items/20dc9dea-0af2-4238-8c4c-bec526819472",
         articleComponent: "EplTransferAnalysisArticle"
     },
     {
