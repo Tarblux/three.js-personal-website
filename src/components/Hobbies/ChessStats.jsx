@@ -43,13 +43,19 @@ function filterData(allData, period) {
   return allData.filter(entry => new Date(entry.date) >= filterDate);
 }
 
+/** API may return numbers or numeric strings; MUI y-axis min must be finite. */
+function normalizeRating(raw) {
+  const n = Number(raw);
+  return Number.isFinite(n) ? n : null;
+}
+
 const ChessStats = ({ isMobile }) => {
   const [selectedControl, setSelectedControl] = useState(timeControls[0]); // Default to Blitz
   const [selectedPeriod, setSelectedPeriod] = useState(periods[2]); // Default to Month
   const [ratings, setRatings] = useState({
-    blitz: { year: null, all: null },
-    rapid: { year: null, all: null },
-    bullet: { year: null, all: null },
+    blitz: null,
+    rapid: null,
+    bullet: null,
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -79,79 +85,64 @@ const ChessStats = ({ isMobile }) => {
     fetchRank();
   }, []);
 
-  // Helper to get endpoint
-  const getEndpoint = useCallback((control, period) => {
-    let endpoint = `${API_BASE_URL}/ratings-${control}`;
-    if (period === 'all') {
-      endpoint += '?period=all';
-    }
-    return endpoint;
-  }, []);
-
-  // Fetch data for a control/period
-  const fetchRatings = useCallback(async (control, period) => {
+  // Same endpoint as ChessRatings sparklines — one response shape in dev and prod.
+  const fetchRatings = useCallback(async (control) => {
     setLoading(true);
     setError(null);
     try {
-      const endpoint = getEndpoint(control, period);
+      const endpoint = `${API_BASE_URL}/ratings-${control}?period=all`;
       const res = await fetch(endpoint);
       if (!res.ok) throw new Error('Failed to fetch ratings');
       const data = await res.json();
+      const list = Array.isArray(data) ? data : [];
       setRatings(prev => ({
         ...prev,
-        [control]: {
-          ...prev[control],
-          [period]: data,
-        },
+        [control]: list,
       }));
     } catch (err) {
       setError('Failed to load ratings. Please try again.');
+      setRatings(prev => ({
+        ...prev,
+        [control]: [],
+      }));
     } finally {
       setLoading(false);
     }
-  }, [getEndpoint]);
-
-  // Initial fetch: Blitz, Year
-  useEffect(() => {
-    if (!ratings.blitz.year) {
-      fetchRatings('blitz', 'year');
-    }
   }, []);
 
-  // Handle time control change
   useEffect(() => {
     const control = selectedControl.value;
-    const period = selectedPeriod.value;
-    if (period === 'all') {
-      if (!ratings[control].all) {
-        fetchRatings(control, 'all');
-      }
-    } else {
-      if (!ratings[control].year) {
-        fetchRatings(control, 'year');
-      }
-    }
-  }, [selectedControl, selectedPeriod]);
+    if (ratings[control] != null) return;
+    fetchRatings(control);
+    // Intentionally omit `ratings`: only refetch when time control changes, not when data arrives.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedControl, fetchRatings]);
 
-  // Get data to display
-  let chartData = [];
+  // Get data to display (full history from ?period=all, then filter by period)
   const control = selectedControl.value;
   const period = selectedPeriod.value;
-  if (period === 'all') {
-    chartData = ratings[control].all || [];
-  } else {
-    // Always filter from 'year' or 'all' if available
-    const baseData = ratings[control].all || ratings[control].year || [];
-    chartData = filterData(baseData, period);
+  const baseData = ratings[control];
+  let chartData = [];
+  if (Array.isArray(baseData)) {
+    chartData = period === 'all' ? baseData : filterData(baseData, period);
   }
 
-  // Prepare chart x/y
-  const xAxisData = chartData.map(d => d.date ? d.date.slice(0, 10) : '');
-  const yAxisData = chartData.map(d => d.my_rating);
+  const seriesPoints = chartData
+    .map((d) => {
+      const dateStr = d.date ? String(d.date).slice(0, 10) : '';
+      const rating = normalizeRating(d.my_rating);
+      return dateStr && rating !== null ? { dateStr, rating } : null;
+    })
+    .filter(Boolean);
 
-  // Dynamically set y-axis minimum
-  const minRating = Math.min(...yAxisData.filter(v => typeof v === 'number'));
-  const yAxisMin = Math.max(500, minRating - 200);
+  const xAxisData = seriesPoints.map((p) => p.dateStr);
+  const yAxisData = seriesPoints.map((p) => p.rating);
+
+  const finiteY = yAxisData.filter((v) => Number.isFinite(v));
+  const minRating = finiteY.length ? Math.min(...finiteY) : null;
+  const maxRating = finiteY.length ? Math.max(...finiteY) : null;
+  const yAxisMin = minRating != null ? Math.max(500, minRating - 200) : 500;
+  const yAxisMax = maxRating != null ? maxRating + 200 : undefined;
 
   // Get rank/percentile for selected control
   let globalRank = '-';
@@ -181,7 +172,7 @@ const ChessStats = ({ isMobile }) => {
   if (yAxisData.length > 0) {
     const first = yAxisData[0];
     const last = yAxisData[yAxisData.length - 1];
-    if (typeof last === 'number' && typeof first === 'number') {
+    if (Number.isFinite(last) && Number.isFinite(first)) {
       currentRating = last;
       ratingChange = last - first;
       if (ratingChange > 0) {
@@ -344,6 +335,7 @@ const ChessStats = ({ isMobile }) => {
                 }]}
                 yAxis={[{
                   min: yAxisMin,
+                  ...(yAxisMax != null ? { max: yAxisMax } : {}),
                   valueFormatter: (v) => v?.toString() ?? ''
                 }]}
                 series={[
