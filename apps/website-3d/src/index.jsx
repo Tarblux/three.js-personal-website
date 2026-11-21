@@ -1,0 +1,297 @@
+import './style.css'
+import ReactDOM from 'react-dom/client'
+import React, { Suspense, useState, useEffect, useRef } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { useProgress } from '@react-three/drei'
+import studio from '@theatre/studio'
+import extension from '@theatre/r3f/dist/extension'
+import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
+import { Leva } from 'leva'
+
+import Experience from './Experience.jsx'
+import LoadedButton from './components/UI/LoadedButton.jsx'
+import { usePriorityLoading } from './hooks/usePriorityLoading.js'
+import { priorityLoadingManager } from './utils/PriorityLoadingManager.js'
+import SkipIntroButton from './components/UI/SkipIntroButton.jsx'
+import ScrollDebug from './components/UI/ScrollDebug.jsx'
+import { AudioDebugHUD } from './components/UI/AudioDebugHUD.jsx'
+import KineticTitle from './components/UI/KineticTitle.jsx'
+import VolumeSlider from './components/UI/VolumeSlider.jsx'
+import soundManager from './utils/soundManager.js'
+import { isMobile } from './utils/deviceDetection.js'
+
+import { sections } from './data/sections.js'
+
+// --- Fun Easter Egg for a Sus Developer ---
+
+const easterEgg = {
+  header: [
+    'color: #ff0000', 
+    'background: #333',
+    'font-size: 24px',
+    'font-weight: bold',
+    'padding: 10px 15px',
+    'border-radius: 8px',
+    'font-family: "Courier New", Courier, monospace',
+    'text-shadow: 2px 2px 4px #000000'
+  ].join(';'),
+  main: [
+    'color: #00e5e5', 
+    'font-size: 14px',
+    'line-height: 1.6',
+    'font-family: "Courier New", Courier, monospace',
+  ].join(';'),
+};
+
+console.log('%c ALERT: An Imposter Developer is Among Us!', easterEgg.header);
+console.log(
+`%c
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣿⣷⣤⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⠋⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠈⢻⣿⣿⡄⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣸⣿⡏⠀⠀⠀⣠⣶⣾⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣄⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⣿⠁⠀⠀⢰⣿⣿⣯⠁⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⣷⡄⠀
+⠀⠀⣀⣤⣴⣶⣶⣿⡟⠀⠀⠀⢸⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣷⠀
+⠀⢰⣿⡟⠋⠉⣹⣿⡇⠀⠀⠀⠘⣿⣿⣿⣿⣷⣦⣤⣤⣤⣶⣶⣶⣶⣿⣿⣿⠀
+⠀⢸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠀
+⠀⣸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠉⠻⠿⣿⣿⣿⣿⡿⠿⠿⠛⢻⣿⡇⠀⠀
+⠀⠸⣿⣧⡀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠃⠀⠀
+⠀⠀⠛⢿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⣰⣿⣿⣷⣶⣶⣶⣶⠶⠀⢠⣿⣿⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⣽⣿⡏⠁⠀⠀⢸⣿⡇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⢹⣿⡆⠀⠀⠀⣸⣿⠇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢿⣿⣦⣄⣀⣠⣴⣿⣿⠁⠀⠈⠻⣿⣿⣿⣿⡿⠏⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⠛⠻⠿⠿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+Hello there, you magnificent console-snooping developer.
+I see you, venting into the source code. That's pretty sus no ?.
+
+Since you've completed your 'Inspect Element' task, here are your next objectives:
+
+  - Check the ship's logs (source code) on GitHub: https://github.com/Tarblux/three.js-personal-website
+  - Report your findings (or just say hi) on LinkedIn: https://www.linkedin.com/in/tariq-williams12/
+
+Any bugs you find were definitely planted by the *other* imposter. I swear I was in electrical.
+`, easterEgg.main);
+
+
+if (import.meta.env.DEV) {
+  studio.extend(extension)
+  studio.initialize()
+}
+
+const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+function Loader({ onBoardingPassClick }) {
+  const { progress } = useProgress()
+  const priorityStatus = usePriorityLoading()
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [loadingPhase, setLoadingPhase] = useState('Initializing...')
+
+  useEffect(() => {
+    // Start priority loading when component mounts
+    priorityLoadingManager.startLoading()
+  }, [])
+
+  useEffect(() => {
+    // Funny loading messages based on progress
+    const criticalPhase = priorityStatus.phases.critical
+    const progress = criticalPhase.total > 0 ? criticalPhase.loaded / criticalPhase.total : 0
+    
+    if (priorityStatus.criticalReady && !isLoaded) {
+      setLoadingPhase('City construction complete!')
+      setIsLoaded(true)
+      const loadingMessage = document.querySelector('.loading-message')
+      if (loadingMessage) {
+        loadingMessage.classList.add('fade-out-message')
+      }
+    } else if (progress < 0.15) {
+      setLoadingPhase('Terraforming terrain...')
+    } else if (progress < 0.25) {
+      setLoadingPhase('Planting digital trees...')
+    } else if (progress < 0.35) {
+      setLoadingPhase('Installing streetlights...')
+    } else if (progress < 0.45) {
+      setLoadingPhase('Building train tracks...')
+    } else if (progress < 0.55) {
+      setLoadingPhase('Spawning NPCs...')
+    } else if (progress < 0.65) {
+      setLoadingPhase('Training the AI conductor...')
+    } else if (progress < 0.75) {
+      setLoadingPhase('Calibrating chess pieces...')
+    } else if (progress < 0.85) {
+      setLoadingPhase('Rendering skyscrapers...')
+    } else if (progress < 0.95) {
+      setLoadingPhase('Adding the final touches...')
+    } else {
+      setLoadingPhase('City construction complete!')
+    }
+  }, [priorityStatus, isLoaded])
+
+  // Fallback to old progress system if priority loading fails
+  useEffect(() => {
+    if (progress === 100 && !isLoaded) {
+      setIsLoaded(true)
+      const loadingMessage = document.querySelector('.loading-message')
+      if (loadingMessage) {
+        loadingMessage.classList.add('fade-out-message')
+      }
+    }
+  }, [progress, isLoaded])
+
+  // Calculate display progress (critical assets = 100%)
+  const criticalProgress = priorityStatus.phases.critical.total > 0 
+    ? (priorityStatus.phases.critical.loaded / priorityStatus.phases.critical.total) * 100
+    : progress
+
+  const displayProgress = Math.min(100, Math.round(criticalProgress)) // Prevent > 100% and fix rounding
+
+  return (
+    <div id="loader">
+      <div className="loading-message">{loadingPhase}</div>
+      <video
+        src="/3d/videos/city-loading2.mp4"
+        autoPlay
+        muted
+        playsInline
+        disablePictureInPicture
+        preload="auto"
+        fetchpriority="high"
+        className="loading-video"
+      />
+      <div className="loading-bar-container">
+        <div className="loading-bar" style={{ width: `${displayProgress}%` }}></div>
+      </div>
+      <div className="loading-percentage">{displayProgress}%</div>
+      {(priorityStatus.criticalReady || displayProgress >= 100) && <LoadedButton onBoardingPassClick={onBoardingPassClick} />}
+      
+      {/* Loading info */}
+      {/* <div className="fixed bottom-4 left-4 bg-black bg-opacity-50 text-white p-3 text-sm rounded-lg">
+        <div className="font-bold mb-2">Loading Status</div>
+        <div>Phase: <span className="text-blue-300">{priorityStatus.phase}</span></div>
+        <div>Critical: <span className="text-green-300">{priorityStatus.phases.critical.loaded}/{priorityStatus.phases.critical.total}</span></div>
+        <div>High: <span className="text-yellow-300">{priorityStatus.phases.high.loaded}/{priorityStatus.phases.high.total}</span></div>
+        <div>Medium: <span className="text-orange-300">{priorityStatus.phases.medium.loaded}/{priorityStatus.phases.medium.total}</span></div>
+        <div>Low: <span className="text-gray-300">{priorityStatus.phases.low.loaded}/{priorityStatus.phases.low.total}</span></div>
+        <div className="mt-2 pt-2 border-t border-gray-600">
+          <div>Total Assets: <span className="text-cyan-300">{Object.values(priorityStatus.phases).reduce((sum, phase) => sum + phase.loaded, 0)}/{Object.values(priorityStatus.phases).reduce((sum, phase) => sum + phase.total, 0)}</span></div>
+          <div>Display: <span className="text-white font-bold">{displayProgress}%</span></div>
+          <div>Ready: <span className={priorityStatus.criticalReady ? 'text-green-400' : 'text-red-400'}>{priorityStatus.criticalReady ? 'Yes' : 'No'}</span></div>
+        </div>
+      </div> */}
+    </div>
+  )
+}
+
+function App() {
+  const [disableScroll, setDisableScroll] = useState(true)
+  const [autoPlay, setAutoPlay] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [showSkipButton, setShowSkipButton] = useState(false)
+  const [audioDebugData, setAudioDebugData] = useState(null)
+  const audioRef = useRef(null)
+  const [uiVolume, setUiVolume] = useState(80)
+  const [muted, setMuted] = useState(false)
+  const [isMobileDevice, setIsMobileDevice] = useState(false)
+
+  // Detect mobile device on mount
+  useEffect(() => {
+    setIsMobileDevice(isMobile())
+  }, [])
+
+  // Initialize global audio state via soundManager
+  useEffect(() => {
+    soundManager.setGlobalVolume(uiVolume / 100)
+    soundManager.setMuted(muted)
+  }, [uiVolume, muted])
+
+  const handleBoardingPassClick = () => {
+    const loader = document.getElementById("loader")
+    if (loader) {
+      loader.classList.add("fade-out")
+      setTimeout(() => {
+        loader.style.display = "none"
+      }, 1000);
+    }
+
+    setAutoPlay(true)
+    setShowSkipButton(true)
+    // Use Howler to ensure global volume/mute apply
+    try {
+      if (audioRef.current && typeof audioRef.current.unload === 'function') {
+        audioRef.current.unload()
+      }
+    } catch {}
+    audioRef.current = soundManager.ensure('trainSounds', [
+      '/3d/sounds/train-sounds.ogg',
+      '/3d/sounds/train-sounds.mp3',
+    ])
+    audioRef.current.play()
+
+    setTimeout(() => {
+      setShowSkipButton(false)
+    }, 15000)
+  };
+
+  const handleSkipIntro = () => {
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current.currentTime = 0
+    }
+
+    setAutoPlay(false)
+    setDisableScroll(false)
+    setShowSkipButton(false)
+  }
+
+  return (
+    <>
+      <Loader onBoardingPassClick={handleBoardingPassClick} />
+      {showSkipButton && <SkipIntroButton onSkip={handleSkipIntro} />}
+      <Canvas gl={{ preserveDrawingBuffer: true }} flat>
+        <Suspense fallback={null}>
+          <Experience
+            disableScroll={disableScroll}
+            setDisableScroll={setDisableScroll}
+            autoPlay={autoPlay}
+            setAutoPlay={setAutoPlay}
+            onScrollProgress={setScrollProgress}
+            onAudioDebugUpdate={setAudioDebugData}
+          />
+        </Suspense>
+      </Canvas>
+      <div className="fixed top-[30px] right-3 z-[10000]">
+        <VolumeSlider
+          value={uiVolume}
+          onChange={setUiVolume}
+          className=""
+          ariaLabel="UI Volume"
+          title="UI Volume"
+          autoHide
+          autoHideDelay={2000}
+          muted={muted}
+          onToggleMute={() => setMuted((m) => !m)}
+        />
+      </div>
+      {!isMobileDevice && (
+        <KineticTitle sections={sections} scrollProgress={scrollProgress} />
+      )}
+      {/* <ScrollDebug scrollProgress={scrollProgress} /> */}
+      {audioDebugData && (
+        <AudioDebugHUD 
+          {...audioDebugData}
+          show={audioDebugData.showDebugHUD}
+        />
+      )}
+      <Leva collapsed hidden={true} />
+      <SpeedInsights />
+      <Analytics />
+    </>
+  )
+}
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)

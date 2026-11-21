@@ -1,0 +1,38 @@
+:root {
+  color: #171717;
+  background: #fff;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1.25rem;
+  min-height: 100vh;
+  padding-inline: 1rem;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+}
+
+a {
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: #171717;
+  color: #fff;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 4px;
+}
